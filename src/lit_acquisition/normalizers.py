@@ -662,6 +662,175 @@ def normalize_firecrawl(item: dict[str, Any]) -> OnlineAcquisitionItem:
     )
 
 
+def normalize_semantic_scholar(item: dict[str, Any]) -> OnlineAcquisitionItem:
+    """Normalize a Semantic Scholar paper into an OnlineAcquisitionItem.
+
+    Semantic Scholar provides: paperId, title, authors, year, externalIds
+    (DOI, PubMed, arXiv), openAccessPdf, tldr, fieldsOfStudy, citationCount,
+    publicationTypes, journal.
+    """
+    external_ids = item.get("externalIds") or {}
+    doi = _clean_text(external_ids.get("DOI") or item.get("doi"))
+    pmid = _clean_text(external_ids.get("PubMed"))
+    arxiv_id = _clean_text(external_ids.get("ArXiv"))
+
+    authors_raw = item.get("authors") or []
+    authors = _dedupe(
+        [_clean_text(a.get("name")) for a in authors_raw if isinstance(a, dict) and a.get("name")]
+    )
+
+    oa_pdf = item.get("openAccessPdf")
+    oa_url: str | None = None
+    oa_status: str | None = None
+    if isinstance(oa_pdf, dict):
+        oa_url = _clean_text(oa_pdf.get("url"))
+        oa_status = _clean_text(oa_pdf.get("status"))
+
+    url = oa_url or _clean_text(item.get("url"))
+    if not url and doi:
+        url = f"https://doi.org/{doi}"
+
+    journal_obj = item.get("journal")
+    journal: str | None = None
+    if isinstance(journal_obj, dict):
+        journal = _clean_text(journal_obj.get("name"))
+
+    pub_types = item.get("publicationTypes") or []
+    literature_type = None
+    if isinstance(pub_types, list) and pub_types:
+        first_type = str(pub_types[0]).lower()
+        if "case" in first_type:
+            literature_type = "case_report"
+        elif "review" in first_type:
+            literature_type = "review"
+
+    fields_of_study = item.get("fieldsOfStudy") or []
+    keywords = _dedupe([_clean_text(f) for f in fields_of_study if _clean_text(f)])
+
+    identifiers: dict[str, Any] = {"paperId": item.get("paperId")}
+    if pmid:
+        identifiers["pmid"] = pmid
+    if arxiv_id:
+        identifiers["arxiv"] = arxiv_id
+
+    # License: Semantic Scholar openAccessPdf.status indicates OA type
+    license_value = oa_status if oa_status else None
+
+    return OnlineAcquisitionItem(
+        source="semantic_scholar",
+        title=_clean_text(item.get("title")),
+        authors=authors,
+        journal=journal,
+        year=_extract_year(item.get("year")),
+        doi=doi,
+        url=url,
+        links=_extract_links([url, oa_url]) if oa_url else _extract_links([url]),
+        language=None,
+        issn=[],
+        identifiers=identifiers,
+        keywords=keywords,
+        literature_type=literature_type,
+        license=license_value,
+    )
+
+
+def normalize_clinical_trials(item: dict[str, Any]) -> OnlineAcquisitionItem:
+    """Normalize a ClinicalTrials.gov study into an OnlineAcquisitionItem.
+
+    Uses the flattened fields produced by ``_extract_study_fields``.
+    ClinicalTrials.gov data is U.S. government public domain.
+    """
+    from .clinical_trials import _extract_study_fields
+
+    fields = item
+    # If the item still has the raw protocolSection, flatten it
+    if "protocolSection" in item:
+        fields = _extract_study_fields(item)
+
+    nct_id = fields.get("nct_id", "")
+    conditions = fields.get("conditions") or []
+    keywords = _dedupe([_clean_text(c) for c in conditions if _clean_text(c)])
+
+    interventions = fields.get("interventions") or []
+    for intervention in interventions:
+        if isinstance(intervention, dict):
+            name = _clean_text(intervention.get("name"))
+            if name:
+                keywords.append(name)
+
+    # Build a descriptive title that includes the study type
+    title = _clean_text(fields.get("title")) or _clean_text(fields.get("official_title"))
+    study_type = _clean_text(fields.get("study_type"))
+    if title and study_type:
+        title = f"{title} [{study_type}]"
+
+    return OnlineAcquisitionItem(
+        source="clinical_trials",
+        title=title,
+        authors=[_clean_text(fields.get("lead_sponsor"))] if fields.get("lead_sponsor") else [],
+        journal=None,
+        year=_extract_year(fields.get("start_date")),
+        doi=None,
+        url=f"https://clinicaltrials.gov/study/{nct_id}" if nct_id else None,
+        links=[f"https://clinicaltrials.gov/study/{nct_id}"] if nct_id else [],
+        language="en",
+        publisher=_clean_text(fields.get("sponsor_class")),
+        issn=[],
+        identifiers={"nct_id": nct_id} if nct_id else {},
+        keywords=keywords,
+        literature_type=None,
+        license="public_domain",
+    )
+
+
+def normalize_zenodo(item: dict[str, Any]) -> OnlineAcquisitionItem:
+    """Normalize a Zenodo record into an OnlineAcquisitionItem.
+
+    Zenodo metadata is CC0. Record licenses vary (typically CC-BY).
+    """
+    metadata = item.get("metadata") or {}
+    links = item.get("links") or {}
+
+    creators = metadata.get("creators") or []
+    authors = _dedupe(
+        [_clean_text(c.get("name")) for c in creators if isinstance(c, dict) and c.get("name")]
+    )
+
+    doi = _clean_text(metadata.get("doi"))
+    record_id = _clean_text(str(item.get("id") or ""))
+    url = _clean_text(links.get("latest_html") or links.get("self"))
+    if not url and record_id:
+        url = f"https://zenodo.org/records/{record_id}"
+    if not url and doi:
+        url = f"https://doi.org/{doi}"
+
+    access_right = _clean_text(metadata.get("access_right"))
+    license_value = _clean_text(metadata.get("license"))
+    if not license_value and access_right:
+        license_value = access_right
+
+    keywords_raw = metadata.get("keywords") or []
+    keywords = _dedupe([_clean_text(k) for k in keywords_raw if _clean_text(k)])
+
+    return OnlineAcquisitionItem(
+        source="zenodo",
+        title=_clean_text(metadata.get("title")),
+        authors=authors,
+        journal=None,
+        year=_extract_year(metadata.get("publication_date")),
+        doi=doi,
+        url=url,
+        links=_extract_links([url]),
+        language=_clean_text(metadata.get("language")),
+        publisher="Zenodo",
+        issn=[],
+        identifiers={"record_id": record_id} if record_id else {},
+        keywords=keywords,
+        literature_type=None,
+        license=license_value,
+    )
+
+
 # --- Normalizer registry ---
 
 NORMALIZER_MAP: dict[str, Callable[[dict[str, Any]], OnlineAcquisitionItem]] = {
@@ -676,6 +845,9 @@ NORMALIZER_MAP: dict[str, Callable[[dict[str, Any]], OnlineAcquisitionItem]] = {
     "cyberleninka": normalize_web_generic,
     "hans_publishers": normalize_web_generic,
     "firecrawl": normalize_firecrawl,
+    "semantic_scholar": normalize_semantic_scholar,
+    "clinical_trials": normalize_clinical_trials,
+    "zenodo": normalize_zenodo,
 }
 
 

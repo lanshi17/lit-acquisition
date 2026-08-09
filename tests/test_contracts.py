@@ -96,6 +96,10 @@ def test_build_provider_plan_default():
     assert "crossref" in providers
     assert "pubmed" not in providers  # auto plan uses "pmc" not "pubmed"
     assert "pmc" in providers
+    # New providers should be in the auto plan
+    assert "semantic_scholar" in providers
+    assert "clinical_trials" in providers
+    assert "zenodo" in providers
 
 
 def test_build_provider_plan_ja():
@@ -104,6 +108,19 @@ def test_build_provider_plan_ja():
     providers = [p["provider"] for p in plan]
     assert providers[0] == "jstage"
     assert "cinii" in providers
+
+
+def test_build_provider_plan_en_includes_new_providers():
+    """English plan includes Semantic Scholar, ClinicalTrials.gov, and Zenodo."""
+    plan = build_provider_plan(language="en")
+    providers = [p["provider"] for p in plan]
+    assert "semantic_scholar" in providers
+    assert "clinical_trials" in providers
+    assert "zenodo" in providers
+    # Semantic Scholar should be high priority (before preprint servers)
+    ss_idx = providers.index("semantic_scholar")
+    arxiv_idx = providers.index("arxiv")
+    assert ss_idx < arxiv_idx
 
 
 def test_build_provider_plan_hints():

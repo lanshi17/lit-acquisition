@@ -218,6 +218,10 @@ def resolve_oa_url(result: OnlineAcquisitionGatewayResult) -> str | None:
     for item in result.items:
         if not isinstance(item, dict):
             continue
+        # Semantic Scholar openAccessPdf
+        oa_pdf = item.get("openAccessPdf")
+        if isinstance(oa_pdf, dict) and oa_pdf.get("url"):
+            return oa_pdf.get("url")
         # EuropePMC fullTextUrlList
         ftl = item.get("fullTextUrlList")
         if isinstance(ftl, dict):
@@ -367,15 +371,153 @@ async def _search_jstage_via_pyjstage(
         return _failure_result("jstage", exc, "search")
 
 
+async def _search_semantic_scholar(
+    request: OnlineAcquisitionGatewayRequest,
+) -> OnlineAcquisitionGatewayResult:
+    """Search Semantic Scholar via Python httpx client."""
+    start = _time.monotonic()
+    try:
+        from .semantic_scholar import get_semantic_scholar_service
+
+        svc = get_semantic_scholar_service()
+        query = (request.query or "").strip()
+        if not query:
+            return _failure_result("semantic_scholar", ValueError("empty query"), "search")
+
+        limit = min(request.limit or 20, 100)
+        items = await svc.search(query, limit=limit)
+
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("semantic_scholar", success=True, latency_ms=elapsed)
+        trace = OnlineAcquisitionSourceTraceEntry(
+            provider="semantic_scholar",
+            attempt=1,
+            action="search",
+            success=True,
+            items_count=len(items),
+            downloads_count=0,
+            warnings=[],
+        )
+        return OnlineAcquisitionGatewayResult(
+            provider="semantic_scholar",
+            success=True,
+            items=items,
+            downloads=[],
+            warnings=[],
+            source_trace=[trace],
+        )
+    except Exception as exc:
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("semantic_scholar", success=False, latency_ms=elapsed)
+        logger.warning("semantic_scholar search failed: {}", exc)
+        return _failure_result("semantic_scholar", exc, "search")
+
+
+async def _search_clinical_trials(
+    request: OnlineAcquisitionGatewayRequest,
+) -> OnlineAcquisitionGatewayResult:
+    """Search ClinicalTrials.gov via Python httpx client."""
+    start = _time.monotonic()
+    try:
+        from .clinical_trials import get_clinical_trials_service
+
+        svc = get_clinical_trials_service()
+        query = (request.query or "").strip()
+        if not query:
+            return _failure_result("clinical_trials", ValueError("empty query"), "search")
+
+        limit = min(request.limit or 20, 1000)
+        items = await svc.search(query, limit=limit)
+
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("clinical_trials", success=True, latency_ms=elapsed)
+        trace = OnlineAcquisitionSourceTraceEntry(
+            provider="clinical_trials",
+            attempt=1,
+            action="search",
+            success=True,
+            items_count=len(items),
+            downloads_count=0,
+            warnings=[],
+        )
+        return OnlineAcquisitionGatewayResult(
+            provider="clinical_trials",
+            success=True,
+            items=items,
+            downloads=[],
+            warnings=[],
+            source_trace=[trace],
+        )
+    except Exception as exc:
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("clinical_trials", success=False, latency_ms=elapsed)
+        logger.warning("clinical_trials search failed: {}", exc)
+        return _failure_result("clinical_trials", exc, "search")
+
+
+async def _search_zenodo(
+    request: OnlineAcquisitionGatewayRequest,
+) -> OnlineAcquisitionGatewayResult:
+    """Search Zenodo via Python httpx client."""
+    start = _time.monotonic()
+    try:
+        from .zenodo import get_zenodo_service
+
+        svc = get_zenodo_service()
+        query = (request.query or "").strip()
+        if not query:
+            return _failure_result("zenodo", ValueError("empty query"), "search")
+
+        limit = min(request.limit or 20, 100)
+        items = await svc.search(query, limit=limit)
+
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("zenodo", success=True, latency_ms=elapsed)
+        trace = OnlineAcquisitionSourceTraceEntry(
+            provider="zenodo",
+            attempt=1,
+            action="search",
+            success=True,
+            items_count=len(items),
+            downloads_count=0,
+            warnings=[],
+        )
+        return OnlineAcquisitionGatewayResult(
+            provider="zenodo",
+            success=True,
+            items=items,
+            downloads=[],
+            warnings=[],
+            source_trace=[trace],
+        )
+    except Exception as exc:
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("zenodo", success=False, latency_ms=elapsed)
+        logger.warning("zenodo search failed: {}", exc)
+        return _failure_result("zenodo", exc, "search")
+
+
 async def call_provider(request: OnlineAcquisitionGatewayRequest) -> OnlineAcquisitionGatewayResult:
     """Call a single provider via net_io.fetch_one.
 
     J-STAGE search is routed through pyjstage-py312 in Python because the
     Rust provider hits a broken HTML endpoint.  Download still goes through
     Rust (pdf_candidates logic is correct).
+
+    Semantic Scholar, ClinicalTrials.gov, and Zenodo are Python-only
+    providers (no Rust implementation) - they use httpx directly.
     """
     if request.provider == "jstage" and request.action == "search":
         return await _search_jstage_via_pyjstage(request)
+
+    if request.provider == "semantic_scholar" and request.action == "search":
+        return await _search_semantic_scholar(request)
+
+    if request.provider == "clinical_trials" and request.action == "search":
+        return await _search_clinical_trials(request)
+
+    if request.provider == "zenodo" and request.action == "search":
+        return await _search_zenodo(request)
 
     start = _time.monotonic()
     if net_io is None:

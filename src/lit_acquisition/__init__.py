@@ -22,13 +22,24 @@ Quick start::
     result = await multilingual_acquisition_workflow({"query": "MECP2 Rett syndrome", "action": "search"})
 """
 
+from .citation_graph import (
+    TraversalDirection,
+    traverse_citation_graph,
+)
+from .clinical_trials import (
+    ClinicalTrialsService,
+    get_clinical_trials_service,
+)
 from .config import (
+    ClinicalTrialsConfig,
     LitAcquisitionConfig,
     LLMConfig,
     NetworkConfig,
     PubMedConfig,
+    SemanticScholarConfig,
     TranslationLLMConfig,
     WebSearchConfig,
+    ZenodoConfig,
     configure,
     get_config,
     reload_config,
@@ -81,27 +92,33 @@ from .search_service import (
     search_multilingual,
     search_parallel,
 )
+from .semantic_scholar import (
+    SemanticScholarService,
+    get_semantic_scholar_service,
+)
 from .workflow import (
     multilingual_acquisition_workflow,
     online_acquisition_workflow,
 )
+from .zenodo import (
+    ZenodoService,
+    get_zenodo_service,
+)
 
 __all__ = [
     "TARGET_LANGUAGES",
+    "ClinicalTrialsConfig",
+    "ClinicalTrialsService",
     "DownloadResult",
     "LLMConfig",
-    # Config
     "LitAcquisitionConfig",
-    # Literature type classifier
     "LiteratureType",
     "NetworkConfig",
     "OnlineAcquisitionGatewayRequest",
     "OnlineAcquisitionGatewayResult",
-    # Contracts
     "OnlineAcquisitionItem",
     "OnlineAcquisitionPubMedArticle",
     "OnlineAcquisitionPubMedCandidate",
-    # PubMed
     "OnlineAcquisitionPubMedService",
     "OnlineAcquisitionRequest",
     "OnlineAcquisitionResponse",
@@ -110,16 +127,17 @@ __all__ = [
     "ProviderHealthTracker",
     "ProviderStats",
     "PubMedConfig",
-    # Relevance gate
     "RelevanceGateResult",
     "RelevanceJudgment",
-    # Query translator
+    "SemanticScholarConfig",
+    "SemanticScholarService",
     "TranslatedQueries",
     "TranslationLLMConfig",
+    "TraversalDirection",
     "WebSearchConfig",
-    # Search
+    "ZenodoConfig",
+    "ZenodoService",
     "build_provider_plan",
-    # Gateway
     "call_provider",
     "call_provider_with_retry",
     "classify_item",
@@ -128,14 +146,14 @@ __all__ = [
     "dedupe_candidates",
     "download_file_from_url",
     "filter_by_type",
+    "get_clinical_trials_service",
     "get_config",
-    # Provider health
     "get_health_tracker",
     "get_pubmed_service",
+    "get_semantic_scholar_service",
+    "get_zenodo_service",
     "multilingual_acquisition_workflow",
-    # Normalizers
     "normalize_items",
-    # Workflow
     "online_acquisition_workflow",
     "rank_candidates",
     "reload_config",
@@ -145,6 +163,7 @@ __all__ = [
     "search_parallel",
     "search_provider",
     "translate_query",
+    "traverse_citation_graph",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

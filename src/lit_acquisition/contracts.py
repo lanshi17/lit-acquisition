@@ -25,6 +25,9 @@ ApiProvider = Literal[
     "biorxiv",
     "medrxiv",
     "cinii",
+    "semantic_scholar",
+    "clinical_trials",
+    "zenodo",
 ]
 PreferStrategy = Literal["auto", "api", "web"]
 ActionStrategy = Literal["search", "download"]
@@ -108,6 +111,7 @@ class OnlineAcquisitionItem(BaseModel):
     identifiers: dict[str, Any] = Field(default_factory=dict)
     keywords: list[str] = Field(default_factory=list)
     literature_type: str | None = None
+    license: str | None = None
 
 
 # --- Route Info ---

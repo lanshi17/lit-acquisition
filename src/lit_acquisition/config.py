@@ -136,6 +136,36 @@ class PubMedConfig(BaseModel):
     api_key: str = ""
 
 
+class SemanticScholarConfig(BaseModel):
+    """Semantic Scholar Graph API configuration.
+
+    The API is free; an API key increases rate limits from ~100 to
+    ~5000 requests per 5 minutes.
+    """
+
+    base_url: str = "https://api.semanticscholar.org/graph/v1"
+    api_key: str = ""
+
+
+class ClinicalTrialsConfig(BaseModel):
+    """ClinicalTrials.gov v2 API configuration.
+
+    U.S. government public domain data - no API key required.
+    """
+
+    base_url: str = "https://clinicaltrials.gov/api/v2"
+
+
+class ZenodoConfig(BaseModel):
+    """Zenodo REST API configuration.
+
+    CERN-operated open science repository. Metadata is CC0.
+    No API key required for search.
+    """
+
+    base_url: str = "https://zenodo.org/api"
+
+
 class LitAcquisitionConfig(BaseModel):
     """Root configuration for lit-acquisition.
 
@@ -151,6 +181,9 @@ class LitAcquisitionConfig(BaseModel):
     web_search: WebSearchConfig = Field(default_factory=WebSearchConfig)
     network: NetworkConfig = Field(default_factory=NetworkConfig)
     pubmed: PubMedConfig = Field(default_factory=PubMedConfig)
+    semantic_scholar: SemanticScholarConfig = Field(default_factory=SemanticScholarConfig)
+    clinical_trials: ClinicalTrialsConfig = Field(default_factory=ClinicalTrialsConfig)
+    zenodo: ZenodoConfig = Field(default_factory=ZenodoConfig)
 
 
 # ── Singleton ────────────────────────────────────────────────────────────
@@ -189,6 +222,10 @@ def configure(
     no_proxy: str | None = None,
     pubmed_api_key: str | None = None,
     pubmed_base_url: str | None = None,
+    semantic_scholar_api_key: str | None = None,
+    semantic_scholar_base_url: str | None = None,
+    clinical_trials_base_url: str | None = None,
+    zenodo_base_url: str | None = None,
 ) -> LitAcquisitionConfig:
     """Configure the library programmatically.
 
@@ -242,6 +279,20 @@ def configure(
         cfg.pubmed.api_key = pubmed_api_key
     if pubmed_base_url is not None:
         cfg.pubmed.base_url = pubmed_base_url
+
+    # Semantic Scholar
+    if semantic_scholar_api_key is not None:
+        cfg.semantic_scholar.api_key = semantic_scholar_api_key
+    if semantic_scholar_base_url is not None:
+        cfg.semantic_scholar.base_url = semantic_scholar_base_url
+
+    # ClinicalTrials.gov
+    if clinical_trials_base_url is not None:
+        cfg.clinical_trials.base_url = clinical_trials_base_url
+
+    # Zenodo
+    if zenodo_base_url is not None:
+        cfg.zenodo.base_url = zenodo_base_url
 
     return cfg
 
@@ -297,5 +348,19 @@ def _load_from_env() -> LitAcquisitionConfig:
     # PubMed
     cfg.pubmed.api_key = os.getenv("LIT_PUBMED_API_KEY", os.getenv("PUBMED_API_KEY", ""))
     cfg.pubmed.base_url = os.getenv("LIT_PUBMED_BASE_URL", "https://eutils.ncbi.nlm.nih.gov/entrez/eutils")
+
+    # Semantic Scholar
+    cfg.semantic_scholar.base_url = os.getenv(
+        "LIT_SEMANTIC_SCHOLAR_BASE_URL", "https://api.semanticscholar.org/graph/v1"
+    )
+    cfg.semantic_scholar.api_key = os.getenv("LIT_SEMANTIC_SCHOLAR_API_KEY", "")
+
+    # ClinicalTrials.gov
+    cfg.clinical_trials.base_url = os.getenv(
+        "LIT_CLINICAL_TRIALS_BASE_URL", "https://clinicaltrials.gov/api/v2"
+    )
+
+    # Zenodo
+    cfg.zenodo.base_url = os.getenv("LIT_ZENODO_BASE_URL", "https://zenodo.org/api")
 
     return cfg

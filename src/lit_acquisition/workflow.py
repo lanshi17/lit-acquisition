@@ -58,6 +58,9 @@ _API_SEARCH_PROVIDERS = [
     "core",
     "openaire",
     "cinii",
+    "semantic_scholar",
+    "clinical_trials",
+    "zenodo",
 ]
 
 # Identifier-specific provider overrides
