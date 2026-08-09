@@ -1,0 +1,1246 @@
+{
+  "V001": {
+    "variant": {
+      "variant_id": "V001",
+      "gene": "MECP2",
+      "variant": "c.470C>T",
+      "disease": "Rett syndrome",
+      "query": "MECP2 Rett syndrome case report"
+    },
+    "papers": [
+      {
+        "pmid": "42291837",
+        "doi": "10.1155/crpe/7163898",
+        "pmcid": "PMC13263407",
+        "title": "Reduction in Seizure Generalization Associated With Long-Term Low-Dose Immunomodulatory Therapy Using Prednisolone and Methotrexate in Rett Syndrome: A Case Report.",
+        "journal": "Case reports in pediatrics",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "42231686",
+        "doi": "10.1002/mdc3.70697",
+        "pmcid": "PMC13339272",
+        "title": "Atypical Atypical MECP2-Related Rett Syndrome Presenting with Movement Disorders- Predominating Phenotype.",
+        "journal": "Movement disorders clinical practice",
+        "pub_date": "2026 Jun 2",
+        "language": "en"
+      },
+      {
+        "pmid": "41724124",
+        "doi": "10.1016/j.yebeh.2026.110920",
+        "pmcid": "",
+        "title": "Use of fenfluramine in MECP2-related Rett syndrome: Findings from a retrospective multicenter pediatric case series.",
+        "journal": "Epilepsy & behavior : E&B",
+        "pub_date": "2026 May",
+        "language": "en"
+      },
+      {
+        "pmid": "41139199",
+        "doi": "10.1210/clinem/dgaf572",
+        "pmcid": "PMC13017585",
+        "title": "MECP2 Rare Variants in Boys With Central Precocious Puberty.",
+        "journal": "The Journal of clinical endocrinology and metabolism",
+        "pub_date": "2026 Mar 17",
+        "language": "en"
+      },
+      {
+        "pmid": "41810194",
+        "doi": "10.21037/tp-2025-647",
+        "pmcid": "PMC12969236",
+        "title": "A novel heterozygous pathogenic variation in the MECP2 gene causing typical Rett syndrome: a case report.",
+        "journal": "Translational pediatrics",
+        "pub_date": "2026 Feb 28",
+        "language": "en"
+      },
+      {
+        "pmid": "41898808",
+        "doi": "10.3390/genes17030274",
+        "pmcid": "PMC13025527",
+        "title": "Co-Occurring Genetic Mutations in Rett Syndrome and MECP2-Related Disorders-Clinical and Diagnostic Implications from a Case Series.",
+        "journal": "Genes",
+        "pub_date": "2026 Feb 27",
+        "language": "en"
+      },
+      {
+        "pmid": "41694936",
+        "doi": "10.7759/cureus.101620",
+        "pmcid": "PMC12906339",
+        "title": "MECP2 Gene-Related Severe Neonatal Encephalopathy: A Rare Case in a Female Neonate.",
+        "journal": "Cureus",
+        "pub_date": "2026 Jan",
+        "language": "en"
+      },
+      {
+        "pmid": "41782542",
+        "doi": "10.17116/jnevro2026126021136",
+        "pmcid": "",
+        "title": "[Features of premorbid status in patients with Rett syndrome].",
+        "journal": "Zhurnal nevrologii i psikhiatrii imeni S.S. Korsakova",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "41255665",
+        "doi": "10.5409/wjcp.v14.i4.109874",
+        "pmcid": "PMC12620861",
+        "title": "Atypical case of Rett syndrome with concurrent MECP2 gene mutation and del(15)(q22qter) karyotype: A case report and review of literature.",
+        "journal": "World journal of clinical pediatrics",
+        "pub_date": "2025 Dec 9",
+        "language": "en"
+      },
+      {
+        "pmid": "40956574",
+        "doi": "10.1002/epd2.70102",
+        "pmcid": "",
+        "title": "Adult-onset drug-resistant progressive epilepsy in a patient with novel MECP2 mutation.",
+        "journal": "Epileptic disorders : international epilepsy journal with videotape",
+        "pub_date": "2025 Dec",
+        "language": "en"
+      },
+      {
+        "pmid": "41147347",
+        "doi": "10.1002/bdr2.2521",
+        "pmcid": "",
+        "title": "A Case Report: Co-Occurrence of TNRC6B Gene Variant and Xq28 Microdeletion Syndrome With Comprehensive Literature Review.",
+        "journal": "Birth defects research",
+        "pub_date": "2025 Nov",
+        "language": "en"
+      },
+      {
+        "pmid": "39973088",
+        "doi": "10.1080/00221325.2025.2465788",
+        "pmcid": "",
+        "title": "Shared Environment - Different Genes: Speech-Language Development in a Pair of Dizygotic Twins with and Without MECP2 Mutation.",
+        "journal": "The Journal of genetic psychology",
+        "pub_date": "2025 Nov-Dec",
+        "language": "en"
+      },
+      {
+        "pmid": "41409310",
+        "doi": "10.1159/000549131",
+        "pmcid": "PMC12707938",
+        "title": "Double Genetic Diagnosis Involving MECP2 and EPHB4 in a Child with Neurodevelopmental Delay and Vascular Anomalies: A Case Report.",
+        "journal": "Molecular syndromology",
+        "pub_date": "2025 Oct 23",
+        "language": "en"
+      },
+      {
+        "pmid": "40895494",
+        "doi": "10.1210/jcemcr/luaf188",
+        "pmcid": "PMC12395339",
+        "title": "Noonan Syndrome and Rett Syndrome in An 8-Year-Old Girl With A Tectal Neoplasm.",
+        "journal": "JCEM case reports",
+        "pub_date": "2025 Oct",
+        "language": "en"
+      },
+      {
+        "pmid": "40898246",
+        "doi": "10.1186/s13023-025-03935-6",
+        "pmcid": "PMC12406456",
+        "title": "Clinical differences in monozygotic twins with Rett syndrome: case report and systematic review.",
+        "journal": "Orphanet journal of rare diseases",
+        "pub_date": "2025 Sep 2",
+        "language": "en"
+      }
+    ]
+  },
+  "V002": {
+    "variant": {
+      "variant_id": "V002",
+      "gene": "BRCA1",
+      "variant": "c.5266dupC",
+      "disease": "breast cancer",
+      "query": "BRCA1 5266dupC breast cancer"
+    },
+    "papers": [
+      {
+        "pmid": "40834323",
+        "doi": "10.1200/PO-25-00333",
+        "pmcid": "PMC12379788",
+        "title": "Comprehensive Screening for Early Cancer Detection in Individuals With Genetic Predisposition.",
+        "journal": "JCO precision oncology",
+        "pub_date": "2025 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "40002208",
+        "doi": "10.3390/cancers17040613",
+        "pmcid": "PMC11853394",
+        "title": "BRCA1 and BRCA2 Mutations in Polish Women with Ductal Carcinoma In Situ.",
+        "journal": "Cancers",
+        "pub_date": "2025 Feb 11",
+        "language": "en"
+      },
+      {
+        "pmid": "40384197",
+        "doi": "10.47162/RJME.66.1.10",
+        "pmcid": "PMC12236278",
+        "title": "Contralateral breast cancer in patients carrying mutations in the BRCA1∕2 gene.",
+        "journal": "Romanian journal of morphology and embryology = Revue roumaine de morphologie et embryologie",
+        "pub_date": "2025 Jan-Mar",
+        "language": "en"
+      },
+      {
+        "pmid": "39438962",
+        "doi": "10.1186/s13053-024-00296-2",
+        "pmcid": "PMC11495111",
+        "title": "Molecular analysis of BRCA1 and BRCA2 genes in La Rioja (Spain): five new variants.",
+        "journal": "Hereditary cancer in clinical practice",
+        "pub_date": "2024 Oct 22",
+        "language": "en"
+      },
+      {
+        "pmid": "38918649",
+        "doi": "10.31557/APJCP.2024.25.6.1891",
+        "pmcid": "PMC11382858",
+        "title": "A Systematic Review of the Prevalence of Germline BRCA mutations in North Asia Breast Cancer Patients.",
+        "journal": "Asian Pacific journal of cancer prevention : APJCP",
+        "pub_date": "2024 Jun 1",
+        "language": "en"
+      },
+      {
+        "pmid": "38504328",
+        "doi": "10.1186/s40001-024-01767-x",
+        "pmcid": "PMC10953197",
+        "title": "Systematic review of the molecular basis of hereditary breast and ovarian cancer syndrome in Brazil: the current scenario.",
+        "journal": "European journal of medical research",
+        "pub_date": "2024 Mar 20",
+        "language": "en"
+      },
+      {
+        "pmid": "37013556",
+        "doi": "10.1186/s13048-023-01119-z",
+        "pmcid": "PMC10071671",
+        "title": "Targeted next-generation sequencing of 21 candidate genes in hereditary ovarian cancer patients from the Republic of Bashkortostan.",
+        "journal": "Journal of ovarian research",
+        "pub_date": "2023 Apr 4",
+        "language": "en"
+      },
+      {
+        "pmid": "36980780",
+        "doi": "10.3390/cancers15061895",
+        "pmcid": "PMC10047778",
+        "title": "Spectrum of High-Risk Mutations among Breast Cancer Patients Referred for Multigene Panel Testing in a Romanian Population.",
+        "journal": "Cancers",
+        "pub_date": "2023 Mar 22",
+        "language": "en"
+      },
+      {
+        "pmid": "36329109",
+        "doi": "10.1038/s41598-022-23012-3",
+        "pmcid": "PMC9633799",
+        "title": "Familial history and prevalence of BRCA1, BRCA2 and TP53 pathogenic variants in HBOC Brazilian patients from a public healthcare service.",
+        "journal": "Scientific reports",
+        "pub_date": "2022 Nov 3",
+        "language": "en"
+      },
+      {
+        "pmid": "35781768",
+        "doi": "10.1111/1471-0528.17253",
+        "pmcid": "PMC9796935",
+        "title": "Randomised trial of population-based BRCA testing in Ashkenazi Jews: long-term secondary lifestyle behavioural outcomes.",
+        "journal": "BJOG : an international journal of obstetrics and gynaecology",
+        "pub_date": "2022 Nov",
+        "language": "en"
+      },
+      {
+        "pmid": "35409996",
+        "doi": "10.3390/ijerph19074314",
+        "pmcid": "PMC8998351",
+        "title": "Spectrum of BRCA1/2 Mutations in Romanian Breast and Ovarian Cancer Patients.",
+        "journal": "International journal of environmental research and public health",
+        "pub_date": "2022 Apr 4",
+        "language": "en"
+      },
+      {
+        "pmid": "35216584",
+        "doi": "10.1186/s12885-022-09181-4",
+        "pmcid": "PMC8876448",
+        "title": "Prevalence of specific and recurrent/founder pathogenic variants in BRCA genes in breast and ovarian cancer in North Africa.",
+        "journal": "BMC cancer",
+        "pub_date": "2022 Feb 25",
+        "language": "en"
+      },
+      {
+        "pmid": "33888336",
+        "doi": "10.1016/j.ygyno.2021.04.014",
+        "pmcid": "",
+        "title": "Characteristics and outcome of BRCA mutated epithelial ovarian cancer patients in Italy: A retrospective multicenter study (MITO 21).",
+        "journal": "Gynecologic oncology",
+        "pub_date": "2021 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "33478551",
+        "doi": "10.1186/s13053-021-00169-y",
+        "pmcid": "PMC7818718",
+        "title": "BRCA1 and BRCA2 mutations in ovarian cancer patients from Belarus: update.",
+        "journal": "Hereditary cancer in clinical practice",
+        "pub_date": "2021 Jan 21",
+        "language": "en"
+      },
+      {
+        "pmid": "33468216",
+        "doi": "10.1186/s13053-021-00168-z",
+        "pmcid": "PMC7814703",
+        "title": "A novel frequent BRCA1 recurrent variant c.5117G > A (p.Gly1206Glu) identified after 20 years of BRCA1/2 research in the Baltic region: cohort study and literature review.",
+        "journal": "Hereditary cancer in clinical practice",
+        "pub_date": "2021 Jan 19",
+        "language": "en"
+      }
+    ]
+  },
+  "V003": {
+    "variant": {
+      "variant_id": "V003",
+      "gene": "CFTR",
+      "variant": "Phe508del",
+      "disease": "cystic fibrosis",
+      "query": "CFTR Phe508del cystic fibrosis functional"
+    },
+    "papers": [
+      {
+        "pmid": "42208689",
+        "doi": "10.1016/j.rmed.2026.108907",
+        "pmcid": "",
+        "title": "Unmasking the genetic heterogeneity of cystic fibrosis in the Torbat Jam region: From common variants to large deletions and the challenge of missing heritability.",
+        "journal": "Respiratory medicine",
+        "pub_date": "2026 Aug-Sep",
+        "language": "en"
+      },
+      {
+        "pmid": "42026798",
+        "doi": "10.1097/FPC.0000000000000601",
+        "pmcid": "",
+        "title": "CFTR genotype-phenotype associations and clinical outcomes in pediatric cystic fibrosis.",
+        "journal": "Pharmacogenetics and genomics",
+        "pub_date": "2026 Jul 1",
+        "language": "en"
+      },
+      {
+        "pmid": "41936498",
+        "doi": "10.1016/j.jcf.2026.03.019",
+        "pmcid": "",
+        "title": "Investigation of HE4 expression concerning epithelial-mesenchymal transition (EMT) in cystic fibrosis epithelial cells.",
+        "journal": "Journal of cystic fibrosis : official journal of the European Cystic Fibrosis Society",
+        "pub_date": "2026 Jul",
+        "language": "en"
+      },
+      {
+        "pmid": "42303492",
+        "doi": "10.1016/j.jcf.2026.06.002",
+        "pmcid": "",
+        "title": "A functional comparison of vanzacaftor/tezacaftor/deutivacaftor and elexacaftor/tezacaftor/ivacaftor in patient-derived intestinal organoids with rare CFTR variants.",
+        "journal": "Journal of cystic fibrosis : official journal of the European Cystic Fibrosis Society",
+        "pub_date": "2026 Jun 16",
+        "language": "en"
+      },
+      {
+        "pmid": "42248741",
+        "doi": "10.1016/j.rmr.2026.04.003",
+        "pmcid": "",
+        "title": "[Factors associated with FEV1 evolution in cystic fibrosis patients treated by CFTR modulator tritherapy].",
+        "journal": "Revue des maladies respiratoires",
+        "pub_date": "2026 Jun 5",
+        "language": "en"
+      },
+      {
+        "pmid": "42272190",
+        "doi": "10.1002/ppul.71701",
+        "pmcid": "",
+        "title": "Real-World Clinical Outcomes of Lumacaftor-Ivacaftor or Tezacaftor-Ivacaftor Therapy in Children With Cystic Fibrosis Homozygous for Phe508del.",
+        "journal": "Pediatric pulmonology",
+        "pub_date": "2026 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "42067070",
+        "doi": "10.1016/j.rmed.2026.108853",
+        "pmcid": "",
+        "title": "Genotype-dependent biochemical response to elexacaftor/tezacaftor/ivacaftor in children with cystic fibrosis: A 24-month real-world study.",
+        "journal": "Respiratory medicine",
+        "pub_date": "2026 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "42278929",
+        "doi": "10.3390/jcm15114067",
+        "pmcid": "PMC13257817",
+        "title": "Nucleotide Variant in the SLC26A9 Gene in Two Siblings with Cystic Fibrosis.",
+        "journal": "Journal of clinical medicine",
+        "pub_date": "2026 May 25",
+        "language": "en"
+      },
+      {
+        "pmid": "41987545",
+        "doi": "",
+        "pmcid": "",
+        "title": "[CFTR-related disorders (CFTR-RD) : definition and illustration by a clinical case of reccurent acute pancreatitis in an adolescent].",
+        "journal": "Revue medicale de Liege",
+        "pub_date": "2026 Apr",
+        "language": "en"
+      },
+      {
+        "pmid": "41953138",
+        "doi": "10.3389/fgene.2026.1769093",
+        "pmcid": "PMC13053646",
+        "title": "CFTR gene variant detection in moroccan individuals via nanopore long-read sequencing.",
+        "journal": "Frontiers in genetics",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "41898631",
+        "doi": "10.3390/ijms27062770",
+        "pmcid": "PMC13027017",
+        "title": "Distinct CFTR Mutation Spectrum and Atypical Clinical Presentations in Chinese Patients with Cystic Fibrosis.",
+        "journal": "International journal of molecular sciences",
+        "pub_date": "2026 Mar 18",
+        "language": "en"
+      },
+      {
+        "pmid": "41828725",
+        "doi": "10.3390/ijms27052510",
+        "pmcid": "PMC12985789",
+        "title": "A Diagnostic Dilemma: Concurrent Diagnosis of Cystic Fibrosis and Definitive Kabuki Syndrome Type 1.",
+        "journal": "International journal of molecular sciences",
+        "pub_date": "2026 Mar 9",
+        "language": "en"
+      },
+      {
+        "pmid": "41203217",
+        "doi": "10.1016/j.gene.2025.149870",
+        "pmcid": "",
+        "title": "Profile of cystic fibrosis transmembrane conductance regulator (CFTR) gene variants across India and their variability in different geographic regions.",
+        "journal": "Gene",
+        "pub_date": "2026 Jan 15",
+        "language": "en"
+      },
+      {
+        "pmid": "40944809",
+        "doi": "10.1007/s40291-025-00806-5",
+        "pmcid": "PMC12847090",
+        "title": "Personalized Medicine in Cystic Fibrosis: Characterization of Eight Rare CFTR Variants in Intestinal Organoids and Cellular Models.",
+        "journal": "Molecular diagnosis & therapy",
+        "pub_date": "2026 Jan",
+        "language": "en"
+      },
+      {
+        "pmid": "41377908",
+        "doi": "10.1016/j.eclinm.2025.103655",
+        "pmcid": "PMC12686891",
+        "title": "Comparative efficacy and safety of CFTR modulators for people with cystic fibrosis with phe508del mutation: a systematic review and bayesian network meta-analysis.",
+        "journal": "EClinicalMedicine",
+        "pub_date": "2025 Dec",
+        "language": "en"
+      }
+    ]
+  },
+  "V004": {
+    "variant": {
+      "variant_id": "V004",
+      "gene": "LDLR",
+      "variant": "c.913G>A",
+      "disease": "hypercholesterolemia",
+      "query": "LDLR familial hypercholesterolemia variant functional"
+    },
+    "papers": [
+      {
+        "pmid": "42385645",
+        "doi": "10.1016/j.atherosclerosis.2026.120832",
+        "pmcid": "",
+        "title": "Optimized flow cytometry assay for functional characterization of variants of uncertain significance in familial hypercholesterolemia.",
+        "journal": "Atherosclerosis",
+        "pub_date": "2026 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "42342461",
+        "doi": "10.1016/j.pathol.2026.03.015",
+        "pmcid": "",
+        "title": "The utility of artificial intelligence for DNA variant curation in the Mendelian genetic disorder familial hypercholesterolaemia.",
+        "journal": "Pathology",
+        "pub_date": "2026 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "42402367",
+        "doi": "10.7570/jomes25090",
+        "pmcid": "PMC13429824",
+        "title": "Steatotic Liver Disease Predicts Lower Likelihood of LDLR Gene Mutations in Young Korean Patients with Suspected Familial Hypercholesterolemia.",
+        "journal": "Journal of obesity & metabolic syndrome",
+        "pub_date": "2026 Jul 30",
+        "language": "en"
+      },
+      {
+        "pmid": "42470100",
+        "doi": "10.1016/j.ymthe.2026.07.036",
+        "pmcid": "",
+        "title": "Precise hepatic base editing of ASGR1 enables robust and durable LDLR-independent lipid lowering in vivo.",
+        "journal": "Molecular therapy : the journal of the American Society of Gene Therapy",
+        "pub_date": "2026 Jul 17",
+        "language": "en"
+      },
+      {
+        "pmid": "42342634",
+        "doi": "10.3760/cma.j.cn511374-20251013-00596",
+        "pmcid": "",
+        "title": "[Analysis of gene variant spectrum associated with Familial hypercholesterolemia in a regional population: A retrospective study based on exome sequencing of 15 841 cases].",
+        "journal": "Zhonghua yi xue yi chuan xue za zhi = Zhonghua yixue yichuanxue zazhi = Chinese journal of medical genetics",
+        "pub_date": "2026 Jul 10",
+        "language": "en"
+      },
+      {
+        "pmid": "42424361",
+        "doi": "10.1371/journal.pone.0353401",
+        "pmcid": "PMC13349120",
+        "title": "Genetic yield of next-generation sequencing for detecting monogenic familial hypercholesterolemia in uzbek patients with coronary artery disease.",
+        "journal": "PloS one",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "42400862",
+        "doi": "10.1007/s11883-026-01435-x",
+        "pmcid": "PMC13332989",
+        "title": "The Spectrum of Genetic Causes of Familial Hypercholesterolemia Phenotype.",
+        "journal": "Current atherosclerosis reports",
+        "pub_date": "2026 Jul 4",
+        "language": "en"
+      },
+      {
+        "pmid": "42275762",
+        "doi": "10.1016/j.atherosclerosis.2026.120809",
+        "pmcid": "",
+        "title": "Systematic evaluation of mobile element insertions in autosomal dominant hypercholesterolemia genes using short-read sequencing.",
+        "journal": "Atherosclerosis",
+        "pub_date": "2026 Jul",
+        "language": "en"
+      },
+      {
+        "pmid": "42428179",
+        "doi": "10.7759/cureus.110527",
+        "pmcid": "PMC13348663",
+        "title": "Severe Hyperlipidemia and Multifocal Atherosclerosis With Negative Genetic Testing for Familial Hypercholesterolemia: A Case Report.",
+        "journal": "Cureus",
+        "pub_date": "2026 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "42054033",
+        "doi": "10.1001/jamacardio.2026.0879",
+        "pmcid": "PMC13130062",
+        "title": "Response to PCSK9 Inhibition Based on LDL Receptor Function in Familial Hypercholesterolemia: A Nonrandomized Clinical Trial.",
+        "journal": "JAMA cardiology",
+        "pub_date": "2026 Jun 1",
+        "language": "en"
+      },
+      {
+        "pmid": "42135730",
+        "doi": "10.1186/s12944-026-02976-5",
+        "pmcid": "PMC13339510",
+        "title": "Cascade screening and genetic variant pathogenicity assessment for familial hypercholesterolemia in a township‑based elderly population.",
+        "journal": "Lipids in health and disease",
+        "pub_date": "2026 May 14",
+        "language": "en"
+      },
+      {
+        "pmid": "42133473",
+        "doi": "10.1093/eurjpc/zwag198",
+        "pmcid": "",
+        "title": "Global survey of genetic testing methods for familial hypercholesterolemia. A study and recommendations from the EAS FHSC registry.",
+        "journal": "European journal of preventive cardiology",
+        "pub_date": "2026 May 14",
+        "language": "en"
+      },
+      {
+        "pmid": "41985740",
+        "doi": "10.1016/j.ejmg.2026.105077",
+        "pmcid": "PMC13181544",
+        "title": "STAT3 dominant negative Hyper-IgE syndrome: A patient report with actionable genomic findings.",
+        "journal": "European journal of medical genetics",
+        "pub_date": "2026 May",
+        "language": "en"
+      },
+      {
+        "pmid": "41667233",
+        "doi": "10.1136/jmg-2025-111201",
+        "pmcid": "PMC13151451",
+        "title": "Frequency of familial hypercholesterolaemia-causing genetic variants in the 100 000 Genomes Project cohort: whole genome sequencing analyses of 77 260 participants.",
+        "journal": "Journal of medical genetics",
+        "pub_date": "2026 Apr 20",
+        "language": "en"
+      },
+      {
+        "pmid": "41964074",
+        "doi": "10.1186/s13293-026-00893-x",
+        "pmcid": "PMC13182057",
+        "title": "Sex- and age-dependent mitochondrial dysfunction and cognitive impairment in a mouse model of familial hypercholesterolemia.",
+        "journal": "Biology of sex differences",
+        "pub_date": "2026 Apr 10",
+        "language": "en"
+      }
+    ]
+  },
+  "V005": {
+    "variant": {
+      "variant_id": "V005",
+      "gene": "TP53",
+      "variant": "R175H",
+      "disease": "Li-Fraumeni",
+      "query": "TP53 R175H Li-Fraumeni syndrome"
+    },
+    "papers": [
+      {
+        "pmid": "41898519",
+        "doi": "10.3390/ijms27062656",
+        "pmcid": "PMC13026885",
+        "title": "STK11 and DNA Repair Gene Mutations Define Hereditary Subset of Middle Eastern Papillary Thyroid Cancer.",
+        "journal": "International journal of molecular sciences",
+        "pub_date": "2026 Mar 14",
+        "language": "en"
+      },
+      {
+        "pmid": "32958587",
+        "doi": "10.1158/1940-6207.CAPR-20-0368",
+        "pmcid": "PMC7981282",
+        "title": "Reducing Fatty Acid Oxidation Improves Cancer-free Survival in a Mouse Model of Li-Fraumeni Syndrome.",
+        "journal": "Cancer prevention research (Philadelphia, Pa.)",
+        "pub_date": "2021 Jan",
+        "language": "en"
+      },
+      {
+        "pmid": "27516001",
+        "doi": "10.5301/jbm.5000227",
+        "pmcid": "",
+        "title": "Multiple primary tumors in a family with Li-Fraumeni syndrome with a TP53 germline mutation identified by next-generation sequencing.",
+        "journal": "The International journal of biological markers",
+        "pub_date": "2016 Dec 23",
+        "language": "en"
+      },
+      {
+        "pmid": "19127115",
+        "doi": "10.3343/kjlm.2008.28.6.493",
+        "pmcid": "",
+        "title": "Genetic counseling can influence the course of a suspected familial cancer syndrome patient: from a case of Li-Fraumeni like syndrome with a germline mutation in the TP53 gene.",
+        "journal": "The Korean journal of laboratory medicine",
+        "pub_date": "2008 Dec",
+        "language": "en"
+      },
+      {
+        "pmid": "15977174",
+        "doi": "10.1002/humu.20192",
+        "pmcid": "",
+        "title": "Evaluation of the molecular mechanisms involved in the gain of function of a Li-Fraumeni TP53 mutation.",
+        "journal": "Human mutation",
+        "pub_date": "2005 Aug",
+        "language": "en"
+      }
+    ]
+  },
+  "V006": {
+    "variant": {
+      "variant_id": "V006",
+      "gene": "SCN5A",
+      "variant": "c.5266G>A",
+      "disease": "long QT",
+      "query": "SCN5A long QT syndrome variant functional"
+    },
+    "papers": [
+      {
+        "pmid": "41759860",
+        "doi": "10.1016/j.hrthm.2026.02.033",
+        "pmcid": "",
+        "title": "A population-based study of trends in cardiac arrest and sudden death owing to long QT syndrome.",
+        "journal": "Heart rhythm",
+        "pub_date": "2026 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "42510858",
+        "doi": "10.3390/genes17070818",
+        "pmcid": "PMC13410096",
+        "title": "Integrating Genetic Data and Electronic Medical Records to Reassess Variant Pathogenicity in the Taiwanese Han Population.",
+        "journal": "Genes",
+        "pub_date": "2026 Jul 17",
+        "language": "en"
+      },
+      {
+        "pmid": "41793471",
+        "doi": "10.1007/s00414-026-03720-5",
+        "pmcid": "",
+        "title": "SCN5A (c.4720G> A): a rare genetic variant associated with familial sick sinus syndrome and sudden cardiac death.",
+        "journal": "International journal of legal medicine",
+        "pub_date": "2026 Jul",
+        "language": "en"
+      },
+      {
+        "pmid": "42358584",
+        "doi": "10.3389/fped.2026.1823685",
+        "pmcid": "PMC13290446",
+        "title": "Case Report: Nadolol-mexiletine combination therapy for refractory neonatal long QT syndrome: a case series beyond sodium channelopathies.",
+        "journal": "Frontiers in pediatrics",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "42114100",
+        "doi": "10.1093/europace/euag113",
+        "pmcid": "PMC13237868",
+        "title": "Ventricular conduction is a marker for arrhythmic risk in SCN5A-E1784K overlap sodium channel disease.",
+        "journal": "Europace : European pacing, arrhythmias, and cardiac electrophysiology : journal of the working groups on cardiac pacing, arrhythmias, and cardiac cellular electrophysiology of the European Society of Cardiology",
+        "pub_date": "2026 Jun 2",
+        "language": "en"
+      },
+      {
+        "pmid": "42126717",
+        "doi": "10.1007/s12012-026-10125-8",
+        "pmcid": "",
+        "title": "Low Dose Amitriptyline-Induced Electrical Storm Unmasking a Novel SCN5A and KCNQ1 Compound Genotype: Insights from Family Cascade Screening.",
+        "journal": "Cardiovascular toxicology",
+        "pub_date": "2026 May 13",
+        "language": "en"
+      },
+      {
+        "pmid": "41802778",
+        "doi": "10.1136/bmjpo-2025-004403",
+        "pmcid": "PMC12983881",
+        "title": "Paediatric inherited arrhythmia clinic: developing a new model of care.",
+        "journal": "BMJ paediatrics open",
+        "pub_date": "2026 Mar 9",
+        "language": "en"
+      },
+      {
+        "pmid": "41582807",
+        "doi": "10.1161/CIRCEP.125.014270",
+        "pmcid": "PMC12911491",
+        "title": "Phenotypic Severity of SCN5A-Related Bradycardia Is Independent of Dominant-Negative and Coupled Gating Effects.",
+        "journal": "Circulation. Arrhythmia and electrophysiology",
+        "pub_date": "2026 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "41596527",
+        "doi": "10.3390/ijms27020880",
+        "pmcid": "PMC12842284",
+        "title": "Clinical Spectrum of Arrhythmogenic Entities in Spanish Children Carrying Deleterious SCN5A Variants.",
+        "journal": "International journal of molecular sciences",
+        "pub_date": "2026 Jan 15",
+        "language": "en"
+      },
+      {
+        "pmid": "41445668",
+        "doi": "10.64898/2025.12.12.25340695",
+        "pmcid": "PMC12723964",
+        "title": "MOG1(L18F)-mediated increase in late sodium current produces Long QT Syndrome.",
+        "journal": "medRxiv : the preprint server for health sciences",
+        "pub_date": "2025 Dec 18",
+        "language": "en"
+      },
+      {
+        "pmid": "40561734",
+        "doi": "10.1016/j.scr.2025.103755",
+        "pmcid": "PMC13222054",
+        "title": "Generation of a set of genetically modified long QT syndrome induced pluripotent stem cell lines carrying knock-in variants rs120074178 (KCNQ1 c.569G > A; p.Arg190Gln) and rs137854600 (SCN5A c.4865G > A; p.Arg1622Gln) and isogenic control lines.",
+        "journal": "Stem cell research",
+        "pub_date": "2025 Sep",
+        "language": "en"
+      },
+      {
+        "pmid": "40543898",
+        "doi": "10.1016/j.yjmcc.2025.06.005",
+        "pmcid": "",
+        "title": "Molecular mechanism for the interaction of MOG1 with the intracellular loop II of cardiac sodium channel Na(v)1.5 and its role in arrhythmias.",
+        "journal": "Journal of molecular and cellular cardiology",
+        "pub_date": "2025 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "40209984",
+        "doi": "10.1016/j.yjmcc.2025.04.001",
+        "pmcid": "",
+        "title": "Clinical and electrophysiological characterization of a SCN5A gain-of-function mutation associated with CPVT-like arrhythmia.",
+        "journal": "Journal of molecular and cellular cardiology",
+        "pub_date": "2025 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "40159220",
+        "doi": "10.1253/circj.CJ-25-0105",
+        "pmcid": "",
+        "title": "Clinical Impact of Genetic Testing for Long QT Syndrome　- Evidence From a Nationwide LQTS Registry in Japan.",
+        "journal": "Circulation journal : official journal of the Japanese Circulation Society",
+        "pub_date": "2025 May 23",
+        "language": "en"
+      },
+      {
+        "pmid": "40179677",
+        "doi": "10.1016/j.jelectrocard.2025.153924",
+        "pmcid": "",
+        "title": "The known high-risk p.R190Q KCNQ1-variant needs a second hit for QTc prolongation.",
+        "journal": "Journal of electrocardiology",
+        "pub_date": "2025 May-Jun",
+        "language": "en"
+      }
+    ]
+  },
+  "V007": {
+    "variant": {
+      "variant_id": "V007",
+      "gene": "PALB2",
+      "variant": "c.3113G>A",
+      "disease": "breast cancer",
+      "query": "PALB2 Trp1038Ter breast cancer"
+    },
+    "papers": [
+      {
+        "pmid": "41959818",
+        "doi": "10.64898/2026.04.03.26349984",
+        "pmcid": "PMC13060390",
+        "title": "Genomic ascertainment of PALB2-related cancer predisposition: PALB2-related cancer predisposition.",
+        "journal": "medRxiv : the preprint server for health sciences",
+        "pub_date": "2026 Apr 4",
+        "language": "en"
+      }
+    ]
+  },
+  "V008": {
+    "variant": {
+      "variant_id": "V008",
+      "gene": "PTEN",
+      "variant": "c.388C>T",
+      "disease": "Cowden",
+      "query": "PTEN Cowden syndrome case report"
+    },
+    "papers": [
+      {
+        "pmid": "42569674",
+        "doi": "10.1016/j.jdcr.2026.06.050",
+        "pmcid": "PMC13450576",
+        "title": "Cowden syndrome-like phenotype with lymphangioma circumscriptum and an APC variant of uncertain significance.",
+        "journal": "JAAD case reports",
+        "pub_date": "2026 Sep",
+        "language": "en"
+      },
+      {
+        "pmid": "42397496",
+        "doi": "10.1007/s12328-026-02389-y",
+        "pmcid": "",
+        "title": "PTEN negative adenocarcinoma developed in a gastric hamartoma polyp of a Cowden syndrome patient.",
+        "journal": "Clinical journal of gastroenterology",
+        "pub_date": "2026 Jul 3",
+        "language": "en"
+      },
+      {
+        "pmid": "42106060",
+        "doi": "10.1016/j.ejmg.2026.105082",
+        "pmcid": "",
+        "title": "Child-onset hepatic glycogenosis and steatosis in PTEN-related disorder.",
+        "journal": "European journal of medical genetics",
+        "pub_date": "2026 Jul",
+        "language": "en"
+      },
+      {
+        "pmid": "41966075",
+        "doi": "10.1515/jpem-2025-0587",
+        "pmcid": "",
+        "title": "Endocrine and metabolic features of PTEN hamartoma tumor syndrome in childhood: a pediatric case series.",
+        "journal": "Journal of pediatric endocrinology & metabolism : JPEM",
+        "pub_date": "2026 Jun 24",
+        "language": "en"
+      },
+      {
+        "pmid": "42394463",
+        "doi": "10.61409/V01260034",
+        "pmcid": "",
+        "title": "[Mosaicism as a cause of Cowden syndrome].",
+        "journal": "Ugeskrift for laeger",
+        "pub_date": "2026 Jun 15",
+        "language": "en"
+      },
+      {
+        "pmid": "42299218",
+        "doi": "10.7759/cureus.108912",
+        "pmcid": "PMC13265039",
+        "title": "Incidental Diagnosis of Serrated Polyposis Syndrome of the Small and Large Bowel Treated Endoscopically and Surgically: A Case Report.",
+        "journal": "Cureus",
+        "pub_date": "2026 May",
+        "language": "en"
+      },
+      {
+        "pmid": "42116069",
+        "doi": "10.1186/s12905-026-04502-2",
+        "pmcid": "PMC13343969",
+        "title": "Management and outcomes of fertility preservation in rare Cowden syndrome-associated endometrial carcinoma: a case series.",
+        "journal": "BMC women's health",
+        "pub_date": "2026 May 11",
+        "language": "en"
+      },
+      {
+        "pmid": "41991228",
+        "doi": "10.1136/bcr-2025-269126",
+        "pmcid": "",
+        "title": "Bannayan-Riley-Ruvalcaba syndrome with arteriovenous malformation.",
+        "journal": "BMJ case reports",
+        "pub_date": "2026 Apr 16",
+        "language": "en"
+      },
+      {
+        "pmid": "41986640",
+        "doi": "10.1038/s44276-026-00216-y",
+        "pmcid": "PMC13083980",
+        "title": "Remarkable response of metaplastic breast cancer to a novel targeted AKT inhibitor TAS-117 in a Cowden syndrome patient: a case report.",
+        "journal": "BJC reports",
+        "pub_date": "2026 Apr 15",
+        "language": "en"
+      },
+      {
+        "pmid": "41799645",
+        "doi": "10.1002/rmb2.70035",
+        "pmcid": "PMC12963780",
+        "title": "A Successful Live Birth After Double Fertility Preservation With Embryo Cryopreservation and MPA Therapy Combined With Hysteroscopic Resection for Metachronous Breast and Endometrial Cancer in Women With Cowden Syndrome: A Case Report.",
+        "journal": "Reproductive medicine and biology",
+        "pub_date": "2026 Jan-Dec",
+        "language": "en"
+      },
+      {
+        "pmid": "41676040",
+        "doi": "10.1007/s12055-025-02133-0",
+        "pmcid": "PMC12886676",
+        "title": "Cowden syndrome presenting with ascending aortic aneurysm: echocardiogram and computed tomography angiography findings.",
+        "journal": "Indian journal of thoracic and cardiovascular surgery",
+        "pub_date": "2026 Mar",
+        "language": "en"
+      },
+      {
+        "pmid": "41148183",
+        "doi": "10.23736/S0390-5616.25.06567-1",
+        "pmcid": "",
+        "title": "Dysplastic cerebellar gangliocytoma: a six-decade study.",
+        "journal": "Journal of neurosurgical sciences",
+        "pub_date": "2026 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "40938196",
+        "doi": "10.1097/RLU.0000000000006090",
+        "pmcid": "",
+        "title": "When Benign Is Not Simple: Suspicious Thyroid Scintigraphy Revealing PTEN Hamartoma Tumor Syndrome in a Pediatric Patient.",
+        "journal": "Clinical nuclear medicine",
+        "pub_date": "2026 Feb 1",
+        "language": "en"
+      },
+      {
+        "pmid": "41717203",
+        "doi": "10.7759/cureus.101863",
+        "pmcid": "PMC12916116",
+        "title": "Macrocephaly and Characteristic MRI Findings as Early Clues to a Hereditary Overgrowth Syndrome.",
+        "journal": "Cureus",
+        "pub_date": "2026 Jan",
+        "language": "en"
+      },
+      {
+        "pmid": "41562819",
+        "doi": "10.3390/reports9010021",
+        "pmcid": "PMC12821661",
+        "title": "Cowden Syndrome in Childhood: Gastrointestinal Involvement in a Multisystem Genetic Disorder-A Case Report.",
+        "journal": "Reports (MDPI)",
+        "pub_date": "2026 Jan 9",
+        "language": "en"
+      }
+    ]
+  },
+  "V009": {
+    "variant": {
+      "variant_id": "V009",
+      "gene": "MYH7",
+      "variant": "c.2389G>A",
+      "disease": "cardiomyopathy",
+      "query": "MYH7 hypertrophic cardiomyopathy variant functional"
+    },
+    "papers": [
+      {
+        "pmid": "41985226",
+        "doi": "10.1016/j.scr.2026.103979",
+        "pmcid": "",
+        "title": "Generation of two induced pluripotent stem cell lines from female patients harboring MYH7 mutations with hypertrophic cardiomyopathy.",
+        "journal": "Stem cell research",
+        "pub_date": "2026 Aug",
+        "language": "en"
+      },
+      {
+        "pmid": "42411452",
+        "doi": "10.1097/FJC.0000000000001828",
+        "pmcid": "",
+        "title": "The Cardiac Sarcomere: From development of heritable cardiomyopathies to gene and precision therapies.",
+        "journal": "Journal of cardiovascular pharmacology",
+        "pub_date": "2026 Jul 7",
+        "language": "en"
+      },
+      {
+        "pmid": "42372158",
+        "doi": "10.1073/pnas.2529234123",
+        "pmcid": "PMC13342902",
+        "title": "Thick filament molecular interfaces play a critical role in the pathogenesis of hypertrophic cardiomyopathy.",
+        "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+        "pub_date": "2026 Jul 7",
+        "language": "en"
+      },
+      {
+        "pmid": "41581477",
+        "doi": "10.1016/j.arcmed.2025.103362",
+        "pmcid": "",
+        "title": "Cardiomyopathy in Northwestern Mexico: Clinical Spectrum, Morphological Variants, and Sarcomere Gene Mutations.",
+        "journal": "Archives of medical research",
+        "pub_date": "2026 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "41272943",
+        "doi": "10.1002/bab.70097",
+        "pmcid": "",
+        "title": "Correlation of Differential Gene Expression and Clinical Variations in Hypertrophic Cardiomyopathy via Whole Genome Sequencing.",
+        "journal": "Biotechnology and applied biochemistry",
+        "pub_date": "2026 Jun",
+        "language": "en"
+      },
+      {
+        "pmid": "41759561",
+        "doi": "10.1016/j.amjcard.2026.02.042",
+        "pmcid": "",
+        "title": "The Long-Term Clinical Progression of Genotype-Positive/Phenotype-Negative Patients With Hypertrophic Cardiomyopathy.",
+        "journal": "The American journal of cardiology",
+        "pub_date": "2026 May 15",
+        "language": "en"
+      },
+      {
+        "pmid": "41998504",
+        "doi": "10.1186/s12872-026-05834-5",
+        "pmcid": "PMC13231718",
+        "title": "Uncovering the gene variants in a global cohort of patients with unexplained increased left ventricular wall thickness using next-generation sequencing.",
+        "journal": "BMC cardiovascular disorders",
+        "pub_date": "2026 Apr 17",
+        "language": "en"
+      },
+      {
+        "pmid": "41880433",
+        "doi": "10.36660/abc.20250420",
+        "pmcid": "PMC13128179",
+        "title": "Genetic and Clinical Characterization of a South-Brazilian Hypertrophic Cardiomyopathy Cohort.",
+        "journal": "Arquivos brasileiros de cardiologia",
+        "pub_date": "2026 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "41766641",
+        "doi": "10.1017/S1047951126111548",
+        "pmcid": "",
+        "title": "Primary cardiomyopathy in paediatrics: experience in Colombia.",
+        "journal": "Cardiology in the young",
+        "pub_date": "2026 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "41196521",
+        "doi": "10.1007/s11845-025-04139-4",
+        "pmcid": "",
+        "title": "Predictors for increasing genetic testing yields in hypertrophic cardiomyopathy.",
+        "journal": "Irish journal of medical science",
+        "pub_date": "2026 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "41695170",
+        "doi": "10.3389/fmed.2026.1700541",
+        "pmcid": "PMC12900690",
+        "title": "An unusual trilogy: a case of comorbid aHUS, Fabry disease, and hypertrophic cardiomyopathy.",
+        "journal": "Frontiers in medicine",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "41270882",
+        "doi": "10.1016/j.cca.2025.120725",
+        "pmcid": "",
+        "title": "Genotypic and phenotypic characterization of critical pediatric cardiomyopathy: A 20-patient cohort study.",
+        "journal": "Clinica chimica acta; international journal of clinical chemistry",
+        "pub_date": "2026 Jan 30",
+        "language": "en"
+      },
+      {
+        "pmid": "42203436",
+        "doi": "10.1248/bpb.b26-00025",
+        "pmcid": "",
+        "title": "Modeling Hypertrophic Cardiomyopathy-Related MYH7 Variants: Insights into Structural Changes and Cardiovascular Drug-Binding Affinities.",
+        "journal": "Biological & pharmaceutical bulletin",
+        "pub_date": "2026",
+        "language": "en"
+      },
+      {
+        "pmid": "41509624",
+        "doi": "10.21037/cdt-2025-188",
+        "pmcid": "PMC12775153",
+        "title": "Identification of recurrent MYH7 variant hypertrophic cardiomyopathy patients in Korea: a case series.",
+        "journal": "Cardiovascular diagnosis and therapy",
+        "pub_date": "2025 Dec 31",
+        "language": "en"
+      },
+      {
+        "pmid": "41516100",
+        "doi": "10.3390/ijms27010221",
+        "pmcid": "PMC12785989",
+        "title": "Hypertrophic Cardiomyopathy Genotype-Phenotype Analysis in Lithuanian Single-Center Cohort.",
+        "journal": "International journal of molecular sciences",
+        "pub_date": "2025 Dec 25",
+        "language": "en"
+      }
+    ]
+  },
+  "V010": {
+    "variant": {
+      "variant_id": "V010",
+      "gene": "GJB2",
+      "variant": "35delG",
+      "disease": "hearing loss",
+      "query": "GJB2 35delG hearing loss case report"
+    },
+    "papers": [
+      {
+        "pmid": "38734626",
+        "doi": "10.1186/s13256-024-04559-3",
+        "pmcid": "PMC11088767",
+        "title": "Unusual phenotype in 35delG mutation: a case report.",
+        "journal": "Journal of medical case reports",
+        "pub_date": "2024 May 12",
+        "language": "en"
+      },
+      {
+        "pmid": "33443819",
+        "doi": "10.1002/mgg3.1574",
+        "pmcid": "PMC8077155",
+        "title": "Palmoplantar keratoderma with deafness phenotypic variability in a patient with an inherited GJB2 frameshift variant and novel missense variant.",
+        "journal": "Molecular genetics & genomic medicine",
+        "pub_date": "2021 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "32733727",
+        "doi": "10.1155/2020/8747392",
+        "pmcid": "PMC7369675",
+        "title": "Progressive Deformity of the Lower Limbs in a Patient with KID (Keratitis-Ichthyosis-Deafness) Syndrome.",
+        "journal": "Case reports in orthopedics",
+        "pub_date": "2020",
+        "language": "en"
+      },
+      {
+        "pmid": "31475558",
+        "doi": "10.4149/BLL_2019_118",
+        "pmcid": "",
+        "title": "Hereditary bilateral sudden sensorineural hearing loss.",
+        "journal": "Bratislavske lekarske listy",
+        "pub_date": "2019",
+        "language": "en"
+      },
+      {
+        "pmid": "26885137",
+        "doi": "",
+        "pmcid": "PMC4723982",
+        "title": "Genetic characteristics of the couple with non-syndromic sensorineural hearing loss and fertility guidance.",
+        "journal": "International journal of clinical and experimental medicine",
+        "pub_date": "2015",
+        "language": "en"
+      },
+      {
+        "pmid": "25149889",
+        "doi": "",
+        "pmcid": "",
+        "title": "A novel compound heterozygous mutation (35delG, 363delC) in the Connexin 26 gene causes non-syndromic autosomal recessive hearing loss.",
+        "journal": "Acta medica Iranica",
+        "pub_date": "2014",
+        "language": "en"
+      },
+      {
+        "pmid": "23873582",
+        "doi": "10.1002/ajmg.a.36042",
+        "pmcid": "PMC3745519",
+        "title": "Homozygosity for the V37I GJB2 mutation in fifteen probands with mild to moderate sensorineural hearing impairment: further confirmation of pathogenicity and haplotype analysis in Asian populations.",
+        "journal": "American journal of medical genetics. Part A",
+        "pub_date": "2013 Sep",
+        "language": "en"
+      },
+      {
+        "pmid": "22321824",
+        "doi": "10.1016/j.ijporl.2012.01.014",
+        "pmcid": "",
+        "title": "Compound heterozygosity of the novel c.292C>T (p.R98W) and the c.35delG GJB2 mutations in postlingual, non-syndromic, sensorineural deafness.",
+        "journal": "International journal of pediatric otorhinolaryngology",
+        "pub_date": "2012 Apr",
+        "language": "en"
+      },
+      {
+        "pmid": "22208942",
+        "doi": "10.1016/S0030-6657(11)70738-7",
+        "pmcid": "",
+        "title": "[Preimplantaion genetic diagnosis of hearing loss with 35delG mutation in GJB2 gene - preliminary report].",
+        "journal": "Otolaryngologia polska = The Polish otolaryngology",
+        "pub_date": "2011 Nov-Dec",
+        "language": "en"
+      },
+      {
+        "pmid": "19929408",
+        "doi": "10.1089/gtmb.2009.0103",
+        "pmcid": "",
+        "title": "The controversial p.Arg127His mutation in GJB2: report on three Portuguese hearing loss family cases.",
+        "journal": "Genetic testing and molecular biomarkers",
+        "pub_date": "2010 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "19274344",
+        "doi": "10.1590/s0100-879x2009000200004",
+        "pmcid": "",
+        "title": "A novel missense mutation p.L76P in the GJB2 gene causing nonsyndromic recessive deafness in a Brazilian family.",
+        "journal": "Brazilian journal of medical and biological research = Revista brasileira de pesquisas medicas e biologicas",
+        "pub_date": "2009 Feb",
+        "language": "en"
+      },
+      {
+        "pmid": "18809215",
+        "doi": "10.1016/j.ijporl.2008.08.006",
+        "pmcid": "",
+        "title": "Sudden hearing loss in a family with GJB2 related progressive deafness.",
+        "journal": "International journal of pediatric otorhinolaryngology",
+        "pub_date": "2008 Nov",
+        "language": "en"
+      },
+      {
+        "pmid": "19082351",
+        "doi": "10.1016/S1808-8694(15)31379-3",
+        "pmcid": "PMC9445928",
+        "title": "Interaction between audiology and genetics in the study of a family: the complexity of molecular diagnosis and genetic counseling.",
+        "journal": "Brazilian journal of otorhinolaryngology",
+        "pub_date": "2008 Sep-Oct",
+        "language": "en"
+      },
+      {
+        "pmid": "17431919",
+        "doi": "10.1002/ajmg.a.31701",
+        "pmcid": "",
+        "title": "Compound heterozygosity for dominant and recessive GJB2 mutations: effect on phenotype and review of the literature.",
+        "journal": "American journal of medical genetics. Part A",
+        "pub_date": "2007 Jul 15",
+        "language": "en"
+      },
+      {
+        "pmid": "17086082",
+        "doi": "10.1097/01.aud.0000240492.78561.d3",
+        "pmcid": "",
+        "title": "Does universal newborn hearing screening identify all children with GJB2 (Connexin 26) deafness? Penetrance of GJB2 deafness.",
+        "journal": "Ear and hearing",
+        "pub_date": "2006 Dec",
+        "language": "en"
+      }
+    ]
+  }
+}

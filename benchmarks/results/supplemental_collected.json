@@ -1,0 +1,908 @@
+{
+  "V004": [
+    {
+      "pmid": "42385645",
+      "doi": "10.1016/j.atherosclerosis.2026.120832",
+      "pmcid": "",
+      "title": "Optimized flow cytometry assay for functional characterization of variants of uncertain significance in familial hypercholesterolemia.",
+      "journal": "Atherosclerosis",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42400862",
+      "doi": "10.1007/s11883-026-01435-x",
+      "pmcid": "PMC13332989",
+      "title": "The Spectrum of Genetic Causes of Familial Hypercholesterolemia Phenotype.",
+      "journal": "Current atherosclerosis reports",
+      "pub_date": "2026 Jul 4",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42275762",
+      "doi": "10.1016/j.atherosclerosis.2026.120809",
+      "pmcid": "",
+      "title": "Systematic evaluation of mobile element insertions in autosomal dominant hypercholesterolemia genes using short-read sequencing.",
+      "journal": "Atherosclerosis",
+      "pub_date": "2026 Jul",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42131919",
+      "doi": "10.1161/ATVBAHA.126.324400",
+      "pmcid": "PMC13211879",
+      "title": "Prelamin A in an Lmna (L648R/L648R) Mouse Model Does Not Promote Atherosclerosis or Vascular Smooth Muscle Loss.",
+      "journal": "Arteriosclerosis, thrombosis, and vascular biology",
+      "pub_date": "2026 Jul",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42428179",
+      "doi": "10.7759/cureus.110527",
+      "pmcid": "PMC13348663",
+      "title": "Severe Hyperlipidemia and Multifocal Atherosclerosis With Negative Genetic Testing for Familial Hypercholesterolemia: A Case Report.",
+      "journal": "Cureus",
+      "pub_date": "2026 Jun",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42143322",
+      "doi": "10.1186/s12987-026-00812-7",
+      "pmcid": "PMC13185194",
+      "title": "Transport pathways across the blood-brain barrier for waste clearance and drug delivery.",
+      "journal": "Fluids and barriers of the CNS",
+      "pub_date": "2026 May 16",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42135730",
+      "doi": "10.1186/s12944-026-02976-5",
+      "pmcid": "PMC13339510",
+      "title": "Cascade screening and genetic variant pathogenicity assessment for familial hypercholesterolemia in a township‑based elderly population.",
+      "journal": "Lipids in health and disease",
+      "pub_date": "2026 May 14",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42133473",
+      "doi": "10.1093/eurjpc/zwag198",
+      "pmcid": "",
+      "title": "Global survey of genetic testing methods for familial hypercholesterolemia. A study and recommendations from the EAS FHSC registry.",
+      "journal": "European journal of preventive cardiology",
+      "pub_date": "2026 May 14",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41779414",
+      "doi": "10.1001/jamacardio.2026.0006",
+      "pmcid": "PMC12961599",
+      "title": "Management and Consequences of Genotype-Positive Familial Hypercholesterolemia.",
+      "journal": "JAMA cardiology",
+      "pub_date": "2026 Apr 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41775618",
+      "doi": "10.1016/j.jacl.2026.02.007",
+      "pmcid": "",
+      "title": "LDL-C target achievement after adding evinacumab in 2 patients with autosomal recessive hypercholesterolemia.",
+      "journal": "Journal of clinical lipidology",
+      "pub_date": "2026 Apr",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41703706",
+      "doi": "10.1097/MOL.0000000000001027",
+      "pmcid": "",
+      "title": "Update on genetics of familial hypercholesterolemia.",
+      "journal": "Current opinion in lipidology",
+      "pub_date": "2026 Apr 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40707777",
+      "doi": "10.1038/s41431-025-01893-y",
+      "pmcid": "PMC13046971",
+      "title": "Novel start codon variant in the 5'UTR of LDLR associated with familial hypercholesterolaemia.",
+      "journal": "European journal of human genetics : EJHG",
+      "pub_date": "2026 Apr",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41843552",
+      "doi": "10.1371/journal.pgen.1012082",
+      "pmcid": "PMC13008246",
+      "title": "Functional interrogation of candidate cis-regulatory elements at the LDLR locus.",
+      "journal": "PLoS genetics",
+      "pub_date": "2026 Mar",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41869034",
+      "doi": "10.3389/fendo.2026.1733372",
+      "pmcid": "PMC13002427",
+      "title": "Functional analysis from ex-vivo characterization of LDLR exon 13-15 duplication associated to familial hypercholesterolemia.",
+      "journal": "Frontiers in endocrinology",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41688326",
+      "doi": "10.1016/j.jacl.2026.01.013",
+      "pmcid": "",
+      "title": "A nationwide genetic and phenotypic spectrum of 63 probands of homozygous familial hypercholesterolemia in Taiwan.",
+      "journal": "Journal of clinical lipidology",
+      "pub_date": "2026 Mar",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42541547",
+      "doi": "10.1007/s00246-026-04390-1",
+      "pmcid": "",
+      "title": "Intravascular Ultrasound-Guided Stenting of the Left Main Coronary Artery in a Pediatric Patient with Homozygous Familial Hypercholesterolemia.",
+      "journal": "Pediatric cardiology",
+      "pub_date": "2026 Aug 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42500340",
+      "doi": "10.1007/s12291-024-01252-6",
+      "pmcid": "PMC13396312",
+      "title": "Likelihood of a Novel Pathogenic LDLR Mutant Allele Inherited Preferentially within an Indian Family with Familial Hypercholesterolemia.",
+      "journal": "Indian journal of clinical biochemistry : IJCB",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42385645",
+      "doi": "10.1016/j.atherosclerosis.2026.120832",
+      "pmcid": "",
+      "title": "Optimized flow cytometry assay for functional characterization of variants of uncertain significance in familial hypercholesterolemia.",
+      "journal": "Atherosclerosis",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42397340",
+      "doi": "10.1016/j.jaccas.2026.109196",
+      "pmcid": "",
+      "title": "Inclisiran Response in a Patient With Familial Hypercholesterolemia After Suboptimal Response to Evolocumab.",
+      "journal": "JACC. Case reports",
+      "pub_date": "2026 Jul 3",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42428179",
+      "doi": "10.7759/cureus.110527",
+      "pmcid": "PMC13348663",
+      "title": "Severe Hyperlipidemia and Multifocal Atherosclerosis With Negative Genetic Testing for Familial Hypercholesterolemia: A Case Report.",
+      "journal": "Cureus",
+      "pub_date": "2026 Jun",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42344358",
+      "doi": "10.3389/fcvm.2026.1814798",
+      "pmcid": "PMC13286746",
+      "title": "A de novo LDLR mutation in severe familial hypercholesterolemia: case report, functional characterization, and a personalized gene correction strategy exploration.",
+      "journal": "Frontiers in cardiovascular medicine",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42336686",
+      "doi": "10.1016/j.jacl.2026.05.243",
+      "pmcid": "",
+      "title": "Management of autosomal recessive hypercholesterolemia in a patient with an LDLRAP1 mutation.",
+      "journal": "Journal of clinical lipidology",
+      "pub_date": "2026 Jun 5",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41988157",
+      "doi": "10.3389/fped.2026.1752339",
+      "pmcid": "PMC13076324",
+      "title": "Case Report: Compound heterozygous familial hypercholesterolemia in a pediatric patient with multiple cutaneous xanthomas.",
+      "journal": "Frontiers in pediatrics",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41760042",
+      "doi": "10.1097/MD.0000000000047768",
+      "pmcid": "PMC12956209",
+      "title": "Variable phenotype associated with compound LDLR gene mutations in familial hypercholesterolemia patients: Case series and clinical implications.",
+      "journal": "Medicine",
+      "pub_date": "2026 Feb 27",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41166440",
+      "doi": "10.1126/science.ady7186",
+      "pmcid": "PMC12726852",
+      "title": "The functional landscape of coding variation in the familial hypercholesterolemia gene LDLR.",
+      "journal": "Science (New York, N.Y.)",
+      "pub_date": "2026 Feb 19",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40632909",
+      "doi": "10.1093/eurjpc/zwaf301",
+      "pmcid": "",
+      "title": "Clinical scores fail to sufficiently identify children with familial hypercholesterolaemia.",
+      "journal": "European journal of preventive cardiology",
+      "pub_date": "2026 Feb 18",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41694628",
+      "doi": "10.1002/ccr3.72028",
+      "pmcid": "PMC12894086",
+      "title": "The High Price of Interrupted Follow-Up: Catastrophic Progression of Homozygous Familial Hypercholesterolemia-A Case Report and Literature Review.",
+      "journal": "Clinical case reports",
+      "pub_date": "2026 Feb",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41099993",
+      "doi": "10.1007/s13258-025-01690-3",
+      "pmcid": "",
+      "title": "Pathogenicity analysis and functional prediction of a rare LDLR variant in familial hypercholesterolemia combined with Wilson disease.",
+      "journal": "Genes & genomics",
+      "pub_date": "2026 Jan",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41216463",
+      "doi": "10.21037/tp-2025-372",
+      "pmcid": "PMC12597207",
+      "title": "Compound heterozygous low-density lipoprotein receptor variants causing homozygous of familial hypercholesterolemia in two sisters: a case report.",
+      "journal": "Translational pediatrics",
+      "pub_date": "2025 Oct 31",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41170196",
+      "doi": "10.3389/fgene.2025.1679594",
+      "pmcid": "PMC12571453",
+      "title": "Whole exome sequencing identifies concurrent LDLR and ABCG8 mutations in a Saudi family with familial hypercholesterolemia and Sitosterolaemia.",
+      "journal": "Frontiers in genetics",
+      "pub_date": "2025",
+      "language": "en",
+      "source": "pubmed"
+    }
+  ],
+  "V005": [
+    {
+      "pmid": "42568503",
+      "doi": "10.3389/fbinf.2026.1875897",
+      "pmcid": "PMC13447244",
+      "title": "Functional restoration of conformational (R175H) and contact (R273H) mutant p53 by Bacillus-derived Hydroxymycotrienin A in non-small cell lung cancer: a computational approach.",
+      "journal": "Frontiers in bioinformatics",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42470832",
+      "doi": "10.1016/j.bbrc.2026.154311",
+      "pmcid": "",
+      "title": "Precision prime editing of TP53 mutations for functional tumor suppression in colorectal cancer.",
+      "journal": "Biochemical and biophysical research communications",
+      "pub_date": "2026 Jul 18",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42019355",
+      "doi": "10.1016/j.bbrc.2026.153759",
+      "pmcid": "",
+      "title": "p53-R248W evades doxorubicin mediated cell death through collective alteration in TOP2A and CYP1A1 genes in cancer cells.",
+      "journal": "Biochemical and biophysical research communications",
+      "pub_date": "2026 Jun 25",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42260654",
+      "doi": "10.1186/s12967-026-08355-z",
+      "pmcid": "PMC13452108",
+      "title": "Single-cell analysis reveals an endothelial TP53-CXCL14 axis in breast cancer progression.",
+      "journal": "Journal of translational medicine",
+      "pub_date": "2026 Jun 8",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42278500",
+      "doi": "10.3390/ijms27114974",
+      "pmcid": "PMC13257158",
+      "title": "Wild-Type p53 Protein Enhances APR-246-Induced Cytotoxicity in Acute Myeloid Leukemia and Normal Hematopoietic Stem/Progenitor Cells.",
+      "journal": "International journal of molecular sciences",
+      "pub_date": "2026 May 30",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41603724",
+      "doi": "10.1158/1078-0432.CCR-25-3972",
+      "pmcid": "PMC12959380",
+      "title": "Genomic Enrichment and Functional Impact of TP53 and CYLD Alterations in Recurrent and Metastatic HPV-Associated Head and Neck Cancer.",
+      "journal": "Clinical cancer research : an official journal of the American Association for Cancer Research",
+      "pub_date": "2026 May 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41898519",
+      "doi": "10.3390/ijms27062656",
+      "pmcid": "PMC13026885",
+      "title": "STK11 and DNA Repair Gene Mutations Define Hereditary Subset of Middle Eastern Papillary Thyroid Cancer.",
+      "journal": "International journal of molecular sciences",
+      "pub_date": "2026 Mar 14",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41727427",
+      "doi": "10.3389/fimmu.2026.1753215",
+      "pmcid": "PMC12920560",
+      "title": "The impact of p53 mutation on tumor immune evasion: mechanistic insights and clinical implications.",
+      "journal": "Frontiers in immunology",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41542775",
+      "doi": "10.1172/JCI192885",
+      "pmcid": "PMC12807468",
+      "title": "Bispecific antibodies and CAR T cells targeting a TP53 mutation-associated neoantigen show discordant affinity requirements.",
+      "journal": "The Journal of clinical investigation",
+      "pub_date": "2026 Jan 16",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41400635",
+      "doi": "10.1021/acs.jproteome.5c00657",
+      "pmcid": "",
+      "title": "Multilayered Regulatory Dynamics of p53 Mutations and Platinum Resistance in Ovarian Cancer.",
+      "journal": "Journal of proteome research",
+      "pub_date": "2026 Jan 2",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41472467",
+      "doi": "10.1002/iub.70081",
+      "pmcid": "",
+      "title": "Capturing the Variations in Mutant p53-Driven Regulatory Networks in Breast Cancer Subtypes, Its Clinical Relevance and a Novel Association With Androgen Receptor and EMT.",
+      "journal": "IUBMB life",
+      "pub_date": "2026 Jan",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41415395",
+      "doi": "10.64898/2025.12.11.693698",
+      "pmcid": "PMC12710650",
+      "title": "Widespread Epistasis between Cancer Driver Mutations and Allele-Specific Copy Number Variations.",
+      "journal": "bioRxiv : the preprint server for biology",
+      "pub_date": "2025 Dec 14",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41390736",
+      "doi": "10.1186/s13072-025-00646-x",
+      "pmcid": "PMC12822081",
+      "title": "Gain of function p53 mutant R273H confers distinct methylation profiles and consequent YAP/TAZ signaling mediated activation of partial or full EMT states to colon tumours.",
+      "journal": "Epigenetics & chromatin",
+      "pub_date": "2025 Dec 13",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41394586",
+      "doi": "10.1101/2025.11.26.690562",
+      "pmcid": "PMC12697278",
+      "title": "Cancers modulate p53 truncal neoantigen display to evade T cell detection.",
+      "journal": "bioRxiv : the preprint server for biology",
+      "pub_date": "2025 Nov 30",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41249788",
+      "doi": "10.1038/s41419-025-08172-0",
+      "pmcid": "PMC12623820",
+      "title": "Distinct functional heterogeneity of TP53 R175 mutations in platinum-resistant ovarian cancer: unveiling molecular mechanisms and therapeutic targets.",
+      "journal": "Cell death & disease",
+      "pub_date": "2025 Nov 17",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42546295",
+      "doi": "10.1097/DAD.0000000000003398",
+      "pmcid": "",
+      "title": "Primary Cutaneous Anaplastic Large Cell Lymphoma in a Patient With Li Fraumeni Syndrome.",
+      "journal": "The American Journal of dermatopathology",
+      "pub_date": "2026 Aug 3",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41776348",
+      "doi": "10.1038/s41431-026-02061-6",
+      "pmcid": "PMC13424335",
+      "title": "Tumor patterns and cancer risk in carriers of TP53 exonic germline variants that alter mRNA splicing.",
+      "journal": "European journal of human genetics : EJHG",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42488992",
+      "doi": "10.1002/1545-5017.70587",
+      "pmcid": "",
+      "title": "First Pediatric Use of Pegulicianine for Fluorescence-Guided Surgery in Li-Fraumeni-Associated Rhabdomyosarcoma.",
+      "journal": "Pediatric blood & cancer",
+      "pub_date": "2026 Jul 23",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42484901",
+      "doi": "10.1007/s10689-026-00591-y",
+      "pmcid": "PMC13391678",
+      "title": "Clinical and surveillance outcomes of the TP53 c.1000G > C (p.Gly334Arg) variant.",
+      "journal": "Familial cancer",
+      "pub_date": "2026 Jul 22",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42399724",
+      "doi": "10.1186/s40478-026-02369-w",
+      "pmcid": "",
+      "title": "Molecular characteristics of isocitrate dehydrogenase 1 R132C-mutant diffuse gliomas: association with TP53 alterations and Li-Fraumeni syndrome.",
+      "journal": "Acta neuropathologica communications",
+      "pub_date": "2026 Jul 3",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42283896",
+      "doi": "10.1007/s10689-026-00580-1",
+      "pmcid": "",
+      "title": "Homozygous TP53 alterations: a case of a biallelic splice variant and a brief review of the literature.",
+      "journal": "Familial cancer",
+      "pub_date": "2026 Jun 12",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42275193",
+      "doi": "10.1093/oncolo/oyag212",
+      "pmcid": "PMC13283485",
+      "title": "Women's health across the reproductive lifespan in women with germline TP53 pathogenic variants: a clinical perspective.",
+      "journal": "The oncologist",
+      "pub_date": "2026 Jun 6",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42190817",
+      "doi": "10.1016/j.modpat.2026.101019",
+      "pmcid": "",
+      "title": "Gynecologic Tumors and Precursor Lesions, Including p53-Aberrant Atypical Hyperplasia-like Endometrial Lesions, in Li-Fraumeni Syndrome.",
+      "journal": "Modern pathology : an official journal of the United States and Canadian Academy of Pathology, Inc",
+      "pub_date": "2026 May 25",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42183905",
+      "doi": "10.1007/s10689-026-00573-0",
+      "pmcid": "",
+      "title": "Association of gestational choriocarcinoma in a mother and Li-Fraumeni syndrome in her child: The result of a single event?",
+      "journal": "Familial cancer",
+      "pub_date": "2026 May 25",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42171906",
+      "doi": "10.1007/s10689-026-00571-2",
+      "pmcid": "",
+      "title": "Genotypic and phenotypic characteristics of germline TP53 variant carriers: experience from two cancer genetic counseling units.",
+      "journal": "Familial cancer",
+      "pub_date": "2026 May 22",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42168203",
+      "doi": "10.1038/s41467-026-73163-4",
+      "pmcid": "PMC13402668",
+      "title": "Distinct genomic and immunologic tumor evolution in germline TP53-driven breast cancers.",
+      "journal": "Nature communications",
+      "pub_date": "2026 May 21",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41990740",
+      "doi": "10.1016/j.ajhg.2026.03.014",
+      "pmcid": "PMC13277690",
+      "title": "Performance of LFSPRO prediction in TP53 mutation status for prospectively collected probands.",
+      "journal": "American journal of human genetics",
+      "pub_date": "2026 May 7",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42009739",
+      "doi": "10.1038/s41698-026-01432-y",
+      "pmcid": "PMC13096552",
+      "title": "Multi-omics analysis reveals the key role of STIL in Li-Fraumeni syndrome and osteosarcoma.",
+      "journal": "NPJ precision oncology",
+      "pub_date": "2026 Apr 20",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41922118",
+      "doi": "10.1016/j.patol.2026.100868",
+      "pmcid": "",
+      "title": "Opportunistic identification of Li-Fraumeni syndrome through germline TP53 variant detection from routine tumour next-generation sequencing: An analysis of 1394 cases.",
+      "journal": "Revista espanola de patologia : publicacion oficial de la Sociedad Espanola de Anatomia Patologica y de la Sociedad Espanola de Citologia",
+      "pub_date": "2026 Apr-Jun",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41898519",
+      "doi": "10.3390/ijms27062656",
+      "pmcid": "PMC13026885",
+      "title": "STK11 and DNA Repair Gene Mutations Define Hereditary Subset of Middle Eastern Papillary Thyroid Cancer.",
+      "journal": "International journal of molecular sciences",
+      "pub_date": "2026 Mar 14",
+      "language": "en",
+      "source": "pubmed"
+    }
+  ],
+  "V007": [
+    {
+      "pmid": "42290554",
+      "doi": "10.15407/exp-oncology.2026.01.066",
+      "pmcid": "",
+      "title": "A Case Report: A Rare Casr Mutation Associated with HER2-Positive Breast Cancer.",
+      "journal": "Experimental oncology",
+      "pub_date": "2026 Jun 14",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42125687",
+      "doi": "10.3389/fonc.2026.1799304",
+      "pmcid": "PMC13158059",
+      "title": "Case Report: Niraparib-abiraterone in HRR-mutated metastatic castration-resistant prostate cancer: clinical insights from five cases.",
+      "journal": "Frontiers in oncology",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41549603",
+      "doi": "10.1002/1545-5017.70122",
+      "pmcid": "PMC13222620",
+      "title": "Pathogenic Germline PALB2 and RAD50 Variants in Patients With Relapsed Ewing Sarcoma.",
+      "journal": "Pediatric blood & cancer",
+      "pub_date": "2026 Mar",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40758752",
+      "doi": "10.1097/PGP.0000000000001127",
+      "pmcid": "",
+      "title": "From Serous Tubal Intraepithelial Carcinoma to Neuroendocrine Carcinoma: Molecular Dissection of a Rare Fallopian Tube Carcinoma.",
+      "journal": "International journal of gynecological pathology : official journal of the International Society of Gynecological Pathologists",
+      "pub_date": "2026 Mar 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40491286",
+      "doi": "10.1177/10668969251346939",
+      "pmcid": "PMC12769942",
+      "title": "Histomorphological and Molecular Features of Colonic Large-Cell Neuroendocrine Carcinoma in a Patient With Familial Adenomatous Polyposis: A Case Report and Review of Literature.",
+      "journal": "International journal of surgical pathology",
+      "pub_date": "2026 Feb",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41557025",
+      "doi": "10.1007/s12029-025-01368-9",
+      "pmcid": "",
+      "title": "Synergistic Effect of Fecal Microbiota Transplantation, γδT Cell Immunotherapy, and Pembrolizumab in Refractory Advanced Pancreatic Cancer: A Case Report.",
+      "journal": "Journal of gastrointestinal cancer",
+      "pub_date": "2026 Jan 20",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41048130",
+      "doi": "10.1111/cas.70210",
+      "pmcid": "PMC12666475",
+      "title": "Emergence of PALB2 Reversion Mutations as a Mechanism of Resistance to Niraparib in Breast Cancer: A Case Report.",
+      "journal": "Cancer science",
+      "pub_date": "2025 Dec",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "39663696",
+      "doi": "10.1177/03008916241301368",
+      "pmcid": "PMC12638455",
+      "title": "Four pathogenic variants co-occurring in a MINAS early-onset breast cancer.",
+      "journal": "Tumori",
+      "pub_date": "2025 Dec",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41229501",
+      "doi": "10.3389/fonc.2025.1705199",
+      "pmcid": "PMC12602212",
+      "title": "Case Report: Metachronous pancreatic adenocarcinoma following HER2-positive breast cancer and the implications of non-BRCA germline variants with TP53-mutant disease.",
+      "journal": "Frontiers in oncology",
+      "pub_date": "2025",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41063747",
+      "doi": "10.1155/crom/6077936",
+      "pmcid": "PMC12503964",
+      "title": "A Case of Primary Pulmonary Meningioma With Genetic Characterization and Literature Review.",
+      "journal": "Case reports in oncological medicine",
+      "pub_date": "2025",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40963972",
+      "doi": "10.1155/crom/7884410",
+      "pmcid": "PMC12440654",
+      "title": "Defying the Prognostic Odds: A Case Report of Unexpected Complete Remission of Metastatic Ampullary Carcinoma With Palliative Chemotherapy.",
+      "journal": "Case reports in oncological medicine",
+      "pub_date": "2025",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40926949",
+      "doi": "10.7759/cureus.89666",
+      "pmcid": "PMC12415661",
+      "title": "A Case Report of Synchronous Multicentric Breast Carcinoma With Biologically Discordant Phenotypes: Luminal A and Triple-Negative Subtypes.",
+      "journal": "Cureus",
+      "pub_date": "2025 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40750108",
+      "doi": "10.1136/bcr-2025-266362",
+      "pmcid": "",
+      "title": "PALB2 c.3106G>C (p.Val1036Leu) in a familial cancer setting suggesting potential pathogenicity.",
+      "journal": "BMJ case reports",
+      "pub_date": "2025 Jul 31",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40778244",
+      "doi": "",
+      "pmcid": "PMC12331020",
+      "title": "Triple-Positive PALB-2 Breast Cancer in a 27-Year-Old Male-to-Female Patient.",
+      "journal": "Eplasty",
+      "pub_date": "2025",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "40029391",
+      "doi": "10.1097/CAD.0000000000001712",
+      "pmcid": "",
+      "title": "Response to PARP inhibitor in EGFR-tyrosine kinase inhibitor-resistant metastatic lung adenocarcinoma with germline PALB2 mutation.",
+      "journal": "Anti-cancer drugs",
+      "pub_date": "2025 Jul 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42127212",
+      "doi": "10.1080/01443615.2026.2665633",
+      "pmcid": "",
+      "title": "Results of breast cancer risk assessment and hereditary cancer genetic testing in community obstetrics and gynaecology practice following a prospective quality Improvement initiative.",
+      "journal": "Journal of obstetrics and gynaecology : the journal of the Institute of Obstetrics and Gynaecology",
+      "pub_date": "2026 Dec",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42286806",
+      "doi": "10.1002/ijc.70572",
+      "pmcid": "PMC13432517",
+      "title": "Prevalence of Helicobacter pylori Exposure and Risk Factors Among BRCA1 and BRCA2 Carriers.",
+      "journal": "International journal of cancer",
+      "pub_date": "2026 Oct 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41954240",
+      "doi": "10.1002/ijc.70482",
+      "pmcid": "",
+      "title": "Germline Mutation Landscape of Neuroendocrine Tumors in the Chinese Population.",
+      "journal": "International journal of cancer",
+      "pub_date": "2026 Aug 15",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42550852",
+      "doi": "10.1371/journal.pone.0354795",
+      "pmcid": "PMC13436770",
+      "title": "Performance of PREMM5, clinical criteria, and immunohistochemistry for MMR proteins in genetic risk assessment of Mexican patients with colorectal cancer.",
+      "journal": "PloS one",
+      "pub_date": "2026",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42541517",
+      "doi": "10.1007/s10689-026-00595-8",
+      "pmcid": "",
+      "title": "Mainstream and fast-track genetic testing in pancreatic cancer patients and its impact on treatment: our experience in a tertiary hospital in Spain.",
+      "journal": "Familial cancer",
+      "pub_date": "2026 Aug 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42036279",
+      "doi": "10.1016/j.dld.2026.04.007",
+      "pmcid": "",
+      "title": "Hereditary pancreatic cancer: A proposal for surveillance from the Italian Association for the Study of the Pancreas (AISP).",
+      "journal": "Digestive and liver disease : official journal of the Italian Society of Gastroenterology and the Italian Association for the Study of the Liver",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41823437",
+      "doi": "10.1177/10668969251414861",
+      "pmcid": "",
+      "title": "Prediction of Specific Survival and Clinicopathological Impact of Somatic PALB2 Mutations and Pathogenic/Likely Pathogenic Variants (PV/LPV) in Breast Cancer: A Cohort Study of 81 Patients.",
+      "journal": "International journal of surgical pathology",
+      "pub_date": "2026 Aug",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42511746",
+      "doi": "10.3390/ijms27146404",
+      "pmcid": "PMC13410001",
+      "title": "Hereditary Pancreatic Cancer: Genetic Risk, Surveillance Strategies, and Therapeutic Implications.",
+      "journal": "International journal of molecular sciences",
+      "pub_date": "2026 Jul 18",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42413599",
+      "doi": "10.1016/j.cca.2026.121219",
+      "pmcid": "",
+      "title": "A follow-up cohort study on secondary findings in cancer predisposition genes from 20,205 Chinese individuals.",
+      "journal": "Clinica chimica acta; international journal of clinical chemistry",
+      "pub_date": "2026 Jul 7",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42418738",
+      "doi": "10.1200/PO-26-00065",
+      "pmcid": "PMC13374653",
+      "title": "Shallow Whole-Genome Sequencing to Assess Genomic Instability and Predict Treatment Response in Metastatic Castration-Resistant Prostate Cancer.",
+      "journal": "JCO precision oncology",
+      "pub_date": "2026 Jul",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42418202",
+      "doi": "10.1001/jamanetworkopen.2026.21705",
+      "pmcid": "PMC13347242",
+      "title": "Germline Multigene Panel Testing in Women With Invasive Lobular Cancer.",
+      "journal": "JAMA network open",
+      "pub_date": "2026 Jul 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "42089785",
+      "doi": "10.1158/1055-9965.EPI-26-0156",
+      "pmcid": "PMC13251607",
+      "title": "Characterization of Genetic Etiologic Factors for Pediatric Acute Lymphoblastic Leukemia in Large Childhood Cancer Survivorship Cohorts.",
+      "journal": "Cancer epidemiology, biomarkers & prevention : a publication of the American Association for Cancer Research, cosponsored by the American Society of Preventive Oncology",
+      "pub_date": "2026 Jul 1",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41933854",
+      "doi": "10.1016/j.critrevonc.2026.105307",
+      "pmcid": "",
+      "title": "The role of germline mutations in non-small cell lung cancer: A systematic review of emerging genetic drivers and clinical implications.",
+      "journal": "Critical reviews in oncology/hematology",
+      "pub_date": "2026 Jul",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41373161",
+      "doi": "10.1111/ijd.70206",
+      "pmcid": "PMC12818384",
+      "title": "Skin Cancer Predisposition Genes, Full-Body Skin Examinations, Familial Disclosure, and Genetic Testing Among High-Risk Individuals.",
+      "journal": "International journal of dermatology",
+      "pub_date": "2026 Jul",
+      "language": "en",
+      "source": "pubmed"
+    },
+    {
+      "pmid": "41916721",
+      "doi": "10.1136/jmg-2025-111441",
+      "pmcid": "",
+      "title": "ATM c.7374_7375insAlu is a French-Canadian founder pathogenic variant associated with predisposition to pancreatic and breast cancer.",
+      "journal": "Journal of medical genetics",
+      "pub_date": "2026 Jun 25",
+      "language": "en",
+      "source": "pubmed"
+    }
+  ]
+}
