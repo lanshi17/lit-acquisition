@@ -1,0 +1,60 @@
+[project]
+name = "lit-acquisition"
+version = "0.1.0"
+description = "Multilingual biomedical literature acquisition toolkit - search, download, and classify academic papers from 15+ providers"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [
+    { name = "Lingua Seeker Maintainers" },
+]
+keywords = ["literature", "biomedical", "acquisition", "pubmed", "crossref", "openalex", "multilingual"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "httpx[socks]>=0.27.0",
+    "pydantic>=2.7.0",
+    "loguru>=0.7.0",
+    "pymupdf>=1.27.2",
+    "openai>=1.0.0",
+    "pyjstage2>=0.1.2",
+]
+
+[project.optional-dependencies]
+web-search = [
+    "firecrawl-py>=4.28.2",
+    "tavily-python>=0.5.0",
+    "google-search-results>=2.4.2",
+]
+rust-io = [
+    "rust-io",
+]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lit_acquisition"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff.lint]
+ignore = ["BLE001", "S110", "PLC0206"]
