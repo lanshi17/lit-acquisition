@@ -68,8 +68,8 @@ automated full-text retrieval.
 ### 4. Evaluation (~3 pages)
 
 #### 4.1 Gold Standard Dataset
-- 30-50 genetic variants across ACMG evidence criteria
-- Manually annotated relevant papers (DOI, PMID, language, evidence type)
+- 30 genetic variants across ACMG evidence criteria (PVS1, PS3, PM2, etc.)
+- 239 manually annotated relevant papers (DOI, PMID, language, evidence type)
 - Multilingual coverage: en, zh, ja, de, fr, ru, es, pt
 
 #### 4.2 Methods Compared (Ablation Table)
@@ -132,8 +132,9 @@ automated full-text retrieval.
 
 ## Action Items
 
-- [ ] Expand gold standard to 30-50 variants (currently 10)
-- [ ] Manually annotate relevant papers for each variant
+- [x] Expand gold standard to 30 variants (done: V001–V030, 239 annotated papers)
+- [ ] Domain expert verification of `relevant_papers` annotations
+- [ ] Manually annotate additional papers if needed for statistical power
 - [ ] Configure LLM API key for benchmark run
 - [ ] Run `python benchmarks/run_benchmark.py --all`
 - [ ] Generate figures from results

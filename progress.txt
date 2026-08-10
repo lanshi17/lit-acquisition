@@ -1,0 +1,6 @@
+# Project Progress
+
+[2026-08-10] [Gold standard expansion: 10 → 30 variants (V001-V030), 239 annotated papers] [done]
+[2026-08-10] [PubMed candidate fetch for V011-V030 (20 variants, 80 papers each)] [done]
+[2026-08-10] [Heuristic relevance scoring + annotation for 20 new variants] [done]
+[2026-08-10] [Updated docs/paper-outline.md and benchmarks/gold_standard/README.md] [done]

@@ -45,7 +45,36 @@ Each line in `variants.jsonl` is a JSON object:
 
 ## Current Status
 
-- `variants.jsonl`: 10 variants defined (need to expand to 30-50 for paper)
-- `relevant_papers`: NOT YET FILLED - requires manual annotation
-- Use `python run_benchmark.py --collect` to gather candidate papers,
-  then manually annotate relevance.
+- `variants.jsonl`: **30 variants** (V001–V030), annotated
+- `variants_annotated.jsonl`: same content, pre-filled with relevant papers
+- `candidates/`: raw PubMed candidate records used during annotation
+- **Total annotated papers**: 239 (79 for V001–V010 + 160 for V011–V030)
+
+### Disease / evidence-type distribution
+
+| Domain | Count | Representative genes |
+|--------|------:|----------------------|
+| Cancer genetics | 8 | BRCA1, TP53, PALB2, KRAS, EGFR, BRAF, APC, MLH1 |
+| Cardiovascular | 5 | LDLR, SCN5A, MYBPC3, KCNQ1, FBN1 |
+| Neurological | 4 | MECP2, HTT, SNCA, APP |
+| Metabolic | 3 | CFTR, PAH, GBA |
+| Hematological | 4 | HBB, F8, DMD, G6PD |
+| Neuromuscular / endocrine / other | 6 | PTEN, MYH7, GJB2, SMN1, CYP21A2, DMPK |
+
+### ACMG evidence criterion coverage
+
+- **PVS1** (null variant in LOF gene): BRCA1, CFTR, PALB2, APC, MLH1, F8, DMD, SMN1, CYP21A2
+- **PS3** (well-established functional effect): MECP2, LDLR, TP53, SCN5A, PTEN, MYH7, KRAS, EGFR, BRAF, MYBPC3, KCNQ1, FBN1, HTT, SNCA, APP, PAH, GBA, G6PD, HBB, DMPK
+
+### Annotation notes
+
+- V001–V010 annotated via manual heuristics (gene + disease keyword + pub-type scoring).
+- V011–V030 annotated via PubMed E-utilities + automated scoring (gene name / variant token / disease word / pub-type weighted sum).
+- Both approaches filter out editorials, letters, comments, and news items.
+- **Domain expert verification is still required** before the gold standard is used for final paper metrics.
+
+## Next Steps
+
+- [ ] Domain expert verification of `relevant_papers` (especially V011–V030)
+- [ ] Expand to 50 variants if needed for statistical power
+- [ ] Run `python benchmarks/run_benchmark.py --all` with LLM API key configured
