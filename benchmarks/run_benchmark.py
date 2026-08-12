@@ -109,27 +109,29 @@ async def collect_results(limit: int = 20) -> None:
             item["method"] = "full_pipeline"
             found.append(item)
 
-        # Citation graph augmentation: use first DOI as seed
-        if found:
-            first_doi = found[0].get("doi")
-            if first_doi:
-                try:
-                    cited = await traverse_citation_graph(
-                        seed=first_doi,
-                        max_depth=1,
-                        max_papers=20,
-                        direction="both",
-                    )
-                    from lit_acquisition.normalizers import normalize_items
-                    for paper in cited:
-                        normalized = normalize_items("semantic_scholar", [paper])
-                        for item in normalized:
-                            d = item.model_dump()
-                            d["method"] = "full_pipeline"
-                            d["source"] = "citation_graph"
-                            found.append(d)
-                except Exception as exc:
-                    print(f"  citation graph failed for {variant['variant_id']}: {exc}")
+        # Citation graph augmentation: use first available DOI as seed
+        first_doi = next(
+            (item.get("doi") for item in found if item.get("doi")),
+            None,
+        )
+        if first_doi:
+            try:
+                cited = await traverse_citation_graph(
+                    seed=first_doi,
+                    max_depth=1,
+                    max_papers=20,
+                    direction="both",
+                )
+                from lit_acquisition.normalizers import normalize_items
+                for paper in cited:
+                    normalized = normalize_items("semantic_scholar", [paper])
+                    for item in normalized:
+                        d = item.model_dump()
+                        d["method"] = "full_pipeline"
+                        d["source"] = "citation_graph"
+                        found.append(d)
+            except Exception as exc:
+                print(f"  citation graph failed for {variant['variant_id']}: {exc}")
 
         elapsed = time.monotonic() - start
         full_results[variant["variant_id"]] = found

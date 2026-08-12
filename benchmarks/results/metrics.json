@@ -1,0 +1,2145 @@
+[
+  {
+    "variant_id": "V001",
+    "method": "pubmed_only",
+    "recall": 0.5294117647058824,
+    "precision": 0.6,
+    "f1": 0.5625,
+    "ndcg": 0.5401435393860216,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pubmed": 9
+    },
+    "language_coverage": {
+      "en": 9
+    }
+  },
+  {
+    "variant_id": "V002",
+    "method": "pubmed_only",
+    "recall": 0.2413793103448276,
+    "precision": 0.4666666666666667,
+    "f1": 0.3181818181818182,
+    "ndcg": 0.29549291105922465,
+    "total_relevant": 29,
+    "total_found": 15,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pubmed": 7
+    },
+    "language_coverage": {
+      "en": 7
+    }
+  },
+  {
+    "variant_id": "V003",
+    "method": "pubmed_only",
+    "recall": 0.42105263157894735,
+    "precision": 0.5333333333333333,
+    "f1": 0.47058823529411764,
+    "ndcg": 0.42995767774944366,
+    "total_relevant": 19,
+    "total_found": 15,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pubmed": 8
+    },
+    "language_coverage": {
+      "en": 8
+    }
+  },
+  {
+    "variant_id": "V004",
+    "method": "pubmed_only",
+    "recall": 0.13333333333333333,
+    "precision": 0.13333333333333333,
+    "f1": 0.13333333333333333,
+    "ndcg": 0.15878200004312407,
+    "total_relevant": 15,
+    "total_found": 15,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pubmed": 2
+    },
+    "language_coverage": {
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V005",
+    "method": "pubmed_only",
+    "recall": 0.09375,
+    "precision": 0.6,
+    "f1": 0.16216216216216214,
+    "ndcg": 0.13781946109652118,
+    "total_relevant": 32,
+    "total_found": 5,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pubmed": 3
+    },
+    "language_coverage": {
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V006",
+    "method": "pubmed_only",
+    "recall": 0.42857142857142855,
+    "precision": 0.4,
+    "f1": 0.4137931034482759,
+    "ndcg": 0.37169009504188966,
+    "total_relevant": 14,
+    "total_found": 15,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pubmed": 6
+    },
+    "language_coverage": {
+      "en": 6
+    }
+  },
+  {
+    "variant_id": "V007",
+    "method": "pubmed_only",
+    "recall": 0.0625,
+    "precision": 1.0,
+    "f1": 0.11764705882352941,
+    "ndcg": 0.1637733768567814,
+    "total_relevant": 17,
+    "total_found": 1,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V008",
+    "method": "pubmed_only",
+    "recall": 0.3333333333333333,
+    "precision": 0.26666666666666666,
+    "f1": 0.2962962962962963,
+    "ndcg": 0.32548078979105605,
+    "total_relevant": 12,
+    "total_found": 15,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pubmed": 4
+    },
+    "language_coverage": {
+      "en": 4
+    }
+  },
+  {
+    "variant_id": "V009",
+    "method": "pubmed_only",
+    "recall": 0.75,
+    "precision": 0.2,
+    "f1": 0.31578947368421056,
+    "ndcg": 0.5928340951314589,
+    "total_relevant": 4,
+    "total_found": 15,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pubmed": 3
+    },
+    "language_coverage": {
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V010",
+    "method": "pubmed_only",
+    "recall": 0.42857142857142855,
+    "precision": 0.6,
+    "f1": 0.5,
+    "ndcg": 0.402637070123996,
+    "total_relevant": 21,
+    "total_found": 15,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pubmed": 9
+    },
+    "language_coverage": {
+      "en": 9
+    }
+  },
+  {
+    "variant_id": "V011",
+    "method": "pubmed_only",
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "ndcg": 0.0,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 0,
+    "source_coverage": {},
+    "language_coverage": {}
+  },
+  {
+    "variant_id": "V012",
+    "method": "pubmed_only",
+    "recall": 0.045454545454545456,
+    "precision": 0.06666666666666667,
+    "f1": 0.05405405405405406,
+    "ndcg": 0.05753418364124443,
+    "total_relevant": 22,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V013",
+    "method": "pubmed_only",
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "ndcg": 0.0,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 0,
+    "source_coverage": {},
+    "language_coverage": {}
+  },
+  {
+    "variant_id": "V014",
+    "method": "pubmed_only",
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "ndcg": 0.0,
+    "total_relevant": 16,
+    "total_found": 15,
+    "relevant_found": 0,
+    "source_coverage": {},
+    "language_coverage": {}
+  },
+  {
+    "variant_id": "V015",
+    "method": "pubmed_only",
+    "recall": 0.08333333333333333,
+    "precision": 0.06666666666666667,
+    "f1": 0.07407407407407407,
+    "ndcg": 0.12388806404564567,
+    "total_relevant": 12,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V016",
+    "method": "pubmed_only",
+    "recall": 0.09090909090909091,
+    "precision": 0.06666666666666667,
+    "f1": 0.07692307692307691,
+    "ndcg": 0.13083036905940468,
+    "total_relevant": 11,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V017",
+    "method": "pubmed_only",
+    "recall": 0.07142857142857142,
+    "precision": 0.06666666666666667,
+    "f1": 0.0689655172413793,
+    "ndcg": 0.07675099783970546,
+    "total_relevant": 14,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V018",
+    "method": "pubmed_only",
+    "recall": 0.29411764705882354,
+    "precision": 0.3333333333333333,
+    "f1": 0.3125,
+    "ndcg": 0.39225899204585307,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pubmed": 5
+    },
+    "language_coverage": {
+      "en": 5
+    }
+  },
+  {
+    "variant_id": "V019",
+    "method": "pubmed_only",
+    "recall": 0.041666666666666664,
+    "precision": 0.06666666666666667,
+    "f1": 0.05128205128205127,
+    "ndcg": 0.03522442966808142,
+    "total_relevant": 24,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V020",
+    "method": "pubmed_only",
+    "recall": 0.058823529411764705,
+    "precision": 0.06666666666666667,
+    "f1": 0.0625,
+    "ndcg": 0.04743759234968417,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V021",
+    "method": "pubmed_only",
+    "recall": 0.05555555555555555,
+    "precision": 0.06666666666666667,
+    "f1": 0.0606060606060606,
+    "ndcg": 0.15194751309721466,
+    "total_relevant": 18,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V022",
+    "method": "pubmed_only",
+    "recall": 0.13043478260869565,
+    "precision": 0.2,
+    "f1": 0.15789473684210528,
+    "ndcg": 0.16135922004295963,
+    "total_relevant": 23,
+    "total_found": 15,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pubmed": 3
+    },
+    "language_coverage": {
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V023",
+    "method": "pubmed_only",
+    "recall": 0.15789473684210525,
+    "precision": 0.2,
+    "f1": 0.17647058823529413,
+    "ndcg": 0.29618399931221895,
+    "total_relevant": 19,
+    "total_found": 15,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pubmed": 3
+    },
+    "language_coverage": {
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V024",
+    "method": "pubmed_only",
+    "recall": 0.05263157894736842,
+    "precision": 0.06666666666666667,
+    "f1": 0.058823529411764705,
+    "ndcg": 0.04094516368001556,
+    "total_relevant": 19,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V025",
+    "method": "pubmed_only",
+    "recall": 0.05555555555555555,
+    "precision": 0.06666666666666667,
+    "f1": 0.0606060606060606,
+    "ndcg": 0.15194751309721466,
+    "total_relevant": 18,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V026",
+    "method": "pubmed_only",
+    "recall": 0.3333333333333333,
+    "precision": 0.4,
+    "f1": 0.3636363636363636,
+    "ndcg": 0.47288958901881967,
+    "total_relevant": 18,
+    "total_found": 15,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pubmed": 6
+    },
+    "language_coverage": {
+      "en": 6
+    }
+  },
+  {
+    "variant_id": "V027",
+    "method": "pubmed_only",
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "ndcg": 0.0,
+    "total_relevant": 16,
+    "total_found": 15,
+    "relevant_found": 0,
+    "source_coverage": {},
+    "language_coverage": {}
+  },
+  {
+    "variant_id": "V028",
+    "method": "pubmed_only",
+    "recall": 0.1,
+    "precision": 0.13333333333333333,
+    "f1": 0.1142857142857143,
+    "ndcg": 0.09010499239291733,
+    "total_relevant": 20,
+    "total_found": 15,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pubmed": 2
+    },
+    "language_coverage": {
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V029",
+    "method": "pubmed_only",
+    "recall": 0.1111111111111111,
+    "precision": 0.13333333333333333,
+    "f1": 0.1212121212121212,
+    "ndcg": 0.14999300322263964,
+    "total_relevant": 18,
+    "total_found": 15,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pubmed": 2
+    },
+    "language_coverage": {
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V030",
+    "method": "pubmed_only",
+    "recall": 0.04,
+    "precision": 0.06666666666666667,
+    "f1": 0.05,
+    "ndcg": 0.06148726205890397,
+    "total_relevant": 25,
+    "total_found": 15,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pubmed": 1
+    },
+    "language_coverage": {
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V001",
+    "method": "multisource_no_translation",
+    "recall": 0.11764705882352941,
+    "precision": 0.1,
+    "f1": 0.1081081081081081,
+    "ndcg": 0.19698033847528706,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V002",
+    "method": "multisource_no_translation",
+    "recall": 0.4482758620689655,
+    "precision": 0.65,
+    "f1": 0.5306122448979592,
+    "ndcg": 0.4495601082352356,
+    "total_relevant": 29,
+    "total_found": 20,
+    "relevant_found": 13,
+    "source_coverage": {
+      "pmc": 13
+    },
+    "language_coverage": {
+      "unknown": 13
+    }
+  },
+  {
+    "variant_id": "V003",
+    "method": "multisource_no_translation",
+    "recall": 0.3157894736842105,
+    "precision": 0.3,
+    "f1": 0.3076923076923077,
+    "ndcg": 0.402365347300307,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V004",
+    "method": "multisource_no_translation",
+    "recall": 0.2,
+    "precision": 0.15,
+    "f1": 0.17142857142857143,
+    "ndcg": 0.20627407992224325,
+    "total_relevant": 15,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 3
+    },
+    "language_coverage": {
+      "unknown": 3
+    }
+  },
+  {
+    "variant_id": "V005",
+    "method": "multisource_no_translation",
+    "recall": 0.25,
+    "precision": 0.4,
+    "f1": 0.3076923076923077,
+    "ndcg": 0.3470338066653553,
+    "total_relevant": 32,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 8
+    },
+    "language_coverage": {
+      "unknown": 8
+    }
+  },
+  {
+    "variant_id": "V006",
+    "method": "multisource_no_translation",
+    "recall": 0.14285714285714285,
+    "precision": 0.1,
+    "f1": 0.11764705882352941,
+    "ndcg": 0.09040609802403697,
+    "total_relevant": 14,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V007",
+    "method": "multisource_no_translation",
+    "recall": 0.5625,
+    "precision": 0.45,
+    "f1": 0.5,
+    "ndcg": 0.6197358591030977,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pmc": 8,
+      "crossref": 1
+    },
+    "language_coverage": {
+      "unknown": 9
+    }
+  },
+  {
+    "variant_id": "V008",
+    "method": "multisource_no_translation",
+    "recall": 0.25,
+    "precision": 0.15,
+    "f1": 0.18749999999999997,
+    "ndcg": 0.29348649519162356,
+    "total_relevant": 12,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 3
+    },
+    "language_coverage": {
+      "unknown": 3
+    }
+  },
+  {
+    "variant_id": "V009",
+    "method": "multisource_no_translation",
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0,
+    "ndcg": 0.0,
+    "total_relevant": 4,
+    "total_found": 20,
+    "relevant_found": 0,
+    "source_coverage": {},
+    "language_coverage": {}
+  },
+  {
+    "variant_id": "V010",
+    "method": "multisource_no_translation",
+    "recall": 0.2857142857142857,
+    "precision": 0.3,
+    "f1": 0.2926829268292683,
+    "ndcg": 0.27989114246007696,
+    "total_relevant": 21,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V011",
+    "method": "multisource_no_translation",
+    "recall": 0.11764705882352941,
+    "precision": 0.1,
+    "f1": 0.1081081081081081,
+    "ndcg": 0.14081404057971067,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V012",
+    "method": "multisource_no_translation",
+    "recall": 0.13636363636363635,
+    "precision": 0.15,
+    "f1": 0.14285714285714282,
+    "ndcg": 0.13791965772390832,
+    "total_relevant": 22,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 3
+    },
+    "language_coverage": {
+      "unknown": 3
+    }
+  },
+  {
+    "variant_id": "V013",
+    "method": "multisource_no_translation",
+    "recall": 0.058823529411764705,
+    "precision": 0.05,
+    "f1": 0.05405405405405405,
+    "ndcg": 0.05252809026007655,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pmc": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V014",
+    "method": "multisource_no_translation",
+    "recall": 0.25,
+    "precision": 0.2,
+    "f1": 0.22222222222222224,
+    "ndcg": 0.2875282488613231,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pmc": 4
+    },
+    "language_coverage": {
+      "unknown": 4
+    }
+  },
+  {
+    "variant_id": "V015",
+    "method": "multisource_no_translation",
+    "recall": 0.08333333333333333,
+    "precision": 0.05,
+    "f1": 0.0625,
+    "ndcg": 0.19635793579928928,
+    "total_relevant": 12,
+    "total_found": 20,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pmc": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V016",
+    "method": "multisource_no_translation",
+    "recall": 0.2727272727272727,
+    "precision": 0.15,
+    "f1": 0.19354838709677416,
+    "ndcg": 0.16646982572972338,
+    "total_relevant": 11,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 3
+    },
+    "language_coverage": {
+      "unknown": 3
+    }
+  },
+  {
+    "variant_id": "V017",
+    "method": "multisource_no_translation",
+    "recall": 0.07142857142857142,
+    "precision": 0.05,
+    "f1": 0.058823529411764705,
+    "ndcg": 0.048159222084064895,
+    "total_relevant": 14,
+    "total_found": 20,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pmc": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V018",
+    "method": "multisource_no_translation",
+    "recall": 0.4117647058823529,
+    "precision": 0.35,
+    "f1": 0.37837837837837834,
+    "ndcg": 0.4674803443348886,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 7
+    },
+    "language_coverage": {
+      "unknown": 7
+    }
+  },
+  {
+    "variant_id": "V019",
+    "method": "multisource_no_translation",
+    "recall": 0.4583333333333333,
+    "precision": 0.55,
+    "f1": 0.5,
+    "ndcg": 0.40265890222239237,
+    "total_relevant": 24,
+    "total_found": 20,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 11
+    },
+    "language_coverage": {
+      "unknown": 11
+    }
+  },
+  {
+    "variant_id": "V020",
+    "method": "multisource_no_translation",
+    "recall": 0.35294117647058826,
+    "precision": 0.3,
+    "f1": 0.3243243243243243,
+    "ndcg": 0.4090002768297307,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V021",
+    "method": "multisource_no_translation",
+    "recall": 0.3333333333333333,
+    "precision": 0.3,
+    "f1": 0.3157894736842105,
+    "ndcg": 0.24494792083931757,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V022",
+    "method": "multisource_no_translation",
+    "recall": 0.4782608695652174,
+    "precision": 0.55,
+    "f1": 0.5116279069767442,
+    "ndcg": 0.5363633123801504,
+    "total_relevant": 23,
+    "total_found": 20,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 11
+    },
+    "language_coverage": {
+      "unknown": 11
+    }
+  },
+  {
+    "variant_id": "V023",
+    "method": "multisource_no_translation",
+    "recall": 0.2631578947368421,
+    "precision": 0.25,
+    "f1": 0.25641025641025644,
+    "ndcg": 0.2017591178959188,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 5
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V024",
+    "method": "multisource_no_translation",
+    "recall": 0.21052631578947367,
+    "precision": 0.2,
+    "f1": 0.20512820512820512,
+    "ndcg": 0.3275971133410586,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pmc": 4
+    },
+    "language_coverage": {
+      "unknown": 4
+    }
+  },
+  {
+    "variant_id": "V025",
+    "method": "multisource_no_translation",
+    "recall": 0.2777777777777778,
+    "precision": 0.25,
+    "f1": 0.2631578947368421,
+    "ndcg": 0.2408291654390308,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 5
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V026",
+    "method": "multisource_no_translation",
+    "recall": 0.3333333333333333,
+    "precision": 0.3,
+    "f1": 0.3157894736842105,
+    "ndcg": 0.27554099370031343,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V027",
+    "method": "multisource_no_translation",
+    "recall": 0.125,
+    "precision": 0.1,
+    "f1": 0.11111111111111112,
+    "ndcg": 0.12757011658805387,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V028",
+    "method": "multisource_no_translation",
+    "recall": 0.3,
+    "precision": 0.3,
+    "f1": 0.3,
+    "ndcg": 0.26462822104368583,
+    "total_relevant": 20,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 6
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V029",
+    "method": "multisource_no_translation",
+    "recall": 0.1111111111111111,
+    "precision": 0.1,
+    "f1": 0.10526315789473685,
+    "ndcg": 0.09984333750317706,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V030",
+    "method": "multisource_no_translation",
+    "recall": 0.2,
+    "precision": 0.25,
+    "f1": 0.22222222222222224,
+    "ndcg": 0.27939848033998504,
+    "total_relevant": 25,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 5
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V001",
+    "method": "multisource_with_translation",
+    "recall": 0.4117647058823529,
+    "precision": 0.35,
+    "f1": 0.37837837837837834,
+    "ndcg": 0.3943195930541415,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V002",
+    "method": "multisource_with_translation",
+    "recall": 0.3793103448275862,
+    "precision": 0.5789473684210527,
+    "f1": 0.45833333333333337,
+    "ndcg": 0.387236020724841,
+    "total_relevant": 29,
+    "total_found": 19,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 3,
+      "crossref": 8
+    },
+    "language_coverage": {
+      "unknown": 7,
+      "de": 2,
+      "fr": 2
+    }
+  },
+  {
+    "variant_id": "V003",
+    "method": "multisource_with_translation",
+    "recall": 0.42105263157894735,
+    "precision": 0.4,
+    "f1": 0.41025641025641024,
+    "ndcg": 0.46787888718191395,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "de": 1,
+      "en": 1,
+      "fr": 1
+    }
+  },
+  {
+    "variant_id": "V004",
+    "method": "multisource_with_translation",
+    "recall": 0.13333333333333333,
+    "precision": 0.1,
+    "f1": 0.1142857142857143,
+    "ndcg": 0.1552326699474097,
+    "total_relevant": 15,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 1
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V005",
+    "method": "multisource_with_translation",
+    "recall": 0.34375,
+    "precision": 0.55,
+    "f1": 0.42307692307692313,
+    "ndcg": 0.4131087683691567,
+    "total_relevant": 32,
+    "total_found": 20,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 6,
+      "crossref": 5
+    },
+    "language_coverage": {
+      "unknown": 7,
+      "de": 3,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V006",
+    "method": "multisource_with_translation",
+    "recall": 0.42857142857142855,
+    "precision": 0.3,
+    "f1": 0.3529411764705882,
+    "ndcg": 0.2817978629188492,
+    "total_relevant": 14,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 5
+    }
+  },
+  {
+    "variant_id": "V007",
+    "method": "multisource_with_translation",
+    "recall": 0.3125,
+    "precision": 0.25,
+    "f1": 0.2777777777777778,
+    "ndcg": 0.4006151937152045,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 3,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "fr": 1
+    }
+  },
+  {
+    "variant_id": "V008",
+    "method": "multisource_with_translation",
+    "recall": 0.25,
+    "precision": 0.15,
+    "f1": 0.18749999999999997,
+    "ndcg": 0.2881518767905882,
+    "total_relevant": 12,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 2,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V009",
+    "method": "multisource_with_translation",
+    "recall": 0.25,
+    "precision": 0.05,
+    "f1": 0.08333333333333334,
+    "ndcg": 0.10549558423511038,
+    "total_relevant": 4,
+    "total_found": 20,
+    "relevant_found": 1,
+    "source_coverage": {
+      "crossref": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V010",
+    "method": "multisource_with_translation",
+    "recall": 0.38095238095238093,
+    "precision": 0.4,
+    "f1": 0.3902439024390244,
+    "ndcg": 0.359943821701518,
+    "total_relevant": 21,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 5,
+      "crossref": 3
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V011",
+    "method": "multisource_with_translation",
+    "recall": 0.47058823529411764,
+    "precision": 0.4444444444444444,
+    "f1": 0.45714285714285713,
+    "ndcg": 0.4003064160789454,
+    "total_relevant": 17,
+    "total_found": 18,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V012",
+    "method": "multisource_with_translation",
+    "recall": 0.3181818181818182,
+    "precision": 0.4375,
+    "f1": 0.3684210526315789,
+    "ndcg": 0.2950112121985099,
+    "total_relevant": 22,
+    "total_found": 16,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 6,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V013",
+    "method": "multisource_with_translation",
+    "recall": 0.47058823529411764,
+    "precision": 0.4,
+    "f1": 0.4324324324324324,
+    "ndcg": 0.3325383704697569,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "de": 2,
+      "fr": 1,
+      "en": 4
+    }
+  },
+  {
+    "variant_id": "V014",
+    "method": "multisource_with_translation",
+    "recall": 0.125,
+    "precision": 0.1,
+    "f1": 0.11111111111111112,
+    "ndcg": 0.22211063075011753,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V015",
+    "method": "multisource_with_translation",
+    "recall": 0.4166666666666667,
+    "precision": 0.25,
+    "f1": 0.3125,
+    "ndcg": 0.3798092334129932,
+    "total_relevant": 12,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 4
+    }
+  },
+  {
+    "variant_id": "V016",
+    "method": "multisource_with_translation",
+    "recall": 0.09090909090909091,
+    "precision": 0.05,
+    "f1": 0.06451612903225806,
+    "ndcg": 0.07386356006695578,
+    "total_relevant": 11,
+    "total_found": 20,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pmc": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V017",
+    "method": "multisource_with_translation",
+    "recall": 0.35714285714285715,
+    "precision": 0.25,
+    "f1": 0.2941176470588235,
+    "ndcg": 0.24016943480805653,
+    "total_relevant": 14,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "europepmc": 1,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V018",
+    "method": "multisource_with_translation",
+    "recall": 0.23529411764705882,
+    "precision": 0.2,
+    "f1": 0.2162162162162162,
+    "ndcg": 0.3136430917392099,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V019",
+    "method": "multisource_with_translation",
+    "recall": 0.3333333333333333,
+    "precision": 0.4,
+    "f1": 0.3636363636363636,
+    "ndcg": 0.3276052203447359,
+    "total_relevant": 24,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 3,
+      "crossref": 5
+    },
+    "language_coverage": {
+      "unknown": 6,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V020",
+    "method": "multisource_with_translation",
+    "recall": 0.29411764705882354,
+    "precision": 0.3333333333333333,
+    "f1": 0.3125,
+    "ndcg": 0.35113353694569227,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 2,
+      "europepmc": 1
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V021",
+    "method": "multisource_with_translation",
+    "recall": 0.2222222222222222,
+    "precision": 0.2,
+    "f1": 0.2105263157894737,
+    "ndcg": 0.143507949391511,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V022",
+    "method": "multisource_with_translation",
+    "recall": 0.391304347826087,
+    "precision": 0.5,
+    "f1": 0.4390243902439025,
+    "ndcg": 0.4601356108142991,
+    "total_relevant": 23,
+    "total_found": 18,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 2,
+      "en": 4,
+      "de": 1,
+      "fr": 2
+    }
+  },
+  {
+    "variant_id": "V023",
+    "method": "multisource_with_translation",
+    "recall": 0.3684210526315789,
+    "precision": 0.4666666666666667,
+    "f1": 0.4117647058823529,
+    "ndcg": 0.30578664440685327,
+    "total_relevant": 19,
+    "total_found": 15,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 7
+    }
+  },
+  {
+    "variant_id": "V024",
+    "method": "multisource_with_translation",
+    "recall": 0.3157894736842105,
+    "precision": 0.3,
+    "f1": 0.3076923076923077,
+    "ndcg": 0.3923805204581741,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "de": 2,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V025",
+    "method": "multisource_with_translation",
+    "recall": 0.2222222222222222,
+    "precision": 0.2,
+    "f1": 0.2105263157894737,
+    "ndcg": 0.1958593668502568,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 3
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V026",
+    "method": "multisource_with_translation",
+    "recall": 0.3333333333333333,
+    "precision": 0.3,
+    "f1": 0.3157894736842105,
+    "ndcg": 0.2446839292675715,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "crossref": 5,
+      "pmc": 1
+    },
+    "language_coverage": {
+      "en": 4,
+      "unknown": 1,
+      "de": 1
+    }
+  },
+  {
+    "variant_id": "V027",
+    "method": "multisource_with_translation",
+    "recall": 0.4375,
+    "precision": 0.35,
+    "f1": 0.38888888888888884,
+    "ndcg": 0.3275931642911431,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V028",
+    "method": "multisource_with_translation",
+    "recall": 0.35,
+    "precision": 0.35,
+    "f1": 0.35,
+    "ndcg": 0.27727434339982426,
+    "total_relevant": 20,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "fr": 1,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V029",
+    "method": "multisource_with_translation",
+    "recall": 0.4444444444444444,
+    "precision": 0.4,
+    "f1": 0.4210526315789474,
+    "ndcg": 0.3387172273235484,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 6,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V030",
+    "method": "multisource_with_translation",
+    "recall": 0.36,
+    "precision": 0.5294117647058824,
+    "f1": 0.42857142857142855,
+    "ndcg": 0.4131990047643149,
+    "total_relevant": 25,
+    "total_found": 17,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 8,
+      "fr": 1
+    }
+  },
+  {
+    "variant_id": "V001",
+    "method": "full_pipeline",
+    "recall": 0.4117647058823529,
+    "precision": 0.35,
+    "f1": 0.37837837837837834,
+    "ndcg": 0.3943195930541415,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V002",
+    "method": "full_pipeline",
+    "recall": 0.3793103448275862,
+    "precision": 0.5789473684210527,
+    "f1": 0.45833333333333337,
+    "ndcg": 0.387236020724841,
+    "total_relevant": 29,
+    "total_found": 19,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 3,
+      "crossref": 8
+    },
+    "language_coverage": {
+      "unknown": 7,
+      "de": 2,
+      "fr": 2
+    }
+  },
+  {
+    "variant_id": "V003",
+    "method": "full_pipeline",
+    "recall": 0.42105263157894735,
+    "precision": 0.4,
+    "f1": 0.41025641025641024,
+    "ndcg": 0.46787888718191395,
+    "total_relevant": 19,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "de": 1,
+      "en": 1,
+      "fr": 1
+    }
+  },
+  {
+    "variant_id": "V004",
+    "method": "full_pipeline",
+    "recall": 0.13333333333333333,
+    "precision": 0.1,
+    "f1": 0.1142857142857143,
+    "ndcg": 0.1552326699474097,
+    "total_relevant": 15,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 1
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V005",
+    "method": "full_pipeline",
+    "recall": 0.34375,
+    "precision": 0.55,
+    "f1": 0.42307692307692313,
+    "ndcg": 0.41728829296040837,
+    "total_relevant": 32,
+    "total_found": 20,
+    "relevant_found": 11,
+    "source_coverage": {
+      "pmc": 6,
+      "crossref": 5
+    },
+    "language_coverage": {
+      "unknown": 7,
+      "de": 3,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V006",
+    "method": "full_pipeline",
+    "recall": 0.42857142857142855,
+    "precision": 0.15,
+    "f1": 0.2222222222222222,
+    "ndcg": 0.2817978629188492,
+    "total_relevant": 14,
+    "total_found": 40,
+    "relevant_found": 6,
+    "source_coverage": {
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 5
+    }
+  },
+  {
+    "variant_id": "V007",
+    "method": "full_pipeline",
+    "recall": 0.3125,
+    "precision": 0.25,
+    "f1": 0.2777777777777778,
+    "ndcg": 0.4006151937152045,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 3,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "fr": 1
+    }
+  },
+  {
+    "variant_id": "V008",
+    "method": "full_pipeline",
+    "recall": 0.25,
+    "precision": 0.15,
+    "f1": 0.18749999999999997,
+    "ndcg": 0.2881518767905882,
+    "total_relevant": 12,
+    "total_found": 20,
+    "relevant_found": 3,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 2,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V009",
+    "method": "full_pipeline",
+    "recall": 0.25,
+    "precision": 0.047619047619047616,
+    "f1": 0.08,
+    "ndcg": 0.10549558423511038,
+    "total_relevant": 4,
+    "total_found": 21,
+    "relevant_found": 1,
+    "source_coverage": {
+      "crossref": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V010",
+    "method": "full_pipeline",
+    "recall": 0.38095238095238093,
+    "precision": 0.4,
+    "f1": 0.3902439024390244,
+    "ndcg": 0.359943821701518,
+    "total_relevant": 21,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 5,
+      "crossref": 3
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V011",
+    "method": "full_pipeline",
+    "recall": 0.47058823529411764,
+    "precision": 0.21052631578947367,
+    "f1": 0.2909090909090909,
+    "ndcg": 0.4003064160789454,
+    "total_relevant": 17,
+    "total_found": 38,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 5,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V012",
+    "method": "full_pipeline",
+    "recall": 0.5454545454545454,
+    "precision": 0.3333333333333333,
+    "f1": 0.41379310344827586,
+    "ndcg": 0.4369363006639552,
+    "total_relevant": 22,
+    "total_found": 36,
+    "relevant_found": 12,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6,
+      "citation_graph": 5
+    },
+    "language_coverage": {
+      "unknown": 11,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V013",
+    "method": "full_pipeline",
+    "recall": 0.47058823529411764,
+    "precision": 0.4,
+    "f1": 0.4324324324324324,
+    "ndcg": 0.3325383704697569,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "de": 2,
+      "fr": 1,
+      "en": 4
+    }
+  },
+  {
+    "variant_id": "V014",
+    "method": "full_pipeline",
+    "recall": 0.125,
+    "precision": 0.1,
+    "f1": 0.11111111111111112,
+    "ndcg": 0.22211063075011753,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 2,
+    "source_coverage": {
+      "pmc": 2
+    },
+    "language_coverage": {
+      "unknown": 2
+    }
+  },
+  {
+    "variant_id": "V015",
+    "method": "full_pipeline",
+    "recall": 0.4166666666666667,
+    "precision": 0.125,
+    "f1": 0.1923076923076923,
+    "ndcg": 0.3798092334129932,
+    "total_relevant": 12,
+    "total_found": 40,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 4
+    }
+  },
+  {
+    "variant_id": "V016",
+    "method": "full_pipeline",
+    "recall": 0.09090909090909091,
+    "precision": 0.047619047619047616,
+    "f1": 0.0625,
+    "ndcg": 0.07386356006695578,
+    "total_relevant": 11,
+    "total_found": 21,
+    "relevant_found": 1,
+    "source_coverage": {
+      "pmc": 1
+    },
+    "language_coverage": {
+      "unknown": 1
+    }
+  },
+  {
+    "variant_id": "V017",
+    "method": "full_pipeline",
+    "recall": 0.2857142857142857,
+    "precision": 0.2,
+    "f1": 0.23529411764705882,
+    "ndcg": 0.1854610081372355,
+    "total_relevant": 14,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 4
+    }
+  },
+  {
+    "variant_id": "V018",
+    "method": "full_pipeline",
+    "recall": 0.23529411764705882,
+    "precision": 0.2,
+    "f1": 0.2162162162162162,
+    "ndcg": 0.3136430917392099,
+    "total_relevant": 17,
+    "total_found": 20,
+    "relevant_found": 4,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 2
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V019",
+    "method": "full_pipeline",
+    "recall": 0.25,
+    "precision": 0.3,
+    "f1": 0.2727272727272727,
+    "ndcg": 0.1985197284531635,
+    "total_relevant": 24,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V020",
+    "method": "full_pipeline",
+    "recall": 0.29411764705882354,
+    "precision": 0.3333333333333333,
+    "f1": 0.3125,
+    "ndcg": 0.35113353694569227,
+    "total_relevant": 17,
+    "total_found": 15,
+    "relevant_found": 5,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 2,
+      "europepmc": 1
+    },
+    "language_coverage": {
+      "unknown": 5
+    }
+  },
+  {
+    "variant_id": "V021",
+    "method": "full_pipeline",
+    "recall": 0.2222222222222222,
+    "precision": 0.14285714285714285,
+    "f1": 0.17391304347826086,
+    "ndcg": 0.14569482027456784,
+    "total_relevant": 18,
+    "total_found": 28,
+    "relevant_found": 4,
+    "source_coverage": {
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 1,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V022",
+    "method": "full_pipeline",
+    "recall": 0.43478260869565216,
+    "precision": 0.2631578947368421,
+    "f1": 0.32786885245901637,
+    "ndcg": 0.48658985276304295,
+    "total_relevant": 23,
+    "total_found": 38,
+    "relevant_found": 10,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 7,
+      "citation_graph": 1
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "en": 4,
+      "de": 1,
+      "fr": 2
+    }
+  },
+  {
+    "variant_id": "V023",
+    "method": "full_pipeline",
+    "recall": 0.3684210526315789,
+    "precision": 0.2,
+    "f1": 0.25925925925925924,
+    "ndcg": 0.30578664440685327,
+    "total_relevant": 19,
+    "total_found": 35,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 7
+    }
+  },
+  {
+    "variant_id": "V024",
+    "method": "full_pipeline",
+    "recall": 0.47368421052631576,
+    "precision": 0.225,
+    "f1": 0.30508474576271183,
+    "ndcg": 0.5009296371227195,
+    "total_relevant": 19,
+    "total_found": 40,
+    "relevant_found": 9,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "de": 2,
+      "fr": 2,
+      "en": 1
+    }
+  },
+  {
+    "variant_id": "V025",
+    "method": "full_pipeline",
+    "recall": 0.4444444444444444,
+    "precision": 0.4,
+    "f1": 0.4210526315789474,
+    "ndcg": 0.3517732453848133,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 8,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 7
+    },
+    "language_coverage": {
+      "unknown": 3,
+      "en": 5
+    }
+  },
+  {
+    "variant_id": "V026",
+    "method": "full_pipeline",
+    "recall": 0.3333333333333333,
+    "precision": 0.3,
+    "f1": 0.3157894736842105,
+    "ndcg": 0.2446839292675715,
+    "total_relevant": 18,
+    "total_found": 20,
+    "relevant_found": 6,
+    "source_coverage": {
+      "crossref": 5,
+      "pmc": 1
+    },
+    "language_coverage": {
+      "en": 4,
+      "unknown": 1,
+      "de": 1
+    }
+  },
+  {
+    "variant_id": "V027",
+    "method": "full_pipeline",
+    "recall": 0.4375,
+    "precision": 0.35,
+    "f1": 0.38888888888888884,
+    "ndcg": 0.3275931642911431,
+    "total_relevant": 16,
+    "total_found": 20,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "en": 3
+    }
+  },
+  {
+    "variant_id": "V028",
+    "method": "full_pipeline",
+    "recall": 0.35,
+    "precision": 0.175,
+    "f1": 0.23333333333333334,
+    "ndcg": 0.27727434339982426,
+    "total_relevant": 20,
+    "total_found": 40,
+    "relevant_found": 7,
+    "source_coverage": {
+      "pmc": 1,
+      "crossref": 6
+    },
+    "language_coverage": {
+      "unknown": 4,
+      "fr": 1,
+      "en": 2
+    }
+  },
+  {
+    "variant_id": "V029",
+    "method": "full_pipeline",
+    "recall": 0.3333333333333333,
+    "precision": 0.15,
+    "f1": 0.20689655172413793,
+    "ndcg": 0.2635563075964949,
+    "total_relevant": 18,
+    "total_found": 40,
+    "relevant_found": 6,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 4
+    },
+    "language_coverage": {
+      "unknown": 6
+    }
+  },
+  {
+    "variant_id": "V030",
+    "method": "full_pipeline",
+    "recall": 0.56,
+    "precision": 0.4827586206896552,
+    "f1": 0.5185185185185185,
+    "ndcg": 0.546034747034607,
+    "total_relevant": 25,
+    "total_found": 29,
+    "relevant_found": 14,
+    "source_coverage": {
+      "pmc": 2,
+      "crossref": 7,
+      "citation_graph": 5
+    },
+    "language_coverage": {
+      "unknown": 13,
+      "fr": 1
+    }
+  }
+]
