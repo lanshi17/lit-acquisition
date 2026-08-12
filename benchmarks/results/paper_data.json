@@ -1,0 +1,515 @@
+{
+  "methods": [
+    "pubmed_only",
+    "multisource_no_translation",
+    "multisource_with_translation",
+    "full_pipeline"
+  ],
+  "aggregates": {
+    "pubmed_only": {
+      "recall": {
+        "mean": 0.1714717756218567,
+        "std": 0.18304848335209062
+      },
+      "precision": {
+        "mean": 0.2288888888888889,
+        "std": 0.2401748334386514
+      },
+      "f1": {
+        "mean": 0.1718041809877954,
+        "std": 0.1605087623984442
+      },
+      "ndcg": {
+        "mean": 0.1953131300284013,
+        "std": 0.16998689093240088
+      },
+      "relevant_found": 83,
+      "total_relevant": 541,
+      "total_found": 426
+    },
+    "multisource_no_translation": {
+      "recall": {
+        "mean": 0.24728823588565346,
+        "std": 0.1356574204649024
+      },
+      "precision": {
+        "mean": 0.23833333333333329,
+        "std": 0.15952185499868735
+      },
+      "f1": {
+        "mean": 0.23915597912577866,
+        "std": 0.14253001762783485
+      },
+      "ndcg": {
+        "mean": 0.25977091996243545,
+        "std": 0.14638614937611974
+      },
+      "relevant_found": 143,
+      "total_relevant": 541,
+      "total_found": 600
+    },
+    "multisource_with_translation": {
+      "recall": {
+        "mean": 0.3289431307679337,
+        "std": 0.09893901862824073
+      },
+      "precision": {
+        "mean": 0.31967678591904597,
+        "std": 0.14288520467274088
+      },
+      "f1": {
+        "mean": 0.316418573891137,
+        "std": 0.11476744614777887
+      },
+      "ndcg": {
+        "mean": 0.30963695821404014,
+        "std": 0.09962150686938397
+      },
+      "relevant_found": 182,
+      "total_relevant": 541,
+      "total_found": 578
+    },
+    "full_pipeline": {
+      "recall": {
+        "mean": 0.34844296181238726,
+        "std": 0.11625416460586392
+      },
+      "precision": {
+        "mean": 0.26383840347996423,
+        "std": 0.1384471965297218
+      },
+      "f1": {
+        "mean": 0.287749033241874,
+        "std": 0.11727952563211212
+      },
+      "ndcg": {
+        "mean": 0.32007327904965494,
+        "std": 0.11646334314740701
+      },
+      "relevant_found": 195,
+      "total_relevant": 541,
+      "total_found": 780
+    }
+  },
+  "wilcoxon": {
+    "M1_vs_M2": {
+      "delta_recall": 0.07581646026379679,
+      "p": 0.025409989442921697
+    },
+    "M2_vs_M3": {
+      "delta_recall": 0.08165489488228021,
+      "p": 0.0371548841240388
+    },
+    "M3_vs_M4": {
+      "delta_recall": 0.019499831044453467,
+      "p": 0.20757844233562417
+    },
+    "full_vs_pubmed_only_recall": {
+      "delta": 0.17697118619053048,
+      "p": 0.0005445022290200601
+    },
+    "full_vs_multisource_no_translation_recall": {
+      "delta": 0.10115472592673366,
+      "p": 0.013478872675195446
+    },
+    "full_vs_multisource_with_translation_recall": {
+      "delta": 0.019499831044453467,
+      "p": 0.20757844233562417
+    },
+    "full_vs_pubmed_only_precision": {
+      "delta": 0.0349495145910754,
+      "p": 0.2562422719188152
+    },
+    "full_vs_multisource_no_translation_precision": {
+      "delta": 0.025505070146630948,
+      "p": 0.4252109706445151
+    },
+    "full_vs_multisource_with_translation_precision": {
+      "delta": -0.05583838243908171,
+      "p": 0.003777415762917658
+    },
+    "full_vs_pubmed_only_ndcg": {
+      "delta": 0.12476014902125358,
+      "p": 0.005667172691497799
+    },
+    "full_vs_multisource_no_translation_ndcg": {
+      "delta": 0.06030235908721949,
+      "p": 0.031603381642055166
+    },
+    "full_vs_multisource_with_translation_ndcg": {
+      "delta": 0.010436320835614825,
+      "p": 0.2411213682774183
+    }
+  },
+  "gold_standard": {
+    "n_variants": 30,
+    "n_papers": 541,
+    "languages": {
+      "en": 289,
+      "unknown": 228,
+      "de": 13,
+      "fr": 11
+    },
+    "evidence": {
+      "other": 425,
+      "case_report": 79,
+      "sequencing": 14,
+      "functional": 23
+    },
+    "acmg": {
+      "?": 10,
+      "PS3": 14,
+      "PVS1": 6
+    },
+    "per_variant": {
+      "V001": {
+        "gene": "MECP2",
+        "variant": "c.470C>T",
+        "disease": "Rett syndrome",
+        "acmg": null,
+        "n_papers": 17
+      },
+      "V002": {
+        "gene": "BRCA1",
+        "variant": "c.5266dupC",
+        "disease": "breast cancer",
+        "acmg": null,
+        "n_papers": 29
+      },
+      "V003": {
+        "gene": "CFTR",
+        "variant": "Phe508del",
+        "disease": "cystic fibrosis",
+        "acmg": null,
+        "n_papers": 19
+      },
+      "V004": {
+        "gene": "LDLR",
+        "variant": "c.913G>A",
+        "disease": "hypercholesterolemia",
+        "acmg": null,
+        "n_papers": 15
+      },
+      "V005": {
+        "gene": "TP53",
+        "variant": "R175H",
+        "disease": "Li-Fraumeni",
+        "acmg": null,
+        "n_papers": 32
+      },
+      "V006": {
+        "gene": "SCN5A",
+        "variant": "c.5266G>A",
+        "disease": "long QT",
+        "acmg": null,
+        "n_papers": 14
+      },
+      "V007": {
+        "gene": "PALB2",
+        "variant": "c.3113G>A",
+        "disease": "breast cancer",
+        "acmg": null,
+        "n_papers": 17
+      },
+      "V008": {
+        "gene": "PTEN",
+        "variant": "c.388C>T",
+        "disease": "Cowden",
+        "acmg": null,
+        "n_papers": 12
+      },
+      "V009": {
+        "gene": "MYH7",
+        "variant": "c.2389G>A",
+        "disease": "cardiomyopathy",
+        "acmg": null,
+        "n_papers": 4
+      },
+      "V010": {
+        "gene": "GJB2",
+        "variant": "35delG",
+        "disease": "hearing loss",
+        "acmg": null,
+        "n_papers": 21
+      },
+      "V011": {
+        "gene": "KRAS",
+        "variant": "c.35G>A (p.G12D)",
+        "disease": "colorectal cancer",
+        "acmg": "PS3",
+        "n_papers": 17
+      },
+      "V012": {
+        "gene": "EGFR",
+        "variant": "c.2573T>G (p.L858R)",
+        "disease": "lung adenocarcinoma",
+        "acmg": "PS3",
+        "n_papers": 22
+      },
+      "V013": {
+        "gene": "BRAF",
+        "variant": "c.1799T>A (p.V600E)",
+        "disease": "melanoma",
+        "acmg": "PS3",
+        "n_papers": 17
+      },
+      "V014": {
+        "gene": "APC",
+        "variant": "c.3927_3931delAAAGA",
+        "disease": "familial adenomatous polyposis",
+        "acmg": "PVS1",
+        "n_papers": 16
+      },
+      "V015": {
+        "gene": "MLH1",
+        "variant": "c.1852_1854del (p.K618del)",
+        "disease": "Lynch syndrome",
+        "acmg": "PVS1",
+        "n_papers": 12
+      },
+      "V016": {
+        "gene": "MYBPC3",
+        "variant": "c.1504C>T (p.Arg502Trp)",
+        "disease": "hypertrophic cardiomyopathy",
+        "acmg": "PS3",
+        "n_papers": 11
+      },
+      "V017": {
+        "gene": "KCNQ1",
+        "variant": "c.1781G>A (p.Arg594Gln)",
+        "disease": "long QT syndrome type 1",
+        "acmg": "PS3",
+        "n_papers": 14
+      },
+      "V018": {
+        "gene": "FBN1",
+        "variant": "c.5788G>A (p.Gly1930Arg)",
+        "disease": "Marfan syndrome",
+        "acmg": "PS3",
+        "n_papers": 17
+      },
+      "V019": {
+        "gene": "HTT",
+        "variant": "CAG repeat expansion",
+        "disease": "Huntington disease",
+        "acmg": "PS3",
+        "n_papers": 24
+      },
+      "V020": {
+        "gene": "SNCA",
+        "variant": "c.209G>A (p.A53T)",
+        "disease": "Parkinson disease",
+        "acmg": "PS3",
+        "n_papers": 17
+      },
+      "V021": {
+        "gene": "APP",
+        "variant": "Swedish mutation c.1780G>A",
+        "disease": "familial Alzheimer disease",
+        "acmg": "PS3",
+        "n_papers": 18
+      },
+      "V022": {
+        "gene": "PAH",
+        "variant": "c.1222C>T (p.Arg408Trp)",
+        "disease": "phenylketonuria",
+        "acmg": "PS3",
+        "n_papers": 23
+      },
+      "V023": {
+        "gene": "GBA",
+        "variant": "c.1448T>C (p.L444P)",
+        "disease": "Gaucher disease",
+        "acmg": "PS3",
+        "n_papers": 19
+      },
+      "V024": {
+        "gene": "G6PD",
+        "variant": "c.376A>G (p.Asn126Asp)",
+        "disease": "G6PD deficiency",
+        "acmg": "PS3",
+        "n_papers": 19
+      },
+      "V025": {
+        "gene": "HBB",
+        "variant": "c.20A>T (p.Glu7Val)",
+        "disease": "sickle cell disease",
+        "acmg": "PS3",
+        "n_papers": 18
+      },
+      "V026": {
+        "gene": "F8",
+        "variant": "intron 22 inversion",
+        "disease": "hemophilia A",
+        "acmg": "PVS1",
+        "n_papers": 18
+      },
+      "V027": {
+        "gene": "DMD",
+        "variant": "c.5899C>T (p.Arg1967Ter)",
+        "disease": "Duchenne muscular dystrophy",
+        "acmg": "PVS1",
+        "n_papers": 16
+      },
+      "V028": {
+        "gene": "SMN1",
+        "variant": "exon 7 deletion",
+        "disease": "spinal muscular atrophy",
+        "acmg": "PVS1",
+        "n_papers": 20
+      },
+      "V029": {
+        "gene": "CYP21A2",
+        "variant": "c.293-13A>G (IVS2-13A>G)",
+        "disease": "congenital adrenal hyperplasia",
+        "acmg": "PVS1",
+        "n_papers": 18
+      },
+      "V030": {
+        "gene": "DMPK",
+        "variant": "CTG repeat expansion",
+        "disease": "myotonic dystrophy type 1",
+        "acmg": "PS3",
+        "n_papers": 25
+      }
+    }
+  },
+  "dedup": {
+    "pubmed_only": {
+      "total": 426,
+      "unique_doi": 414,
+      "dup_rate": 2.8169014084507005
+    },
+    "multisource_no_translation": {
+      "total": 600,
+      "unique_doi": 547,
+      "dup_rate": 8.833333333333337
+    },
+    "multisource_with_translation": {
+      "total": 578,
+      "unique_doi": 530,
+      "dup_rate": 8.304498269896198
+    },
+    "full_pipeline": {
+      "total": 780,
+      "unique_doi": 731,
+      "dup_rate": 6.282051282051282
+    }
+  },
+  "source_coverage_full": {
+    "pmc": {
+      "relevant": 48,
+      "all": 218
+    },
+    "crossref": {
+      "relevant": 135,
+      "all": 305
+    },
+    "citation_graph": {
+      "relevant": 11,
+      "all": 200
+    },
+    "europepmc": {
+      "relevant": 1,
+      "all": 8
+    }
+  },
+  "lang_relevant": {
+    "full_pipeline": {
+      "unknown": 122,
+      "en": 50,
+      "de": 12,
+      "fr": 11
+    },
+    "multisource_with_translation": {
+      "unknown": 113,
+      "en": 48,
+      "de": 12,
+      "fr": 9
+    }
+  },
+  "case_studies": {
+    "V012": {
+      "gene": "EGFR",
+      "variant": "c.2573T>G (p.L858R)",
+      "disease": "lung adenocarcinoma",
+      "query": "EGFR L858R lung cancer",
+      "total_relevant": 22,
+      "cg_relevant": [
+        {
+          "title": "Ivonescimab Plus Chemotherapy in Non-Small Cell Lung Cancer With EGFR Variant: A Randomized Clinical Trial.",
+          "doi": "10.1001/jama.2024.10613",
+          "year": "2024"
+        },
+        {
+          "title": "Sintilimab plus chemotherapy for patients with EGFR-mutated non-squamous non-small-cell lung cancer with disease progression after EGFR tyrosine-kinase inhibitor therapy (ORIENT-31): second interim analysis from a double-blind, randomised, placebo-controlled, phase 3 trial.",
+          "doi": "10.1016/s2213-2600(23)00135-2",
+          "year": "2023"
+        },
+        {
+          "title": "Mechanisms of resistance to targeted therapy and immunotherapy in non-small cell lung cancer: promising strategies to overcoming challenges",
+          "doi": "10.3389/fimmu.2024.1366260",
+          "year": "2024"
+        },
+        {
+          "title": "Sacituzumab Tirumotecan in EGFR-TKI-Resistant, EGFR-Mutated Advanced NSCLC.",
+          "doi": "10.1056/nejmoa2512071",
+          "year": "2025"
+        },
+        {
+          "title": "Cost-effectiveness of rilertinib versus osimertinib in second-line treatment in EGFR T790M resistance mutation advanced non-small cell lung cancer in China",
+          "doi": "10.3389/fphar.2025.1628024",
+          "year": "2025"
+        }
+      ]
+    },
+    "V030": {
+      "gene": "DMPK",
+      "variant": "CTG repeat expansion",
+      "disease": "myotonic dystrophy type 1",
+      "query": "DMPK CTG repeat myotonic dystrophy",
+      "total_relevant": 25,
+      "cg_relevant": [
+        {
+          "title": "Congenital and childhood myotonic dystrophy: Current aspects of disease and future directions.",
+          "doi": "10.5409/wjcp.v4.i4.66",
+          "year": "2015"
+        },
+        {
+          "title": "Molecular genetics of congenital myotonic dystrophy.",
+          "doi": "10.1016/j.nbd.2019.104533",
+          "year": "2019"
+        },
+        {
+          "title": "Myotonic Dystrophies: A Genetic Overview",
+          "doi": "10.3390/genes13020367",
+          "year": "2022"
+        },
+        {
+          "title": "Congenital myotonic dystrophy: An overlooked diagnosis not amenable to detection by sequencing",
+          "doi": "10.1002/pd.6105",
+          "year": "2022"
+        },
+        {
+          "title": "Diaphragmatic hernia in a term newborn with congenital myotonic dystrophy: case report.",
+          "doi": "10.23750/abm.v94iS1.13822",
+          "year": "2023"
+        }
+      ]
+    },
+    "V022": {
+      "gene": "PAH",
+      "variant": "c.1222C>T (p.Arg408Trp)",
+      "disease": "phenylketonuria",
+      "query": "PAH R408W phenylketonuria",
+      "total_relevant": 23,
+      "cg_relevant": [
+        {
+          "title": "Amelioration of metabolic and behavioral defects through base editing in the PahR408W phenylketonuria mouse model.",
+          "doi": "10.1016/j.ymthe.2024.11.032",
+          "year": "2024"
+        }
+      ]
+    }
+  }
+}

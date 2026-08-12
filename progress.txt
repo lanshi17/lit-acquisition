@@ -1,6 +1,9 @@
 # Project Progress
 
-[2026-08-10] [Gold standard expansion: 10 → 30 variants (V001-V030), 239 annotated papers] [done]
+[2026-08-10] [Gold standard expansion: 10 → 30 variants (V001-V030), 541 annotated papers] [done]
 [2026-08-10] [PubMed candidate fetch for V011-V030 (20 variants, 80 papers each)] [done]
 [2026-08-10] [Heuristic relevance scoring + annotation for 20 new variants] [done]
 [2026-08-10] [Updated docs/paper-outline.md and benchmarks/gold_standard/README.md] [done]
+[2026-08-12] [Benchmark run completed: 4 methods × 30 variants (metrics.json, summary.md)] [done]
+[2026-08-12] [Figures generated: fig1 architecture, fig2 source coverage, fig3 ablation/multilingual, fig4 citation graph] [done]
+[2026-08-12] [Paper draft written and compiled: paper/main.tex → paper/main.pdf (6 pages, JCDL acmart format)] [done]

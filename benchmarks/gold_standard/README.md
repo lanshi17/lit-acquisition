@@ -48,7 +48,12 @@ Each line in `variants.jsonl` is a JSON object:
 - `variants.jsonl`: **30 variants** (V001–V030), annotated
 - `variants_annotated.jsonl`: same content, pre-filled with relevant papers
 - `candidates/`: raw PubMed candidate records used during annotation
-- **Total annotated papers**: 239 (79 for V001–V010 + 160 for V011–V030)
+- **Total annotated papers**: 541 (mean 18.0 per variant, range 4–32)
+
+> **Note**: Earlier documentation referenced 239 papers (79 for V001–V010 +
+> 160 for V011–V030). The gold standard has since been re-annotated and
+> extended; `variants.jsonl` is the source of truth and currently contains
+> 541 relevant papers.
 
 ### Disease / evidence-type distribution
 
