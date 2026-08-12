@@ -7,6 +7,8 @@ Outputs PNG (300 dpi) + PDF to benchmarks/paper_figures/.
 
 from __future__ import annotations
 
+import os
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -16,7 +18,15 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 import scienceplots  # noqa: F401  (registers 'science'/'ieee' styles)
 
-plt.style.use(["science", "ieee", "no-latex"])
+# Prefer the Debian TeX Live (provides latex + dvipng for usetex rendering).
+os.environ["PATH"] = "/usr/bin:" + os.environ.get("PATH", "")
+
+plt.style.use(["science", "ieee"])
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Times"],
+})
 
 from pathlib import Path
 
@@ -59,7 +69,7 @@ def phase_label(x, text):
 
 
 # ================= Phase 1: Acquisition =================
-phase_label(17, "Phase 1 · Parallel Multi-source Acquisition")
+phase_label(17, "Phase 1 \textperiodcentered{} Parallel Multi-source Acquisition")
 
 box(2, 48, 14, 8, "Clinician Query\n(variant / disease)", C_INNER, fs=8.5)
 box(2, 35, 14, 7, "LLM Query\nTranslator\n(en $\\rightarrow$ 6 languages)", "#C3C7E8", fs=8)
@@ -70,9 +80,9 @@ arrow(9, 35, 9, 30.0)
 
 providers = [
     "PubMed", "EuropePMC", "Crossref", "OpenAlex",
-    "Semantic Scholar", "arXiv · bioRxiv · medRxiv",
-    "CiNii · J-STAGE · SciELO", "DOAJ · CORE · BASE · OpenAIRE",
-    "ClinicalTrials.gov · Zenodo",
+    "Semantic Scholar", "arXiv \textperiodcentered{} bioRxiv \textperiodcentered{} medRxiv",
+    "CiNii \textperiodcentered{} J-STAGE \textperiodcentered{} SciELO", "DOAJ \textperiodcentered{} CORE \textperiodcentered{} BASE \textperiodcentered{} OpenAIRE",
+    "ClinicalTrials.gov \textperiodcentered{} Zenodo",
 ]
 n = len(providers)
 y0, gap, h = 49.0, 4.05, 3.15
@@ -86,21 +96,21 @@ box(48, 50, 26, 7.5, "Language-aware provider routing\n(zh$\\rightarrow$CiNii/J-
     C_NOTE, fs=7.6, ec="#888888", ls="--")
 
 # ================= Phase 2: Normalization =================
-phase_label(61, "Phase 2 · Normalization & Dedup")
+phase_label(61, "Phase 2 \textperiodcentered{} Normalization \& Dedup")
 
 box(50, 24, 22, 10, "Normalization\n(unified OnlineAcquisitionItem;\nDOI / URL / title dedup)", C_INNER, fs=8.2)
-box(50, 9, 22, 9, "Candidate Ranking\n(title match · DOI presence\n· recency)", "#C3C7E8", fs=8.2)
+box(50, 9, 22, 9, "Candidate Ranking\n(title match \textperiodcentered{} DOI presence\n\textperiodcentered{} recency)", "#C3C7E8", fs=8.2)
 
 arrow(61, 24, 61, 19.0)
 arrow(47, 29, 50, 29, lw=2.0, color=C_PHASE)          # providers -> normalization
 arrow(61, 18, 75, 32, lw=2.0, color=C_PHASE)          # ranking -> relevance gate
 
 # ================= Phase 3: Relevance Gate & Retrieval =================
-phase_label(87, "Phase 3 · Relevance Gate & Retrieval")
+phase_label(87, "Phase 3 \textperiodcentered{} Relevance Gate \& Retrieval")
 
 box(75, 48, 23, 8, "Citation Graph Traversal\n(Semantic Scholar BFS)", C_SOURCE, fs=8.2, ec="#888888", ls="--")
 box(75, 32, 23, 9, "LLM Relevance Gate\n(evidence-type filter)", C_INNER, fs=8.5)
-box(75, 19, 23, 8, "OA-aware Download\n(Unpaywall · EuropePMC · URL)", "#E8DCC3", fs=8)
+box(75, 19, 23, 8, "OA-aware Download\n(Unpaywall \textperiodcentered{} EuropePMC \textperiodcentered{} URL)", "#E8DCC3", fs=8)
 box(75, 4, 23, 8, "Evidence-ready Output\n(metadata + OA PDFs)", C_INNER, fs=8.2)
 
 arrow(86.5, 48, 86.5, 42.5, color="#888888", lw=1.2, ls="--")

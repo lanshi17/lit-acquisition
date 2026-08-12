@@ -5,11 +5,16 @@ Outputs to benchmarks/paper_figures/:
   fig3_ablation_recall.png/.pdf   — ablation recall/P1/nDCG bar chart
   fig3_multilingual.png/.pdf      — per-language relevant papers found
   fig4_citation_graph.png/.pdf    — citation graph vs keyword contribution
+
+Figures use the scienceplots 'science'/'ieee' styles with LaTeX text
+rendering (text.usetex) for publication-quality typography. Requires a
+working `latex` + `dvipng` installation (Debian TeX Live in /usr/bin).
 """
 
 from __future__ import annotations
 
 import json
+import os
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -22,7 +27,20 @@ import scienceplots  # noqa: F401  (registers 'science'/'ieee' styles)
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.style.use(["science", "ieee", "no-latex"])
+# Prefer the Debian TeX Live (provides latex + dvipng for usetex rendering).
+os.environ["PATH"] = "/usr/bin:" + os.environ.get("PATH", "")
+
+plt.style.use(["science", "ieee"])
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Times"],
+    "axes.labelsize": 10,
+    "xtick.labelsize": 9,
+    "ytick.labelsize": 9,
+    "legend.fontsize": 8,
+    "figure.dpi": 300,
+})
 
 RESULTS_DIR = Path("benchmarks/results")
 FIG_DIR = Path("benchmarks/paper_figures")
