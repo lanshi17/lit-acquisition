@@ -36,6 +36,22 @@ _DEFAULT_FIELDS = (
     "journal",
 )
 
+# The citations/references endpoints do NOT support the `tldr` field;
+# requesting it returns HTTP 400. Use this subset for related-paper queries.
+_RELATED_FIELDS = (
+    "title",
+    "authors",
+    "year",
+    "externalIds",
+    "openAccessPdf",
+    "fieldsOfStudy",
+    "citationCount",
+    "influentialCitationCount",
+    "publicationTypes",
+    "publicationDate",
+    "journal",
+)
+
 
 class SemanticScholarService:
     """Async client for the Semantic Scholar Graph API."""
@@ -127,7 +143,7 @@ class SemanticScholarService:
         self,
         paper_id: str,
         limit: int = 50,
-        fields: tuple[str, ...] = _DEFAULT_FIELDS,
+        fields: tuple[str, ...] = _RELATED_FIELDS,
     ) -> list[dict[str, Any]]:
         """Get papers that cite the given paper.
 
@@ -145,7 +161,7 @@ class SemanticScholarService:
         self,
         paper_id: str,
         limit: int = 50,
-        fields: tuple[str, ...] = _DEFAULT_FIELDS,
+        fields: tuple[str, ...] = _RELATED_FIELDS,
     ) -> list[dict[str, Any]]:
         """Get papers referenced by the given paper.
 

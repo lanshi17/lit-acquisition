@@ -967,7 +967,9 @@ async def multilingual_acquisition_workflow(
     # Normalize items
     normalized_items: list[OnlineAcquisitionItem] = []
     for item in all_candidates:
-        provider = item.get("_source_provider", "unknown")
+        # Candidates from search_parallel/_normalize_candidate carry the source
+        # under `provider`; the single-language path uses `_source_provider`.
+        provider = item.get("_source_provider") or item.get("provider", "unknown")
         try:
             normalized = normalize_items(provider, [item])
             normalized_items.extend(normalized)

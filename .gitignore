@@ -13,6 +13,11 @@ dist/
 .venv/
 venv/
 
+# Secrets (git-ignored)
+.env
+.env.*
+!.env.example
+
 # Testing
 .pytest_cache/
 .coverage

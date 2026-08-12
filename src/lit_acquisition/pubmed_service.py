@@ -2,12 +2,26 @@
 
 from __future__ import annotations
 
+import asyncio
 import os
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from typing import Any
 
 import httpx
+
+
+async def _request_with_retry(method, url: str, *, params: dict | None = None, max_attempts: int = 2):
+    """Wrap an httpx request with retry on transient network errors."""
+    last_exc: Exception | None = None
+    for attempt in range(max_attempts):
+        try:
+            return await method(url, params=params)
+        except (httpx.RemoteProtocolError, httpx.ConnectError, httpx.ReadTimeout) as exc:
+            last_exc = exc
+            if attempt < max_attempts - 1:
+                await asyncio.sleep(1.0 * (attempt + 1))
+    raise last_exc  # type: ignore[misc]
 
 
 @dataclass
@@ -68,7 +82,7 @@ class OnlineAcquisitionPubMedService:
             params["api_key"] = self.api_key
 
         async with httpx.AsyncClient(timeout=15.0) as client:
-            esearch_resp = await client.get(f"{self.base_url}/esearch.fcgi", params=params)
+            esearch_resp = await _request_with_retry(client.get, f"{self.base_url}/esearch.fcgi", params=params)
             esearch_resp.raise_for_status()
             esearch_payload = esearch_resp.json()
 
@@ -83,7 +97,7 @@ class OnlineAcquisitionPubMedService:
             }
             if self.api_key:
                 summary_params["api_key"] = self.api_key
-            summary_resp = await client.get(f"{self.base_url}/esummary.fcgi", params=summary_params)
+            summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
             summary_resp.raise_for_status()
             summary_payload = summary_resp.json()
 
@@ -138,7 +152,7 @@ class OnlineAcquisitionPubMedService:
             fetch_params["api_key"] = self.api_key
 
         async with httpx.AsyncClient(timeout=15.0) as client:
-            summary_resp = await client.get(f"{self.base_url}/esummary.fcgi", params=summary_params)
+            summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
             summary_resp.raise_for_status()
             summary_payload = summary_resp.json()
 

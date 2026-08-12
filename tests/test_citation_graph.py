@@ -5,6 +5,18 @@ from unittest.mock import AsyncMock
 import pytest
 
 from lit_acquisition.citation_graph import traverse_citation_graph
+from lit_acquisition.semantic_scholar import _RELATED_FIELDS
+
+
+def test_related_fields_exclude_tldr():
+    """Citations/references endpoints reject `tldr` (HTTP 400); default fields must omit it.
+
+    Regression test: requesting `tldr` on the citations endpoint returns
+    "Unrecognized or unsupported fields: [tldr]", breaking citation traversal.
+    """
+    assert "tldr" not in _RELATED_FIELDS
+    assert "title" in _RELATED_FIELDS
+    assert "citationCount" in _RELATED_FIELDS
 
 
 @pytest.mark.asyncio

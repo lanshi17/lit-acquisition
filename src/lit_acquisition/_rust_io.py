@@ -23,4 +23,9 @@ try:
 
     NET_AVAILABLE = True
 except _NATIVE_IMPORT_ERRORS:
-    logger.debug("rust_io.net not available - using httpx fallback for HTTP I/O")
+    try:
+        import net_io  # noqa: F401
+
+        NET_AVAILABLE = True
+    except _NATIVE_IMPORT_ERRORS:
+        logger.debug("net_io / rust_io.net not available - using httpx fallback for HTTP I/O")

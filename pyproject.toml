@@ -24,6 +24,7 @@ dependencies = [
     "pymupdf>=1.27.2",
     "openai>=1.0.0",
     "pyjstage2>=0.1.2",
+    "scienceplots>=2.2.2",
 ]
 
 [project.optional-dependencies]

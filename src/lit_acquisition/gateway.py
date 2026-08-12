@@ -471,6 +471,15 @@ async def _search_zenodo(
         limit = min(request.limit or 20, 100)
         items = await svc.search(query, limit=limit)
 
+        # Zenodo is a general OSS repository: drop datasets/software/images and
+        # keep only publication-type records (articles, preprints, etc.) so the
+        # search results are actual literature rather than data dumps.
+        items = [
+            it
+            for it in items
+            if ((it.get("metadata") or {}).get("resource_type") or {}).get("type") == "publication"
+        ]
+
         elapsed = (_time.monotonic() - start) * 1000
         get_health_tracker().record("zenodo", success=True, latency_ms=elapsed)
         trace = OnlineAcquisitionSourceTraceEntry(
