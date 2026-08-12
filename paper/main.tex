@@ -59,16 +59,21 @@ traversal over Semantic Scholar to discover relevant work beyond keyword
 search; and (iv) an LLM relevance gate and open-access-aware download layer
 that retrieves full texts only from legal OA sources.
 
-We evaluate the system on a gold standard of 30 clinically relevant genetic
-variants spanning 541 annotated papers. An ablation study (K=50) shows that
-the full pipeline improves Recall@50 from 0.171 (PubMed-only) to 0.348
-($+0.177$, Wilcoxon $p<0.001$), with each component --- multi-source search,
-cross-lingual translation, and citation graph traversal --- contributing
-additively. Citation graph traversal alone contributes 11 relevant papers
-that no keyword method finds, concentrated in high-yield variants such as
-EGFR and DMPK. Multilingual search recovers non-English (German, French,
-Chinese) relevant literature that English-only search misses. The toolkit and
-benchmark are released open-source for reproducible evaluation.
+We evaluate the system on a reference gold standard of 30 clinically
+relevant genetic variants spanning 541 papers. An ablation study (K=50)
+shows that the full pipeline improves Recall@50 from 0.171 (PubMed-only) to
+0.348 ($+0.177$, Wilcoxon $p<0.001$), with each component --- multi-source
+search, cross-lingual translation, and citation graph traversal ---
+contributing additively. Citation graph traversal alone contributes 11
+relevant papers that no keyword method finds, concentrated in high-yield
+variants such as EGFR and DMPK. Multilingual search recovers non-English
+(German, French) relevant literature that English-only search misses. The
+toolkit and benchmark are released open-source for reproducible evaluation.
+\textbf{Important caveat:} the gold standard annotations were produced by an
+automated heuristic protocol and have \emph{not} been verified by domain
+experts; we release the dataset as a reference for relative system
+comparison, not as clinically certified ground truth (see
+Section~\ref{sec:goldstd}).
 \end{abstract}
 
 \begin{CCSXML}
@@ -138,14 +143,14 @@ plus a language-aware provider routing matrix.
 \item \textbf{Citation graph traversal} that augments keyword search by
 exploring citation and reference edges from seed papers via Semantic Scholar.
 \item \textbf{An open-source toolkit and benchmark} --- 30 variants, 541
-annotated relevant papers --- enabling reproducible evaluation of literature
-acquisition systems.
+papers (heuristic-annotated reference set) --- enabling reproducible
+evaluation of literature acquisition systems.
 \end{enumerate}
 
 Our ablation study shows that multi-source search, translation, and citation
 graph traversal each contribute measurable recall gains, and that the full
-pipeline more than doubles PubMed-only Recall@50 on a clinically grounded
-gold standard.
+pipeline more than doubles PubMed-only Recall@50 on a 30-variant reference
+dataset (caveats in Section~\ref{sec:goldstd}).
 
 \section{Related Work}
 \label{sec:related}
@@ -187,7 +192,8 @@ domain-specific queries practical with minimal setup, which we exploit.
 \textbf{Evaluation of IR systems.} Standard practice uses Recall@K,
 Precision@K, F1@K, and nDCG@K \cite{jarvelin2002cumulated} with paired
 significance tests (Wilcoxon signed-rank \cite{wilcoxon1945individual}).
-We follow this protocol on a new, publicly released gold standard.
+We follow this protocol on a new, publicly released reference dataset
+(Section~\ref{sec:goldstd}).
 
 \section{System Design}
 \label{sec:design}
@@ -346,24 +352,36 @@ from OA sources.
 \label{sec:eval}
 
 \subsection{Gold Standard}
+\label{sec:goldstd}
 
-We constructed a gold standard of 30 genetic variants (V001--V030) spanning
-cancer genetics (BRCA1, TP53, KRAS, EGFR, BRAF, APC, MLH1, PALB2),
+We constructed a reference dataset of 30 genetic variants (V001--V030)
+spanning cancer genetics (BRCA1, TP53, KRAS, EGFR, BRAF, APC, MLH1, PALB2),
 cardiovascular (LDLR, SCN5A, MYBPC3, KCNQ1, FBN1), neurological (MECP2, HTT,
 SNCA, APP), metabolic (CFTR, PAH, GBA), hematological (HBB, F8, DMD, G6PD),
 and other domains, covering ACMG evidence criteria PS3 (14 variants) and
 PVS1 (6 variants) plus 10 additional clinically actionable variants. For
-each variant, a clinical geneticist-style query was formulated and relevant
-papers were identified through multi-source candidate retrieval (PubMed
-E-utilities, EuropePMC, Google Scholar, language-specific databases) and
-filtered by an inclusion criterion (directly discusses the variant or
-gene--disease pair; contains case report, functional, or sequencing data;
-peer-reviewed or preprint). The final gold standard contains \textbf{541
-annotated relevant papers} (mean 18.0 per variant, range 4--32), with
-languages including English (289), German (13), French (11), and 228
-records with unknown language metadata. Annotations record DOI, PMID,
-title, language, and evidence type. Domain-expert verification of the
-automated-annotation subset is pending (noted as a limitation).
+each variant, a clinical geneticist-style query was formulated and candidate
+papers were retrieved from multiple sources (PubMed E-utilities, EuropePMC,
+Crossref, language-specific databases) and filtered by an automated
+heuristic scoring protocol: weighted title/pub-type scoring (gene name in
+title: +3; variant identifier: +5; disease keywords: up to +3; preferred
+pub-types such as case reports: +2; reviews: $-2$; editorials/letters
+excluded). The dataset contains \textbf{541 papers} (mean 18.0 per variant,
+range 4--32), with languages including English (289), German (13), French
+(11), and 228 records with unknown language metadata. Annotations record
+DOI, PMID, title, language, and evidence type.
+
+\textbf{Status and limitations.} This dataset is a \emph{reference set for
+relative system comparison}, not a clinically certified gold standard. Its
+annotations were produced by the automated protocol above and have
+\textbf{not} been verified by domain experts; they may contain both false
+positives (papers scoring high on keywords but not actually discussing the
+variant) and false negatives (relevant papers the retrieval protocol did
+not surface). Consequently, all absolute recall/precision figures in this
+paper should be read as indicative of \emph{relative} component
+contributions under identical annotation conditions rather than as
+clinically accurate coverage estimates. We release the dataset to support
+reproducible evaluation; expert re-annotation is future work.
 
 \subsection{Methods Compared}
 
@@ -612,9 +630,13 @@ citation edges but not by variant-name lexical match.
 \section{Discussion}
 \label{sec:discussion}
 
-\textbf{Limitations.} (i) The gold standard's V011--V030 annotations were
-produced by automated scoring and require domain-expert verification before
-final metrics are relied upon; (ii) API rate limits and provider outages
+\textbf{Limitations.} (i) The evaluation dataset is a heuristic-annotated
+reference set, not a clinically verified gold standard: its 541 annotations
+were produced by an automated scoring protocol (gene/variant/disease
+keywords + pub-type weighting) without domain-expert review, so all metrics
+are comparative rather than absolute, and absolute recall/precision values
+should not be treated as clinical coverage estimates
+(Section~\ref{sec:goldstd}); (ii) API rate limits and provider outages
 constrained candidate depth (K=50) and citation graph depth; (iii) the
 relevance gate depends on LLM quality and cost; (iv) language metadata is
 missing for many records (``unknown''), which understates multilingual
@@ -630,12 +652,14 @@ the gold standard to 50 variants for greater statistical power.
 
 We presented lit-acquisition, an open-source multi-source multilingual
 biomedical literature acquisition system with citation graph augmentation.
-An ablation study on 30 clinically grounded variants (541 relevant papers)
-shows the full pipeline doubles PubMed-only Recall@50 (0.171$\rightarrow$0.348),
-with significant additive contributions from multi-source search and
-cross-lingual translation, and complementary recall from citation graph
-traversal. The toolkit and gold standard are released to support
-reproducible evaluation of literature acquisition for clinical genomics.
+An ablation study on 30 genetic variants (541 papers, heuristic-annotated
+reference set) shows the full pipeline doubles PubMed-only Recall@50
+(0.171$\rightarrow$0.348), with significant additive contributions from
+multi-source search and cross-lingual translation, and complementary recall
+from citation graph traversal. The toolkit and dataset are released to
+support reproducible evaluation of literature acquisition for clinical
+genomics; we stress that the dataset is a reference for relative comparison
+and requires expert re-annotation before use as clinical ground truth.
 
 \bibliographystyle{ACM-Reference-Format}
 \begin{thebibliography}{99}

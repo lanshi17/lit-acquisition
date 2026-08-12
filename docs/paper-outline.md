@@ -69,8 +69,9 @@ automated full-text retrieval.
 
 #### 4.1 Gold Standard Dataset
 - 30 genetic variants across ACMG evidence criteria (PVS1, PS3, PM2, etc.)
-- 541 manually annotated relevant papers (DOI, PMID, language, evidence type)
+- 541 papers (heuristic-annotated **reference set**, NOT expert-verified)
 - Multilingual coverage: en, zh, ja, de, fr, ru, es, pt
+- All metrics are comparative; absolute recall/precision are not clinical estimates
 
 #### 4.2 Methods Compared (Ablation Table)
 | Method | Components |
@@ -106,7 +107,7 @@ automated full-text retrieval.
 - Papers found by citation graph that keyword search missed
 
 ### 5. Discussion (~0.5 page)
-- Limitations: API rate limits, gold standard size, LLM dependency
+- Limitations: dataset is heuristic-annotated reference (not expert-verified; absolute metrics are NOT clinical estimates), API rate limits, gold standard size, LLM dependency
 - Future work: embedding-based semantic search, adaptive traversal depth
 
 ### 6. Conclusion (~0.25 page)

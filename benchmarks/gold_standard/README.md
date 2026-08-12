@@ -55,6 +55,13 @@ Each line in `variants.jsonl` is a JSON object:
 > extended; `variants.jsonl` is the source of truth and currently contains
 > 541 relevant papers.
 
+> **Status**: This dataset is a **reference set for relative system
+> comparison**, not a clinically verified gold standard. Annotations were
+> produced by automated heuristics and have **not** been reviewed by domain
+> experts; they may contain false positives and false negatives. Do not use
+> absolute recall/precision figures from this dataset as clinical coverage
+> estimates without expert re-annotation.
+
 ### Disease / evidence-type distribution
 
 | Domain | Count | Representative genes |
@@ -76,10 +83,12 @@ Each line in `variants.jsonl` is a JSON object:
 - V001–V010 annotated via manual heuristics (gene + disease keyword + pub-type scoring).
 - V011–V030 annotated via PubMed E-utilities + automated scoring (gene name / variant token / disease word / pub-type weighted sum).
 - Both approaches filter out editorials, letters, comments, and news items.
-- **Domain expert verification is still required** before the gold standard is used for final paper metrics.
+- **No domain-expert review has been performed.** The dataset is released as a
+  reference for comparative evaluation only; use as clinical ground truth
+  requires expert re-annotation.
 
 ## Next Steps
 
 - [ ] Domain expert verification of `relevant_papers` (especially V011–V030)
 - [ ] Expand to 50 variants if needed for statistical power
-- [ ] Run `python benchmarks/run_benchmark.py --all` with LLM API key configured
+- [ ] Re-run benchmark with expert-verified annotations
