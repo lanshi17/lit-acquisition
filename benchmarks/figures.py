@@ -1,14 +1,22 @@
 """Generate publication-quality figures for the JCDL paper.
 
-Outputs to benchmarks/paper_figures/:
-  fig2_source_coverage.png/.pdf   — unique papers per source
-  fig3_ablation_recall.png/.pdf   — ablation recall/P1/nDCG bar chart
-  fig3_multilingual.png/.pdf      — per-language relevant papers found
-  fig4_citation_graph.png/.pdf    — citation graph vs keyword contribution
+Outputs to benchmarks/paper_figures/ (all sized for one ACM column):
+  fig2_source_coverage.png/.pdf     — unique papers per source
+  fig3_ablation.png/.pdf            — per-variant Recall@50 distributions
+                                      (violin + box + points) with paired
+                                      Wilcoxon significance brackets
+  fig3_multilingual.png/.pdf        — per-language papers found
+  fig4_citation_graph.png/.pdf      — citation graph: retrieved vs. relevant
+                                      papers per gene
+  fig5_pervariant_scatter.png/.pdf  — paired per-variant Recall@50 scatter,
+                                      M1 (PubMed-only) vs. M4 (full pipeline)
 
 Figures use the scienceplots 'science'/'ieee' styles with LaTeX text
 rendering (text.usetex) for publication-quality typography. Requires a
 working `latex` + `dvipng` installation (Debian TeX Live in /usr/bin).
+
+Wilcoxon p-values are read from results/paper_data.json (precomputed by the
+benchmark pipeline) so that figure annotations match the paper tables.
 """
 
 from __future__ import annotations
@@ -26,6 +34,7 @@ import scienceplots  # noqa: F401  (registers 'science'/'ieee' styles)
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.lines import Line2D
 
 # Prefer the Debian TeX Live (provides latex + dvipng for usetex rendering).
 os.environ["PATH"] = "/usr/bin:" + os.environ.get("PATH", "")
@@ -35,10 +44,10 @@ plt.rcParams.update({
     "text.usetex": True,
     "font.family": "serif",
     "font.serif": ["Times"],
-    "axes.labelsize": 10,
-    "xtick.labelsize": 9,
-    "ytick.labelsize": 9,
-    "legend.fontsize": 8,
+    "axes.labelsize": 9,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 7.5,
     "figure.dpi": 300,
 })
 
@@ -53,51 +62,96 @@ with open(RESULTS_DIR / "collected_results.json") as f:
 with open(RESULTS_DIR / "metrics.json") as f:
     metrics = json.load(f)
 
+with open(RESULTS_DIR / "paper_data.json") as f:
+    paper_data = json.load(f)
 
-def method_metrics(method: str) -> list[dict]:
-    """Return per-variant metrics for a method."""
-    return [m for m in metrics if m.get("method") == method and m.get("recall", 0) > 0]
-
-
-def recall_of(method: str, vid: str) -> float:
-    m = next((x for x in metrics if x["method"] == method and x["variant_id"] == vid), None)
-    return m["recall"] if m else 0.0
-
+GENE: dict[str, str] = {}
+with open("benchmarks/gold_standard/variants.jsonl") as f:
+    for line in f:
+        v = json.loads(line.strip())
+        GENE[v["variant_id"]] = v["gene"]
 
 METHODS = ["pubmed_only", "multisource_no_translation", "multisource_with_translation", "full_pipeline"]
-METHOD_LABELS = {
-    "pubmed_only": "M1: PubMed",
-    "multisource_no_translation": "M2: Multi-source",
-    "multisource_with_translation": "M3: +Translation",
-    "full_pipeline": "M4: +Citation graph",
-}
+METHOD_TICKS = ["M1\nPubMed-only", "M2\nMulti-source", "M3\n+Translation", "M4\n+Cit.\\ graph"]
 
-# ── Figure 3a: Ablation bar chart ──────────────────────────────────────────
+# Citation-graph semantic color, shared across figures.
+CG_GREEN = "#55A868"
+
+
+def per_variant(metric: str) -> dict[str, dict[str, float]]:
+    """method -> {variant_id -> metric value}."""
+    out: dict[str, dict[str, float]] = {m: {} for m in METHODS}
+    for row in metrics:
+        if row["method"] in out:
+            out[row["method"]][row["variant_id"]] = row[metric]
+    return out
+
+
+def stars(p: float) -> str:
+    if p < 0.001:
+        return "***"
+    if p < 0.01:
+        return "**"
+    if p < 0.05:
+        return "*"
+    return "n.s."
+
+
+# ── Figure 3a: Ablation (violin + box + per-variant points) ────────────────
 def fig_ablation() -> None:
-    agg = {m: {"recall": [], "precision": [], "ndcg": []} for m in METHODS}
-    for m in metrics:
-        if m["method"] in agg:
-            agg[m["method"]]["recall"].append(m["recall"])
-            agg[m["method"]]["precision"].append(m["precision"])
-            agg[m["method"]]["ndcg"].append(m["ndcg"])
+    rec = per_variant("recall")
+    vids = sorted(rec["pubmed_only"])
+    data = [np.array([rec[m][v] for v in vids]) for m in METHODS]
+    pos = np.arange(1, len(METHODS) + 1)
 
-    metrics_names = ["Recall@50", "Precision@50", "nDCG@50"]
-    colors = ["#4C72B0", "#DD8452", "#55A868"]
-    x = np.arange(len(METHODS))
-    width = 0.25
+    fig, ax = plt.subplots(figsize=(3.4, 2.9))
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
-    for i, (metric, color) in enumerate(zip(metrics_names, colors)):
-        vals = [np.mean(agg[m][metric_key(metric)]) for m in METHODS]
-        errs = [np.std(agg[m][metric_key(metric)]) for m in METHODS]
-        ax.bar(x + (i - 1) * width, vals, width, label=metric, color=color, alpha=0.85,
-               yerr=errs, capsize=3, error_kw={"linewidth": 0.8})
-    ax.set_xticks(x)
-    ax.set_xticklabels([METHOD_LABELS[m] for m in METHODS], rotation=15, ha="right")
-    ax.set_ylabel("Score")
-    ax.set_ylim(0, 0.55)
-    ax.legend(frameon=True, fontsize=8, loc="upper left")
-    ax.set_title("Ablation Study: Component Contributions")
+    # Violin bodies: sequential Blues to convey the cumulative ablation chain.
+    blues = ["#C6DBEF", "#9ECAE1", "#6BAED6", "#3182BD"]
+    parts = ax.violinplot(data, positions=pos, widths=0.78, showextrema=False)
+    for body, color in zip(parts["bodies"], blues):
+        body.set_facecolor(color)
+        body.set_edgecolor("#31608F")
+        body.set_linewidth(0.5)
+        body.set_alpha(0.75)
+
+    # Narrow inner boxplot: median + IQR + 1.5*IQR whiskers.
+    ax.boxplot(
+        data, positions=pos, widths=0.13, showfliers=False, patch_artist=True,
+        boxprops=dict(facecolor="white", edgecolor="black", linewidth=0.6),
+        medianprops=dict(color="black", linewidth=0.9),
+        whiskerprops=dict(color="black", linewidth=0.6),
+        capprops=dict(color="black", linewidth=0.6),
+    )
+
+    # Jittered per-variant points (n=30 per method), reproducible seed.
+    rng = np.random.default_rng(42)
+    for x0, d in zip(pos, data):
+        x = x0 + rng.uniform(-0.10, 0.10, size=len(d))
+        ax.scatter(x, d, s=4.5, color="#3A3A3A", alpha=0.6, linewidths=0, zorder=4)
+
+    # Mean markers.
+    ax.scatter(pos, [d.mean() for d in data], marker="D", s=15,
+               facecolor="white", edgecolor="black", linewidth=0.7, zorder=5)
+
+    # Paired Wilcoxon significance brackets (values from paper_data.json).
+    W = paper_data["wilcoxon"]
+    brackets = [
+        (1, 2, W["M1_vs_M2"]["p"], 0.80),
+        (2, 3, W["M2_vs_M3"]["p"], 0.66),
+        (3, 4, W["M3_vs_M4"]["p"], 0.66),
+        (1, 4, W["full_vs_pubmed_only_recall"]["p"], 0.90),
+    ]
+    for x1, x2, p, y in brackets:
+        xa, xb, dy = x1 + 0.06, x2 - 0.06, 0.012
+        ax.plot([xa, xa, xb, xb], [y, y + dy, y + dy, y], ls="-", lw=0.7, color="black")
+        ax.text((xa + xb) / 2, y + dy + 0.004, stars(p), ha="center", va="bottom", fontsize=7)
+
+    ax.set_xticks(pos)
+    ax.set_xticklabels(METHOD_TICKS)
+    ax.set_ylabel("Recall@50")
+    ax.set_xlim(0.45, len(METHODS) + 0.55)
+    ax.set_ylim(-0.02, 0.99)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig3_ablation.png", dpi=300)
     fig.savefig(FIG_DIR / "fig3_ablation.pdf")
@@ -105,33 +159,115 @@ def fig_ablation() -> None:
     print("✓ fig3_ablation.png")
 
 
-def metric_key(name: str) -> str:
-    return {"Recall@50": "recall", "Precision@50": "precision", "nDCG@50": "ndcg"}[name]
+# ── Figure 5: Per-variant paired scatter (M1 vs M4) ────────────────────────
+def fig_pervariant_scatter() -> None:
+    rec = per_variant("recall")
+    m1, m4 = rec["pubmed_only"], rec["full_pipeline"]
+    rel_total = {r["variant_id"]: r["total_relevant"] for r in metrics if r["method"] == "full_pipeline"}
+    cg_relevant = {r["variant_id"]: r["source_coverage"].get("citation_graph", 0)
+                   for r in metrics if r["method"] == "full_pipeline"}
+    vids = sorted(m1)
+
+    up = sum(1 for v in vids if m4[v] - m1[v] > 1e-9)
+    down = sum(1 for v in vids if m1[v] - m4[v] > 1e-9)
+    print(f"  paired M1->M4: improved {up}, tied {len(vids) - up - down}, regressed {down}")
+
+    lo, hi = -0.03, 0.83
+    fig, ax = plt.subplots(figsize=(3.4, 3.4))
+
+    # Improvement region and identity line.
+    ax.fill_between([lo, hi], [lo, hi], [hi, hi], color="#4C72B0", alpha=0.06, lw=0, zorder=0)
+    ax.plot([lo, hi], [lo, hi], ls="--", lw=0.8, color="#888888", zorder=1)
+    ax.text(0.655, 0.685, "$y=x$", fontsize=7, color="#666666", ha="right", va="bottom", rotation=45)
+
+    for vid in vids:
+        x, y = m1[vid], m4[vid]
+        if cg_relevant[vid] > 0:
+            color = CG_GREEN
+        elif y - x > 1e-9:
+            color = "#4C72B0"
+        else:
+            color = "#B0B0B0"
+        # Marker area encodes the variant's gold-set size (4-32 papers).
+        ax.scatter(x, y, s=4 + 2.0 * rel_total[vid], facecolor=color, alpha=0.85,
+                   edgecolor="#333333", linewidths=0.5, zorder=3)
+
+    # Annotate variants discussed in the paper (V011/V013 coincide exactly).
+    notes = {
+        "V030": ("DMPK", (0.085, 0.605)),
+        "V012": ("EGFR", (0.125, 0.537)),
+        "V011": ("KRAS, BRAF", (0.018, 0.496)),
+        "V027": ("DMD", (0.025, 0.380)),
+        "V022": ("PAH", (0.170, 0.428)),
+        "V014": ("APC", (0.025, 0.105)),
+        "V009": ("MYH7", (0.700, 0.268)),
+    }
+    for vid, (label, xytext) in notes.items():
+        ax.annotate(label, xy=(m1[vid], m4[vid]), xytext=xytext, fontsize=7,
+                    color="#333333",
+                    arrowprops=dict(arrowstyle="-", lw=0.5, color="#999999",
+                                    shrinkA=1, shrinkB=2))
+
+    handles = [
+        Line2D([], [], marker="o", ls="", mfc=CG_GREEN, mec="#333333", mew=0.5,
+               ms=5, label="citation-graph gain"),
+        Line2D([], [], marker="o", ls="", mfc="#4C72B0", mec="#333333", mew=0.5,
+               ms=5, label="improved"),
+        Line2D([], [], marker="o", ls="", mfc="#B0B0B0", mec="#333333", mew=0.5,
+               ms=5, label="tied / regressed"),
+    ]
+    ax.legend(handles=handles, loc="lower right", frameon=False, handletextpad=0.2)
+
+    ax.set_xlabel("Recall@50, M1 (PubMed-only)")
+    ax.set_ylabel("Recall@50, M4 (full pipeline)")
+    ax.set_xlim(lo, hi)
+    ax.set_ylim(lo, hi)
+    ax.set_xticks(np.arange(0, 0.81, 0.2))
+    ax.set_yticks(np.arange(0, 0.81, 0.2))
+    ax.set_aspect("equal")
+    fig.tight_layout()
+    fig.savefig(FIG_DIR / "fig5_pervariant_scatter.png", dpi=300)
+    fig.savefig(FIG_DIR / "fig5_pervariant_scatter.pdf")
+    plt.close(fig)
+    print("✓ fig5_pervariant_scatter.png")
 
 
-# ── Figure 2: Source coverage ──────────────────────────────────────────────
+# ── Figure 2: Source coverage (retrieved vs relevant per source) ──────────
 def fig_source_coverage() -> None:
-    # unique papers per source for full_pipeline
+    # Unique retrieved papers (by DOI) per source, full pipeline.
     unique = defaultdict(set)
     for vid, papers in results["full_pipeline"].items():
         for p in papers:
             doi = (p.get("doi") or "").lower().strip()
             if doi:
                 unique[p.get("source", "?")].add(doi)
+    # Gold-standard-relevant papers per source (sums Table "source_coverage").
+    relevant = Counter()
+    for r in metrics:
+        if r["method"] == "full_pipeline":
+            relevant.update(r["source_coverage"])
 
-    sources = ["pmc", "crossref", "citation_graph", "europepmc"]
-    labels = ["PMC", "Crossref", "Citation graph", "EuropePMC"]
-    counts = [len(unique.get(s, set())) for s in sources]
-    colors = ["#4C72B0", "#DD8452", "#55A868", "#C44E52"]
+    sources = ["crossref", "pmc", "citation_graph", "europepmc"]
+    labels = ["Crossref", "PMC", "Citation\ngraph", "EuropePMC"]
+    ret = [len(unique.get(s, set())) for s in sources]
+    rel = [relevant.get(s, 0) for s in sources]
+    print(f"  source coverage: retrieved {ret}, relevant {rel}")
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
-    bars = ax.bar(labels, counts, color=colors, alpha=0.85, edgecolor="black", linewidth=0.5)
-    ax.set_ylabel("Unique papers (by DOI)")
-    ax.set_title("Source Coverage: Unique Papers per Source")
-    for bar, c in zip(bars, counts):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 3, str(c),
-                ha="center", va="bottom", fontsize=9)
-    ax.set_ylim(0, max(counts) * 1.15)
+    x = np.arange(len(sources))
+    w = 0.38
+    fig, ax = plt.subplots(figsize=(3.4, 2.4))
+    ax.bar(x - w / 2, ret, w, label="Retrieved (unique DOIs)", color="#C9C9C9",
+           edgecolor="black", linewidth=0.4)
+    ax.bar(x + w / 2, rel, w, label="Relevant (gold standard)", color="#4C72B0",
+           edgecolor="black", linewidth=0.4)
+    for xi, (a, b) in zip(x, zip(ret, rel)):
+        ax.text(xi - w / 2, a + 5, str(a), ha="center", va="bottom", fontsize=7)
+        ax.text(xi + w / 2, b + 5, str(b), ha="center", va="bottom", fontsize=7)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.set_ylabel("Papers (full pipeline)")
+    ax.set_ylim(0, max(ret) * 1.22)
+    ax.legend(loc="upper right", frameon=False)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig2_source_coverage.png", dpi=300)
     fig.savefig(FIG_DIR / "fig2_source_coverage.pdf")
@@ -139,27 +275,34 @@ def fig_source_coverage() -> None:
     print("✓ fig2_source_coverage.png")
 
 
-# ── Figure 3b: Multilingual contribution ───────────────────────────────────
+# ── Figure 3b: Multilingual contribution (relevant papers by language) ─────
 def fig_multilingual() -> None:
-    # Languages with relevant papers across M3/M4
-    combos = Counter()
-    for method in ["multisource_with_translation", "full_pipeline"]:
-        for vid, papers in results[method].items():
-            for p in papers:
-                lang = p.get("language") or "unknown"
-                combos[lang] += 1
+    lang_counts = {m: Counter() for m in ("pubmed_only", "full_pipeline")}
+    for r in metrics:
+        if r["method"] in lang_counts:
+            lang_counts[r["method"]].update(r["language_coverage"])
 
-    langs = ["en", "de", "fr", "zh", "unknown"]
-    labels = ["English", "German", "French", "Chinese", "Unknown"]
-    counts = [combos.get(l, 0) for l in langs]
-    found = [l for l, c in zip(labels, counts) if c > 0]
+    langs = ["en", "de", "fr", "unknown"]
+    labels = ["English", "German", "French", "Unknown"]
+    m1 = [lang_counts["pubmed_only"].get(l, 0) for l in langs]
+    m4 = [lang_counts["full_pipeline"].get(l, 0) for l in langs]
+    print(f"  multilingual: M1 {m1}, M4 {m4}")
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
-    ax.bar(found, [c for l, c in zip(labels, counts) if c > 0],
-           color=["#4C72B0", "#DD8452", "#55A868", "#8172B3", "#CCB974"],
-           alpha=0.85, edgecolor="black", linewidth=0.5)
-    ax.set_ylabel("Papers retrieved")
-    ax.set_title("Multilingual Search: Papers by Query Language")
+    x = np.arange(len(langs))
+    w = 0.38
+    fig, ax = plt.subplots(figsize=(3.4, 2.4))
+    ax.bar(x - w / 2, m1, w, label="M1 (PubMed-only)", color="#C9C9C9",
+           edgecolor="black", linewidth=0.4)
+    ax.bar(x + w / 2, m4, w, label="M4 (full pipeline)", color="#4C72B0",
+           edgecolor="black", linewidth=0.4)
+    for xi, (a, b) in zip(x, zip(m1, m4)):
+        ax.text(xi - w / 2, a + 2, str(a), ha="center", va="bottom", fontsize=7)
+        ax.text(xi + w / 2, b + 2, str(b), ha="center", va="bottom", fontsize=7)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.set_ylabel("Relevant papers found")
+    ax.set_ylim(0, max(m1 + m4) * 1.22)
+    ax.legend(loc="upper center", frameon=False)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig3_multilingual.png", dpi=300)
     fig.savefig(FIG_DIR / "fig3_multilingual.pdf")
@@ -167,30 +310,43 @@ def fig_multilingual() -> None:
     print("✓ fig3_multilingual.png")
 
 
-# ── Figure 4: Citation graph contribution ─────────────────────────────────
+# ── Figure 4: Citation graph retrieved vs relevant per gene ────────────────
 def fig_citation_graph() -> None:
-    # Papers from citation graph per variant (top 10)
-    cg_per_variant = []
+    retrieved = {}
     for vid, papers in results["full_pipeline"].items():
         n = sum(1 for p in papers if p.get("source") == "citation_graph")
-        gene = ""
-        with open("benchmarks/gold_standard/variants.jsonl") as f:
-            for line in f:
-                v = json.loads(line.strip())
-                if v["variant_id"] == vid:
-                    gene = v["gene"]
-                    break
-        cg_per_variant.append((gene, n))
+        if n:
+            retrieved[vid] = n
+    relevant = {r["variant_id"]: r["source_coverage"].get("citation_graph", 0)
+                for r in metrics if r["method"] == "full_pipeline"}
+    print(f"  citation graph: retrieved {sum(retrieved.values())}, "
+          f"relevant {sum(relevant.values())}")
 
-    cg_per_variant.sort(key=lambda x: -x[1])
-    top = cg_per_variant[:12]
-    genes = [g for g, _ in top]
-    counts = [c for _, c in top]
+    # Ascending sort so the highest-relevance genes end up at the top of barh.
+    order = sorted(retrieved, key=lambda v: (relevant.get(v, 0), retrieved[v]))
+    genes = [GENE[v] for v in order]
+    ret = [retrieved[v] for v in order]
+    rel = [relevant.get(v, 0) for v in order]
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.2))
-    ax.barh(genes[::-1], counts[::-1], color="#55A868", alpha=0.85, edgecolor="black", linewidth=0.5)
-    ax.set_xlabel("Citation graph papers retrieved")
-    ax.set_title("Citation Graph Contribution by Gene")
+    y = np.arange(len(order))
+    h = 0.38
+    fig, ax = plt.subplots(figsize=(3.4, 3.2))
+    ax.barh(y + h / 2, ret, h, label="Retrieved", color="#C9C9C9",
+            edgecolor="black", linewidth=0.4)
+    ax.barh(y - h / 2, rel, h, label="Relevant (gold standard)", color=CG_GREEN,
+            edgecolor="black", linewidth=0.4)
+    for yi, r in zip(y, rel):
+        if r:
+            ax.text(r + 0.35, yi - h / 2, str(r), va="center", fontsize=7)
+    # Traversal paper budget (20 per variant).
+    ax.axvline(20, ls=":", lw=0.7, color="#888888")
+
+    ax.set_yticks(y)
+    ax.set_yticklabels(genes)
+    ax.set_ylim(-0.7, len(order) - 0.3)
+    ax.set_xlim(0, 22)
+    ax.set_xlabel("Citation-graph papers (full pipeline)")
+    ax.legend(loc="lower right", frameon=False)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "fig4_citation_graph.png", dpi=300)
     fig.savefig(FIG_DIR / "fig4_citation_graph.pdf")
@@ -200,6 +356,7 @@ def fig_citation_graph() -> None:
 
 if __name__ == "__main__":
     fig_ablation()
+    fig_pervariant_scatter()
     fig_source_coverage()
     fig_multilingual()
     fig_citation_graph()

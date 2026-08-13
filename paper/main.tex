@@ -114,9 +114,12 @@ and guidelines that establish whether a variant is pathogenic or benign.
 Under the ACMG/AMP guidelines \cite{richards2015standards}, this evidence
 supports criteria such as PS3 (well-established functional effect) and PVS1
 (null variant). Evidence is scattered across publisher databases (PubMed,
-Crossref, EuropePMC), preprint servers (arXiv, bioRxiv, medRxiv), regional
-and language-specific repositories (CiNii, J-STAGE, SciELO), and trial and
-data registries (ClinicalTrials.gov, Zenodo). Clinicians and genetic
+Crossref, EuropePMC), preprint servers (arXiv \cite{ginsparg1994arxiv},
+bioRxiv, medRxiv), regional
+and language-specific repositories (CiNii \cite{cinii}, J-STAGE
+\cite{jstage}, SciELO \cite{scielo}), and trial and
+data registries (ClinicalTrials.gov \cite{zarin2016clinicaltrials},
+Zenodo \cite{zenodo}). Clinicians and genetic
 counselors routinely search several of these systems manually, deduplicate
 results by hand, and risk missing relevant non-English literature.
 
@@ -142,9 +145,8 @@ domain-specific prompt that preserves gene symbols and variant nomenclature,
 plus a language-aware provider routing matrix.
 \item \textbf{Citation graph traversal} that augments keyword search by
 exploring citation and reference edges from seed papers via Semantic Scholar.
-\item \textbf{An open-source toolkit and benchmark} --- 30 variants, 541
-papers (heuristic-annotated reference set) --- enabling reproducible
-evaluation of literature acquisition systems.
+\item \textbf{An LLM relevance gate and open-access-aware download layer}
+that retrieves full texts only from legal OA sources.
 \end{enumerate}
 
 Our ablation study shows that multi-source search, translation, and citation
@@ -170,8 +172,10 @@ closed-source and not aimed at full-text acquisition with license handling.
 
 \textbf{Federated / multi-source search.} Meta-search architectures such as
 MetaCrawler \cite{selberg1997metacrawler} established result aggregation
-from heterogeneous engines; in the scholarly domain, aggregators such as
-OpenAlex \cite{priem2022openalex}, BASE, CORE, and OpenAIRE expose broad
+from heterogeneous engines; in the scholarly domain, aggregators and
+directories such as
+OpenAlex \cite{priem2022openalex}, DOAJ \cite{doaj}, BASE \cite{base},
+CORE \cite{core}, and OpenAIRE \cite{openaire} expose broad
 metadata. Our system treats these as one layer of an acquisition pipeline
 rather than a search UI, adding normalization, dedup, and download.
 
@@ -199,6 +203,7 @@ We follow this protocol on a new, publicly released reference dataset
 \label{sec:design}
 
 \subsection{Architecture Overview}
+\label{sec:architecture}
 
 lit-acquisition is a three-phase pipeline (Figure~\ref{fig:architecture}):
 \textbf{(1) Acquisition} fans a query out in parallel across providers with
@@ -217,7 +222,7 @@ an LLM relevance gate, and downloads open-access full texts.
 \subsection{Multi-source Search}
 \label{sec:multisource}
 
-The acquisition orchestrator (Section~\ref{sec:multisource}, implemented in
+The acquisition orchestrator (Section~\ref{sec:architecture}, implemented in
 \texttt{workflow.py}) issues parallel searches to the providers listed in
 Table~\ref{tab:providers}. Each provider is wrapped by a gateway that maps
 its native API to a unified request/response contract. A provider health
@@ -301,8 +306,9 @@ symbols, variant nomenclature (e.g., \texttt{p.G12D}, \texttt{c.35G>A}),
 and disease terminology verbatim. Queries are translated into six languages
 (en, zh, ja, de, fr, ru). The language-aware routing matrix
 (Table~\ref{tab:routing}) then selects a provider plan per language, e.g.,
-Chinese queries additionally target CiNii/J-STAGE/DOAJ, Spanish and
-Portuguese target SciELO, German and French target BASE/EuropePMC.
+Japanese queries additionally target J-STAGE/CiNii, Spanish and
+Portuguese target SciELO, and German and French target EuropePMC
+(German additionally BASE).
 
 \begin{table}[t]
 \centering
@@ -343,7 +349,8 @@ vocabulary with the variant query.
 Candidates are filtered by an LLM relevance gate that classifies each item
 against the user's evidence need (e.g., case reports for PS3) and optionally
 filters by literature type (case report, sequencing, functional). Download
-routing is license-aware: DOI resolves through Unpaywall for OA PDFs, PMCID
+routing is license-aware: DOI resolves through Unpaywall
+\cite{unpaywall2018} for OA PDFs, PMCID
 through EuropePMC, and direct URLs with HTML$\rightarrow$PDF redirect
 handling. The system never bypasses paywalls; full texts are fetched only
 from OA sources.
@@ -410,7 +417,9 @@ $p<0.001$), and 0.195 nDCG$\rightarrow$0.320 ($+0.125$, $p=0.006$). Each
 component contributes additively: multi-source search adds +0.076 recall
 ($p=0.025$), translation +0.082 ($p=0.037$), and citation graph +0.019
 ($p=0.21$, not significant at the aggregate level). Figure~\ref{fig:ablation}
-visualizes the same data.
+shows the underlying per-variant recall distributions: each component
+shifts the distribution upward while narrowing cross-variant variance
+(std 0.183 for M1 vs.\ 0.099--0.116 for M3/M4).
 
 \begin{table}[t]
 \centering
@@ -439,7 +448,11 @@ M4 +Citation graph & $0.348\pm0.116$ & $0.264\pm0.138$ & $0.288\pm0.117$ & $0.32
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig3_ablation.png}
-  \caption{Ablation study: Recall/Precision/nDCG by method.}
+  \caption{Ablation study: per-variant Recall@50 distributions (30
+  variants). Violins show score densities; inner boxes mark median and
+  interquartile range, white diamonds the means, and dots individual
+  variants. Brackets report paired Wilcoxon tests ($*$: $p<0.05$;
+  $*{*}*$: $p<0.001$; n.s.: not significant).}
   \label{fig:ablation}
 \end{figure}
 
@@ -459,13 +472,18 @@ with citation-graph candidates being noisier.
 The aggregate gains concentrate in specific variants. PubMed-only achieves
 zero recall on four variants (KRAS p.G12D, BRAF p.V600E, APC, DMD), where
 topical keyword queries retrieve none of the gold-standard papers in the
-top-50; the full pipeline reaches recall 0.44--0.47 on these. The largest
+top-50; the full pipeline reaches recall 0.44--0.47 on three of these
+(APC recovers only to 0.13). The largest
 absolute improvements are V030 DMPK (0.04$\rightarrow$0.56) and V012 EGFR
 (0.05$\rightarrow$0.55). Multi-source search improves recall on 20/30
 variants (worse on 6), translation improves 17/30 (worse on 11), and
 citation graph improves 5/30 (worse on 3, unchanged on 22) --- consistent
 with citation traversal acting as a targeted rather than blanket recall
-mechanism. Table~\ref{tab:pervariant} lists the largest per-variant gains.
+mechanism. Table~\ref{tab:pervariant} lists the largest per-variant gains,
+and Figure~\ref{fig:pervariant} shows the full paired comparison: relative
+to PubMed-only, the full pipeline improves 20/30 variants, ties 5, and
+regresses on 5; the largest regression (MYH7) has a gold set of only 4
+papers, where each missed paper costs 0.25 recall.
 
 \begin{table}[t]
 \centering
@@ -488,6 +506,18 @@ V015 & MLH1 & 0.08 & 0.42 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\columnwidth]{fig5_pervariant_scatter.png}
+  \caption{Per-variant Recall@50: full pipeline (M4) vs.\ PubMed-only
+  (M1). Points above the $y{=}x$ line improve under the full pipeline
+  (20/30; 5 tied, 5 regress). Marker area is proportional to the
+  variant's gold-set size (4--32 papers); green marks the variants with
+  citation-graph contributions (EGFR, DMPK, PAH). KRAS and BRAF
+  coincide at $(0, 0.47)$.}
+  \label{fig:pervariant}
+\end{figure}
 
 \subsection{Statistical Significance}
 
@@ -532,8 +562,9 @@ trade-off is worthwhile on variants where keyword search saturates.
 
 \subsection{Source Coverage Analysis}
 
-Figure~\ref{fig:coverage} shows per-source unique relevant papers in the
-full pipeline. Crossref contributes the bulk of relevant metadata (135),
+Figure~\ref{fig:coverage} shows, per source, unique papers retrieved (by
+DOI) and gold-standard-relevant papers in the full pipeline. Crossref
+contributes the bulk of relevant metadata (135 of 305 retrieved),
 followed by PMC (48) and the citation graph (11), with EuropePMC adding 1.
 Sources are highly complementary: across the full pipeline, pairwise DOI
 overlap between any two sources is essentially zero, and the citation graph
@@ -544,7 +575,8 @@ graph as a genuinely additive channel.
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig2_source_coverage.png}
-  \caption{Unique papers per source (full pipeline).}
+  \caption{Per-source coverage (full pipeline): unique papers retrieved
+  (by DOI) vs.\ gold-standard relevant.}
   \label{fig:coverage}
 \end{figure}
 
@@ -562,7 +594,10 @@ multilingual clinical evidence.
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig3_multilingual.png}
-  \caption{Relevant papers by language (M3/M4).}
+  \caption{Gold-standard-relevant papers by language metadata:
+  PubMed-only (M1) vs.\ full pipeline (M4). The pipeline recovers 23 of
+  the 24 non-English gold-standard papers; 122 of its relevant records
+  lack language metadata.}
   \label{fig:multilingual}
 \end{figure}
 
@@ -623,7 +658,10 @@ citation edges but not by variant-name lexical match.
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{fig4_citation_graph.png}
-  \caption{Citation graph papers retrieved per gene (full pipeline).}
+  \caption{Citation graph traversal per gene (full pipeline): papers
+  retrieved vs.\ gold-standard relevant. The dotted line marks the
+  traversal budget (20 papers per variant); relevant contributions
+  concentrate in EGFR (5), DMPK (5), and PAH (1).}
   \label{fig:citation}
 \end{figure}
 
@@ -770,12 +808,6 @@ B.~Norlander, A.~Farley, J.~West, and P.~Haustein.
 \newblock The state of OA: a large-scale analysis of the prevalence and
 impact of Open Access articles.
 \newblock \emph{PeerJ}, 6:e4375, 2018.
-
-\bibitem{landrum2018clinvar}
-M.~J. Landrum et al.
-\newblock ClinVar: improving access to variant interpretations and
-supporting evidence.
-\newblock \emph{Nucleic Acids Research}, 46(D1):D1062--D1067, 2018.
 
 \bibitem{ginsparg1994arxiv}
 P.~Ginsparg.
