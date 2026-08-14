@@ -1,20 +1,38 @@
-# Gold Standard Dataset
+# Reference Dataset (NOT an expert-verified gold standard)
 
-## Creation Protocol
+## What this dataset is
 
-1. **Variant selection**: Select variants covering different ACMG evidence
-   criteria (PVS1, PS3, PM2, etc.) and different disease areas.
-2. **Query formulation**: For each variant, create a natural language query
-   that a clinical geneticist would use.
-3. **Exhaustive manual search**: For each variant, manually search PubMed,
-   EuropePMC, Google Scholar, and language-specific databases (CiNii, SciELO)
-   to identify ALL relevant literature.
-4. **Inclusion criteria**:
-   - Directly discusses the variant or gene-disease pair
-   - Contains case report, functional study, or sequencing data
-   - Published in a peer-reviewed journal or preprint server
-5. **Annotation**: For each paper, record DOI, PMID, title, language, and
-   evidence type (case_report, functional, sequencing, review).
+An **exploratory reference set for relative system comparison**. The
+"relevant papers" were selected by an automated heuristic protocol, have
+**not** been reviewed by domain experts, and were drawn from a candidate
+pool retrieved through channels that overlap the evaluated system's own
+providers (a pooling/circularity bias). Absolute recall/precision against
+this set measures agreement with the heuristic protocol, not clinical
+retrieval quality.
+
+## Actual Creation Protocol
+
+1. **Variant selection**: 30 variants covering ACMG evidence criteria
+   (PS3, PVS1, plus other clinically actionable variants) and different
+   disease areas.
+2. **Query formulation**: For each variant, a natural language query that a
+   clinical geneticist would plausibly use.
+3. **Candidate pooling (automated)**: candidates retrieved from PubMed
+   E-utilities, EuropePMC, Crossref, and language-specific databases.
+   *This pooling is NOT exhaustive and overlaps the evaluated system's
+   sources.*
+4. **Heuristic scoring (automated)**: weighted title/pub-type scoring —
+   gene name in title +3; variant identifier +5; disease keywords up to +3;
+   preferred pub-types (case reports) +2; reviews −2; editorials, letters,
+   comments, and news excluded.
+5. **Recording**: DOI, PMID, title, language, and coarse evidence type
+   (case_report / functional / sequencing / other).
+
+Known limitations: unquantified false positives (keyword-matching papers
+that do not bear on the variant) and false negatives (relevant papers the
+pooling never surfaced); no distinction between "about the gene/disease"
+and "usable as variant-level ACMG evidence"; language labels come from
+provider metadata (many unknown).
 
 ## File Format
 
@@ -24,30 +42,34 @@ Each line in `variants.jsonl` is a JSON object:
 {
   "variant_id": "V001",
   "gene": "MECP2",
-  "variant": "c.470C>T (p.Thr158Met)",
+  "variant": "c.470C>T",
   "disease": "Rett syndrome",
-  "acmg_criterion": "PS3",
   "query": "MECP2 Rett syndrome case report",
-  "evidence_type": "case_report",
-  "languages": ["en", "zh", "ja"],
   "relevant_papers": [
     {
       "doi": "10.1038/xxxxx",
       "pmid": "12345678",
       "title": "Paper title",
       "language": "en",
-      "evidence_type": "case_report"
+      "source": "pubmed",
+      "evidence_type": "other",
+      "annotation_reason": "gene_and_disease"
     }
   ],
-  "total_relevant": 15
+  "total_relevant": 17
 }
 ```
 
 ## Current Status
 
-- `variants.jsonl`: **30 variants** (V001–V030), annotated
+- `variants.jsonl`: **30 variants** (V001–V030), **540 unique papers**
+  (one duplicate annotation — the same DOI recorded twice for V007 with
+  different formatting — was removed on 2026-08-13; `total_relevant`
+  fields updated accordingly)
 - `variants_annotated.jsonl`: same content, pre-filled with relevant papers
 - `candidates/`: raw PubMed candidate records used during annotation
+- Languages: en 288, de 13, fr 11, unknown 228 (only German and French
+  carry non-English annotations)
 - **Total annotated papers**: 541 (mean 18.0 per variant, range 4–32)
 
 > **Note**: Earlier documentation referenced 239 papers (79 for V001–V010 +

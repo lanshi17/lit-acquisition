@@ -1,0 +1,155 @@
+{
+  "attribution": "first-seen (post-deduplication)",
+  "source_counts": {
+    "pmc": 239,
+    "crossref": 330,
+    "citation_graph": 202,
+    "europepmc": 9
+  },
+  "unique_dois_per_source_label": {
+    "pmc": 218,
+    "crossref": 305,
+    "citation_graph": 200,
+    "europepmc": 8
+  },
+  "source_by_variant": {
+    "V001": {
+      "pmc": 9,
+      "crossref": 11
+    },
+    "V002": {
+      "pmc": 5,
+      "crossref": 14
+    },
+    "V003": {
+      "pmc": 5,
+      "crossref": 15
+    },
+    "V004": {
+      "pmc": 9,
+      "crossref": 11
+    },
+    "V005": {
+      "pmc": 10,
+      "crossref": 10
+    },
+    "V006": {
+      "pmc": 6,
+      "crossref": 14,
+      "citation_graph": 20
+    },
+    "V007": {
+      "pmc": 5,
+      "crossref": 15
+    },
+    "V008": {
+      "pmc": 12,
+      "crossref": 7,
+      "europepmc": 1
+    },
+    "V009": {
+      "pmc": 8,
+      "crossref": 12,
+      "citation_graph": 1
+    },
+    "V010": {
+      "pmc": 10,
+      "crossref": 10
+    },
+    "V011": {
+      "pmc": 6,
+      "crossref": 12,
+      "citation_graph": 20
+    },
+    "V012": {
+      "pmc": 5,
+      "europepmc": 1,
+      "crossref": 10,
+      "citation_graph": 20
+    },
+    "V013": {
+      "pmc": 8,
+      "crossref": 12
+    },
+    "V014": {
+      "pmc": 11,
+      "crossref": 9
+    },
+    "V015": {
+      "pmc": 11,
+      "crossref": 9,
+      "citation_graph": 20
+    },
+    "V016": {
+      "pmc": 7,
+      "crossref": 13,
+      "citation_graph": 1
+    },
+    "V017": {
+      "pmc": 6,
+      "europepmc": 3,
+      "crossref": 11
+    },
+    "V018": {
+      "pmc": 9,
+      "crossref": 10,
+      "europepmc": 1
+    },
+    "V019": {
+      "pmc": 9,
+      "crossref": 11
+    },
+    "V020": {
+      "pmc": 5,
+      "crossref": 7,
+      "europepmc": 3
+    },
+    "V021": {
+      "pmc": 10,
+      "crossref": 10,
+      "citation_graph": 8
+    },
+    "V022": {
+      "pmc": 5,
+      "crossref": 13,
+      "citation_graph": 20
+    },
+    "V023": {
+      "pmc": 5,
+      "crossref": 10,
+      "citation_graph": 20
+    },
+    "V024": {
+      "pmc": 10,
+      "crossref": 10,
+      "citation_graph": 20
+    },
+    "V025": {
+      "pmc": 8,
+      "crossref": 12
+    },
+    "V026": {
+      "pmc": 10,
+      "crossref": 10
+    },
+    "V027": {
+      "pmc": 10,
+      "crossref": 10
+    },
+    "V028": {
+      "pmc": 9,
+      "crossref": 11,
+      "citation_graph": 20
+    },
+    "V029": {
+      "pmc": 11,
+      "crossref": 9,
+      "citation_graph": 20
+    },
+    "V030": {
+      "pmc": 5,
+      "crossref": 12,
+      "citation_graph": 12
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "provenance": {
+    "source_log": "collect_20260812.log (stdout of `python benchmarks/run_benchmark.py --all --limit 20`, run 2026-08-12)",
+    "note": "Wall-clock, sequential per-variant execution, single run; includes provider rate-limit backoff and network variance. Paper counts match collected_results.json exactly (426/600/578/780)."
+  },
+  "methods": {
+    "pubmed_only": {
+      "papers": 426,
+      "total_wall_s": 92.1
+    },
+    "multisource_no_translation": {
+      "papers": 600,
+      "total_wall_s": 2452.0
+    },
+    "multisource_with_translation": {
+      "papers": 578,
+      "total_wall_s": 1897.9
+    },
+    "full_pipeline": {
+      "papers": 780,
+      "total_wall_s": 1521.5,
+      "per_variant_s": {
+        "V001": 40.5,
+        "V002": 37.1,
+        "V003": 55.8,
+        "V004": 47.1,
+        "V005": 44.0,
+        "V006": 58.0,
+        "V007": 43.8,
+        "V008": 38.5,
+        "V009": 38.6,
+        "V010": 63.8,
+        "V011": 40.5,
+        "V012": 45.7,
+        "V013": 82.5,
+        "V014": 59.6,
+        "V015": 56.7,
+        "V016": 45.5,
+        "V017": 45.6,
+        "V018": 38.0,
+        "V019": 43.4,
+        "V020": 37.2,
+        "V021": 50.6,
+        "V022": 46.0,
+        "V023": 69.6,
+        "V024": 47.1,
+        "V025": 55.7,
+        "V026": 37.8,
+        "V027": 60.3,
+        "V028": 49.5,
+        "V029": 73.3,
+        "V030": 69.7
+      }
+    }
+  }
+}

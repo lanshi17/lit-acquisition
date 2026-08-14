@@ -36,7 +36,10 @@ async def search_pubmed_only(query: str, limit: int = 20) -> list[dict[str, Any]
             "journal": c.journal,
             "year": c.pub_date[:4] if c.pub_date else None,
             "source": "pubmed",
-            "language": "en",
+            # esummary does not expose article language; leave unknown
+            # rather than fabricating "en" (PubMed also indexes
+            # non-English articles under English titles).
+            "language": None,
             "url": f"https://pubmed.ncbi.nlm.nih.gov/{c.pmid}/" if c.pmid else None,
         }
         results.append(item)

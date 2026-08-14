@@ -69,7 +69,7 @@ automated full-text retrieval.
 
 #### 4.1 Gold Standard Dataset
 - 30 genetic variants across ACMG evidence criteria (PVS1, PS3, PM2, etc.)
-- 541 papers (heuristic-annotated **reference set**, NOT expert-verified)
+- 540 unique papers (heuristic-annotated **reference set**, NOT expert-verified; one duplicate DOI removed 2026-08-13)
 - Multilingual coverage: en, zh, ja, de, fr, ru, es, pt
 - All metrics are comparative; absolute recall/precision are not clinical estimates
 
@@ -133,7 +133,7 @@ automated full-text retrieval.
 
 ## Action Items
 
-- [x] Expand gold standard to 30 variants (done: V001–V030, 541 annotated papers)
+- [x] Expand gold standard to 30 variants (done: V001–V030, 540 unique annotated papers)
 - [x] Run benchmark (done: `benchmarks/results/` — metrics.json, summary.md)
 - [x] Generate figures (done: `benchmarks/paper_figures/` — fig1–fig4)
 - [x] Write paper draft (done: `paper/main.tex` → `paper/main.pdf`, 6 pages)

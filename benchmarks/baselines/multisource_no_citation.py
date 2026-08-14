@@ -14,7 +14,10 @@ from lit_acquisition import multilingual_acquisition_workflow
 from lit_acquisition.normalizers import normalize_items
 
 
-async def search_multisource_with_translation(query: str, limit: int = 20) -> list[dict[str, Any]]:
+async def search_multisource_with_translation(
+    query: str,
+    limit: int = 20,
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
     """Run multilingual search without citation graph.
 
     Args:
@@ -22,7 +25,8 @@ async def search_multisource_with_translation(query: str, limit: int = 20) -> li
         limit: Maximum results.
 
     Returns:
-        List of paper dicts with normalized fields.
+        (paper dicts with normalized fields,
+         per-language translated queries used for the search)
     """
     result = await multilingual_acquisition_workflow({
         "query": query,
@@ -37,15 +41,27 @@ async def search_multisource_with_translation(query: str, limit: int = 20) -> li
         item_dict["method"] = "multisource_with_translation"
         results.append(item_dict)
 
-    return results
+    translations = (result.get("raw") or {}).get("translations") or {}
+    return results, translations
 
 
-async def run_baseline(variants: list[dict[str, Any]], limit: int = 20) -> dict[str, list[dict[str, Any]]]:
-    """Run multi-source with-translation baseline on all variants."""
+async def run_baseline(
+    variants: list[dict[str, Any]],
+    limit: int = 20,
+    translations_out: dict[str, dict[str, str]] | None = None,
+) -> dict[str, list[dict[str, Any]]]:
+    """Run multi-source with-translation baseline on all variants.
+
+    Args:
+        translations_out: optional dict populated with
+            variant_id -> {language: translated query} for auditability.
+    """
     results: dict[str, list[dict[str, Any]]] = {}
     for variant in variants:
         query = variant["query"]
-        found = await search_multisource_with_translation(query, limit=limit)
+        found, translations = await search_multisource_with_translation(query, limit=limit)
         results[variant["variant_id"]] = found
+        if translations_out is not None:
+            translations_out[variant["variant_id"]] = translations
         print(f"  [multisource_with_translation] {variant['variant_id']}: {len(found)} papers")
     return results

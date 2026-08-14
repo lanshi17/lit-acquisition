@@ -1,117 +1,80 @@
-"""Deduplication evaluation.
+"""Candidate-list integrity analysis.
 
-Evaluates the effectiveness of the DOI/URL/title-based deduplication
-by measuring how many duplicates are caught and whether any false
-merges occur.
+Reports what the recorded lists actually allow us to measure about
+deduplication:
+
+- within-variant duplicate identities remaining AFTER the pipeline's
+  DOI/URL/title deduplication (its residual error, ideally 0);
+- records lacking a DOI (metadata completeness);
+- cross-variant repeated identities (the same paper legitimately returned
+  for several variant queries -- expected behavior, NOT duplication).
+
+It does NOT estimate deduplication precision/recall: that requires the raw
+pre-deduplication provider streams, which collection runs do not persist.
+Consequently, a post-deduplication zero-overlap matrix between sources must
+not be read as evidence of source complementarity.
 """
 
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+import sys
+from collections import Counter
+from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-def _norm_doi(doi: str | None) -> str | None:
-    if not doi:
-        return None
-    return doi.strip().lower().lstrip("https://doi.org/").lstrip("http://doi.org/")
+from metrics import paper_id
 
-
-def _norm_title(title: str | None) -> str:
-    if not title:
-        return ""
-    import re
-    return re.sub(r"[^\w\s]", "", title.lower()).strip()
+RESULTS_DIR = Path(__file__).parent.parent / "results"
 
 
 def analyze_deduplication(all_results: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
-    """Analyze deduplication effectiveness.
+    """Analyze candidate list integrity per method.
 
     Args:
         all_results: {method: {variant_id: [paper_dicts]}}
     """
-    # Compare raw results (before dedup) vs deduped results
-    # For this, we look at how many papers have the same DOI/title
-    # within each method's results
-
+    output: dict[str, Any] = {}
+    print(f"\n{'Method':<32} {'Total':>7} {'InVarDup':>9} {'NoDOI':>7} {'XVarRep':>8}")
+    print("-" * 68)
     for method, method_results in all_results.items():
-        total_papers = 0
-        unique_doi = set()
-        unique_title = set()
-        duplicate_doi = 0
-        duplicate_title = 0
+        total = 0
+        within_dupes = 0
+        missing_doi = 0
+        counter: Counter[str] = Counter()
+        for papers in method_results.values():
+            seen: set[str] = set()
+            for p in papers:
+                total += 1
+                if not p.get("doi"):
+                    missing_doi += 1
+                pid = paper_id(p)
+                if not pid:
+                    continue
+                if pid in seen:
+                    within_dupes += 1
+                else:
+                    seen.add(pid)
+                    counter[pid] += 1
+        cross_repeats = sum(n - 1 for n in counter.values() if n > 1)
+        output[method] = {
+            "total_entries": total,
+            "within_variant_duplicate_ids": within_dupes,
+            "missing_doi": missing_doi,
+            "cross_variant_repeated_ids": cross_repeats,
+        }
+        print(f"{method:<32} {total:>7} {within_dupes:>9} {missing_doi:>7} {cross_repeats:>8}")
 
-        per_variant_dupes: list[int] = []
+    print(
+        "\nNote: within-variant duplicates measure residual dedup error; "
+        "cross-variant repeats are expected (same paper relevant to several "
+        "queries). Dedup precision/recall would require pre-dedup provider "
+        "streams, which are not persisted."
+    )
 
-        for variant_id, papers in method_results.items():
-            total_papers += len(papers)
-            seen_doi: set[str] = set()
-            seen_title: set[str] = set()
-            dupe_count = 0
-
-            for paper in papers:
-                doi = _norm_doi(paper.get("doi"))
-                title = _norm_title(paper.get("title"))
-
-                if doi:
-                    if doi in seen_doi:
-                        duplicate_doi += 1
-                        dupe_count += 1
-                    else:
-                        seen_doi.add(doi)
-                        unique_doi.add(doi)
-
-                if title:
-                    if title in seen_title:
-                        duplicate_title += 1
-                    else:
-                        seen_title.add(title)
-                        unique_title.add(title)
-
-            per_variant_dupes.append(dupe_count)
-
-        unique_count = len(unique_doi) + len([
-            t for t in unique_title
-            if t and not any(_norm_doi(d) in unique_doi for d in [])
-        ])
-
-        print(f"\n{method}:")
-        print(f"  Total papers returned: {total_papers}")
-        print(f"  Unique DOIs: {len(unique_doi)}")
-        print(f"  Duplicate DOIs caught: {duplicate_doi}")
-        print(f"  Unique titles: {len(unique_title)}")
-        print(f"  Duplicate titles caught: {duplicate_title}")
-        if total_papers > 0:
-            dedup_rate = (duplicate_doi + duplicate_title) / total_papers * 100
-            print(f"  Estimated dedup rate: {dedup_rate:.1f}%")
-
-    # Cross-method dedup: how many papers are found by multiple methods?
-    print("\n\nCross-method overlap:")
-    paper_methods: dict[str, set[str]] = defaultdict(set)
-    for method, method_results in all_results.items():
-        for variant_id, papers in method_results.items():
-            for paper in papers:
-                doi = _norm_doi(paper.get("doi"))
-                if doi:
-                    paper_methods[doi].add(method)
-
-    total_papers = len(paper_methods)
-    method_overlap = defaultdict(int)
-    for doi, methods in paper_methods.items():
-        if len(methods) > 1:
-            method_overlap[frozenset(methods)] += 1
-
-    print(f"  Total unique papers (by DOI): {total_papers}")
-    print(f"  Found by multiple methods: {sum(method_overlap.values())}")
-    for methods, count in sorted(method_overlap.items(), key=lambda x: -x[1]):
-        print(f"    {' + '.join(sorted(methods))}: {count}")
-
-    output = {
-        "total_unique_papers": total_papers,
-        "multi_method_papers": sum(method_overlap.values()),
-        "method_overlap": {str(k): v for k, v in method_overlap.items()},
-    }
-    with open("results/dedup_analysis.json", "w") as f:
+    out_path = RESULTS_DIR / "dedup_analysis.json"
+    with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
-    print(f"\nSaved to results/dedup_analysis.json")
+    print(f"\nSaved to {out_path}")

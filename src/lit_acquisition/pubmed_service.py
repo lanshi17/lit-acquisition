@@ -71,10 +71,13 @@ class OnlineAcquisitionPubMedService:
         if not term:
             return []
 
+        # Cap at 100 to bound esummary payload size; the former hard cap of 15
+        # silently truncated candidate budgets (benchmark methods requesting
+        # 20-50 candidates received at most 15, biasing method comparisons).
         params: dict[str, Any] = {
             "db": "pubmed",
             "term": term,
-            "retmax": max(1, min(candidate_limit, 15)),
+            "retmax": max(1, min(candidate_limit, 100)),
             "retmode": "json",
             "sort": "pub date",
         }

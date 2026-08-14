@@ -1,14 +1,21 @@
 """Source coverage analysis.
 
-Analyzes which data sources contribute relevant papers and how much
-overlap exists between sources. This is a key section for the JCDL paper.
+Analyzes which data sources contribute papers under FIRST-SEEN attribution:
+each deduplicated record carries the label of the first provider that
+surfaced it during collection. Because deduplication removes any later
+occurrences from other providers, per-source overlap CANNOT be measured
+from these lists -- a zero-overlap matrix is a tautological consequence of
+deduplication, not evidence that sources are complementary.
 """
 
 from __future__ import annotations
 
 import json
 from collections import defaultdict
+from pathlib import Path
 from typing import Any
+
+RESULTS_DIR = Path(__file__).parent.parent / "results"
 
 
 def analyze_source_coverage(
@@ -35,15 +42,14 @@ def analyze_source_coverage(
             source_by_variant[variant_id][source] += 1
 
     # Print per-source summary
-    print("\nSource Contribution (full_pipeline):")
+    print("\nSource Contribution (full_pipeline, FIRST-SEEN attribution):")
     print(f"{'Source':<25} {'Total Papers':>12} {'Variants Covered':>16}")
     print("-" * 55)
     for source, count in sorted(source_counts.items(), key=lambda x: -x[1]):
         variants_covered = sum(1 for v in source_by_variant.values() if v.get(source, 0) > 0)
         print(f"{source:<25} {count:>12} {variants_covered:>16}")
 
-    # Source overlap matrix (which sources find the same papers)
-    # Build paper -> sources mapping
+    # Unique DOIs per first-seen source label.
     paper_sources: dict[str, set[str]] = defaultdict(set)
     for variant_id, papers in full_results.items():
         for paper in papers:
@@ -51,34 +57,31 @@ def analyze_source_coverage(
             if doi:
                 source = paper.get("source") or "unknown"
                 paper_sources[doi].add(source)
-
-    # Unique papers per source (papers only found by that source)
-    unique_papers: dict[str, int] = defaultdict(int)
+    unique_dois_per_source: dict[str, int] = defaultdict(int)
     for doi, sources in paper_sources.items():
         if len(sources) == 1:
-            unique_papers[next(iter(sources))] += 1
+            unique_dois_per_source[next(iter(sources))] += 1
 
-    print("\nUnique Papers (found by only one source):")
-    print(f"{'Source':<25} {'Unique Papers':>14}")
+    print("\nUnique DOIs per first-seen source label:")
+    print(f"{'Source':<25} {'Unique DOIs':>14}")
     print("-" * 40)
-    for source, count in sorted(unique_papers.items(), key=lambda x: -x[1]):
+    for source, count in sorted(unique_dois_per_source.items(), key=lambda x: -x[1]):
         print(f"{source:<25} {count:>14}")
 
-    # Overlap summary
-    total_unique = len(paper_sources)
-    multi_source = sum(1 for s in paper_sources.values() if len(s) > 1)
-    print(f"\nTotal unique papers: {total_unique}")
-    print(f"Found by multiple sources: {multi_source} ({multi_source/total_unique*100:.1f}%)" if total_unique else "")
+    print(
+        "\nNote: labels are first-seen attribution on deduplicated lists. "
+        "Cross-source availability overlap is unmeasurable here; do NOT "
+        "interpret label disjointness as source complementarity."
+    )
 
     # Save for paper
     output = {
+        "attribution": "first-seen (post-deduplication)",
         "source_counts": dict(source_counts),
-        "unique_papers": dict(unique_papers),
-        "total_unique": total_unique,
-        "multi_source": multi_source,
+        "unique_dois_per_source_label": dict(unique_dois_per_source),
         "source_by_variant": {k: dict(v) for k, v in source_by_variant.items()},
     }
-    output_path = "results/source_coverage.json"
+    output_path = RESULTS_DIR / "source_coverage.json"
     with open(output_path, "w") as f:
         json.dump(output, f, indent=2)
     print(f"\nSaved to {output_path}")

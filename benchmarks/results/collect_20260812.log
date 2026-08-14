@@ -1,0 +1,652 @@
+2026-08-12 12:09:28.553 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MECP2+Rett+syndrome+case+report&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:09:30.269 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MECP2+Rett+syndrome+case+report&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:12:02.844 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRCA1+5266dupC+breast+cancer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:12:07.626 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRCA1+5266dupC+breast+cancer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:14:21.707 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CFTR+Phe508del+cystic+fibrosis+functional&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:14:23.167 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CFTR+Phe508del+cystic+fibrosis+functional&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:16:33.271 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=LDLR+familial+hypercholesterolemia+variant+functional&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:16:34.711 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=LDLR+familial+hypercholesterolemia+variant+functional&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:16:51.431 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=TP53+R175H+Li-Fraumeni+syndrome&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:16:52.790 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=TP53+R175H+Li-Fraumeni+syndrome&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:21:23.577 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=PTEN+Cowden+syndrome+case+report&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:21:24.985 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=PTEN+Cowden+syndrome+case+report&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:25:39.698 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=EGFR+L858R+lung+cancer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:25:41.366 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=EGFR+L858R+lung+cancer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:26:00.006 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRAF+V600E+melanoma&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:27:32.452 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APC+mutation+familial+polyposis&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:27:33.782 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APC+mutation+familial+polyposis&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:28:06.794 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MLH1+Lynch+syndrome+mutation&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:28:08.156 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MLH1+Lynch+syndrome+mutation&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:29:19.217 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=KCNQ1+long+QT+syndrome&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:29:20.851 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=KCNQ1+long+QT+syndrome&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:31:12.271 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:31:13.713 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:33:10.481 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APP+Swedish+mutation+Alzheimer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:33:12.255 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APP+Swedish+mutation+Alzheimer&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:37:06.912 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=G6PD+deficiency+variant&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:37:08.833 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=G6PD+deficiency+variant&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:43:37.796 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:43:39.606 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:48:22.389 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CYP21A2+congenital+adrenal+hyperplasia&limit=20&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:50:23.247 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:50:25.299 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:50:27.596 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:51:11.443 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:51:18.295 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:51:22.261 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:51:23.684 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:51:55.346 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 19 candidates from 5 languages
+2026-08-12 12:52:02.231 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:52:03.343 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:52:06.217 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:52:06.241 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CFTR+Phe508del+cystic+fibrosis+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:52:41.940 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 4 languages
+2026-08-12 12:52:46.652 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:52:52.093 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:52:56.872 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:52:57.178 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=LDLR+familial+hypercholesterolemia+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:52:58.387 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=LDLR+familial+hypercholesterolemia+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:53:22.603 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:53:27.270 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:53:28.412 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:53:29.987 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:53:30.016 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=TP53+R175H+Li-Fraumeni+syndrome&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:54:06.829 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:54:14.440 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:54:15.697 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:54:17.285 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:54:18.210 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SCN5A+long+QT+syndrome+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:54:19.405 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SCN5A+long+QT+syndrome+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:54:46.206 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:54:50.751 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:54:52.977 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:54:56.683 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:54:56.710 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=PALB2+Trp1038Ter+breast+cancer&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:54:57.941 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=PALB2+Trp1038Ter+breast+cancer&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:55:23.489 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:55:27.811 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:55:34.111 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:55:35.278 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:56:04.622 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 6 languages
+2026-08-12 12:56:09.075 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:56:13.278 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:56:15.636 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:57:00.810 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:57:10.072 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:57:10.813 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:57:12.978 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:57:12.998 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=GJB2+35delG+hearing+loss+case+report&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:57:46.527 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 12:57:52.464 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:57:57.415 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:57:58.988 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:58:33.893 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 18 candidates from 5 languages
+2026-08-12 12:58:37.507 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:58:41.296 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:58:42.531 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:58:42.823 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=EGFR+L858R+lung+cancer&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:58:44.111 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=EGFR+L858R+lung+cancer&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:59:21.790 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 16 candidates from 4 languages
+2026-08-12 12:59:29.347 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 12:59:34.462 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:59:36.779 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 12:59:37.258 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRAF+V600E+melanoma&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 12:59:38.935 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRAF+V600E+melanoma&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:00:17.777 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:00:23.255 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:00:24.099 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:00:25.447 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:01:15.615 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:01:18.862 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:01:20.921 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:01:22.357 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:01:23.367 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MLH1+Lynch+syndrome+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:01:25.515 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MLH1+Lynch+syndrome+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:02:07.983 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:02:16.364 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:02:16.971 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:02:18.049 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:03:04.314 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:03:07.591 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:03:09.125 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:03:11.778 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:03:53.478 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:03:58.824 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:03:59.547 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:04:00.728 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:04:01.042 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=FBN1+Marfan+syndrome+case+report&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:04:35.456 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:04:39.534 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:04:41.763 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:04:47.382 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:05:23.344 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:05:31.503 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:05:36.725 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:05:46.071 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:05:46.425 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:05:47.742 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:06:25.094 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 15 candidates from 4 languages
+2026-08-12 13:06:29.727 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:06:37.123 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:06:40.052 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:08:11.300 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:08:17.867 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:08:22.494 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:08:29.911 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:09:52.068 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 18 candidates from 4 languages
+2026-08-12 13:09:57.582 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:10:01.698 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:10:03.006 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:10:57.083 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 15 candidates from 4 languages
+2026-08-12 13:11:04.661 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:11:05.376 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:11:06.570 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:11:07.726 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=G6PD+deficiency+variant&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:11:11.448 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=G6PD+deficiency+variant&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:11:51.025 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:11:56.717 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:11:59.062 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:12:00.558 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:13:33.375 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 6 languages
+2026-08-12 13:13:39.121 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:13:41.769 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:13:43.478 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:13:44.314 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=F8+intron+22+inversion+hemophilia&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:13:47.469 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=F8+intron+22+inversion+hemophilia&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:16:51.373 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:17:00.773 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:17:04.796 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:17:07.250 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:17:07.765 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:17:10.116 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:18:23.205 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:18:28.489 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:18:29.554 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:18:31.877 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:18:32.582 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SMN1+exon+7+deletion+spinal+muscular+atrophy&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:18:34.021 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SMN1+exon+7+deletion+spinal+muscular+atrophy&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:19:49.871 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:19:54.805 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:19:56.598 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:19:57.585 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:19:58.318 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CYP21A2+congenital+adrenal+hyperplasia&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:20:00.342 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CYP21A2+congenital+adrenal+hyperplasia&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:21:18.229 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:21:25.036 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:21:26.714 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:21:29.100 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:21:57.223 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 17 candidates from 4 languages
+2026-08-12 13:22:01.386 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:22:05.276 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:22:07.515 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:22:35.787 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:22:37.691 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.7554/eLife.109170', found 0 related papers (depth=1)
+2026-08-12 13:22:42.385 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:22:43.134 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:22:48.291 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:23:13.644 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 19 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:23:14.760 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1016/j.molmed.2025.07.004', found 0 related papers (depth=1)
+2026-08-12 13:23:24.705 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:23:25.316 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:23:29.747 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:23:30.197 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=CFTR+Phe508del+cystic+fibrosis+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:24:08.293 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 4 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:24:10.541 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1186/s13023-026-04415-1', found 0 related papers (depth=1)
+2026-08-12 13:24:20.403 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:24:25.389 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:24:27.689 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:24:28.171 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=LDLR+familial+hypercholesterolemia+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:24:55.899 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:24:57.684 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fcvm.2026.1843719', found 0 related papers (depth=1)
+2026-08-12 13:25:03.730 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:25:04.376 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:25:08.847 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:25:40.120 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:25:41.639 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1038/s41418-026-01670-4', found 0 related papers (depth=1)
+2026-08-12 13:25:46.298 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:25:49.195 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:25:52.453 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:26:37.934 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:26:39.656 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fcvm.2026.1900085', found 20 related papers (depth=1)
+2026-08-12 13:26:51.126 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:26:51.939 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:26:55.079 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:27:22.448 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:27:23.418 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.64898/2026.04.03.26349984', found 0 related papers (depth=1)
+2026-08-12 13:27:27.387 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:27:28.010 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:27:33.228 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:28:00.669 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 6 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:28:01.965 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1097/MD.0000000000050052', found 0 related papers (depth=1)
+2026-08-12 13:28:06.483 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:28:07.493 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:28:11.759 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:28:11.784 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MYH7+hypertrophic+cardiomyopathy+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:28:13.160 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MYH7+hypertrophic+cardiomyopathy+variant+functional&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:28:38.003 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:28:40.593 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1016/j.hfc.2025.08.006', found 1 related papers (depth=1)
+2026-08-12 13:28:50.985 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:29:00.592 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:29:02.630 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:29:43.217 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:29:44.387 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.4274/tao.2025.2025-7-7', found 0 related papers (depth=1)
+2026-08-12 13:29:48.757 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:29:51.984 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:29:58.204 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:29:59.307 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=KRAS+G12D+cancer+functional+studies&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:30:22.494 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 18 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:30:24.908 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1007/s13402-026-01237-y', found 20 related papers (depth=1)
+2026-08-12 13:30:28.965 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:30:31.212 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:30:32.795 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:31:08.962 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 16 candidates from 4 languages
+2026-08-12 13:31:10.583 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fpubh.2026.1843636', found 20 related papers (depth=1)
+2026-08-12 13:31:16.461 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:31:18.337 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:31:23.562 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:31:24.004 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=BRAF+V600E+melanoma&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:32:31.106 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:32:33.076 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fimmu.2026.1830452', found 0 related papers (depth=1)
+2026-08-12 13:32:41.521 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:32:42.404 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:32:43.735 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:32:43.759 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APC+mutation+familial+polyposis&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:33:31.332 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:33:32.707 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1002/ccr3.73328', found 0 related papers (depth=1)
+2026-08-12 13:33:36.505 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:33:38.274 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:33:43.408 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:34:27.887 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:34:29.397 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1016/j.canlet.2026.218669', found 20 related papers (depth=1)
+2026-08-12 13:34:39.016 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:34:42.675 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:34:43.776 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:34:44.220 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MYBPC3+hypertrophic+cardiomyopathy+variant&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:34:45.650 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=MYBPC3+hypertrophic+cardiomyopathy+variant&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:35:13.189 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:35:14.884 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1016/j.hfc.2025.08.006', found 1 related papers (depth=1)
+2026-08-12 13:35:22.615 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:35:26.181 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:35:30.622 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:35:59.385 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:36:00.463 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1253/circrep.CR-26-0138', found 0 related papers (depth=1)
+2026-08-12 13:36:06.004 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:36:06.568 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:36:07.888 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:36:08.333 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=FBN1+Marfan+syndrome+case+report&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:36:37.078 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:36:38.489 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.12659/AJCR.950868', found 0 related papers (depth=1)
+2026-08-12 13:36:47.787 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:36:49.621 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:36:50.727 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:37:20.131 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:37:21.861 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.4103/NRR.NRR-D-25-00434', found 0 related papers (depth=1)
+2026-08-12 13:37:25.894 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:37:26.532 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:37:29.035 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:37:29.064 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:37:30.555 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SNCA+A53T+Parkinson+disease&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:37:57.041 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 15 candidates from 4 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:37:59.039 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fnins.2026.1885103', found 0 related papers (depth=1)
+2026-08-12 13:38:14.700 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:38:17.558 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:38:20.275 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:38:21.025 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=APP+Swedish+mutation+Alzheimer+case+reports+sequencing+functional+studies&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:38:48.067 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:38:49.637 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.4103/NRR.NRR-D-25-00434', found 8 related papers (depth=1)
+2026-08-12 13:38:59.117 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:39:03.085 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:39:04.234 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:39:33.596 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 18 candidates from 4 languages
+2026-08-12 13:39:35.671 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1002/jimd.70229', found 20 related papers (depth=1)
+2026-08-12 13:39:40.253 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:39:40.758 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:39:44.818 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:39:44.847 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=GBA+L444P+Gaucher+disease&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:40:42.520 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 15 candidates from 4 languages
+2026-08-12 13:40:45.242 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fnins.2026.1885103', found 20 related papers (depth=1)
+2026-08-12 13:40:51.468 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:40:52.081 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:40:53.523 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:40:54.327 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=G6PD+deficiency+variant&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:41:30.900 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:41:32.310 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1186/s13059-026-04105-y', found 20 related papers (depth=1)
+2026-08-12 13:41:38.360 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:41:39.664 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:41:42.068 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:42:26.789 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2026-08-12 13:42:27.987 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1002/jha2.70378', found 0 related papers (depth=1)
+2026-08-12 13:42:33.491 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:42:34.143 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:42:40.307 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:42:41.458 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=F8+intron+22+inversion+hemophilia&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:43:04.651 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:43:05.786 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fmed.2026.1910117', found 0 related papers (depth=1)
+2026-08-12 13:43:12.279 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:43:13.955 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:43:16.030 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:43:17.215 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:43:18.570 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=DMD+Duchenne+muscular+dystrophy+mutation&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:44:04.433 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:44:06.077 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1002/btm2.70167', found 0 related papers (depth=1)
+2026-08-12 13:44:13.191 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:44:19.004 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:44:20.452 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:44:20.475 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SMN1+exon+7+deletion+spinal+muscular+atrophy&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:44:21.856 | WARNING  | lit_acquisition.gateway:_search_semantic_scholar:412 - semantic_scholar search failed: Client error '429 ' for url 'https://api.semanticscholar.org/graph/v1/paper/search?query=SMN1+exon+7+deletion+spinal+muscular+atrophy&limit=5&fields=title%2Cauthors%2Cyear%2CexternalIds%2CopenAccessPdf%2Ctldr%2CfieldsOfStudy%2CcitationCount%2CinfluentialCitationCount%2CpublicationTypes%2CpublicationDate%2Cjournal'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:44:53.626 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:44:55.586 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.3389/fgene.2026.1876411', found 20 related papers (depth=1)
+2026-08-12 13:45:01.161 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:45:02.126 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:45:07.434 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:46:06.948 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 20 candidates from 5 languages
+2026-08-12 13:46:08.842 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1007/s40618-026-02849-9', found 20 related papers (depth=1)
+2026-08-12 13:46:22.520 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:900 - query translated into 6 languages
+2026-08-12 13:46:23.310 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:46:25.758 | WARNING  | lit_acquisition.gateway:_search_jstage_via_pyjstage:370 - pyjstage search failed: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+2026-08-12 13:47:17.520 | INFO     | lit_acquisition.workflow:multilingual_acquisition_workflow:961 - multilingual search: 17 candidates from 4 languages
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+2026-08-12 13:47:18.493 | INFO     | lit_acquisition.citation_graph:traverse_citation_graph:114 - citation_graph: traversed from '10.1515/crpm-2026-0013', found 12 related papers (depth=1)
+Loaded 30 variants from gold standard
+
+============================================================
+Running method: pubmed_only
+============================================================
+  [pubmed_only] V001: 15 papers
+  [pubmed_only] V002: 15 papers
+  [pubmed_only] V003: 15 papers
+  [pubmed_only] V004: 15 papers
+  [pubmed_only] V005: 5 papers
+  [pubmed_only] V006: 15 papers
+  [pubmed_only] V007: 1 papers
+  [pubmed_only] V008: 15 papers
+  [pubmed_only] V009: 15 papers
+  [pubmed_only] V010: 15 papers
+  [pubmed_only] V011: 15 papers
+  [pubmed_only] V012: 15 papers
+  [pubmed_only] V013: 15 papers
+  [pubmed_only] V014: 15 papers
+  [pubmed_only] V015: 15 papers
+  [pubmed_only] V016: 15 papers
+  [pubmed_only] V017: 15 papers
+  [pubmed_only] V018: 15 papers
+  [pubmed_only] V019: 15 papers
+  [pubmed_only] V020: 15 papers
+  [pubmed_only] V021: 15 papers
+  [pubmed_only] V022: 15 papers
+  [pubmed_only] V023: 15 papers
+  [pubmed_only] V024: 15 papers
+  [pubmed_only] V025: 15 papers
+  [pubmed_only] V026: 15 papers
+  [pubmed_only] V027: 15 papers
+  [pubmed_only] V028: 15 papers
+  [pubmed_only] V029: 15 papers
+  [pubmed_only] V030: 15 papers
+  pubmed_only: 426 papers in 92.1s
+
+============================================================
+Running method: multisource_no_translation
+============================================================
+  [multisource_no_translation] V001: 20 papers
+  [multisource_no_translation] V002: 20 papers
+  [multisource_no_translation] V003: 20 papers
+  [multisource_no_translation] V004: 20 papers
+  [multisource_no_translation] V005: 20 papers
+  [multisource_no_translation] V006: 20 papers
+  [multisource_no_translation] V007: 20 papers
+  [multisource_no_translation] V008: 20 papers
+  [multisource_no_translation] V009: 20 papers
+  [multisource_no_translation] V010: 20 papers
+  [multisource_no_translation] V011: 20 papers
+  [multisource_no_translation] V012: 20 papers
+  [multisource_no_translation] V013: 20 papers
+  [multisource_no_translation] V014: 20 papers
+  [multisource_no_translation] V015: 20 papers
+  [multisource_no_translation] V016: 20 papers
+  [multisource_no_translation] V017: 20 papers
+  [multisource_no_translation] V018: 20 papers
+  [multisource_no_translation] V019: 20 papers
+  [multisource_no_translation] V020: 20 papers
+  [multisource_no_translation] V021: 20 papers
+  [multisource_no_translation] V022: 20 papers
+  [multisource_no_translation] V023: 20 papers
+  [multisource_no_translation] V024: 20 papers
+  [multisource_no_translation] V025: 20 papers
+  [multisource_no_translation] V026: 20 papers
+  [multisource_no_translation] V027: 20 papers
+  [multisource_no_translation] V028: 20 papers
+  [multisource_no_translation] V029: 20 papers
+  [multisource_no_translation] V030: 20 papers
+  multisource_no_translation: 600 papers in 2452.0s
+
+============================================================
+Running method: multisource_with_translation
+============================================================
+  [multisource_with_translation] V001: 20 papers
+  [multisource_with_translation] V002: 19 papers
+  [multisource_with_translation] V003: 20 papers
+  [multisource_with_translation] V004: 20 papers
+  [multisource_with_translation] V005: 20 papers
+  [multisource_with_translation] V006: 20 papers
+  [multisource_with_translation] V007: 20 papers
+  [multisource_with_translation] V008: 20 papers
+  [multisource_with_translation] V009: 20 papers
+  [multisource_with_translation] V010: 20 papers
+  [multisource_with_translation] V011: 18 papers
+  [multisource_with_translation] V012: 16 papers
+  [multisource_with_translation] V013: 20 papers
+  [multisource_with_translation] V014: 20 papers
+  [multisource_with_translation] V015: 20 papers
+  [multisource_with_translation] V016: 20 papers
+  [multisource_with_translation] V017: 20 papers
+  [multisource_with_translation] V018: 20 papers
+  [multisource_with_translation] V019: 20 papers
+  [multisource_with_translation] V020: 15 papers
+  [multisource_with_translation] V021: 20 papers
+  [multisource_with_translation] V022: 18 papers
+  [multisource_with_translation] V023: 15 papers
+  [multisource_with_translation] V024: 20 papers
+  [multisource_with_translation] V025: 20 papers
+  [multisource_with_translation] V026: 20 papers
+  [multisource_with_translation] V027: 20 papers
+  [multisource_with_translation] V028: 20 papers
+  [multisource_with_translation] V029: 20 papers
+  [multisource_with_translation] V030: 17 papers
+  multisource_with_translation: 578 papers in 1897.9s
+
+============================================================
+Running method: full_pipeline
+============================================================
+  [full_pipeline] V001: 20 papers (40.5s)
+  [full_pipeline] V002: 19 papers (37.1s)
+  [full_pipeline] V003: 20 papers (55.8s)
+  [full_pipeline] V004: 20 papers (47.1s)
+  [full_pipeline] V005: 20 papers (44.0s)
+  [full_pipeline] V006: 40 papers (58.0s)
+  [full_pipeline] V007: 20 papers (43.8s)
+  [full_pipeline] V008: 20 papers (38.5s)
+  [full_pipeline] V009: 21 papers (38.6s)
+  [full_pipeline] V010: 20 papers (63.8s)
+  [full_pipeline] V011: 38 papers (40.5s)
+  [full_pipeline] V012: 36 papers (45.7s)
+  [full_pipeline] V013: 20 papers (82.5s)
+  [full_pipeline] V014: 20 papers (59.6s)
+  [full_pipeline] V015: 40 papers (56.7s)
+  [full_pipeline] V016: 21 papers (45.5s)
+  [full_pipeline] V017: 20 papers (45.6s)
+  [full_pipeline] V018: 20 papers (38.0s)
+  [full_pipeline] V019: 20 papers (43.4s)
+  [full_pipeline] V020: 15 papers (37.2s)
+  [full_pipeline] V021: 28 papers (50.6s)
+  [full_pipeline] V022: 38 papers (46.0s)
+  [full_pipeline] V023: 35 papers (69.6s)
+  [full_pipeline] V024: 40 papers (47.1s)
+  [full_pipeline] V025: 20 papers (55.7s)
+  [full_pipeline] V026: 20 papers (37.8s)
+  [full_pipeline] V027: 20 papers (60.3s)
+  [full_pipeline] V028: 40 papers (49.5s)
+  [full_pipeline] V029: 40 papers (73.3s)
+  [full_pipeline] V030: 29 papers (69.7s)
+
+Collected results saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/collected_results.json
+  pubmed_only: 426 total papers across 30 variants
+  multisource_no_translation: 600 total papers across 30 variants
+  multisource_with_translation: 578 total papers across 30 variants
+  full_pipeline: 780 total papers across 30 variants
+
+================================================================================
+Results (K=50)
+================================================================================
+| Method | Recall | Precision | F1 | nDCG |
+| --- | --- | --- | --- | --- |
+| full_pipeline | 0.348±0.116 | 0.264±0.138 | 0.288±0.117 | 0.320±0.116 |
+| multisource_no_translation | 0.247±0.136 | 0.238±0.160 | 0.239±0.143 | 0.260±0.146 |
+| multisource_with_translation | 0.329±0.099 | 0.320±0.143 | 0.316±0.115 | 0.310±0.100 |
+| pubmed_only | 0.171±0.183 | 0.229±0.240 | 0.172±0.161 | 0.195±0.170 |
+
+Summary saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/summary.md
+Detailed metrics saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/metrics.json
+
+================================================================================
+Source Coverage Analysis
+================================================================================
+
+Source Contribution (full_pipeline):
+Source                    Total Papers Variants Covered
+-------------------------------------------------------
+crossref                           330               30
+pmc                                239               30
+citation_graph                     202               13
+europepmc                            9                5
+
+Unique Papers (found by only one source):
+Source                     Unique Papers
+----------------------------------------
+crossref                             305
+pmc                                  218
+citation_graph                       200
+europepmc                              8
+
+Total unique papers: 731
+Found by multiple sources: 0 (0.0%)
+Traceback (most recent call last):
+  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 273, in <module>
+    main()
+  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 269, in main
+    run_analysis()
+  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 231, in run_analysis
+    analyze_source_coverage(all_results, variants)
+  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/analysis/coverage.py", line 82, in analyze_source_coverage
+    with open(output_path, "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'results/source_coverage.json'

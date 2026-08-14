@@ -951,7 +951,12 @@ async def multilingual_acquisition_workflow(
                 reason="multilingual_parallel",
                 fallback_used=False,
             ),
-            raw={"source_trace": [asdict(entry) for entry in source_trace]},
+            raw={
+                "source_trace": [asdict(entry) for entry in source_trace],
+                # Persist the per-language queries so downstream consumers
+                # (e.g. benchmark runs) can audit translation fidelity.
+                "translations": translations.as_dict(),
+            },
             candidate_links=[],
         ).model_dump()
 
@@ -1001,7 +1006,10 @@ async def multilingual_acquisition_workflow(
                 reason="multilingual_parallel",
                 fallback_used=False,
             ),
-            raw={"source_trace": [asdict(entry) for entry in source_trace]},
+            raw={
+                "source_trace": [asdict(entry) for entry in source_trace],
+                "translations": translations.as_dict(),
+            },
             candidate_links=clean_candidates,
         ).model_dump()
 

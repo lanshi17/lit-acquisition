@@ -6,10 +6,10 @@ Measures latency, throughput, and scalability of the acquisition pipeline.
 from __future__ import annotations
 
 import json
-import os
-import time
-from collections import defaultdict
+from pathlib import Path
 from typing import Any
+
+RESULTS_DIR = Path(__file__).parent.parent / "results"
 
 
 def analyze_performance(all_results: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
@@ -70,6 +70,7 @@ def analyze_performance(all_results: dict[str, dict[str, list[dict[str, Any]]]])
     output = {
         "method_stats": method_stats,
     }
-    with open("results/performance_analysis.json", "w") as f:
+    out_path = RESULTS_DIR / "performance_analysis.json"
+    with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
-    print(f"\nSaved to results/performance_analysis.json")
+    print(f"\nSaved to {out_path}")

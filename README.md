@@ -6,8 +6,9 @@ Multilingual biomedical literature acquisition toolkit - search, download, and c
 
 A JCDL full-paper draft describing the system and its evaluation is in
 [`paper/main.tex`](paper/main.tex) (compiled: `paper/main.pdf`). The
-benchmark framework, gold standard (30 variants, 541 annotated papers), and
-figure generation scripts live in [`benchmarks/`](benchmarks/).
+benchmark framework, heuristic reference set (30 variants, 540 unique
+annotated papers; not expert-verified), and figure generation scripts live
+in [`benchmarks/`](benchmarks/).
 
 ## Features
 

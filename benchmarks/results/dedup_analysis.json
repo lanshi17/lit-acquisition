@@ -1,0 +1,26 @@
+{
+  "pubmed_only": {
+    "total_entries": 426,
+    "within_variant_duplicate_ids": 0,
+    "missing_doi": 5,
+    "cross_variant_repeated_ids": 8
+  },
+  "multisource_no_translation": {
+    "total_entries": 600,
+    "within_variant_duplicate_ids": 0,
+    "missing_doi": 4,
+    "cross_variant_repeated_ids": 49
+  },
+  "multisource_with_translation": {
+    "total_entries": 578,
+    "within_variant_duplicate_ids": 0,
+    "missing_doi": 0,
+    "cross_variant_repeated_ids": 48
+  },
+  "full_pipeline": {
+    "total_entries": 780,
+    "within_variant_duplicate_ids": 0,
+    "missing_doi": 1,
+    "cross_variant_repeated_ids": 48
+  }
+}
