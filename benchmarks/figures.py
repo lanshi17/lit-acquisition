@@ -461,6 +461,99 @@ def fig_component_heatmap() -> None:
     print("✓ fig7_component_heatmap.png")
 
 
+# ── Figure 8: 2025-2026 SOTA baselines vs our pipeline (SetRecall) ────────
+def fig_sota() -> None:
+    """Bar chart of SetRecall (mean +/- std): M1-M4n chain vs SOTA baselines.
+
+    Stars mark Holm-corrected significance of the SOTA method vs M1
+    (SetRecall family, from sota_baselines.json). Skips gracefully when
+    SOTA results have not been collected.
+    """
+    sota_file = RESULTS_DIR / "sota_baselines.json"
+    if not sota_file.exists():
+        print("  fig8 skipped: results/sota_baselines.json not found")
+        return
+    sota = json.loads(sota_file.read_text())
+    agg = dict(paper_data["aggregates"])  # M1-M4n chain (frozen numbers)
+    agg.update(sota["aggregates"])        # S1-S6 (2026-08-14 collection)
+    sota_methods = list(sota["methods"])
+    labels = [f"M{i}" for i in range(1, 5)] + [f"S{i}" for i in range(1, len(sota_methods) + 1)]
+    order = ["pubmed_only", "multisource_no_translation",
+             "multisource_with_translation", NESTED, *sota_methods]
+    means = [agg[m]["set_recall"]["mean"] for m in order]
+    stds = [agg[m]["set_recall"]["std"] for m in order]
+
+    # Holm-corrected p vs M1 (set recall) for the SOTA methods.
+    p_vs_m1 = {}
+    for name, t in sota["tests_holm"].items():
+        if t["base"] == "pubmed_only" and name.endswith("_set_recall"):
+            p_vs_m1[t["improved"]] = t["p_holm"]
+
+    n = len(order)
+    x = np.arange(n)
+    w = 0.62
+    fig, ax = plt.subplots(figsize=(6.8, 2.9))
+    colors = ["#C6DBEF", "#9ECAE1", "#6BAED6", "#3182BD"] + ["#DD8452"] * (n - 4)
+    bars = ax.bar(x, means, w, yerr=stds, color=colors, edgecolor="black",
+                  linewidth=0.5, capsize=2.5, error_kw=dict(lw=0.7))
+    for xi, m in zip(x, means):
+        ax.text(xi, m + 0.015, f"{m:.2f}", ha="center", va="bottom", fontsize=7)
+    for xi, method in enumerate(order[4:], start=4):
+        p = p_vs_m1.get(method)
+        if p is not None and p < 0.05:
+            ax.text(xi, max(means) + 0.045, stars(p), ha="center", fontsize=8)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=8)
+    ax.set_ylabel("SetRecall")
+    ax.set_ylim(0, max(means) * 1.18 + 0.05)
+    ax.axhline(0.345, ls=":", lw=0.7, color="#888888")
+    ax.text(0.05, 0.350, "M4n = 0.345", fontsize=6.5, color="#666666")
+    handles = [
+        Line2D([0], [0], marker="s", ls="", color="#3182BD", label="Ablation chain (M1-M4n)", ms=5),
+        Line2D([0], [0], marker="s", ls="", color="#DD8452", label="2025-2026 SOTA baselines (S1-S6)", ms=5),
+    ]
+    ax.legend(handles=handles, loc="upper left", frameon=False)
+    fig.tight_layout()
+    fig.savefig(FIG_DIR / "fig8_sota_comparison.png", dpi=300)
+    fig.savefig(FIG_DIR / "fig8_sota_comparison.pdf")
+    plt.close(fig)
+    print("✓ fig8_sota_comparison.png")
+
+
+# ── Figure 9: Neural-rerank optimization effect (Recall@K, M4n vs M5/M5g) ─
+def fig_rerank_effect() -> None:
+    """Recall@K curves for the nested baseline vs the two optimizations."""
+    rerank_file = RESULTS_DIR / "rerank_eval.json"
+    if not rerank_file.exists():
+        print("  fig9 skipped: results/rerank_eval.json not found")
+        return
+    data = json.loads(rerank_file.read_text())
+    agg = data["aggregates"]
+    ks = [k for k in (5, 10, 15, 20, 50) if str(k) in agg["full_pipeline_nested"]["recall_at"]]
+    fig, ax = plt.subplots(figsize=(3.4, 2.6))
+    styles = [
+        ("full_pipeline_nested", "M4n baseline", "#3182BD", "-", "o"),
+        ("reranked", "M5 neural rerank", "#DD8452", "--", "s"),
+        ("gated", "M5g gated citation", "#55A868", ":", "^"),
+    ]
+    for m, label, color, ls, marker in styles:
+        vals = [agg[m]["recall_at"][str(k)]["mean"] for k in ks]
+        ax.plot(ks, vals, ls=ls, lw=1.1, color=color, marker=marker, ms=3.5,
+                markerfacecolor=color, markeredgecolor="black", markeredgewidth=0.3,
+                label=label)
+    ax.set_xlabel("K")
+    ax.set_ylabel("Recall@K")
+    ax.set_xticks(ks)
+    ax.set_ylim(0, 0.45)
+    ax.legend(frameon=False, loc="upper left")
+    fig.tight_layout()
+    fig.savefig(FIG_DIR / "fig9_rerank_effect.png", dpi=300)
+    fig.savefig(FIG_DIR / "fig9_rerank_effect.pdf")
+    plt.close(fig)
+    print("✓ fig9_rerank_effect.png")
+
+
 if __name__ == "__main__":
     fig_ablation()
     fig_pervariant_scatter()
@@ -469,4 +562,6 @@ if __name__ == "__main__":
     fig_citation_graph()
     fig_recall_at_k()
     fig_component_heatmap()
+    fig_sota()
+    fig_rerank_effect()
     print(f"\nAll figures saved to {FIG_DIR}")

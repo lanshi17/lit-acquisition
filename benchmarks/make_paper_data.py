@@ -373,7 +373,12 @@ def main() -> None:
     gold = load_gold()
 
     # 1. Strictly nested M4 (protocol-correct ablation), monotonicity check,
-    #    and run-to-run variance from the two independent M3-config runs.
+    #    and run-to-run variance. The variance measurement requires two
+    #    INDEPENDENT executions of the same configuration; only the
+    #    2026-08-12 session contains that duplicate (M3 vs the keyword phase
+    #    of the M4' re-run). Later uniform-budget runs construct M4 by
+    #    nesting on the frozen M3 lists, so variance is always read from the
+    #    archived session when available.
     nested, nested_report = build_nested_full_pipeline(collected)
     monotonicity = verify_monotonicity(
         collected["multisource_with_translation"], nested, gold
@@ -382,7 +387,14 @@ def main() -> None:
         raise AssertionError(
             f"nested M4 violates recall monotonicity: {monotonicity['violations']}"
         )
-    variance = run_variance_analysis(collected, gold)
+    variance_source = collected
+    variance_note = "current collection"
+    archived = RESULTS_DIR / "collected_results_20260812.json"
+    if archived.exists():
+        variance_source = json.loads(archived.read_text())
+        variance_note = "archived 2026-08-12 session (independent M3-config duplicate)"
+    variance = run_variance_analysis(variance_source, gold)
+    variance["source_note"] = variance_note
 
     with open(RESULTS_DIR / "derived_results.json", "w") as f:
         json.dump({NESTED_METHOD: nested}, f, ensure_ascii=False, indent=2)
@@ -502,6 +514,14 @@ def main() -> None:
     # 7. Timing + external single-source baselines (if collected).
     timing = json.loads(TIMING_FILE.read_text()) if TIMING_FILE.exists() else None
     external = None
+    sota_data = None
+    sota_file = RESULTS_DIR / "sota_baselines.json"
+    if sota_file.exists():
+        sota_data = json.loads(sota_file.read_text())
+    rerank_data = None
+    rerank_file = RESULTS_DIR / "rerank_eval.json"
+    if rerank_file.exists():
+        rerank_data = json.loads(rerank_file.read_text())
     if EXTERNAL_FILE.exists():
         ext_raw = json.loads(EXTERNAL_FILE.read_text())
         ext_rows = []
@@ -575,19 +595,22 @@ def main() -> None:
 
     # 8. Run manifest for reproducibility.
     try:
+        from lit_acquisition.config import get_config
         from lit_acquisition.query_translator import _SYSTEM_PROMPT  # type: ignore
 
+        cfg = get_config()
         prompt_sha = hashlib.sha256(_SYSTEM_PROMPT.encode()).hexdigest()[:16]
     except Exception:
+        cfg = None
         prompt_sha = None
     manifest = {
-        "collection_date": "2026-08-12",
+        "collection_date": "2026-08-14",
         "collection_window": {
             "start": log_stats.get("window_start"),
             "end": log_stats.get("window_end"),
         },
-        "command": "python benchmarks/run_benchmark.py --all --limit 20",
-        "candidate_budget_per_method": "20 keyword candidates per variant; "
+        "command": "python benchmarks/run_benchmark.py --collect --limit 50 --cg-budget 20",
+        "candidate_budget_per_method": "50 keyword candidates per variant; "
         "citation traversal budget 20 papers, depth 1, direction both",
         "relevance_gate": "disabled during collection (raw retrieval comparison)",
         "translation": {
@@ -595,12 +618,11 @@ def main() -> None:
             "max_tokens": 1024,
             "target_languages": ["en", "zh", "ja", "de", "fr", "ru"],
             "system_prompt_sha256_16": prompt_sha,
-            "model": None,
+            "model": (cfg.translation.model or cfg.llm.model) if cfg else None,
             "model_note": (
-                "TODO: model identifier of the 2026-08-12 run was configured "
-                "via LIT_TRANSLATION_MODEL / LIT_LLM_MODEL and not captured "
-                "in the log; fill in before release. run_benchmark.py now "
-                "records it automatically for future runs."
+                "Recorded from environment config of the analysis run; the "
+                "collection manifest (run_manifest.json) records the model "
+                "of the actual collection run."
             ),
         },
         "statistics": {
@@ -645,6 +667,8 @@ def main() -> None:
         "case_studies": case_studies,
         "timing": timing,
         "external_baselines": external,
+        "sota_baselines": sota_data,
+        "method_optimization": rerank_data,
         "run_manifest": manifest,
     }
     with open(RESULTS_DIR / "paper_data.json", "w") as f:
@@ -672,9 +696,76 @@ def main() -> None:
         f"- mean |Δ set recall|: {variance['mean_abs_set_recall_diff']:.4f} "
         f"(max {variance['max_abs_set_recall_diff']:.4f})\n"
     )
+
+    # 9b. 2025-2026 SOTA baselines (if collected; frozen M1-M4 untouched).
+    if sota_data:
+        sota_labels = sota_data.get("methods", {})
+        agg_s = sota_data["aggregates"]
+        lines.append("\n## 2025-2026 SOTA baselines (collected 2026-08-14)\n")
+        lines.append("## Fixed-K metrics (K=20) + set-level metrics\n")
+        sota_order = ["pubmed_only", NESTED_METHOD, *sota_data["methods"]]
+        rows = []
+        for m in sota_order:
+            a = agg_s[m]
+            rows.append(
+                f"| {sota_labels.get(m, m)} | "
+                f"{a['recall_at']['20']['mean']:.3f}±{a['recall_at']['20']['std']:.3f} | "
+                f"{a['precision_at']['20']['mean']:.3f}±{a['precision_at']['20']['std']:.3f} | "
+                f"{a['ndcg_at']['20']['mean']:.3f}±{a['ndcg_at']['20']['std']:.3f} | "
+                f"{a['set_recall']['mean']:.3f}±{a['set_recall']['std']:.3f} | "
+                f"{a['precision_at_retrieved']['mean']:.3f}±{a['precision_at_retrieved']['std']:.3f} | "
+                f"{a['candidates_per_variant']['mean']:.1f} | "
+                f"{a['micro']['relevant_found']} |"
+            )
+        lines.append("| Method | Recall@20 | Prec@20 | nDCG@20 | SetRecall | Prec@Retr | Cands | Rel. |")
+        lines.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
+        lines.extend(rows)
+        lines.append("\n## SOTA paired tests vs M1 / M4n (SetRecall, Holm family)\n")
+        lines.append("| Test | Δ | p | p(Holm) | r | 95% CI | sig |")
+        lines.append("| --- | --- | --- | --- | --- | --- | --- |")
+        for name, t in sota_data["tests_holm"].items():
+            lines.append(
+                f"| {name} | {t['delta']:+.3f} | {t['p']:.4f} | {t['p_holm']:.4f} "
+                f"| {t['r']:+.2f} | [{t['ci95'][0]:+.3f}, {t['ci95'][1]:+.3f}] "
+                f"| {'yes' if t['significant_holm'] else 'no'} |"
+            )
+    # 9c. Neural-rerank optimization experiment (offline, frozen lists).
+    if rerank_data:
+        agg_r = rerank_data["aggregates"]
+        labels_r = {"full_pipeline_nested": "M4n baseline",
+                    "reranked": "M5 neural rerank", "gated": "M5g gated citation"}
+        lines.append("\n## Neural-rerank optimization (offline, on frozen nested lists)\n")
+        lines.append("| Method | Recall@20 | Prec@20 | nDCG@20 | Prec@Retr | SetRecall | Rel. | Cands |")
+        lines.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
+        for m in ("full_pipeline_nested", "reranked", "gated"):
+            a = agg_r[m]
+            lines.append(
+                f"| {labels_r[m]} | "
+                f"{a['recall_at']['20']['mean']:.3f}±{a['recall_at']['20']['std']:.3f} | "
+                f"{a['precision_at']['20']['mean']:.3f}±{a['precision_at']['20']['std']:.3f} | "
+                f"{a['ndcg_at']['20']['mean']:.3f}±{a['ndcg_at']['20']['std']:.3f} | "
+                f"{a['precision_at_retrieved']['mean']:.3f}±{a['precision_at_retrieved']['std']:.3f} | "
+                f"{a['set_recall']['mean']:.3f}±{a['set_recall']['std']:.3f} | "
+                f"{a['micro']['relevant_found']} | {a['candidates_per_variant']['mean']:.1f} |"
+            )
+        lines.append(f"\nCitation gating: kept {rerank_data['citation_items']['kept_by_gate']}/"
+                     f"{rerank_data['citation_items']['total']} items, relevant found unchanged.\n")
     (RESULTS_DIR / "summary.md").write_text("\n".join(lines))
 
     print(f"paper_data.json, metrics.json, derived_results.json, summary.md -> {RESULTS_DIR}")
+    if rerank_data:
+        print("\nOptimization (M5/M5g vs M4n):")
+        for m in ("reranked", "gated"):
+            a = agg_r[m]
+            print(f"  {labels_r[m]:<22} R@20 {a['recall_at']['20']['mean']:.3f} "
+                  f"nDCG@20 {a['ndcg_at']['20']['mean']:.3f} Prec@Retr "
+                  f"{a['precision_at_retrieved']['mean']:.3f} (SetRecall {a['set_recall']['mean']:.3f})")
+    if sota_data:
+        print("\nSOTA baselines table (SetRecall, mean±std):")
+        for m in sota_data["methods"]:
+            a = agg_s[m]
+            print(f"  {sota_labels[m]:<28} {a['set_recall']['mean']:.3f}±{a['set_recall']['std']:.3f} "
+                  f"({a['micro']['relevant_found']} relevant)")
     print(f"\nMonotonicity: holds={monotonicity['holds']}, "
           f"improved={monotonicity['n_variants_improved']} variants")
     print(f"Run variance: identical {variance['n_identical_lists']}/30, "

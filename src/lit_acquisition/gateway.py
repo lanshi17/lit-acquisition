@@ -506,6 +506,83 @@ async def _search_zenodo(
         return _failure_result("zenodo", exc, "search")
 
 
+async def _search_pubmed(
+    request: OnlineAcquisitionGatewayRequest,
+) -> OnlineAcquisitionGatewayResult:
+    """Search PubMed E-utilities via the Python service.
+
+    PubMed is the canonical biomedical index; the federated plans include
+    it as a first-class channel (the M1 baseline uses the same service).
+    E-utilities without an API key allows ~3 requests/sec, so we retry
+    429/5xx with a short backoff instead of failing a whole variant.
+    """
+    start = _time.monotonic()
+    try:
+        from .pubmed_service import get_pubmed_service
+
+        svc = get_pubmed_service()
+        query = (request.query or "").strip()
+        if not query:
+            return _failure_result("pubmed", ValueError("empty query"), "search")
+
+        limit = min(request.limit or 20, 100)
+        candidates = None
+        for attempt in range(3):
+            try:
+                candidates = await svc.search_candidates(query, candidate_limit=limit)
+                break
+            except httpx.HTTPStatusError as exc:
+                if exc.response.status_code in (429, 500, 502, 503, 504) and attempt < 2:
+                    await asyncio.sleep(1.0 * (attempt + 1))
+                    continue
+                raise
+
+        # esummary-compatible dicts (normalize_pmc handles this format).
+        items = []
+        for c in candidates or []:
+            articleids = [{"idtype": "pmid", "value": c.pmid}]
+            if c.doi:
+                articleids.append({"idtype": "doi", "value": c.doi})
+            if c.pmcid:
+                articleids.append({"idtype": "pmc", "value": c.pmcid})
+            items.append(
+                {
+                    "uid": c.pmid,
+                    "title": c.title,
+                    "fulljournalname": c.journal,
+                    "source": c.journal,
+                    "pubdate": c.pub_date,
+                    "articleids": articleids,
+                    "sortpubdate": c.pub_date,
+                }
+            )
+
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("pubmed", success=True, latency_ms=elapsed)
+        trace = OnlineAcquisitionSourceTraceEntry(
+            provider="pubmed",
+            attempt=1,
+            action="search",
+            success=True,
+            items_count=len(items),
+            downloads_count=0,
+            warnings=[],
+        )
+        return OnlineAcquisitionGatewayResult(
+            provider="pubmed",
+            success=True,
+            items=items,
+            downloads=[],
+            warnings=[],
+            source_trace=[trace],
+        )
+    except Exception as exc:
+        elapsed = (_time.monotonic() - start) * 1000
+        get_health_tracker().record("pubmed", success=False, latency_ms=elapsed)
+        logger.warning("pubmed search failed: {}", exc)
+        return _failure_result("pubmed", exc, "search")
+
+
 async def call_provider(request: OnlineAcquisitionGatewayRequest) -> OnlineAcquisitionGatewayResult:
     """Call a single provider via net_io.fetch_one.
 
@@ -518,6 +595,9 @@ async def call_provider(request: OnlineAcquisitionGatewayRequest) -> OnlineAcqui
     """
     if request.provider == "jstage" and request.action == "search":
         return await _search_jstage_via_pyjstage(request)
+
+    if request.provider == "pubmed" and request.action == "search":
+        return await _search_pubmed(request)
 
     if request.provider == "semantic_scholar" and request.action == "search":
         return await _search_semantic_scholar(request)

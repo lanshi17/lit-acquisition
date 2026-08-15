@@ -837,6 +837,7 @@ NORMALIZER_MAP: dict[str, Callable[[dict[str, Any]], OnlineAcquisitionItem]] = {
     "crossref": normalize_crossref,
     "unpaywall": normalize_unpaywall,
     "pmc": normalize_pmc,
+    "pubmed": normalize_pmc,  # PubMed esummary shares the PMC esummary format
     "jstage": normalize_jstage,
     "doaj": normalize_doaj,
     "openalex": normalize_openalex,

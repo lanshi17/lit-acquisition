@@ -35,6 +35,7 @@ from .literature_type_classifier import classify_item
 from .normalizers import DOI_PATTERN, normalize_items
 from .query_translator import TARGET_LANGUAGES, translate_query
 from .relevance_gate import run_relevance_gate
+from .rerank import rerank_enabled
 from .search_service import build_provider_plan, dedupe_candidates, rank_candidates, search_parallel
 from .web_search import SearchLink, WebSearchResult
 
@@ -937,6 +938,10 @@ async def multilingual_acquisition_workflow(
     # Global dedup across all languages
     all_candidates = dedupe_candidates(all_candidates)
     all_candidates = rank_candidates(all_candidates, expected_title=base_query)
+    if rerank_enabled():
+        from .rerank import neural_rerank
+
+        all_candidates = await neural_rerank(base_query, all_candidates)
 
     if not all_candidates:
         warnings.append("FETCH_NO_RESULT: no candidates from any language")

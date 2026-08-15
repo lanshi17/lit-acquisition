@@ -28,6 +28,7 @@ import asyncio
 import copy
 import hashlib
 import json
+import os
 import platform
 import sys
 import time
@@ -42,6 +43,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 sys.path.insert(0, str(Path(__file__).parent))
 
 from metrics import paper_id
+
+from lit_acquisition.rerank import rerank_enabled  # noqa: E402
 
 BENCHMARK_DIR = Path(__file__).parent
 GOLD_STANDARD_FILE = BENCHMARK_DIR / "gold_standard" / "variants.jsonl"
@@ -227,6 +230,12 @@ def _build_manifest(
                 "direction": "both",
             },
             "relevance_gate": "disabled during collection",
+            "plans": "en/auto include the PubMed E-utilities channel",
+            "rerank": {
+                "enabled": rerank_enabled(),
+                "model": os.getenv("LIT_RERANK_MODEL", "BAAI/bge-reranker-v2-m3"),
+                "note": "cross-encoder final ranking stage when enabled",
+            },
         },
         "llm": {
             "translation_model": cfg.translation.model or cfg.llm.model or None,

@@ -1,0 +1,292 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+
+============================================================
+Running method: sota_dense
+============================================================
+  [sota_dense] V002: 60 papers
+  [sota_dense] V001: 100 papers
+  [sota_dense] V005: 5 papers
+  [sota_dense] V004: 100 papers
+  [sota_dense] V003: 100 papers
+  [sota_dense] V007: 1 papers
+  [sota_dense] V006: 100 papers
+  [sota_dense] V008: 100 papers
+  [sota_dense] V009: 100 papers
+  [sota_dense] V010: 23 papers
+  [sota_dense] V011: 100 papers
+  [sota_dense] V012: 100 papers
+  [sota_dense] V014: 100 papers
+  [sota_dense] V013: 100 papers
+  [sota_dense] V015: 100 papers
+  [sota_dense] V016: 100 papers
+  [sota_dense] V017: 100 papers
+  [sota_dense] V018: 100 papers
+  [sota_dense] V019: 100 papers
+  [sota_dense] V020: 100 papers
+  [sota_dense] V021: 100 papers
+  [sota_dense] V022: 100 papers
+  [sota_dense] V023: 100 papers
+  [sota_dense] V025: 100 papers
+  [sota_dense] V024: 100 papers
+  [sota_dense] V027: 100 papers
+  [sota_dense] V026: 100 papers
+  [sota_dense] V029: 100 papers
+  [sota_dense] V028: 100 papers
+  [sota_dense] V031: 35 papers
+  [sota_dense] V030: 100 papers
+  [sota_dense] V032: 100 papers
+  [sota_dense] V033: 20 papers
+  [sota_dense] V034: 2 papers
+  [sota_dense] V035: 100 papers
+  [sota_dense] V036: 100 papers
+  [sota_dense] V037: 100 papers
+  [sota_dense] V038: 100 papers
+  [sota_dense] V039: 6 papers
+  [sota_dense] V040: 4 papers
+  [sota_dense] V041: 13 papers
+  [sota_dense] V042: 100 papers
+  [sota_dense] V043: 100 papers
+  sota_dense: 3469 papers in 156.3s
+
+============================================================
+Running method: sota_rerank
+============================================================
+  [sota_rerank] V001: 100 papers
+  [sota_rerank] V002: 60 papers
+  [sota_rerank] V003: 100 papers
+  [sota_rerank] V004: 100 papers
+  [sota_rerank] V005: 5 papers
+  [sota_rerank] V006: 100 papers
+  [sota_rerank] V007: 1 papers
+  [sota_rerank] V008: 100 papers
+  [sota_rerank] V009: 100 papers
+  [sota_rerank] V010: 23 papers
+  [sota_rerank] V011: 100 papers
+  [sota_rerank] V012: 100 papers
+  [sota_rerank] V013: 100 papers
+  [sota_rerank] V014: 100 papers
+  [sota_rerank] V015: 100 papers
+  [sota_rerank] V016: 100 papers
+  [sota_rerank] V017: 100 papers
+  [sota_rerank] V018: 100 papers
+  [sota_rerank] V019: 100 papers
+  [sota_rerank] V020: 100 papers
+  [sota_rerank] V021: 100 papers
+  [sota_rerank] V022: 100 papers
+  [sota_rerank] V023: 100 papers
+  [sota_rerank] V024: 100 papers
+  [sota_rerank] V025: 100 papers
+  [sota_rerank] V026: 100 papers
+  [sota_rerank] V027: 100 papers
+  [sota_rerank] V028: 100 papers
+  [sota_rerank] V029: 100 papers
+  [sota_rerank] V030: 100 papers
+  [sota_rerank] V031: 35 papers
+  [sota_rerank] V032: 100 papers
+  [sota_rerank] V033: 20 papers
+  [sota_rerank] V034: 2 papers
+  [sota_rerank] V035: 100 papers
+  [sota_rerank] V036: 100 papers
+  [sota_rerank] V037: 100 papers
+  [sota_rerank] V038: 100 papers
+  [sota_rerank] V039: 6 papers
+  [sota_rerank] V040: 4 papers
+  [sota_rerank] V041: 13 papers
+  [sota_rerank] V042: 100 papers
+  [sota_rerank] V043: 100 papers
+  sota_rerank: 3469 papers in 121.8s
+
+============================================================
+Running method: sota_hybrid
+============================================================
+  [sota_hybrid] V001: 50 papers
+  [sota_hybrid] V002: 50 papers
+  [sota_hybrid] V003: 48 papers
+  [sota_hybrid] V005: 5 papers
+  [sota_hybrid] V004: 50 papers
+  [sota_hybrid] V007: 1 papers
+  [sota_hybrid] V006: 50 papers
+  [sota_hybrid] V008: 50 papers
+  [sota_hybrid] V010: 23 papers
+  [sota_hybrid] V009: 50 papers
+  [sota_hybrid] V011: 50 papers
+  [sota_hybrid] V012: 50 papers
+  [sota_hybrid] V013: 50 papers
+  [sota_hybrid] V014: 50 papers
+  [sota_hybrid] V015: 50 papers
+  [sota_hybrid] V016: 50 papers
+  [sota_hybrid] V017: 50 papers
+  [sota_hybrid] V018: 50 papers
+  [sota_hybrid] V019: 50 papers
+  [sota_hybrid] V020: 50 papers
+  [sota_hybrid] V021: 50 papers
+  [sota_hybrid] V023: 50 papers
+  [sota_hybrid] V022: 50 papers
+  [sota_hybrid] V024: 50 papers
+  [sota_hybrid] V025: 50 papers
+  [sota_hybrid] V026: 50 papers
+  [sota_hybrid] V027: 50 papers
+  [sota_hybrid] V028: 50 papers
+  [sota_hybrid] V029: 50 papers
+  [sota_hybrid] V030: 50 papers
+  [sota_hybrid] V031: 35 papers
+  [sota_hybrid] V033: 20 papers
+  [sota_hybrid] V032: 50 papers
+  [sota_hybrid] V034: 2 papers
+  [sota_hybrid] V035: 50 papers
+  [sota_hybrid] V039: 6 papers
+  [sota_hybrid] V037: 50 papers
+  [sota_hybrid] V036: 50 papers
+  [sota_hybrid] V040: 4 papers
+  [sota_hybrid] V038: 50 papers
+  [sota_hybrid] V041: 13 papers
+  [sota_hybrid] V042: 50 papers
+  [sota_hybrid] V043: 50 papers
+  sota_hybrid: 1807 papers in 158.2s
+
+============================================================
+Running method: sota_expand
+============================================================
+  [sota_expand] V003: 50 papers
+  [sota_expand] V001: 53 papers
+  [sota_expand] V004: 50 papers
+  [sota_expand] V002: 50 papers
+  [sota_expand] V006: 51 papers
+  [sota_expand] V008: 55 papers
+  [sota_expand] V005: 5 papers
+  [sota_expand] V007: 1 papers
+  [sota_expand] V009: 50 papers
+  [sota_expand] V011: 50 papers
+  [sota_expand] V010: 23 papers
+  [sota_expand] V012: 68 papers
+  [sota_expand] V013: 51 papers
+  [sota_expand] V015: 51 papers
+  [sota_expand] V014: 53 papers
+  [sota_expand] V016: 50 papers
+  [sota_expand] V017: 50 papers
+  [sota_expand] V019: 50 papers
+  [sota_expand] V018: 50 papers
+  [sota_expand] V021: 50 papers
+  [sota_expand] V020: 51 papers
+  [sota_expand] V022: 50 papers
+  [sota_expand] V025: 50 papers
+  [sota_expand] V023: 50 papers
+  [sota_expand] V024: 50 papers
+  [sota_expand] V026: 50 papers
+  [sota_expand] V027: 50 papers
+  [sota_expand] V028: 50 papers
+  [sota_expand] V030: 59 papers
+  [sota_expand] V031: 35 papers
+  [sota_expand] V032: 50 papers
+  [sota_expand] V029: 51 papers
+  [sota_expand] V034: 2 papers
+  [sota_expand] V033: 20 papers
+  [sota_expand] V035: 50 papers
+  [sota_expand] V036: 50 papers
+  [sota_expand] V038: 51 papers
+  [sota_expand] V039: 6 papers
+  [sota_expand] V037: 50 papers
+  [sota_expand] V040: 4 papers
+  [sota_expand] V041: 13 papers
+  [sota_expand] V042: 50 papers
+  [sota_expand] V043: 50 papers
+  sota_expand: 1853 papers in 512.0s
+
+============================================================
+Running method: sota_agent
+============================================================
+  [sota_agent] V003: 50 papers
+  [sota_agent] V002: 50 papers
+  [sota_agent] V004: 50 papers
+  [sota_agent] V001: 50 papers
+  [sota_agent] V007: 1 papers
+  [sota_agent] V005: 5 papers
+  [sota_agent] V006: 50 papers
+  [sota_agent] V008: 51 papers
+  [sota_agent] V010: 23 papers
+  [sota_agent] V009: 50 papers
+  [sota_agent] V012: 50 papers
+  [sota_agent] V011: 50 papers
+  [sota_agent] V013: 50 papers
+  [sota_agent] V014: 50 papers
+  [sota_agent] V015: 50 papers
+  [sota_agent] V018: 50 papers
+  [sota_agent] V017: 50 papers
+  [sota_agent] V016: 50 papers
+  [sota_agent] V019: 50 papers
+  [sota_agent] V020: 50 papers
+  [sota_agent] V021: 50 papers
+  [sota_agent] V022: 50 papers
+  [sota_agent] V023: 50 papers
+  [sota_agent] V024: 50 papers
+  [sota_agent] V025: 50 papers
+  [sota_agent] V027: 50 papers
+  [sota_agent] V026: 50 papers
+  [sota_agent] V029: 50 papers
+  [sota_agent] V028: 50 papers
+  [sota_agent] V030: 50 papers
+  [sota_agent] V031: 35 papers
+  [sota_agent] V032: 50 papers
+  [sota_agent] V033: 20 papers
+  [sota_agent] V034: 2 papers
+  [sota_agent] V036: 50 papers
+  [sota_agent] V037: 50 papers
+  [sota_agent] V035: 50 papers
+  [sota_agent] V038: 50 papers
+  [sota_agent] V039: 6 papers
+  [sota_agent] V041: 13 papers
+  [sota_agent] V040: 4 papers
+  [sota_agent] V042: 50 papers
+  [sota_agent] V043: 50 papers
+  sota_agent: 1810 papers in 471.4s
+
+============================================================
+Running method: sota_mdense
+============================================================
+  [sota_mdense] V001: 100 papers
+  [sota_mdense] V003: 100 papers
+  [sota_mdense] V005: 5 papers
+  [sota_mdense] V002: 60 papers
+  [sota_mdense] V004: 100 papers
+  [sota_mdense] V007: 1 papers
+  [sota_mdense] V006: 100 papers
+  [sota_mdense] V008: 100 papers
+  [sota_mdense] V010: 23 papers
+  [sota_mdense] V009: 100 papers
+  [sota_mdense] V011: 100 papers
+  [sota_mdense] V012: 100 papers
+  [sota_mdense] V013: 100 papers
+  [sota_mdense] V014: 100 papers
+  [sota_mdense] V015: 100 papers
+  [sota_mdense] V016: 100 papers
+  [sota_mdense] V017: 100 papers
+  [sota_mdense] V018: 100 papers
+  [sota_mdense] V019: 100 papers
+  [sota_mdense] V020: 100 papers
+  [sota_mdense] V022: 100 papers
+  [sota_mdense] V021: 100 papers
+  [sota_mdense] V024: 100 papers
+  [sota_mdense] V023: 100 papers
+  [sota_mdense] V025: 100 papers
+  [sota_mdense] V026: 100 papers
+  [sota_mdense] V027: 100 papers
+  [sota_mdense] V028: 100 papers
+  [sota_mdense] V029: 100 papers
+  [sota_mdense] V030: 100 papers
+  [sota_mdense] V031: 35 papers
+  [sota_mdense] V033: 20 papers
+  [sota_mdense] V034: 2 papers
+  [sota_mdense] V032: 100 papers
+  [sota_mdense] V035: 100 papers
+  [sota_mdense] V037: 100 papers
+  [sota_mdense] V039: 6 papers
+  [sota_mdense] V038: 100 papers
+  [sota_mdense] V040: 4 papers
+  [sota_mdense] V036: 100 papers
+  [sota_mdense] V042: 100 papers
+  [sota_mdense] V041: 13 papers
+  [sota_mdense] V043: 100 papers
+  sota_mdense: 3469 papers in 189.9s
+
+Merged 6 methods into /data/yangzs/Projects/17_lit-acquisition-paper/benchmarks/results/collected_results.json
+Manifest saved to /data/yangzs/Projects/17_lit-acquisition-paper/benchmarks/results/sota_manifest.json

@@ -1,0 +1,31 @@
+{
+  "started_at_utc": "2026-08-14T14:27:54.238203+00:00",
+  "finished_at_utc": "2026-08-14T14:47:50.686730+00:00",
+  "budget": "100 candidates per variant",
+  "pool": "PubMed esearch retmax=100; pub-date order for dense/rerank/expand/agent/mdense; relevance order for the hybrid sparse channel",
+  "methods": {
+    "sota_hybrid": "PubMed relevance + bge-m3 dense -> RRF(k=60) -> bge-reranker-v2-m3",
+    "sota_expand": "PubMed + gpt-5 query expansion (3 variants, RRF-fused channels)",
+    "sota_agent": "PubMed + gpt-5 2-round search-reason-search (RRF-fused rounds)"
+  },
+  "prompt_sha256_16": {
+    "sota_expand": "9a4d716e34addddd",
+    "sota_agent": "d66969ecc23bced3",
+    "sota_mdense": "96fe414ab84606dd"
+  },
+  "llm": {
+    "expansion_agent_model": "gpt-5",
+    "embedding_model": "BAAI/bge-m3"
+  },
+  "per_method_totals": {
+    "sota_hybrid": 3466,
+    "sota_expand": 3469,
+    "sota_agent": 3469
+  },
+  "per_variant_wall_s": {
+    "sota_hybrid": {},
+    "sota_expand": {},
+    "sota_agent": {}
+  },
+  "note": "New methods only; frozen 2026-08-12 M1-M4 runs untouched. External single-source baselines collected 2026-08-13 remain in external_baselines.json."
+}

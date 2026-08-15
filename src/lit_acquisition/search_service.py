@@ -15,6 +15,7 @@ from typing import Any, TypedDict
 from .gateway import search_provider
 from .normalizers import normalize_items
 from .provider_health import get_health_tracker
+from .rerank import rerank_enabled
 
 
 class ProviderPlanItem(TypedDict):
@@ -56,6 +57,7 @@ LANG_PROVIDER_MATRIX: dict[str, list[ProviderPlanItem]] = {
     "en": [
         {"route": "api", "provider": "pmc"},
         {"route": "api", "provider": "europepmc"},
+        {"route": "api", "provider": "pubmed"},
         {"route": "api", "provider": "semantic_scholar"},
         {"route": "api", "provider": "crossref"},
         {"route": "api", "provider": "arxiv"},
@@ -102,6 +104,7 @@ LANG_PROVIDER_MATRIX: dict[str, list[ProviderPlanItem]] = {
         {"route": "api", "provider": "clinical_trials"},
         {"route": "api", "provider": "doaj"},
         {"route": "api", "provider": "pmc"},
+        {"route": "api", "provider": "pubmed"},
         {"route": "api", "provider": "zenodo"},
     ],
 }
@@ -311,4 +314,9 @@ async def search_parallel(
         collected.extend(result)
 
     collected = dedupe_candidates(collected)
-    return rank_candidates(collected, expected_title=query, preferred_provider=preferred_provider)[:candidate_limit]
+    ranked = rank_candidates(collected, expected_title=query, preferred_provider=preferred_provider)
+    if rerank_enabled():
+        from .rerank import neural_rerank
+
+        ranked = await neural_rerank(query or "", ranked)
+    return ranked[:candidate_limit]

@@ -1,0 +1,346 @@
+{
+  "V001": {
+    "en": "MECP2 Rett syndrome case report",
+    "zh": "MECP2 Rett 综合征 病例报告",
+    "ja": "MECP2 レット症候群 症例報告",
+    "de": "MECP2 Rett-Syndrom Fallbericht",
+    "fr": "MECP2 syndrome de Rett rapport de cas",
+    "ru": "MECP2 синдром Ретт отчет о случае"
+  },
+  "V002": {
+    "en": "BRCA1 5266dupC breast cancer",
+    "zh": "BRCA1 5266dupC 乳腺癌",
+    "ja": "BRCA1 5266dupC 乳がん",
+    "de": "BRCA1 5266dupC Brustkrebs",
+    "fr": "BRCA1 5266dupC cancer du sein",
+    "ru": "BRCA1 5266dupC рак молочной железы"
+  },
+  "V003": {
+    "en": "CFTR Phe508del cystic fibrosis functional",
+    "zh": "CFTR Phe508del 囊性纤维化 功能",
+    "ja": "CFTR Phe508del 囊性線維症 機能",
+    "de": "CFTR Phe508del Mukoviszidose funktionell",
+    "fr": "CFTR Phe508del fibrose kystique fonctionnelle",
+    "ru": "CFTR Phe508del кистозный фиброз функциональный"
+  },
+  "V004": {
+    "en": "LDLR familial hypercholesterolemia variant functional",
+    "zh": "LDLR 家族性高胆固醇血症 变异 功能",
+    "ja": "LDLR 家族性高コレステロール血症 バリアント 機能",
+    "de": "LDLR familiäre Hypercholesterinämie Variante funktionell",
+    "fr": "LDLR hypercholestérolémie familiale variant fonctionnel",
+    "ru": "LDLR семейная гиперхолестеринемия вариант функциональный"
+  },
+  "V005": {
+    "en": "TP53 R175H Li-Fraumeni syndrome",
+    "zh": "TP53 R175H Li-Fraumeni 综合征",
+    "ja": "TP53 R175H Li-Fraumeni 症候群",
+    "de": "TP53 R175H Li-Fraumeni-Syndrom",
+    "fr": "TP53 R175H syndrome de Li-Fraumeni",
+    "ru": "TP53 R175H синдром Ли-Фраумени"
+  },
+  "V006": {
+    "en": "SCN5A long QT syndrome variant functional",
+    "zh": "SCN5A 长 QT 综合征 变异 功能",
+    "ja": "SCN5A 長QT症候群 バリエント 機能",
+    "de": "SCN5A LQT-Syndrom Variante funktionell",
+    "fr": "SCN5A syndrome QT long variant fonctionnel",
+    "ru": "SCN5A синдром длинного QT варианта функциональные"
+  },
+  "V007": {
+    "en": "PALB2 Trp1038Ter breast cancer",
+    "zh": "PALB2 Trp1038Ter 乳腺癌",
+    "ja": "PALB2 Trp1038Ter 乳がん",
+    "de": "PALB2 Trp1038Ter Brustkrebs",
+    "fr": "PALB2 Trp1038Ter cancer du sein",
+    "ru": "PALB2 Trp1038Ter рак молочной железы"
+  },
+  "V008": {
+    "en": "PTEN Cowden syndrome case report",
+    "zh": "PTEN Cowden 综合征 病例报告",
+    "ja": "PTEN Cowden 症候群 症例報告",
+    "de": "PTEN Cowden-Syndrom Fallbericht",
+    "fr": "PTEN syndrome de Cowden rapport de cas",
+    "ru": "PTEN синдром Ковдена клинический случай"
+  },
+  "V009": {
+    "en": "MYH7 hypertrophic cardiomyopathy variant functional",
+    "zh": "MYH7 肥厚型心肌病 变异 功能",
+    "ja": "MYH7 播種型心筋症 バリアント 機能",
+    "de": "MYH7 hypertrophische Kardiomyopathie Variante funktionell",
+    "fr": "MYH7 cardiomyopathie hypertrophique variant fonctionnelle",
+    "ru": "MYH7 гипертрофическая кардиомиопатия вариант функциональная"
+  },
+  "V010": {
+    "en": "GJB2 35delG hearing loss case report",
+    "zh": "GJB2 35delG 听力损失 病例报告",
+    "ja": "GJB2 35delG 聴覚障害 症例報告",
+    "de": "GJB2 35delG Hörverlust Fallbericht",
+    "fr": "GJB2 35delG perte auditive rapport de cas",
+    "ru": "GJB2 35delG потеря слуха клинический случай"
+  },
+  "V011": {
+    "en": "KRAS G12D cancer functional studies",
+    "zh": "KRAS G12D 癌症 功能研究",
+    "ja": "KRAS G12D 癌症 機能研究",
+    "de": "KRAS G12D Krebs funktionelle Studien",
+    "fr": "KRAS G12D cancer études fonctionnelles",
+    "ru": "KRAS G12D рак функциональные исследования"
+  },
+  "V012": {
+    "en": "EGFR L858R lung cancer",
+    "zh": "EGFR L858R 肺癌",
+    "ja": "EGFR L858R 肺がん",
+    "de": "EGFR L858R Lungenkrebs",
+    "fr": "EGFR L858R cancer du poumon",
+    "ru": "EGFR L858R рак легких"
+  },
+  "V013": {
+    "en": "BRAF V600E melanoma",
+    "zh": "BRAF V600E 黑色素瘤",
+    "ja": "BRAF V600E メラノーマ",
+    "de": "BRAF V600E Melanom",
+    "fr": "BRAF V600E mélanome",
+    "ru": "BRAF V600E меланома"
+  },
+  "V014": {
+    "en": "APC mutation familial polyposis",
+    "zh": "APC 基因突变 家族性息肉病",
+    "ja": "APC 基因変異 家族性ポリポーシス",
+    "de": "APC Mutation familiale Polyposis",
+    "fr": "mutation APC polyposis familiale",
+    "ru": "мутация APC семейная полипозность"
+  },
+  "V015": {
+    "en": "MLH1 Lynch syndrome mutation",
+    "zh": "MLH1 Lynch 综合征 突变",
+    "ja": "MLH1 Lynch 症候群 突変",
+    "de": "MLH1 Lynch-Syndrom Mutation",
+    "fr": "MLH1 syndrome de Lynch mutation",
+    "ru": "MLH1 синдром Линча мутация"
+  },
+  "V016": {
+    "en": "MYBPC3 hypertrophic cardiomyopathy variant",
+    "zh": "MYBPC3 肥厚型心肌病 变异",
+    "ja": "MYBPC3 播種型心筋症 バリエント",
+    "de": "MYBPC3 hypertrophische Kardiomyopathie Variante",
+    "fr": "MYBPC3 cardiomyopathie hypertrophique variant",
+    "ru": "MYBPC3 гипертрофическая кардиомиопатия варианта"
+  },
+  "V017": {
+    "en": "KCNQ1 long QT syndrome",
+    "zh": "KCNQ1 长 QT 综合征",
+    "ja": "KCNQ1 長QT症候群",
+    "de": "KCNQ1 Lang-QT-Syndrom",
+    "fr": "KCNQ1 syndrome QT long",
+    "ru": "KCNQ1 синдром удлиненного QT"
+  },
+  "V018": {
+    "en": "FBN1 Marfan syndrome case report",
+    "zh": "FBN1 马凡综合征 病例报告",
+    "ja": "FBN1 マルファン症候群 症例報告",
+    "de": "FBN1 Marfan-Syndrom Fallbericht",
+    "fr": "FBN1 syndrome de Marfan rapport de cas",
+    "ru": "FBN1 синдром Марфана отчет о случае"
+  },
+  "V019": {
+    "en": "HTT CAG repeat Huntington case report",
+    "zh": "HTT CAG 重复 猎顿舞蹈症 病例报告",
+    "ja": "HTT CAG リピート ハンチントン病 症例報告",
+    "de": "HTT CAG-Wiederholung Huntington Fallbericht",
+    "fr": "HTT répétition CAG Huntington rapport de cas",
+    "ru": "HTT CAG-повторение Хантингтон отчет о случае"
+  },
+  "V020": {
+    "en": "SNCA A53T Parkinson disease",
+    "zh": "SNCA A53T 帕金森病",
+    "ja": "SNCA A53T パーキンソン病",
+    "de": "SNCA A53T Parkinson-Krankheit",
+    "fr": "SNCA A53T maladie de Parkinson",
+    "ru": "SNCA A53T болезнь Паркинсона"
+  },
+  "V021": {
+    "en": "APP Swedish mutation Alzheimer case reports sequencing studies",
+    "zh": "APP 瑞典突变 阿尔茨海默病 病例报告 测序研究",
+    "ja": "APP スウェーデン変異 アルツハイマー病 症例報告 シーケンス研究",
+    "de": "APP Schwedische Mutation Alzheimer-Fallberichte Sequenzstudien",
+    "fr": "APP mutation suédoise Alzheimer rapports de cas études de séquençage",
+    "ru": "APP шведская мутация болезнь Альцгеймера клинические случаи исследования секвенирования"
+  },
+  "V022": {
+    "en": "PAH R408W phenylketonuria",
+    "zh": "PAH R408W 苯丙酮尿症",
+    "ja": "PAH R408W フェニルケトン尿",
+    "de": "PAH R408W Phenylketonurie",
+    "fr": "PAH R408W phénylcétonurie",
+    "ru": "PAH R408W фенилкетонурия"
+  },
+  "V023": {
+    "en": "GBA L444P Gaucher disease",
+    "zh": "GBA L444P 戈谢病",
+    "ja": "GBA L444P ゴーシェ病",
+    "de": "GBA L444P Gaucher-Krankheit",
+    "fr": "GBA L444P maladie de Gaucher",
+    "ru": "GBA L444P болезнь Гоше"
+  },
+  "V024": {
+    "en": "G6PD deficiency variant",
+    "zh": "G6PD 缺乏症 变异",
+    "ja": "G6PD 欠乏症 バリアント",
+    "de": "G6PD-Mangel Variante",
+    "fr": "déficit en G6PD variant",
+    "ru": "дефицит G6PD варианты"
+  },
+  "V025": {
+    "en": "HBB sickle cell mutation",
+    "zh": "HBB 基因镰状细胞突变",
+    "ja": "HBB 基因のヘモグロビン S 突変",
+    "de": "HBB Sickle-Cell-Mutation",
+    "fr": "Mutation HBB cellule falciforme",
+    "ru": "Мутация HBB при болезни лопатообразных клеток"
+  },
+  "V026": {
+    "en": "F8 intron 22 inversion hemophilia",
+    "zh": "F8 基因第 22 内含子倒位 血友病",
+    "ja": "F8 ジーン イントロン 22 逆転 血友病",
+    "de": "F8 Intron 22 Inversion Hämophilie",
+    "fr": "Inversion de l'intron 22 de F8 hémophilie",
+    "ru": "Инверсия интрона 22 гена F8 гемофилия"
+  },
+  "V027": {
+    "en": "DMD Duchenne muscular dystrophy mutation",
+    "zh": "DMD 杜氏肌营养不良 突变",
+    "ja": "DMD ダッチェン型筋ジストロフィー 突変",
+    "de": "DMD Duchenne-Muskeldystrophie Mutation",
+    "fr": "DMD dystrophie musculaire de Duchenne mutation",
+    "ru": "DMD дистрофия мышц Дюшенна мутация"
+  },
+  "V028": {
+    "en": "SMN1 exon 7 deletion spinal muscular atrophy",
+    "zh": "SMN1 第7外显子缺失 脊髓性肌萎缩症",
+    "ja": "SMN1 第7エクソン欠失 脊髄性筋萎縮症",
+    "de": "SMN1 Exon 7 Deletion spinal muscular atrophy",
+    "fr": "SMN1 délétion exon 7 amyotrophie spinale",
+    "ru": "SMN1 удаление экзона 7 спинальная мышечная атрофия"
+  },
+  "V029": {
+    "en": "CYP21A2 congenital adrenal hyperplasia",
+    "zh": "CYP21A2 先天性肾上腺皮质增生症",
+    "ja": "CYP21A2 先天性副腎皮質増生症",
+    "de": "CYP21A2 angeborene Nebennierenrindengewebshyperplasie",
+    "fr": "CYP21A2 hyperplasie congénitale des glandes surrénales",
+    "ru": "CYP21A2 врожденный гиперплазия коры надпочечников"
+  },
+  "V030": {
+    "en": "DMPK CTG repeat myotonic dystrophy",
+    "zh": "DMPK CTG 重复序列 肌强直性营养不良",
+    "ja": "DMPK CTG リピート 筋強直性ジストロフィー",
+    "de": "DMPK CTG-Wiederholung Myotonie-Dystrophie",
+    "fr": "DMPK répétition CTG dystrophie myotonique",
+    "ru": "DMPK повтор CTG миотоническая дистрофия"
+  },
+  "V031": {
+    "en": "RET M918T medullary thyroid carcinoma case report",
+    "zh": "RET M918T 甲状腺髓样癌病例报告",
+    "ja": "RET M918T 甲状腺髄様癌症例報告",
+    "de": "RET M918T medullärer Schilddrüsenkarzinom Fallbericht",
+    "fr": "RET M918T carcinome médullaire de la thyroïde rapport de cas",
+    "ru": "RET M918T медуллярный рак щитовидной железы клинический случай"
+  },
+  "V032": {
+    "en": "JAK2 V617F myeloproliferative neoplasm mutation",
+    "zh": "JAK2 V617F 骨髓增生性肿瘤 突变",
+    "ja": "JAK2 V617F 骨髄増殖性腫瘍 突変",
+    "de": "JAK2 V617F myeloproliferative Neoplasie Mutation",
+    "fr": "JAK2 V617F néoplasie myéloproliférative mutation",
+    "ru": "JAK2 V617F миелопролиферативное новообразование мутация"
+  },
+  "V033": {
+    "en": "FGFR3 R248C achondroplasia mutation",
+    "zh": "FGFR3 R248C 侏儒症 突变",
+    "ja": "FGFR3 R248C 短骨症 突変",
+    "de": "FGFR3 R248C Achondroplasie Mutation",
+    "fr": "FGFR3 R248C achondroplasie mutation",
+    "ru": "FGFR3 R248C ахондроплазия мутация"
+  },
+  "V034": {
+    "en": "BRCA2 5946delT hereditary breast cancer",
+    "zh": "BRCA2 5946delT 遗传性乳腺癌",
+    "ja": "BRCA2 5946delT 遺伝性乳がん",
+    "de": "BRCA2 5946delT erbliche Brustkrebs",
+    "fr": "BRCA2 5946delT cancer du sein héréditaire",
+    "ru": "BRCA2 5946delT наследственный рак молочной железы"
+  },
+  "V035": {
+    "en": "HFE C282Y hemochromatosis mutation",
+    "zh": "HFE C282Y 血色素沉着病 突变",
+    "ja": "HFE C282Y 鉄沈着症 突変",
+    "de": "HFE C282Y Hämochromatose Mutation",
+    "fr": "HFE C282Y hémochromatose mutation",
+    "ru": "HFE C282Y гемохроматоз мутация"
+  },
+  "V036": {
+    "en": "CHEK2 1100delC breast cancer risk",
+    "zh": "CHEK2 1100delC 乳腺癌风险",
+    "ja": "CHEK2 1100delC 乳がんリスク",
+    "de": "CHEK2 1100delC Brustkrebsrisiko",
+    "fr": "CHEK2 1100delC risque de cancer du sein",
+    "ru": "CHEK2 1100delC риск рака молочной железы"
+  },
+  "V037": {
+    "en": "TTR V30M transthyretin amyloidosis",
+    "zh": "TTR V30M 甲状腺素转运蛋白淀粉样变性",
+    "ja": "TTR V30M ティロキシン運搬蛋白アミロイドーシス",
+    "de": "TTR V30M Transthyretin-Amyloidose",
+    "fr": "TTR V30M amyloidose à transthyrétine",
+    "ru": "TTR V30M амилоидоз транстиретина"
+  },
+  "V038": {
+    "en": "SLC26A4 Pendred syndrome mutation",
+    "zh": "SLC26A4 潘德综合征 突变",
+    "ja": "SLC26A4 ペンドレッド症候群 突変",
+    "de": "SLC26A4 Pendred-Syndrom Mutation",
+    "fr": "SLC26A4 syndrome de Pendred mutation",
+    "ru": "SLC26A4 синдром Пендреда мутация"
+  },
+  "V039": {
+    "en": "VHL R167W von Hippel-Lindau case reports sequencing studies functional studies",
+    "zh": "VHL R167W von Hippel-Lindau 病例报告 基因测序研究 功能研究",
+    "ja": "VHL R167W von Hippel-Lindau 症例報告 ゲノム配列解析研究 機能研究",
+    "de": "VHL R167W von Hippel-Lindau Fallberichte Sequenzanalyse Studien Funktionsstudien",
+    "fr": "VHL R167W von Hippel-Lindau rapports de cas études de séquençage études fonctionnelles",
+    "ru": "VHL R167W von Hippel-Lindau отчеты о случаях исследования секвенирования функциональные исследования"
+  },
+  "V040": {
+    "en": "RYR1 R614C malignant hyperthermia",
+    "zh": "RYR1 R614C 恶性高热",
+    "ja": "RYR1 R614C 悪性高熱",
+    "de": "RYR1 R614C maligne Hyperthermie",
+    "fr": "RYR1 R614C hyperthermie maligne",
+    "ru": "RYR1 R614C злокачественная гипертермия"
+  },
+  "V041": {
+    "en": "ATM c.7271T>G ataxia telangiectasia",
+    "zh": "ATM c.7271T>G 共济失调毛细血管扩张症",
+    "ja": "ATM c.7271T>G 共济失調症毛細血管拡張症",
+    "de": "ATM c.7271T>G Ataxie-Telangiektasie",
+    "fr": "ATM c.7271T>G ataxie-télangiectasie",
+    "ru": "ATM c.7271T>G атаксия-телеангиэктазия"
+  },
+  "V042": {
+    "en": "CDH1 hereditary diffuse gastric cancer mutation",
+    "zh": "CDH1 遗传性弥漫性胃癌突变",
+    "ja": "CDH1 遺伝性拡散性胃がん変異",
+    "de": "CDH1 erbliche diffus verlaufende Magenkarzinom Mutation",
+    "fr": "CDH1 cancer gastrique diffus héréditaire mutation",
+    "ru": "CDH1 наследственный диффузный рак желудка мутация"
+  },
+  "V043": {
+    "en": "MTHFR 677C>T hyperhomocysteinemia",
+    "zh": "MTHFR 677C>T 高同型半胱氨酸血症",
+    "ja": "MTHFR 677C>T 高ホモシステイン血症",
+    "de": "MTHFR 677C>T Hyperhomocysteinämie",
+    "fr": "MTHFR 677C>T hyperhomocystéinémie",
+    "ru": "MTHFR 677C>T гипергомоцистеинемия"
+  }
+}
