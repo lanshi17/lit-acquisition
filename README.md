@@ -2,14 +2,6 @@
 
 Multilingual biomedical literature acquisition toolkit - search, download, and classify academic papers from 18+ providers with citation graph traversal.
 
-## Paper
-
-A JCDL full-paper draft describing the system and its evaluation is in
-[`paper/main.tex`](paper/main.tex) (compiled: `paper/main.pdf`). The
-benchmark framework, heuristic reference set (30 variants, 540 unique
-annotated papers; not expert-verified), and figure generation scripts live
-in [`benchmarks/`](benchmarks/).
-
 ## Features
 
 - **18+ provider integrations**: Crossref, PubMed, OpenAlex, EuropePMC, DOAJ, J-STAGE, arXiv, bioRxiv, medRxiv, SciELO, BASE, CORE, OpenAIRE, CiNii, Unpaywall, Semantic Scholar, ClinicalTrials.gov, Zenodo
