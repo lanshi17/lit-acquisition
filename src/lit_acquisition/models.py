@@ -1,57 +1,36 @@
-"""Pure data types for literature acquisition."""
+"""Pure data structures (pydantic models + dataclasses).
+
+This module holds *only* shapes - no behaviour, no I/O, no algorithms.
+Request/response contracts, the normalized item, provider-trace entries and
+internal gateway types all live here so the rest of the codebase imports its
+data model from one place.
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Literal
+from typing import Any, TypedDict
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-# --- Literal types ---
-
-ApiProvider = Literal[
-    "crossref",
-    "unpaywall",
-    "openalex",
-    "europepmc",
-    "pmc",
-    "jstage",
-    "doaj",
-    "scielo",
-    "base",
-    "core",
-    "openaire",
-    "arxiv",
-    "biorxiv",
-    "medrxiv",
-    "cinii",
-    "semantic_scholar",
-    "clinical_trials",
-    "zenodo",
-]
-PreferStrategy = Literal["auto", "api", "web"]
-ActionStrategy = Literal["search", "download"]
-
+from .enums import Action, LiteratureType, PreferStrategy, Provider, RouteChoice
 
 # --- Request ---
-
-LiteratureTypeFilter = Literal["case_report", "sequencing", "functional"]
 
 
 class OnlineAcquisitionRequest(BaseModel):
     """Unified request for literature search/download."""
 
-    action: ActionStrategy = "search"
+    action: Action = Action.SEARCH
     query: str | None = None
     identifiers: list[str] = Field(default_factory=list)
-    prefer: PreferStrategy = "auto"
+    prefer: PreferStrategy = PreferStrategy.AUTO
     raw: bool = False
     limit: int = 20
     language: str | None = "auto"
-    literature_types: list[LiteratureTypeFilter] = Field(default_factory=list)
+    literature_types: list[LiteratureType] = Field(default_factory=list)
 
-    api_provider: ApiProvider | None = None
-
+    api_provider: Provider | None = None
     api_params: dict[str, Any] = Field(default_factory=dict)
 
     download_path: str = "./downloads"
@@ -63,6 +42,17 @@ class OnlineAcquisitionRequest(BaseModel):
     relevance_gate: bool = Field(
         default=True,
         description="Enable LLM-based relevance filtering after download.",
+    )
+
+    timeout: float = Field(
+        default=30.0,
+        ge=5.0,
+        le=300.0,
+        description="Overall phase budget in seconds; slow providers are cut off at this deadline.",
+    )
+    compact: bool = Field(
+        default=False,
+        description="Agent-friendly response: omit candidate_links/raw payloads, keep summary+diagnostics.",
     )
 
     @model_validator(mode="before")
@@ -121,7 +111,7 @@ class OnlineAcquisitionRouteInfo(BaseModel):
     """Routing decision summary."""
 
     prefer: PreferStrategy
-    used: Literal["api", "web", "none"] | None = None
+    used: RouteChoice | None = None
     reason: str | None = None
     fallback_used: bool = False
 
@@ -141,6 +131,14 @@ class OnlineAcquisitionResponse(BaseModel):
     candidate_links: list[dict[str, Any]] = Field(
         default_factory=list,
         description="All candidate download links discovered before download phase",
+    )
+    summary: str = Field(
+        default="",
+        description="One-line human/agent-readable outcome summary.",
+    )
+    diagnostics: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Structured acquisition diagnostics: elapsed_ms, per-provider status/latency/counts.",
     )
 
 
@@ -166,7 +164,7 @@ class OnlineAcquisitionGatewayRequest:
     """Internal request for a single provider call."""
 
     provider: str
-    action: ActionStrategy = "search"
+    action: Action = Action.SEARCH
     query: str | None = None
     identifiers: dict[str, str | None] = field(default_factory=dict)
     limit: int = 20
@@ -176,6 +174,7 @@ class OnlineAcquisitionGatewayRequest:
     selected_index: int = 0
     selected_title: str | None = None
     detail_link: str | None = None
+    timeout: float | None = None
 
 
 @dataclass
@@ -202,3 +201,13 @@ class DownloadResult:
     pmcid: str | None = None
     url: str | None = None
     warnings: list[str] = field(default_factory=list)
+
+
+# --- Provider planning ---
+
+
+class ProviderPlanItem(TypedDict):
+    """A single step in a provider execution plan."""
+
+    route: str
+    provider: str

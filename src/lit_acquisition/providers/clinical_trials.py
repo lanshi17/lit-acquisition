@@ -9,15 +9,35 @@ API docs: https://clinicaltrials.gov/data-api/api
 This provider returns clinical study metadata (trial protocols, status,
 phases, conditions, interventions). It does not return PDFs - the data
 is structured metadata only.
+
+Bot protection: the API fronts TLS-fingerprint filtering that rejects
+plain Python HTTP clients with HTTP 403 even with browser-like headers.
+When that happens we fall back to the system ``curl`` binary, whose TLS
+fingerprint passes the filter. This keeps the provider usable from
+data-center environments without adding a dependency.
 """
 
 from __future__ import annotations
 
+import asyncio
+import json
+import shutil
 from typing import Any
+from urllib.parse import urlencode
 
-import httpx
+from ..config import get_config
+from ..net.pool import get_shared_client, resolve_provider_proxy
 
-from .config import get_config
+# clinicaltrials.gov fronts its API with bot protection that rejects
+# bare HTTP-client user agents with HTTP 403; identify clearly but with
+# a conventional browser UA string.
+_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/126.0 Safari/537.36 lit-acquisition/0.3"
+    ),
+    "Accept": "application/json",
+}
 
 
 class ClinicalTrialsService:
@@ -53,16 +73,15 @@ class ClinicalTrialsService:
             "pageSize": min(max(1, limit), 1000),
             "format": "json",
         }
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-        ) as client:
-            resp = await client.get(
-                f"{self.base_url}/studies",
-                params=params,
-            )
-            resp.raise_for_status()
-            payload = resp.json()
+        client = get_shared_client(proxy=resolve_provider_proxy(self.base_url))
+        url = f"{self.base_url}/studies"
+        resp = await client.get(url, params=params, headers=_BROWSER_HEADERS)
+        if resp.status_code == 403:
+            # TLS-fingerprint bot protection — fall back to system curl.
+            payload = await self._curl_json(url, params)
+            return list(payload.get("studies") or [])
+        resp.raise_for_status()
+        payload = resp.json()
         return list(payload.get("studies") or [])
 
     async def get_study(self, nct_id: str) -> dict[str, Any] | None:
@@ -77,15 +96,49 @@ class ClinicalTrialsService:
         nct = (nct_id or "").strip()
         if not nct:
             return None
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-        ) as client:
-            resp = await client.get(f"{self.base_url}/studies/{nct}")
-            if resp.status_code == 404:
-                return None
-            resp.raise_for_status()
-            return resp.json()
+        client = get_shared_client(proxy=resolve_provider_proxy(self.base_url))
+        url = f"{self.base_url}/studies/{nct}"
+        resp = await client.get(url, headers=_BROWSER_HEADERS)
+        if resp.status_code == 403:
+            return await self._curl_json(url, {})
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        return resp.json()
+
+    async def _curl_json(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
+        """GET a JSON endpoint via the system ``curl`` binary.
+
+        Used as a fallback when ClinicalTrials.gov's TLS-fingerprint
+        filter rejects the Python HTTP client with HTTP 403. Builds the
+        command as an argument list (no shell), restricts the scheme to
+        HTTPS, and SSRF-validates the target as defense in depth. No
+        ``-L`` is passed, so curl will not follow redirects.
+        """
+        from ..net.security import validate_url_safe
+
+        validate_url_safe(url)  # SSRF guard on the (config-provided) base URL
+        curl = shutil.which("curl")
+        if not curl:
+            raise RuntimeError("HTTP 403 from clinicaltrials.gov and no system curl available for fallback")
+        full_url = url + (f"?{urlencode(params)}" if params else "")
+        proc = await asyncio.create_subprocess_exec(
+            curl,
+            "-sS",
+            "--max-time",
+            "30",
+            "--proto",
+            "=https",
+            "-H",
+            "Accept: application/json",
+            full_url,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        stdout, stderr = await proc.communicate()
+        if proc.returncode != 0:
+            raise RuntimeError(f"curl fallback failed ({proc.returncode}): {stderr.decode(errors='replace')[:200]}")
+        return json.loads(stdout.decode(errors="replace") or "{}")
 
 
 def _extract_study_fields(study: dict[str, Any]) -> dict[str, Any]:

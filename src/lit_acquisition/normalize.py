@@ -6,7 +6,7 @@ import re
 from collections.abc import Callable, Iterable, Sequence
 from typing import Any
 
-from .contracts import OnlineAcquisitionItem
+from .models import OnlineAcquisitionItem
 
 DOI_PATTERN = re.compile(r"\b10\.\d{4,9}/[^\s\"<>]+", re.IGNORECASE)
 ISSN_PATTERN = re.compile(r"\b\d{4}-\d{3}[\dX]\b", re.IGNORECASE)
@@ -231,7 +231,7 @@ def _extract_pmc_articleids(item: dict[str, Any]) -> dict[str, str]:
         value = _clean_text(entry.get("value"))
         if not value:
             continue
-        if idtype == "pmcid":
+        if idtype in ("pmcid", "pmc"):
             ids["pmcid"] = value
         elif idtype == "pmid":
             ids["pmid"] = value
@@ -740,7 +740,7 @@ def normalize_clinical_trials(item: dict[str, Any]) -> OnlineAcquisitionItem:
     Uses the flattened fields produced by ``_extract_study_fields``.
     ClinicalTrials.gov data is U.S. government public domain.
     """
-    from .clinical_trials import _extract_study_fields
+    from .providers.clinical_trials import _extract_study_fields
 
     fields = item
     # If the item still has the raw protocolSection, flatten it
@@ -831,6 +831,34 @@ def normalize_zenodo(item: dict[str, Any]) -> OnlineAcquisitionItem:
     )
 
 
+def normalize_generic(item: dict[str, Any]) -> OnlineAcquisitionItem:
+    """Best-effort normalizer for unknown providers.
+
+    Prevents silent item loss when a provider has no dedicated
+    normalizer: extracts the common title/doi/url/year/authors fields
+    from whatever shape the backend emitted.
+    """
+    title = _first(item.get("title") or item.get("article_title") or item.get("article_title_en"))
+    doi = _clean_text(item.get("doi") or item.get("DOI"))
+    if not doi:
+        doi = _find_first_match(DOI_PATTERN, _collect_strings(item, limit=50))
+    url = _clean_text(item.get("url") or item.get("URL") or item.get("link") or item.get("detail_link"))
+    year = _extract_year(item.get("year") or item.get("pubYear") or item.get("pubdate") or item.get("pubyear"))
+    return OnlineAcquisitionItem(
+        source=_clean_text(item.get("source") or item.get("_source_provider")) or "unknown",
+        title=_clean_text(title),
+        authors=_normalize_authors(item.get("authors") or item.get("author")),
+        journal=_clean_text(item.get("journal") or item.get("journalTitle") or item.get("fulljournalname")),
+        year=year,
+        doi=doi,
+        url=url,
+        links=_extract_links([url]),
+        language=_clean_text(item.get("language")),
+        identifiers={},
+        keywords=[],
+    )
+
+
 # --- Normalizer registry ---
 
 NORMALIZER_MAP: dict[str, Callable[[dict[str, Any]], OnlineAcquisitionItem]] = {
@@ -849,14 +877,25 @@ NORMALIZER_MAP: dict[str, Callable[[dict[str, Any]], OnlineAcquisitionItem]] = {
     "semantic_scholar": normalize_semantic_scholar,
     "clinical_trials": normalize_clinical_trials,
     "zenodo": normalize_zenodo,
+    "arxiv": normalize_preprint,
+    "biorxiv": normalize_preprint,
+    "medrxiv": normalize_preprint,
+    "scielo": normalize_scielo,
+    "base": normalize_base,
+    "core": normalize_core,
+    "openaire": normalize_openaire,
+    "cinii": normalize_cinii,
 }
 
 
 def normalize_items(provider: str, items: list[dict[str, Any]]) -> list[OnlineAcquisitionItem]:
-    """Normalize raw provider items to OnlineAcquisitionItem list."""
-    normalizer = NORMALIZER_MAP.get(provider)
-    if not normalizer:
-        return []
+    """Normalize raw provider items to OnlineAcquisitionItem list.
+
+    Unknown providers fall back to :func:`normalize_generic` instead of
+    silently dropping every item (the former behavior discarded results
+    whenever a backend was added without a matching normalizer entry).
+    """
+    normalizer = NORMALIZER_MAP.get(provider) or normalize_generic
     output: list[OnlineAcquisitionItem] = []
     for item in items or []:
         if not isinstance(item, dict):

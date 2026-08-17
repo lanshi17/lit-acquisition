@@ -22,7 +22,7 @@ from typing import Any
 import httpx
 from loguru import logger
 
-from .config import get_config
+from ..config import get_config
 
 DEFAULT_MODEL = "BAAI/bge-reranker-v2-m3"
 BATCH = 50
@@ -84,7 +84,7 @@ async def neural_rerank(
                 scores.extend(by_index.get(j, 0.0) for j in range(len(chunk)))
         ordered = sorted(zip(scores, candidates), key=lambda t: t[0], reverse=True)
         return [c for _, c in ordered]
-    except Exception as exc:  # noqa: BLE001 - degrade gracefully
+    except Exception as exc:
         logger.warning("neural rerank failed, keeping heuristic order: {}", exc)
         return candidates
 

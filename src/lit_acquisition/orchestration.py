@@ -11,12 +11,35 @@ import asyncio
 import hashlib
 import os
 import re
+import time as _time
+from collections.abc import Sequence
 from dataclasses import asdict
 from typing import Any
 
 from loguru import logger
 
-from .contracts import (
+from .algorithms import (
+    build_provider_plan,
+    classify_item,
+    dedupe_candidates,
+    lexical_relevance,
+    normalize_candidate,
+    rank_candidates,
+)
+from .gateway import (
+    _normalize_doi,
+    resolve_oa_url,
+    search_provider,
+)
+from .health import get_health_tracker
+from .llm import (
+    TARGET_LANGUAGES,
+    neural_rerank,
+    rerank_enabled,
+    run_relevance_gate,
+    translate_query,
+)
+from .models import (
     DownloadResult,
     OnlineAcquisitionGatewayResult,
     OnlineAcquisitionItem,
@@ -24,19 +47,10 @@ from .contracts import (
     OnlineAcquisitionResponse,
     OnlineAcquisitionRouteInfo,
     OnlineAcquisitionSourceTraceEntry,
+    ProviderPlanItem,
 )
-from .gateway import (
-    _normalize_doi,
-    download_file_from_url,
-    resolve_oa_url,
-    search_provider,
-)
-from .literature_type_classifier import classify_item
-from .normalizers import DOI_PATTERN, normalize_items
-from .query_translator import TARGET_LANGUAGES, translate_query
-from .relevance_gate import run_relevance_gate
-from .rerank import rerank_enabled
-from .search_service import build_provider_plan, dedupe_candidates, rank_candidates, search_parallel
+from .net.download import download_file_from_url
+from .normalize import DOI_PATTERN, normalize_items
 from .web_search import SearchLink, WebSearchResult
 
 PMCID_PATTERN = re.compile(r"\bPMC\d+\b", re.IGNORECASE)
@@ -123,8 +137,24 @@ async def _acquire_links_api(
     query: str,
     identifiers: dict[str, str | None],
     limit: int = 20,
+    phase_timeout: float = 30.0,
+    trace_sink: list[OnlineAcquisitionSourceTraceEntry] | None = None,
+    warning_sink: list[str] | None = None,
 ) -> list[dict[str, Any]]:
-    """Phase 1a: Search API providers in parallel, return raw items with metadata."""
+    """Phase 1a: Search API providers in parallel, return raw items with metadata.
+
+    Speed behavior:
+
+    * providers the health tracker has circuit-broken are skipped with a
+      ``SKIPPED`` trace entry instead of consuming the deadline;
+    * each provider runs under its own gateway deadline;
+    * the fan-out stops early (cancelling in-flight searches) once
+      ``max(limit * 2, 30)`` items are collected, so one slow upstream
+      cannot dominate the phase;
+    * the whole phase is bounded by ``phase_timeout``.
+    """
+    from .health import get_health_tracker
+
     doi = identifiers.get("doi")
     pmid = identifiers.get("pmid")
     pmcid = identifiers.get("pmcid")
@@ -138,31 +168,84 @@ async def _acquire_links_api(
 
     id_params = {k: v for k, v in identifiers.items() if v}
 
-    async def _search_one(provider: str) -> OnlineAcquisitionGatewayResult | None:
-        try:
-            return await search_provider(
+    tracker = get_health_tracker()
+    active: list[str] = []
+    for provider in providers:
+        if tracker.should_skip(provider):
+            entry = _source_trace_entry(
                 provider=provider,
-                query=query,
-                identifiers=id_params,
-                limit=limit,
-                raw=False,
-                params={},
+                success=False,
+                warnings=[f"SKIPPED:{provider}:circuit open after repeated failures"],
+                error="circuit_open",
             )
-        except Exception as exc:
-            logger.debug("api search {} failed: {}", provider, exc)
-            return None
-
-    results = await asyncio.gather(*[_search_one(p) for p in providers], return_exceptions=True)
-
-    all_items: list[dict[str, Any]] = []
-    for result in results:
-        if isinstance(result, Exception):
+            if trace_sink is not None:
+                trace_sink.append(entry)
+            logger.info("acquire_links: skipping unhealthy provider {}", provider)
             continue
-        if result and result.success:
-            for item in result.items:
-                if isinstance(item, dict):
-                    item["_source_provider"] = result.provider
-                    all_items.append(item)
+        active.append(provider)
+
+    sem = asyncio.Semaphore(8)
+
+    async def _search_one(provider: str) -> OnlineAcquisitionGatewayResult | None:
+        async with sem:
+            try:
+                result = await search_provider(
+                    provider=provider,
+                    query=query,
+                    identifiers=id_params,
+                    limit=limit,
+                    raw=False,
+                    params={},
+                )
+            except Exception as exc:
+                logger.debug("api search {} failed: {}", provider, exc)
+                return None
+            if trace_sink is not None:
+                trace_sink.extend(result.source_trace)
+            if warning_sink is not None:
+                warning_sink.extend(result.warnings)
+            return result
+
+    tasks = {asyncio.create_task(_search_one(p)) for p in active}
+    all_items: list[dict[str, Any]] = []
+    pending = set(tasks)
+    # Early-stop gates: enough items AND enough providers already
+    # completed. The completion floor keeps fast-but-shallow providers
+    # (crossref/doaj return full pages quickly) from cancelling the
+    # slower, higher-signal ones (pubmed/europepmc) before they answer;
+    # the item target stops one pathological slow provider from holding
+    # the phase open once results are ample.
+    early_target = max(limit * 3, 40)
+    min_done = max(3, len(active) // 2)
+    done_count = 0
+    end = _time.monotonic() + max(phase_timeout, 1.0)
+    try:
+        while pending:
+            remaining = end - _time.monotonic()
+            if remaining <= 0:
+                if warning_sink is not None:
+                    warning_sink.append(f"PHASE_TIMEOUT:api:link acquisition cut off at {phase_timeout:.0f}s budget")
+                break
+            done, pending = await asyncio.wait(pending, timeout=remaining, return_when=asyncio.FIRST_COMPLETED)
+            for task in done:
+                done_count += 1
+                try:
+                    result = task.result()
+                except Exception as exc:
+                    logger.debug("api search task failed: {}", exc)
+                    continue
+                if result and result.success:
+                    for item in result.items:
+                        if isinstance(item, dict):
+                            item["_source_provider"] = result.provider
+                            all_items.append(item)
+            if len(all_items) >= early_target and done_count >= min_done:
+                break
+    finally:
+        for task in pending:
+            task.cancel()
+        if pending:
+            await asyncio.gather(*pending, return_exceptions=True)
 
     return all_items
 
@@ -295,6 +378,86 @@ def _source_trace_entry(
     )
 
 
+def _dedupe_warnings(warnings: list[str]) -> list[str]:
+    """Order-preserving dedup; identical provider failures repeat across
+    retry attempts and language fan-outs and would otherwise flood the
+    agent with noise."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for w in warnings:
+        if w not in seen:
+            seen.add(w)
+            out.append(w)
+    return out
+
+
+def _finalize_response(
+    response: OnlineAcquisitionResponse,
+    *,
+    started_at: float,
+    source_trace: list[OnlineAcquisitionSourceTraceEntry],
+    compact: bool = False,
+) -> dict[str, Any]:
+    """Attach agent-friendly ``summary`` + ``diagnostics`` and apply compact mode.
+
+    The diagnostics block gives a caller (typically an LLM agent) a
+    structured, per-provider outcome map so it can decide whether to
+    retry, reconfigure, or relax filters — without parsing free-form
+    warnings.
+    """
+    elapsed_ms = round((_time.monotonic() - started_at) * 1000)
+    provider_reports: list[dict[str, Any]] = []
+    items_by_provider: dict[str, int] = {}
+    for entry in source_trace:
+        if entry.error == "circuit_open" or (entry.attempt == 0 and not entry.success):
+            status = "skipped"
+        else:
+            status = "ok" if entry.success else "failed"
+        provider_reports.append(
+            {
+                "provider": entry.provider,
+                "status": status,
+                "attempts": max(entry.attempt, 1),
+                "items": entry.items_count,
+                "downloads": entry.downloads_count,
+                "warnings": list(entry.warnings or []),
+                "error": entry.error,
+            }
+        )
+        if entry.success and entry.provider not in ("api", "web_search"):
+            items_by_provider[entry.provider] = items_by_provider.get(entry.provider, 0) + entry.items_count
+
+    response.diagnostics = {
+        "elapsed_ms": elapsed_ms,
+        "items_total": len(response.items),
+        "downloads_total": len(response.downloads),
+        "providers": provider_reports,
+    }
+
+    ok_count = sum(1 for r in provider_reports if r["status"] == "ok")
+    failed = sorted({r["provider"] for r in provider_reports if r["status"] == "failed"})
+    skipped = sorted({r["provider"] for r in provider_reports if r["status"] == "skipped"})
+    top = sorted(items_by_provider.items(), key=lambda kv: kv[1], reverse=True)[:3]
+
+    parts = [
+        f"{'ok' if response.success else 'failed'}: {len(response.items)} items"
+        + (f", {len(response.downloads)} downloads" if response.downloads else "")
+        + f" in {elapsed_ms / 1000:.1f}s ({ok_count} providers)"
+    ]
+    if top:
+        parts.append("top: " + ", ".join(f"{p}({n})" for p, n in top))
+    if failed:
+        parts.append("failed: " + ",".join(failed[:6]))
+    if skipped:
+        parts.append("skipped: " + ",".join(skipped[:6]))
+    response.summary = "; ".join(parts)
+
+    if compact:
+        response.candidate_links = []
+        response.raw = None
+    return response.model_dump()
+
+
 def _coerce_str(value: Any) -> str:
     """Extract first usable string from str | list | tuple | None.
 
@@ -400,7 +563,15 @@ async def _download_candidates(
     than the PDF bytes, so it is used only as a last-resort fallback.
     EuropePMC's render endpoint (``europepmc.org/articles/PMC{x}?pdf=render``)
     streams the actual PDF and is tried first.
+
+    Concurrency is bounded (semaphore) and the Unpaywall route is skipped
+    entirely when no email is configured — otherwise every DOI candidate
+    burned a request on a guaranteed HTTP 422.
     """
+    from .config import get_config
+
+    unpaywall_configured = bool(get_config().unpaywall.email.strip())
+    sem = asyncio.Semaphore(6)
 
     async def _download_one(candidate: dict[str, Any]) -> DownloadResult | None:
         doi = _coerce_str(candidate.get("doi") or candidate.get("DOI")).strip() or None
@@ -408,65 +579,68 @@ async def _download_candidates(
         if not pmid and isinstance(candidate.get("identifiers"), dict):
             pmid = _coerce_str(candidate["identifiers"].get("pmid")).strip() or None
         pmcid = _coerce_str(candidate.get("pmcid")).strip() or None
+        if not pmcid and isinstance(candidate.get("identifiers"), dict):
+            pmcid = _coerce_str(candidate["identifiers"].get("pmcid")).strip() or None
         url = _coerce_str(candidate.get("url") or candidate.get("URL")).strip() or None
         title = _coerce_str(candidate.get("title")) or "untitled"
         url_for_hash = url or doi or pmcid or title or "unknown"
         url_hash = hashlib.md5(url_for_hash.encode()).hexdigest()[:8]
         filename_stem = f"{re.sub(r'[^\w\-]', '_', title)[:70]}_{url_hash}"
 
-        # Route 1: DOI → unpaywall OA resolution
-        if doi:
-            try:
-                id_params = {"doi": doi}
-                result = await search_provider(
-                    provider="unpaywall",
-                    query="",
-                    identifiers=id_params,
-                    limit=1,
-                    raw=False,
-                    params={},
-                )
-                oa_url = resolve_oa_url(result)
-                if oa_url:
-                    file_path, final_url, warns = await download_file_from_url(oa_url, download_path, filename_stem)
+        async with sem:
+            # Route 1: DOI → unpaywall OA resolution
+            if doi and unpaywall_configured:
+                try:
+                    id_params = {"doi": doi}
+                    result = await search_provider(
+                        provider="unpaywall",
+                        query="",
+                        identifiers=id_params,
+                        limit=1,
+                        raw=False,
+                        params={},
+                    )
+                    oa_url = resolve_oa_url(result)
+                    if oa_url:
+                        file_path, final_url, warns = await download_file_from_url(oa_url, download_path, filename_stem)
+                        if file_path:
+                            return DownloadResult(
+                                file_path=file_path,
+                                source="unpaywall",
+                                doi=doi,
+                                url=final_url,
+                                warnings=warns,
+                            )
+                except Exception as exc:
+                    logger.debug("unpaywall download failed for {}: {}", doi, exc)
+
+            # Route 2: PMCID → EuropePMC render (primary) → PMC direct (fallback)
+            if pmcid:
+                pmcid_url_candidates = [
+                    f"https://europepmc.org/articles/{pmcid}?pdf=render",
+                    f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/pdf/",
+                ]
+                for pdf_url in pmcid_url_candidates:
+                    file_path, final_url, warns = await download_file_from_url(pdf_url, download_path, filename_stem)
                     if file_path:
                         return DownloadResult(
                             file_path=file_path,
-                            source="unpaywall",
-                            doi=doi,
+                            source="pmc",
+                            pmcid=pmcid,
                             url=final_url,
                             warnings=warns,
                         )
-            except Exception as exc:
-                logger.debug("unpaywall download failed for {}: {}", doi, exc)
 
-        # Route 2: PMCID → EuropePMC render (primary) → PMC direct (fallback)
-        if pmcid:
-            pmcid_url_candidates = [
-                f"https://europepmc.org/articles/{pmcid}?pdf=render",
-                f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/pdf/",
-            ]
-            for pdf_url in pmcid_url_candidates:
-                file_path, final_url, warns = await download_file_from_url(pdf_url, download_path, filename_stem)
+            # Route 3: Direct URL download
+            if url:
+                file_path, final_url, warns = await download_file_from_url(url, download_path, filename_stem)
                 if file_path:
                     return DownloadResult(
                         file_path=file_path,
-                        source="pmc",
-                        pmcid=pmcid,
+                        source=candidate.get("_source_provider", "direct"),
                         url=final_url,
                         warnings=warns,
                     )
-
-        # Route 3: Direct URL download
-        if url:
-            file_path, final_url, warns = await download_file_from_url(url, download_path, filename_stem)
-            if file_path:
-                return DownloadResult(
-                    file_path=file_path,
-                    source=candidate.get("_source_provider", "direct"),
-                    url=final_url,
-                    warnings=warns,
-                )
 
         return None
 
@@ -530,7 +704,9 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
             warnings=[f"invalid_request: {exc}"],
             route=route,
             candidate_links=[],
+            summary=f"failed: invalid request ({exc})",
         ).model_dump()
+    workflow_start = _time.monotonic()
     query = _build_query(request)
     identifiers = _extract_identifiers([request.query or ""] + request.identifiers)
     language = _resolve_language(request, identifiers)
@@ -580,7 +756,14 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
             firecrawl_links = []
     elif request.prefer == "api":
         try:
-            api_items = await _acquire_links_api(query=query, identifiers=id_params, limit=request.limit)
+            api_items = await _acquire_links_api(
+                query=query,
+                identifiers=id_params,
+                limit=request.limit,
+                phase_timeout=request.timeout,
+                trace_sink=source_trace,
+                warning_sink=warnings,
+            )
             source_trace.append(
                 _source_trace_entry(
                     provider="api",
@@ -613,6 +796,9 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
                     query=query,
                     identifiers=id_params,
                     limit=request.limit,
+                    phase_timeout=request.timeout,
+                    trace_sink=source_trace,
+                    warning_sink=warnings,
                 )
                 source_trace.append(
                     _source_trace_entry(
@@ -641,7 +827,14 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
                 fallback_used=False,
             )
         else:
-            api_task = _acquire_links_api(query=query, identifiers=id_params, limit=request.limit)
+            api_task = _acquire_links_api(
+                query=query,
+                identifiers=id_params,
+                limit=request.limit,
+                phase_timeout=request.timeout,
+                trace_sink=source_trace,
+                warning_sink=warnings,
+            )
             firecrawl_task = _acquire_links_web_search(query=query, language=language)
 
             api_result, firecrawl_result = await asyncio.gather(api_task, firecrawl_task, return_exceptions=True)
@@ -690,18 +883,24 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
                 )
 
     candidates = _merge_and_dedupe(api_items, firecrawl_links)
+    warnings = _dedupe_warnings(warnings)
 
     if not candidates:
         warnings.append("FETCH_NO_RESULT: no candidates from any source")
-        return OnlineAcquisitionResponse(
-            success=False,
-            items=[],
-            downloads=[],
-            warnings=warnings,
-            route=route,
-            raw={"source_trace": [asdict(entry) for entry in source_trace]},
-            candidate_links=[],
-        ).model_dump()
+        return _finalize_response(
+            OnlineAcquisitionResponse(
+                success=False,
+                items=[],
+                downloads=[],
+                warnings=warnings,
+                route=route,
+                raw={"source_trace": [asdict(entry) for entry in source_trace]},
+                candidate_links=[],
+            ),
+            started_at=workflow_start,
+            source_trace=source_trace,
+            compact=request.compact,
+        )
 
     # Normalize API items
     normalized_items: list[OnlineAcquisitionItem] = []
@@ -729,18 +928,32 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
 
     # === Search-only mode ===
     if request.action == "search":
-        return OnlineAcquisitionResponse(
-            success=bool(normalized_items),
-            items=normalized_items,
-            downloads=[],
-            warnings=warnings,
-            route=route,
-            raw={"source_trace": [asdict(entry) for entry in source_trace]},
-            candidate_links=clean_candidates,
-        ).model_dump()
+        return _finalize_response(
+            OnlineAcquisitionResponse(
+                success=bool(normalized_items),
+                items=normalized_items,
+                downloads=[],
+                warnings=warnings,
+                route=route,
+                raw={"source_trace": [asdict(entry) for entry in source_trace]},
+                candidate_links=clean_candidates,
+            ),
+            started_at=workflow_start,
+            source_trace=source_trace,
+            compact=request.compact,
+        )
 
     # === Phase 2: Download ===
-    download_results = await _download_candidates(candidates, download_path)
+    # Rank raw candidates by query relevance (stable: ties keep provider
+    # arrival order) so the bounded download slice targets the best items,
+    # then cap the fan-out — a few extra to absorb per-candidate failures —
+    # instead of fetching every discovered link.
+    def _candidate_title(c: dict[str, Any]) -> str:
+        return _coerce_str(c.get("title") or c.get("article_title") or c.get("article_title_en"))
+
+    candidates.sort(key=lambda c: lexical_relevance(query, _candidate_title(c)), reverse=True)
+    download_budget = max(request.limit, 10) + 5
+    download_results = await _download_candidates(candidates[:download_budget], download_path)
 
     if not download_results:
         warnings.append("FULLTEXT_UNAVAILABLE: no files downloaded")
@@ -773,14 +986,19 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
             warnings.append(f"RELEVANCE_GATE: {removed}/{gate_result.total} downloads removed as irrelevant")
             downloads = filtered
 
-    return OnlineAcquisitionResponse(
-        success=bool(download_results),
-        items=normalized_items,
-        downloads=downloads,
-        warnings=warnings,
-        route=route,
-        candidate_links=clean_candidates,
-    ).model_dump()
+    return _finalize_response(
+        OnlineAcquisitionResponse(
+            success=bool(download_results),
+            items=normalized_items,
+            downloads=downloads,
+            warnings=warnings,
+            route=route,
+            candidate_links=clean_candidates,
+        ),
+        started_at=workflow_start,
+        source_trace=source_trace,
+        compact=request.compact,
+    )
 
 
 # ── Multilingual Acquisition Workflow ──────────────────────────────────────
@@ -854,6 +1072,7 @@ async def search_language(
     query: str,
     language: str,
     candidate_limit: int = 15,
+    trace_sink: list[OnlineAcquisitionSourceTraceEntry] | None = None,
 ) -> list[dict[str, Any]]:
     """Search providers for a single language, return candidates tagged with search_lang."""
     plan = build_provider_plan(language=language)
@@ -862,6 +1081,7 @@ async def search_language(
         plan=plan,
         concurrency=4,
         candidate_limit=candidate_limit,
+        trace_sink=trace_sink,
     )
     for c in candidates:
         c["search_lang"] = language
@@ -889,7 +1109,9 @@ async def multilingual_acquisition_workflow(
             warnings=[f"invalid_request: {exc}"],
             route=route,
             candidate_links=[],
+            summary=f"failed: invalid request ({exc})",
         ).model_dump()
+    workflow_start = _time.monotonic()
 
     base_query = _build_query(request)
     warnings: list[str] = []
@@ -908,7 +1130,8 @@ async def multilingual_acquisition_workflow(
     # === Phase 1: Parallel Multi-Lingual Search ===
     per_lang_limit = max(5, request.limit // len(TARGET_LANGUAGES))
     search_tasks = [
-        search_language(query, lang, candidate_limit=per_lang_limit) for lang, query in translations.as_dict().items()
+        search_language(query, lang, candidate_limit=per_lang_limit, trace_sink=source_trace)
+        for lang, query in translations.as_dict().items()
     ]
     lang_results = await asyncio.gather(*search_tasks, return_exceptions=True)
 
@@ -939,31 +1162,36 @@ async def multilingual_acquisition_workflow(
     all_candidates = dedupe_candidates(all_candidates)
     all_candidates = rank_candidates(all_candidates, expected_title=base_query)
     if rerank_enabled():
-        from .rerank import neural_rerank
+        from .llm import neural_rerank
 
         all_candidates = await neural_rerank(base_query, all_candidates)
 
     if not all_candidates:
         warnings.append("FETCH_NO_RESULT: no candidates from any language")
-        return OnlineAcquisitionResponse(
-            success=False,
-            items=[],
-            downloads=[],
-            warnings=warnings,
-            route=OnlineAcquisitionRouteInfo(
-                prefer=request.prefer,
-                used="api",
-                reason="multilingual_parallel",
-                fallback_used=False,
+        return _finalize_response(
+            OnlineAcquisitionResponse(
+                success=False,
+                items=[],
+                downloads=[],
+                warnings=warnings,
+                route=OnlineAcquisitionRouteInfo(
+                    prefer=request.prefer,
+                    used="api",
+                    reason="multilingual_parallel",
+                    fallback_used=False,
+                ),
+                raw={
+                    "source_trace": [asdict(entry) for entry in source_trace],
+                    # Persist the per-language queries so downstream consumers
+                    # (e.g. benchmark runs) can audit translation fidelity.
+                    "translations": translations.as_dict(),
+                },
+                candidate_links=[],
             ),
-            raw={
-                "source_trace": [asdict(entry) for entry in source_trace],
-                # Persist the per-language queries so downstream consumers
-                # (e.g. benchmark runs) can audit translation fidelity.
-                "translations": translations.as_dict(),
-            },
-            candidate_links=[],
-        ).model_dump()
+            started_at=workflow_start,
+            source_trace=source_trace,
+            compact=request.compact,
+        )
 
     # Limit total candidates
     all_candidates = all_candidates[: request.limit]
@@ -1000,23 +1228,28 @@ async def multilingual_acquisition_workflow(
 
     # === Search-only mode ===
     if request.action == "search":
-        return OnlineAcquisitionResponse(
-            success=bool(normalized_items),
-            items=normalized_items,
-            downloads=[],
-            warnings=warnings,
-            route=OnlineAcquisitionRouteInfo(
-                prefer=request.prefer,
-                used="api",
-                reason="multilingual_parallel",
-                fallback_used=False,
+        return _finalize_response(
+            OnlineAcquisitionResponse(
+                success=bool(normalized_items),
+                items=normalized_items,
+                downloads=[],
+                warnings=warnings,
+                route=OnlineAcquisitionRouteInfo(
+                    prefer=request.prefer,
+                    used="api",
+                    reason="multilingual_parallel",
+                    fallback_used=False,
+                ),
+                raw={
+                    "source_trace": [asdict(entry) for entry in source_trace],
+                    "translations": translations.as_dict(),
+                },
+                candidate_links=clean_candidates,
             ),
-            raw={
-                "source_trace": [asdict(entry) for entry in source_trace],
-                "translations": translations.as_dict(),
-            },
-            candidate_links=clean_candidates,
-        ).model_dump()
+            started_at=workflow_start,
+            source_trace=source_trace,
+            compact=request.compact,
+        )
 
     # === Phase 2: Download ===
     download_path = request.download_path
@@ -1068,17 +1301,164 @@ async def multilingual_acquisition_workflow(
             warnings.append(f"RELEVANCE_GATE: {removed}/{gate_result.total} downloads removed as irrelevant")
             downloads = filtered
 
-    return OnlineAcquisitionResponse(
-        success=bool(download_results),
-        items=normalized_items,
-        downloads=downloads,
-        warnings=warnings,
-        route=OnlineAcquisitionRouteInfo(
-            prefer=request.prefer,
-            used="api",
-            reason="multilingual_parallel",
-            fallback_used=False,
+    return _finalize_response(
+        OnlineAcquisitionResponse(
+            success=bool(download_results),
+            items=normalized_items,
+            downloads=downloads,
+            warnings=warnings,
+            route=OnlineAcquisitionRouteInfo(
+                prefer=request.prefer,
+                used="api",
+                reason="multilingual_parallel",
+                fallback_used=False,
+            ),
+            raw={"source_trace": [asdict(entry) for entry in source_trace]},
+            candidate_links=clean_candidates,
         ),
-        raw={"source_trace": [asdict(entry) for entry in source_trace]},
-        candidate_links=clean_candidates,
-    ).model_dump()
+        started_at=workflow_start,
+        source_trace=source_trace,
+        compact=request.compact,
+    )
+
+
+# --- Concurrent provider fan-out (I/O orchestration) ---
+
+
+async def search_multilingual(
+    *,
+    target: str,
+    disease: str,
+    language: str = "auto",
+    candidate_limit: int = 15,
+    provider_hints: Sequence[str] | None = None,
+) -> list[dict[str, Any]]:
+    """Search across multiple providers with language-based routing.
+
+    Calls gateway.search_provider directly (not workflow).
+    """
+    query = f"{target} {disease} case report".strip()
+    if not query:
+        return []
+
+    plan = build_provider_plan(language=language, provider_hints=provider_hints)
+    plan = get_health_tracker().reorder_plan(plan)
+    collected: list[dict[str, Any]] = []
+    preferred_provider = plan[0]["provider"] if plan else None
+
+    for plan_item in plan:
+        if get_health_tracker().should_skip(plan_item["provider"]):
+            continue
+        result = await search_provider(
+            provider=plan_item["provider"],
+            query=query,
+            limit=candidate_limit,
+        )
+        items = normalize_items(result.provider, result.items) if result.success else []
+        for item in items:
+            collected.append(normalize_candidate(item.model_dump(), plan_item))
+
+        collected = dedupe_candidates(collected)
+        collected = rank_candidates(collected, expected_title=target, preferred_provider=preferred_provider)
+        if len(collected) >= candidate_limit:
+            return collected[:candidate_limit]
+
+    return rank_candidates(collected, expected_title=target, preferred_provider=preferred_provider)[:candidate_limit]
+
+
+async def search_parallel(
+    *,
+    query: str,
+    plan: list[ProviderPlanItem],
+    concurrency: int = 4,
+    candidate_limit: int = 15,
+    identifiers: dict[str, str] | None = None,
+    trace_sink: list[OnlineAcquisitionSourceTraceEntry] | None = None,
+    early_stop: bool = True,
+) -> list[dict[str, Any]]:
+    """Search multiple providers concurrently, merge and dedupe results.
+
+    Optimizations over a plain fan-out:
+
+    * circuit breaker - providers that are failing persistently (health
+      tracker) are skipped instead of consuming the deadline on every
+      request;
+    * early stop - once ``2 x candidate_limit`` raw candidates are
+      collected, the remaining in-flight searches are cancelled so one
+      slow upstream cannot dominate wall time;
+    * per-provider deadlines are enforced inside the gateway.
+    """
+    tracker = get_health_tracker()
+    active_plan: list[ProviderPlanItem] = []
+    skipped: list[str] = []
+    for item in plan:
+        if tracker.should_skip(item["provider"]):
+            skipped.append(item["provider"])
+            if trace_sink is not None:
+                trace_sink.append(
+                    OnlineAcquisitionSourceTraceEntry(
+                        provider=item["provider"],
+                        attempt=0,
+                        action="search",
+                        success=False,
+                        items_count=0,
+                        downloads_count=0,
+                        warnings=[f"SKIPPED:{item['provider']}:circuit open after repeated failures"],
+                        error="circuit_open",
+                    )
+                )
+            continue
+        active_plan.append(item)
+    if skipped:
+        logger.info("search_parallel: skipping unhealthy providers: {}", ",".join(skipped))
+
+    sem = asyncio.Semaphore(concurrency)
+    preferred_provider = active_plan[0]["provider"] if active_plan else None
+    id_params = {k: v for k, v in (identifiers or {}).items() if v}
+
+    async def _search_one(item: ProviderPlanItem) -> list[dict[str, Any]]:
+        async with sem:
+            result = await search_provider(
+                provider=item["provider"],
+                query=query,
+                identifiers=id_params,
+                limit=candidate_limit,
+            )
+            if trace_sink is not None:
+                trace_sink.extend(result.source_trace)
+            items = normalize_items(result.provider, result.items) if result.success else []
+            return [normalize_candidate(i.model_dump(), item) for i in items]
+
+    tasks = [asyncio.create_task(_search_one(item)) for item in active_plan]
+    collected: list[dict[str, Any]] = []
+    pending = set(tasks)
+    # Early-stop gates (see _acquire_links_api for rationale): item target
+    # plus a completed-provider floor for source diversity.
+    early_stop_at = candidate_limit * 2
+    min_done = max(2, len(active_plan) // 2)
+    done_count = 0
+    try:
+        while pending:
+            done, pending = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+            for task in done:
+                done_count += 1
+                try:
+                    collected.extend(task.result())
+                except Exception as exc:
+                    logger.warning("provider search task failed: {}", exc)
+            if early_stop and len(collected) >= early_stop_at and done_count >= min_done:
+                break
+    finally:
+        for task in pending:
+            task.cancel()
+        if pending:
+            await asyncio.gather(*pending, return_exceptions=True)
+
+    collected = dedupe_candidates(collected)
+    # Drop empty candidates (no title, DOI or URL): they cannot be shown to a
+    # user nor downloaded, and only dilute relevance ranking.
+    collected = [c for c in collected if (str(c.get("title") or "").strip() or c.get("doi") or c.get("url"))]
+    ranked = rank_candidates(collected, expected_title=query, preferred_provider=preferred_provider)
+    if rerank_enabled():
+        ranked = await neural_rerank(query or "", ranked)
+    return ranked[:candidate_limit]

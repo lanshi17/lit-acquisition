@@ -9,7 +9,7 @@ from lit_acquisition import (
     get_config,
     reload_config,
 )
-from lit_acquisition.normalizers import (
+from lit_acquisition.normalize import (
     normalize_clinical_trials,
     normalize_semantic_scholar,
     normalize_zenodo,

@@ -14,9 +14,8 @@ from __future__ import annotations
 
 from typing import Any
 
-import httpx
-
-from .config import get_config
+from ..config import get_config
+from ..net.pool import get_shared_client, resolve_provider_proxy
 
 
 class ZenodoService:
@@ -51,16 +50,10 @@ class ZenodoService:
             "size": min(max(1, limit), 100),
             "sort": "mostrecent",
         }
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-        ) as client:
-            resp = await client.get(
-                f"{self.base_url}/records",
-                params=params,
-            )
-            resp.raise_for_status()
-            payload = resp.json()
+        client = get_shared_client(proxy=resolve_provider_proxy(self.base_url))
+        resp = await client.get(f"{self.base_url}/records", params=params)
+        resp.raise_for_status()
+        payload = resp.json()
         hits = payload.get("hits") or {}
         return list(hits.get("hits") or [])
 
@@ -76,15 +69,12 @@ class ZenodoService:
         rid = (record_id or "").strip()
         if not rid:
             return None
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-        ) as client:
-            resp = await client.get(f"{self.base_url}/records/{rid}")
-            if resp.status_code == 404:
-                return None
-            resp.raise_for_status()
-            return resp.json()
+        client = get_shared_client(proxy=resolve_provider_proxy(self.base_url))
+        resp = await client.get(f"{self.base_url}/records/{rid}")
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        return resp.json()
 
 
 _service: ZenodoService | None = None

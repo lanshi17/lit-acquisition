@@ -19,7 +19,7 @@ net_io = None
 _NATIVE_IMPORT_ERRORS = (ImportError, RuntimeError, SystemError, OSError)
 
 try:
-    import rust_io.net as net_io  # noqa: F401
+    import rust_io.net as net_io
 
     NET_AVAILABLE = True
 except _NATIVE_IMPORT_ERRORS:

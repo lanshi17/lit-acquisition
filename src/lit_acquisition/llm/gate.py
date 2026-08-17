@@ -6,7 +6,7 @@ from disk.
 
 Usage::
 
-    from .relevance_gate import run_relevance_gate
+    from .gate import run_relevance_gate
 
     gate_result = await run_relevance_gate(
         query="Rett syndrome MECP2 mutation",
@@ -21,14 +21,18 @@ import json
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import fitz
 from loguru import logger
-from openai import AsyncOpenAI
 
-from .config import get_config
-from .utils.llm_params import resolve_max_tokens
+# NOTE: ``fitz`` (PyMuPDF) and ``openai`` are heavy imports (~2s and
+# ~10s+ cold). They are imported lazily inside the functions that need
+# them so search-only tool calls start up fast.
+if TYPE_CHECKING:
+    from openai import AsyncOpenAI
+
+from ..config import get_config
+from .params import resolve_max_tokens
 
 # ── Prompt templates ──────────────────────────────────────────────────────
 
@@ -140,6 +144,8 @@ def _extract_text(
     max_chars: int = _DEFAULT_MAX_CHARS,
 ) -> str:
     """Extract plain text from the first pages of a PDF."""
+    import fitz  # lazy: PyMuPDF is a heavy import
+
     try:
         doc = fitz.open(pdf_path)
     except Exception:
@@ -316,6 +322,8 @@ async def run_relevance_gate(
         )
 
     max_tokens = resolve_max_tokens(cfg.llm.max_tokens, percentage=0.5)
+    from openai import AsyncOpenAI  # lazy: heavy import, only needed when gating runs
+
     client = AsyncOpenAI(base_url=base_url, api_key=api_keys[0])
     sem = asyncio.Semaphore(concurrency)
 

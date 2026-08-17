@@ -19,7 +19,8 @@ from typing import Any
 import httpx
 from loguru import logger
 
-from .config import get_config
+from ..config import get_config
+from ..net.pool import get_shared_client
 
 _DEFAULT_FIELDS = (
     "title",
@@ -74,6 +75,10 @@ class SemanticScholarService:
     def _proxy(self) -> str | None:
         return get_config().network.proxy or None
 
+    def _client(self) -> httpx.AsyncClient:
+        """Pooled keep-alive client (avoids a TLS handshake per call)."""
+        return get_shared_client(proxy=self._proxy())
+
     async def search(
         self,
         query: str,
@@ -98,14 +103,10 @@ class SemanticScholarService:
             "limit": min(max(1, limit), 100),
             "fields": ",".join(fields),
         }
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-            headers=self._headers(),
-        ) as client:
-            resp = await client.get(f"{self.base_url}/paper/search", params=params)
-            resp.raise_for_status()
-            payload = resp.json()
+        client = self._client()
+        resp = await client.get(f"{self.base_url}/paper/search", params=params, headers=self._headers())
+        resp.raise_for_status()
+        payload = resp.json()
         return list(payload.get("data") or [])
 
     async def get_paper(
@@ -128,16 +129,12 @@ class SemanticScholarService:
         if not pid:
             return None
         params = {"fields": ",".join(fields)}
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
-            headers=self._headers(),
-        ) as client:
-            resp = await client.get(f"{self.base_url}/paper/{pid}", params=params)
-            if resp.status_code == 404:
-                return None
-            resp.raise_for_status()
-            return resp.json()
+        client = self._client()
+        resp = await client.get(f"{self.base_url}/paper/{pid}", params=params, headers=self._headers())
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        return resp.json()
 
     async def get_citations(
         self,
@@ -202,17 +199,14 @@ class SemanticScholarService:
             "limit": min(max(1, limit), 1000),
             "fields": ",".join(fields),
         }
-        async with httpx.AsyncClient(
-            timeout=30.0,
-            proxy=self._proxy(),
+        client = self._client()
+        resp = await client.get(
+            f"{self.base_url}/paper/{pid}/{endpoint}",
+            params=params,
             headers=self._headers(),
-        ) as client:
-            resp = await client.get(
-                f"{self.base_url}/paper/{pid}/{endpoint}",
-                params=params,
-            )
-            resp.raise_for_status()
-            payload = resp.json()
+        )
+        resp.raise_for_status()
+        payload = resp.json()
         return [
             item.get(wrapper_key) or item
             for item in (payload.get("data") or [])

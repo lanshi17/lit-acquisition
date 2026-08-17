@@ -1,28 +1,21 @@
-"""Keyword-based literature type classifier for search results.
+"""Keyword-based literature type classification (pure).
 
-Classifies articles into three categories:
+Classifies articles into:
 - case_report: Case reports, case series, clinical observations
 - sequencing: Sequencing studies (NGS, WGS, WES, gene panels)
 - functional: Functional studies (in vitro, in vivo, assays, mechanisms)
 
-Negative patterns (reviews, theses, editorials) are checked first and
-cause an immediate return of None so they are never misclassified.
+Negative patterns (reviews, theses, editorials) are checked first and cause an
+immediate return of None so they are never misclassified.
 """
 
 from __future__ import annotations
 
 import re
 from collections.abc import Sequence
-from enum import Enum
 
-from .contracts import OnlineAcquisitionItem
-
-
-class LiteratureType(str, Enum):
-    CASE_REPORT = "case_report"
-    SEQUENCING = "sequencing"
-    FUNCTIONAL = "functional"
-
+from ..enums import LiteratureType
+from ..models import OnlineAcquisitionItem
 
 # --- Negative patterns: exclude reviews, theses, editorials, etc. ---
 
@@ -33,17 +26,15 @@ _REVIEW_PATTERNS = [
     re.compile(r"\bscoping\s+review\b", re.IGNORECASE),
     re.compile(r"\bcomprehensive\s+review\b", re.IGNORECASE),
     re.compile(r"\bcritical\s+review\b", re.IGNORECASE),
-    re.compile(r"\bmini[\s-]?review\b", re.IGNORECASE),
+    re.compile(r"\bmini[\s-]review\b", re.IGNORECASE),
     re.compile(r"\bliterature\s+review\b", re.IGNORECASE),
     re.compile(r"\bstate[\s-]of[\s-]the[\s-]art\b", re.IGNORECASE),
     re.compile(r"\boverview\s+of\b", re.IGNORECASE),
     re.compile(r"\ban?\s+updated\s+review\b", re.IGNORECASE),
     re.compile(r"\breview\s+(?:article|paper)\b", re.IGNORECASE),
-    # Chinese / Japanese / Korean reviews
     re.compile(r"系统综述|系统评价|荟萃分析|meta分析|文献综述|文献回顾|综述"),
     re.compile(r"総説|レビュー|メタアナリシス|文献的考察"),
     re.compile(r"문헌고찰|체계적\s*문헌고찰|메타분석|종설"),
-    # Spanish / Portuguese / French / Italian / German / Russian / Turkish
     re.compile(r"revisi[oó]n\s+sistem[aá]tica|meta[\s-]an[aá]lisis|art[ií]culo\s+de\s+revisi[oó]n", re.IGNORECASE),
     re.compile(r"revis[aã]o\s+sistem[aá]tica|meta[\s-]an[aá]lise", re.IGNORECASE),
     re.compile(r"revue\s+syst[eé]matique|m[eé]ta[\s-]analyse|revue\s+de\s+la\s+litt[eé]rature", re.IGNORECASE),
@@ -68,13 +59,10 @@ _THESIS_PATTERNS = [
     re.compile(r"\btesi\s+di\s+(?:dottorato|laurea)\b", re.IGNORECASE),
     re.compile(r"\b(?:t[hè]se|travail)\s+(?:de\s+)?(?:doctorat|sciences|master|bachelor)\b", re.IGNORECASE),
     re.compile(r"\buniversit[eé]\s+(?:du|de\s+l|alger)\b", re.IGNORECASE),
-    # Chinese / Japanese / Korean
     re.compile(r"博士论文|硕士论文|毕业论文|学位论文|毕业设计|学位授予"),
     re.compile(r"博士論文|修士論文|卒業論文|学位論文"),
     re.compile(r"졸업논문|석사논문|박사논문|학위논문"),
-    # Russian
     re.compile(r"диссертация|кандидатская|докторская|магистерская|выпускная\s+квалификационная"),
-    # Turkish
     re.compile(r"mezuniyet\s+tezi|y[uü]ksek\s+lisans\s+tezi|doktora\s+tezi"),
 ]
 
@@ -93,7 +81,6 @@ _EDITORIAL_PATTERNS = [
     re.compile(r"\bposition\s+paper\b", re.IGNORECASE),
 ]
 
-
 # --- Keyword patterns (case-insensitive) ---
 
 _CASE_REPORT_PATTERNS = [
@@ -106,27 +93,16 @@ _CASE_REPORT_PATTERNS = [
     re.compile(r"\bwe\s+(?:report|present|describe)\s+(?:a|the|two|three|four|five)\b", re.IGNORECASE),
     re.compile(r"\bhere\s+we\s+(?:report|present|describe)\b", re.IGNORECASE),
     re.compile(r"\bour\s+(?:patient|case)\b", re.IGNORECASE),
-    # Chinese
     re.compile(r"病例报告|病例分析|病例研究|个案报道|临床病例|病例系列|病例"),
-    # Japanese
     re.compile(r"症例報告|症例研究|臨床症例|ケースレポート|症例"),
-    # Korean
     re.compile(r"증례\s*보고|증례\s*연구|임상\s*증례|케이스\s*리포트|증례"),
-    # Spanish
     re.compile(r"caso\s+cl[ií]nico|reporte\s+de\s+caso|serie\s+de\s+casos|estudio\s+de\s+caso", re.IGNORECASE),
-    # Portuguese
     re.compile(r"relato\s+de\s+caso|s[eé]rie\s+de\s+casos|caso\s+cl[ií]nico|estudo\s+de\s+caso", re.IGNORECASE),
-    # Russian
     re.compile(r"случай\s+(?:из\s+)?практики|описание\s+случая|клинический\s+случай|серия\s+случаев|казуистика"),
-    # Turkish
     re.compile(r"olgu\s+sunumu|olgu\s+bildirisi|vaka\s+sunumu|vaka\s+raporu", re.IGNORECASE),
-    # French
     re.compile(r"cas\s+clinique|observation\s+clinique", re.IGNORECASE),
-    # Italian
     re.compile(r"caso\s+clinico|case\s+report", re.IGNORECASE),
-    # German
     re.compile(r"fallbericht|kasuistik", re.IGNORECASE),
-    # Arabic
     re.compile(r"تقرير\s+حالة|حالة\s+سريرية"),
 ]
 
@@ -155,27 +131,21 @@ _SEQUENCING_PATTERNS = [
     re.compile(r"\bsequencing[\s-](?:based|method|approach|platform)\b", re.IGNORECASE),
     re.compile(r"\bNGS[\s-](?:based|panel|analysis)\b", re.IGNORECASE),
     re.compile(r"\b(?:Ion\s+Torrent|Illumina|MiSeq|NextSeq|NovaSeq|PacBio|Oxford\s+Nanopore)\b", re.IGNORECASE),
-    # Chinese
     re.compile(
         r"基因测序|基因组测序|外显子测序|靶向测序|二代测序|高通量测序|全基因组测序|全外显子测序|基因检测|基因panel"
     ),
-    # Japanese
     re.compile(
         r"遺伝子シークエンス|ゲノムシーケンシング|エクソームシーケンシング|ターゲットシーケンシング|次世代シーケンス|遺伝子検査"
     ),
-    # Korean
     re.compile(r"유전자\s*시퀀싱|게놈\s*시퀀싱|엑솜\s*시퀀싱|표적\s*시퀀싱|차세대\s*시퀀싱|유전자\s*검사"),
-    # Spanish
     re.compile(
         r"secuenciaci[oó]n\s+gen[oó]mica|secuenciaci[oó]n\s+de\s+pr[oó]xima\s+generaci[oó]n|secuenciaci[oó]n\s+del\s+exoma|panel\s+de\s+genes",
         re.IGNORECASE,
     ),
-    # Portuguese
     re.compile(
         r"sequenciamento\s+gen[oô]mico|sequenciamento\s+de\s+pr[oó]xima\s+gera[cç][aã]o|sequenciamento\s+do\s+exoma|painel\s+de\s+genes",
         re.IGNORECASE,
     ),
-    # Russian
     re.compile(
         r"секвенирование|секвенирования|геномное\s+секвенирование|экзомное\s+секвенирование|целевое\s+секвенирование|панель\s+генов|НГС|нового\s+поколения"
     ),
@@ -200,29 +170,23 @@ _FUNCTIONAL_PATTERNS = [
     re.compile(r"\bmechanis(?:m|tic)\s+stud(?:y|ies)\b", re.IGNORECASE),
     re.compile(r"\b(?:CRISPR|Cas9|gene\s+editing)\b", re.IGNORECASE),
     re.compile(r"\b(?:plasmid|vector|construct)\b.*\b(?:express|transfect)\b", re.IGNORECASE),
-    # Chinese
     re.compile(
         r"体外实验|体内实验|功能研究|功能分析|基因敲除|基因敲低|过表达|细胞系|功能验证|机制研究|蛋白表达|增殖|凋亡|迁移|侵袭"
     ),
-    # Japanese
     re.compile(
         r"in\s+vitro|in\s+vivo|機能解析|機能研究|ノックダウン|ノックアウト|過剰発現|細胞株|メカニズム研究|タンパク質発現"
     ),
-    # Korean
     re.compile(
         r"기능\s*연구|기능\s*분석|녹다운|녹아웃|과발현|세포주|메커니즘\s*연구|단백질\s*발현|apoptosis|proliferation"
     ),
-    # Spanish
     re.compile(
         r"estudio\s+funcional|an[aá]lisis\s+funcional|in\s+vitro|in\s+vivo|silenciamiento|sobreexpresi[oó]n|l[ií]neas\s+celulares",
         re.IGNORECASE,
     ),
-    # Portuguese
     re.compile(
         r"estudo\s+funcional|an[aá]lise\s+funcional|in\s+vitro|in\s+vivo|silenciamento|sobreexpress[aã]o|linhagens\s+celulares",
         re.IGNORECASE,
     ),
-    # Russian
     re.compile(
         r"функциональное\s+исследование|in\s+vitro|in\s+vivo|нокаут|нокдаун|сверхэкспрессия|клеточная\s+линия|механизм|апоптоз|пролиферация|миграция|инвазия"
     ),
@@ -243,7 +207,6 @@ def classify_item(item: OnlineAcquisitionItem) -> LiteratureType | None:
     journal = item.journal or ""
     text = f"{title} {journal}"
 
-    # Negative filters: reject reviews, theses, editorials early
     if _match_any(title, _REVIEW_PATTERNS):
         return None
     if _match_any(title, _THESIS_PATTERNS):
@@ -252,7 +215,6 @@ def classify_item(item: OnlineAcquisitionItem) -> LiteratureType | None:
         return None
 
     # Priority: case report > sequencing > functional
-    # Case reports are often co-mentioned with other types; check title specifically
     if _match_any(title, _CASE_REPORT_PATTERNS) or _match_any(journal, _CASE_REPORT_JOURNAL_PATTERNS):
         return LiteratureType.CASE_REPORT
 
@@ -266,10 +228,7 @@ def classify_item(item: OnlineAcquisitionItem) -> LiteratureType | None:
 
 
 def classify_items(items: Sequence[OnlineAcquisitionItem]) -> dict[LiteratureType, list[OnlineAcquisitionItem]]:
-    """Classify a list of items and group by type.
-
-    Items that don't match any type are excluded from the result.
-    """
+    """Classify a list of items and group by type (unmatched excluded)."""
     result: dict[LiteratureType, list[OnlineAcquisitionItem]] = {
         LiteratureType.CASE_REPORT: [],
         LiteratureType.SEQUENCING: [],

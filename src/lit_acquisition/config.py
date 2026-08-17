@@ -106,10 +106,20 @@ class NetworkConfig(BaseModel):
 
     ``no_proxy`` is a comma-separated list of domain suffixes that should
     bypass the proxy and connect directly.
+
+    Security bounds for the download path:
+
+    * ``max_redirects`` caps how many HTTP redirects a download may follow
+      (each hop is SSRF-validated); this limits redirect-loop / bounce abuse.
+    * ``max_download_bytes`` caps how much of a response body is read into
+      memory, preventing a malicious or misbehaving server from exhausting
+      memory (a denial-of-service vector).
     """
 
     proxy: str = ""
     no_proxy: str = "cn,ncbi.nlm.nih.gov,nlm.nih.gov,unpaywall.org,localhost,127.0.0.1"
+    max_redirects: int = 5
+    max_download_bytes: int = 200 * 1024 * 1024  # 200 MB
 
     def resolve_proxy_for_url(self, url: str) -> str | None:
         """Return the proxy URL to use for *url*, or ``None`` for direct."""
@@ -166,6 +176,65 @@ class ZenodoConfig(BaseModel):
     base_url: str = "https://zenodo.org/api"
 
 
+class EuropePMCConfig(BaseModel):
+    """EuropePMC REST search configuration.
+
+    The JSON search API is served from the EBI mirror
+    (``/europepmc/webservices/rest/search``); the ``www.europepmc.org``
+    web frontend returns HTML for the same path, so the mirror is the
+    default.
+    """
+
+    base_url: str = "https://www.ebi.ac.uk/europepmc/webservices/rest"
+
+
+class UnpaywallConfig(BaseModel):
+    """Unpaywall OA resolution configuration.
+
+    The Unpaywall API **requires** an ``email`` query parameter
+    (requests without one are rejected with HTTP 422). When no email
+    is configured, the provider is skipped with an actionable
+    ``CONFIG_MISSING`` warning instead of burning network calls.
+    """
+
+    email: str = ""
+    base_url: str = "https://api.unpaywall.org/v2"
+
+
+class HttpPoolConfig(BaseModel):
+    """HTTP connection-pool and timeout tuning for provider calls.
+
+    A shared keep-alive pool avoids a fresh TCP+TLS handshake per
+    provider call; per-provider deadlines stop one slow upstream from
+    dominating end-to-end latency.
+
+    ``provider_timeout`` is deliberately generous (30s) because several
+    legitimate providers (Zenodo, OpenAIRE, J-STAGE) can be slow; a
+    tighter value would fail them even though they eventually respond.
+    Wall time stays bounded because fan-out is parallel, stops early once
+    enough candidates are gathered, and the circuit breaker skips
+    providers that fail persistently.
+    """
+
+    provider_timeout: float = 30.0
+    download_timeout: float = 60.0
+    max_connections: int = 64
+    max_keepalive_connections: int = 32
+    keepalive_expiry: float = 30.0
+
+
+class AggregatorKeysConfig(BaseModel):
+    """API keys for aggregators that require registration.
+
+    BASE (Bielefeld) and CORE both require a free API key; when a key
+    is missing the corresponding provider is skipped with a
+    ``CONFIG_MISSING`` warning rather than failing at request time.
+    """
+
+    base_api_key: str = ""
+    core_api_key: str = ""
+
+
 class LitAcquisitionConfig(BaseModel):
     """Root configuration for lit-acquisition.
 
@@ -184,6 +253,10 @@ class LitAcquisitionConfig(BaseModel):
     semantic_scholar: SemanticScholarConfig = Field(default_factory=SemanticScholarConfig)
     clinical_trials: ClinicalTrialsConfig = Field(default_factory=ClinicalTrialsConfig)
     zenodo: ZenodoConfig = Field(default_factory=ZenodoConfig)
+    europepmc: EuropePMCConfig = Field(default_factory=EuropePMCConfig)
+    unpaywall: UnpaywallConfig = Field(default_factory=UnpaywallConfig)
+    http: HttpPoolConfig = Field(default_factory=HttpPoolConfig)
+    aggregator_keys: AggregatorKeysConfig = Field(default_factory=AggregatorKeysConfig)
 
 
 # ── Singleton ────────────────────────────────────────────────────────────
@@ -220,12 +293,20 @@ def configure(
     serpapi_api_key: str | None = None,
     proxy: str | None = None,
     no_proxy: str | None = None,
+    max_redirects: int | None = None,
+    max_download_bytes: int | None = None,
     pubmed_api_key: str | None = None,
     pubmed_base_url: str | None = None,
     semantic_scholar_api_key: str | None = None,
     semantic_scholar_base_url: str | None = None,
     clinical_trials_base_url: str | None = None,
     zenodo_base_url: str | None = None,
+    europepmc_base_url: str | None = None,
+    unpaywall_email: str | None = None,
+    provider_timeout: float | None = None,
+    download_timeout: float | None = None,
+    base_api_key: str | None = None,
+    core_api_key: str | None = None,
 ) -> LitAcquisitionConfig:
     """Configure the library programmatically.
 
@@ -274,6 +355,10 @@ def configure(
         cfg.network.proxy = proxy
     if no_proxy is not None:
         cfg.network.no_proxy = no_proxy
+    if max_redirects is not None:
+        cfg.network.max_redirects = max(0, min(20, max_redirects))
+    if max_download_bytes is not None:
+        cfg.network.max_download_bytes = max(1024 * 1024, max_download_bytes)
 
     if pubmed_api_key is not None:
         cfg.pubmed.api_key = pubmed_api_key
@@ -293,6 +378,26 @@ def configure(
     # Zenodo
     if zenodo_base_url is not None:
         cfg.zenodo.base_url = zenodo_base_url
+
+    # EuropePMC
+    if europepmc_base_url is not None:
+        cfg.europepmc.base_url = europepmc_base_url
+
+    # Unpaywall (email is mandatory for the API to accept requests)
+    if unpaywall_email is not None:
+        cfg.unpaywall.email = unpaywall_email
+
+    # HTTP tuning
+    if provider_timeout is not None:
+        cfg.http.provider_timeout = provider_timeout
+    if download_timeout is not None:
+        cfg.http.download_timeout = download_timeout
+
+    # Aggregator keys (BASE, CORE)
+    if base_api_key is not None:
+        cfg.aggregator_keys.base_api_key = base_api_key
+    if core_api_key is not None:
+        cfg.aggregator_keys.core_api_key = core_api_key
 
     return cfg
 
@@ -344,6 +449,18 @@ def _load_from_env() -> LitAcquisitionConfig:
         "LIT_NO_PROXY",
         "cn,ncbi.nlm.nih.gov,nlm.nih.gov,unpaywall.org,localhost,127.0.0.1",
     )
+    max_redir = os.getenv("LIT_MAX_REDIRECTS")
+    if max_redir:
+        try:
+            cfg.network.max_redirects = max(0, min(20, int(max_redir)))
+        except ValueError:
+            pass
+    max_dl = os.getenv("LIT_MAX_DOWNLOAD_BYTES")
+    if max_dl:
+        try:
+            cfg.network.max_download_bytes = max(1024 * 1024, int(max_dl))
+        except ValueError:
+            pass
 
     # PubMed
     cfg.pubmed.api_key = os.getenv("LIT_PUBMED_API_KEY", os.getenv("PUBMED_API_KEY", ""))
@@ -362,5 +479,31 @@ def _load_from_env() -> LitAcquisitionConfig:
 
     # Zenodo
     cfg.zenodo.base_url = os.getenv("LIT_ZENODO_BASE_URL", "https://zenodo.org/api")
+
+    # EuropePMC (EBI REST mirror serves JSON; the web frontend returns HTML)
+    cfg.europepmc.base_url = os.getenv(
+        "LIT_EUROPEPMC_BASE_URL", "https://www.ebi.ac.uk/europepmc/webservices/rest"
+    )
+
+    # Unpaywall (email parameter is required by the API)
+    cfg.unpaywall.email = os.getenv("LIT_UNPAYWALL_EMAIL", os.getenv("UNPAYWALL_EMAIL", ""))
+
+    # HTTP tuning
+    ptimeout = os.getenv("LIT_PROVIDER_TIMEOUT")
+    if ptimeout:
+        try:
+            cfg.http.provider_timeout = max(1.0, float(ptimeout))
+        except ValueError:
+            pass
+    dtimeout = os.getenv("LIT_DOWNLOAD_TIMEOUT")
+    if dtimeout:
+        try:
+            cfg.http.download_timeout = max(5.0, float(dtimeout))
+        except ValueError:
+            pass
+
+    # Aggregator keys
+    cfg.aggregator_keys.base_api_key = os.getenv("LIT_BASE_API_KEY", os.getenv("BASE_API_KEY", ""))
+    cfg.aggregator_keys.core_api_key = os.getenv("LIT_CORE_API_KEY", os.getenv("CORE_API_KEY", ""))
 
     return cfg

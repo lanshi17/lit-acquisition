@@ -15,13 +15,12 @@ is collected. No full-text content is accessed during traversal.
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Literal
+from typing import Any
 
 from loguru import logger
 
-from .semantic_scholar import SemanticScholarService, get_semantic_scholar_service
-
-TraversalDirection = Literal["citations", "references", "both"]
+from .enums import TraversalDirection
+from .providers.semantic_scholar import SemanticScholarService, get_semantic_scholar_service
 
 
 async def traverse_citation_graph(
@@ -123,7 +122,7 @@ async def traverse_citation_graph(
 async def _fetch_related(
     service: SemanticScholarService,
     paper_id: str,
-    direction: Literal["citations", "references"],
+    direction: str,
     limit: int,
 ) -> list[dict[str, Any]]:
     """Fetch citations or references for a single paper.

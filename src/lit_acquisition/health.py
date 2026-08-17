@@ -69,6 +69,24 @@ class ProviderHealthTracker:
 
         return sorted(plan, key=_sort_key)
 
+    def should_skip(self, provider: str) -> bool:
+        """Circuit breaker: skip providers that are failing persistently.
+
+        Opens (returns True) once the provider has at least
+        ``min_samples`` failures in the window and a success rate below
+        30%. This stops slow/dead upstreams from consuming the phase
+        deadline on every request; the provider is retried again once
+        the failure records age out of the window.
+        """
+        stats = self.get_stats(provider)
+        return stats.failure_count >= self._min_samples and stats.success_rate < 0.3
+
+    def snapshot(self) -> dict[str, ProviderStats]:
+        """Current stats for every provider seen in the window."""
+        with self._lock:
+            providers = list(self._records.keys())
+        return {p: self.get_stats(p) for p in providers}
+
 
 _singleton: ProviderHealthTracker | None = None
 _singleton_lock = threading.Lock()

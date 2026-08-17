@@ -6,7 +6,7 @@ medical literature conventions (e.g., using local gene/disease nomenclature).
 
 Usage::
 
-    from .query_translator import translate_query, TranslatedQueries
+    from .translate import translate_query, TranslatedQueries
 
     result = await translate_query("Rett syndrome MECP2 mutation case report")
     print(result.zh)  # Chinese-optimized query
@@ -16,12 +16,17 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from loguru import logger
-from openai import AsyncOpenAI
 
-from .config import get_config
-from .utils.llm_params import resolve_max_tokens
+# ``openai`` is a heavy import (~10s cold); loaded lazily when a client
+# must be constructed so search-only startup stays fast.
+if TYPE_CHECKING:
+    from openai import AsyncOpenAI
+
+from ..config import get_config
+from .params import resolve_max_tokens
 
 # ── Contracts ──────────────────────────────────────────────────────────────
 
@@ -127,6 +132,8 @@ async def translate_query(
 
     own_client = client is None
     if own_client:
+        from openai import AsyncOpenAI  # lazy: heavy import
+
         client = AsyncOpenAI(base_url=resolved_base_url, api_key=resolved_api_key)
 
     try:

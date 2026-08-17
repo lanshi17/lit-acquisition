@@ -1,0 +1,215 @@
+"""Secure file download.
+
+Handles the network download path: SSRF-safe fetching with per-hop redirect
+validation, a size cap, and HTML->PDF link extraction. This is the only place
+that performs bulk content retrieval; provider metadata fetches live in
+:mod:`providers` and :mod:`gateway`.
+"""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+from typing import Any
+from urllib.parse import urljoin
+
+from loguru import logger
+
+from .._rust_io import net_io
+from ..config import get_config
+from ..utils.text import sanitize_filename
+from .pool import get_shared_client
+from .security import redact_secrets, validate_url_safe
+
+_PDF_LINK_PATTERNS = [
+    re.compile(r'href=["\']([^"\']*\.pdf[^"\']*)["\']', re.IGNORECASE),
+    re.compile(r'href=["\']([^"\']*download[^"\']*pdf[^"\']*)["\']', re.IGNORECASE),
+]
+
+
+class DownloadSecurityError(RuntimeError):
+    """A download was blocked by a security policy (SSRF, redirect-loop, or
+    oversized body)."""
+
+
+def extract_pdf_links_from_html(html: str, base_url: str) -> list[str]:
+    """Extract absolute PDF link candidates from an HTML page."""
+    links: list[str] = []
+    for pattern in _PDF_LINK_PATTERNS:
+        for match in pattern.finditer(html):
+            href = match.group(1)
+            absolute = urljoin(base_url, href)
+            if absolute not in links:
+                links.append(absolute)
+    return links
+
+
+async def secure_fetch(
+    client: Any,
+    url: str,
+    *,
+    timeout: float,
+    max_redirects: int,
+    max_bytes: int,
+) -> tuple[bytes, str, str]:
+    """GET *url* following redirects with per-hop SSRF validation and a size
+    cap. Returns ``(content, final_url, content_type)``.
+
+    Security properties:
+
+    * each redirect hop is validated against ``validate_url_safe`` *before* a
+      connection is made, so a server cannot bounce the request into
+      private/internal address space via a redirect;
+    * the body is streamed and truncated at ``max_bytes`` (and rejected early
+      when ``Content-Length`` already exceeds it), bounding memory use against
+      a hostile or broken server.
+    """
+    current = url
+    for _hop in range(max_redirects + 1):
+        validate_url_safe(current)  # SSRF check before connecting this hop
+        async with client.stream("GET", current, follow_redirects=False, timeout=timeout) as resp:
+            if resp.status_code in (301, 302, 303, 307, 308):
+                location = resp.headers.get("location")
+                if not location:
+                    resp.raise_for_status()
+                current = urljoin(str(current), location)
+                continue
+            resp.raise_for_status()
+            content_length = resp.headers.get("content-length")
+            if content_length and content_length.isdigit() and int(content_length) > max_bytes:
+                raise DownloadSecurityError(
+                    f"download_too_large: content-length {content_length} exceeds {max_bytes} bytes"
+                )
+            content_type = str(resp.headers.get("content-type") or "").lower()
+            chunks: list[bytes] = []
+            total = 0
+            async for chunk in resp.aiter_bytes():
+                total += len(chunk)
+                if total > max_bytes:
+                    raise DownloadSecurityError(f"download_too_large: exceeded {max_bytes} bytes")
+                chunks.append(chunk)
+            return b"".join(chunks), current, content_type
+    raise DownloadSecurityError(f"too_many_redirects: exceeded {max_redirects}")
+
+
+async def download_file_from_url(
+    url: str,
+    download_path: str,
+    filename_stem: str,
+) -> tuple[str | None, str | None, list[str]]:
+    """Download a file from a direct URL. Handles HTML->PDF redirect.
+
+    If the URL returns PDF bytes (magic ``%PDF``), saves directly. If the URL
+    returns HTML, extracts PDF links from the page and retries each candidate.
+
+    Proxy routing: international sites go through the configured proxy;
+    mainland China sites connect directly (see ``NetworkConfig``).
+
+    Args:
+        url: Direct download URL.
+        download_path: Directory to save the file.
+        filename_stem: Base filename (without extension).
+
+    Returns:
+        (file_path, final_url, warnings) tuple.
+    """
+    warnings: list[str] = []
+    target = Path(download_path) / f"{sanitize_filename(filename_stem)}.pdf"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    proxy_resolver = get_config().network.resolve_proxy_for_url
+
+    queue: list[str] = [url]
+    visited: set[str] = set()
+
+    while queue:
+        current_url = queue.pop(0)
+        if current_url in visited:
+            continue
+        visited.add(current_url)
+
+        try:
+            validate_url_safe(current_url)
+        except ValueError as ssrf_exc:
+            warnings.append(f"ssrf_blocked:{redact_secrets(current_url)}:{redact_secrets(str(ssrf_exc))}")
+            continue
+
+        proxy = proxy_resolver(current_url)
+
+        # Try Rust download first (faster, has built-in retry)
+        if net_io is not None:
+            try:
+                result = await net_io.download_file(current_url, timeout_ms=30_000, proxy=proxy)
+                status = result.get("status_code", 0)
+                file_bytes: bytes = result.get("bytes", b"")
+                final_url: str = result.get("final_url", current_url)
+
+                if status == 0 or status >= 400:
+                    warnings.append(f"download_http_{status}:{redact_secrets(current_url)}")
+                    continue
+
+                if final_url != current_url:
+                    try:
+                        validate_url_safe(final_url)
+                    except ValueError as ssrf_exc:
+                        warnings.append(
+                            f"ssrf_blocked_redirect:{redact_secrets(current_url)}:{redact_secrets(str(ssrf_exc))}"
+                        )
+                        continue
+
+                if file_bytes and file_bytes[:4] == b"%PDF":
+                    target.write_bytes(file_bytes)
+                    return str(target), final_url, warnings
+
+                if file_bytes and (b"<html" in file_bytes[:2048].lower()):
+                    extra_links = extract_pdf_links_from_html(
+                        file_bytes.decode("utf-8", errors="replace"), final_url or current_url
+                    )
+                    for link in extra_links:
+                        if link not in visited:
+                            queue.append(link)
+                    continue
+
+                warnings.append(f"non_pdf_content:{redact_secrets(current_url)}")
+                continue
+
+            except Exception as exc:
+                logger.debug("rust download_file failed for {}: {}", current_url, exc)
+                warnings.append(f"rust_download_error:{redact_secrets(current_url)}:{redact_secrets(str(exc))}")
+                # Fall through to httpx fallback
+
+        # Fallback: httpx with per-hop SSRF validation, redirect cap and a
+        # download size cap (see ``secure_fetch``).
+        try:
+            net_cfg = get_config().network
+            client = get_shared_client(proxy=proxy)
+            content, final_url, content_type = await secure_fetch(
+                client,
+                current_url,
+                timeout=get_config().http.download_timeout,
+                max_redirects=net_cfg.max_redirects,
+                max_bytes=net_cfg.max_download_bytes,
+            )
+
+            if content.startswith(b"%PDF"):
+                target.write_bytes(content)
+                return str(target), final_url, warnings
+
+            if "html" in content_type or b"<html" in content[:2048].lower():
+                extra_links = extract_pdf_links_from_html(
+                    content.decode("utf-8", errors="replace"), final_url or current_url
+                )
+                for link in extra_links:
+                    if link not in visited:
+                        queue.append(link)
+                continue
+
+            warnings.append(f"non_pdf_content_type:{content_type or 'unknown'}:{redact_secrets(current_url)}")
+
+        except DownloadSecurityError as sec_exc:
+            warnings.append(f"download_blocked:{redact_secrets(current_url)}:{redact_secrets(str(sec_exc))}")
+        except ValueError as ssrf_exc:
+            warnings.append(f"ssrf_blocked:{redact_secrets(current_url)}:{redact_secrets(str(ssrf_exc))}")
+        except Exception as exc:
+            warnings.append(f"download_error:{redact_secrets(current_url)}:{redact_secrets(str(exc))}")
+
+    return None, None, warnings

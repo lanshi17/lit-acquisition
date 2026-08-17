@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock
 import pytest
 
 from lit_acquisition.citation_graph import traverse_citation_graph
-from lit_acquisition.semantic_scholar import _RELATED_FIELDS
+from lit_acquisition.providers.semantic_scholar import _RELATED_FIELDS
 
 
 def test_related_fields_exclude_tldr():

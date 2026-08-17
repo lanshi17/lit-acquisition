@@ -10,6 +10,14 @@ from typing import Any
 
 import httpx
 
+from ..net.pool import get_shared_client, resolve_provider_proxy
+
+
+def _pooled_eutils_client(base_url: str) -> httpx.AsyncClient:
+    """Shared keep-alive client for E-utilities (proxy-bypass aware:
+    ``ncbi.nlm.nih.gov`` is in the default no_proxy list)."""
+    return get_shared_client(proxy=resolve_provider_proxy(base_url))
+
 
 async def _request_with_retry(method, url: str, *, params: dict | None = None, max_attempts: int = 2):
     """Wrap an httpx request with retry on transient network errors."""
@@ -84,25 +92,25 @@ class OnlineAcquisitionPubMedService:
         if self.api_key:
             params["api_key"] = self.api_key
 
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            esearch_resp = await _request_with_retry(client.get, f"{self.base_url}/esearch.fcgi", params=params)
-            esearch_resp.raise_for_status()
-            esearch_payload = esearch_resp.json()
+        client = _pooled_eutils_client(self.base_url)
+        esearch_resp = await _request_with_retry(client.get, f"{self.base_url}/esearch.fcgi", params=params)
+        esearch_resp.raise_for_status()
+        esearch_payload = esearch_resp.json()
 
-            pmids: list[str] = esearch_payload.get("esearchresult", {}).get("idlist", []) or []
-            if not pmids:
-                return []
+        pmids: list[str] = esearch_payload.get("esearchresult", {}).get("idlist", []) or []
+        if not pmids:
+            return []
 
-            summary_params: dict[str, Any] = {
-                "db": "pubmed",
-                "id": ",".join(pmids),
-                "retmode": "json",
-            }
-            if self.api_key:
-                summary_params["api_key"] = self.api_key
-            summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
-            summary_resp.raise_for_status()
-            summary_payload = summary_resp.json()
+        summary_params: dict[str, Any] = {
+            "db": "pubmed",
+            "id": ",".join(pmids),
+            "retmode": "json",
+        }
+        if self.api_key:
+            summary_params["api_key"] = self.api_key
+        summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
+        summary_resp.raise_for_status()
+        summary_payload = summary_resp.json()
 
         records = summary_payload.get("result", {})
         candidates: list[OnlineAcquisitionPubMedCandidate] = []
@@ -154,14 +162,14 @@ class OnlineAcquisitionPubMedService:
         if self.api_key:
             fetch_params["api_key"] = self.api_key
 
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
-            summary_resp.raise_for_status()
-            summary_payload = summary_resp.json()
+        client = _pooled_eutils_client(self.base_url)
+        summary_resp = await _request_with_retry(client.get, f"{self.base_url}/esummary.fcgi", params=summary_params)
+        summary_resp.raise_for_status()
+        summary_payload = summary_resp.json()
 
-            fetch_resp = await client.get(f"{self.base_url}/efetch.fcgi", params=fetch_params)
-            fetch_resp.raise_for_status()
-            fetch_xml = fetch_resp.text
+        fetch_resp = await client.get(f"{self.base_url}/efetch.fcgi", params=fetch_params)
+        fetch_resp.raise_for_status()
+        fetch_xml = fetch_resp.text
 
         row = summary_payload.get("result", {}).get(normalized_pmid, {})
         if not row:
@@ -193,7 +201,7 @@ _pubmed_service: OnlineAcquisitionPubMedService | None = None
 def get_pubmed_service() -> OnlineAcquisitionPubMedService:
     global _pubmed_service
     if _pubmed_service is None:
-        from .config import get_config
+        from ..config import get_config
 
         cfg = get_config()
         _pubmed_service = OnlineAcquisitionPubMedService(

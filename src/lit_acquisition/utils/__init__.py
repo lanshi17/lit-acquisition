@@ -1,12 +1,12 @@
-"""Utility functions for lit-acquisition."""
+"""Small text helpers.
 
-from .llm_params import resolve_max_tokens
-from .ssrf import is_private_ip, validate_url_safe
-from .text import sanitize_filename
+Security helpers (SSRF validation, secret redaction) live in :mod:`net.security`;
+LLM parameter resolution lives in :mod:`llm.params`.
+"""
+
+from .text import sanitize_filename, strip_json_fences
 
 __all__ = [
-    "is_private_ip",
-    "resolve_max_tokens",
     "sanitize_filename",
-    "validate_url_safe",
+    "strip_json_fences",
 ]

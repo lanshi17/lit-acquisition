@@ -9,7 +9,7 @@ from lit_acquisition import (
     dedupe_candidates,
     rank_candidates,
 )
-from lit_acquisition.contracts import DownloadResult
+from lit_acquisition.models import DownloadResult
 
 
 def test_online_acquisition_request_defaults():
@@ -94,7 +94,9 @@ def test_build_provider_plan_default():
     plan = build_provider_plan()
     providers = [p["provider"] for p in plan]
     assert "crossref" in providers
-    assert "pubmed" not in providers  # auto plan uses "pmc" not "pubmed"
+    # PubMed E-utilities are a first-class channel in the auto plan
+    # (added 2026-08-14 alongside the neural rerank stage).
+    assert "pubmed" in providers
     assert "pmc" in providers
     # New providers should be in the auto plan
     assert "semantic_scholar" in providers
