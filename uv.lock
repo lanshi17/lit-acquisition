@@ -731,8 +731,6 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyjstage2" },
     { name = "pymupdf" },
-    { name = "scienceplots" },
-    { name = "scipy" },
 ]
 
 [package.optional-dependencies]
@@ -740,6 +738,10 @@ dev = [
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
+]
+paper = [
+    { name = "scienceplots" },
+    { name = "scipy" },
 ]
 rust-io = [
     { name = "rust-io" },
@@ -764,11 +766,11 @@ requires-dist = [
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.5.0" },
     { name = "rust-io", marker = "extra == 'rust-io'" },
-    { name = "scienceplots", specifier = ">=2.2.2" },
-    { name = "scipy", specifier = ">=1.18.0" },
+    { name = "scienceplots", marker = "extra == 'paper'", specifier = ">=2.2.2" },
+    { name = "scipy", marker = "extra == 'paper'", specifier = ">=1.18.0" },
     { name = "tavily-python", marker = "extra == 'web-search'", specifier = ">=0.5.0" },
 ]
-provides-extras = ["web-search", "rust-io", "dev"]
+provides-extras = ["paper", "web-search", "rust-io", "dev"]
 
 [[package]]
 name = "loguru"
