@@ -172,6 +172,22 @@ class SemanticScholarService:
         """
         return await self._get_related(paper_id, "references", "citedPaper", limit, fields)
 
+
+    async def resolve_paper_id(self, identifier: str) -> str | None:
+        """Resolve DOI/arXiv ID/title to a usable Semantic Scholar paper ID.
+
+        Public façade over :meth:`_resolve_paper_id` so callers outside
+        this module (e.g. citation-graph traversal) don't depend on a
+        private method.
+
+        Args:
+            identifier: Paper identifier to resolve.
+
+        Returns:
+            A string usable in Semantic Scholar API URLs, or ``None``.
+        """
+        return await self._resolve_paper_id(identifier)
+
     async def _get_related(
         self,
         paper_id: str,
@@ -239,8 +255,8 @@ class SemanticScholarService:
             paper = await self.get_paper(pid, fields=("paperId",))
             if paper and paper.get("paperId"):
                 return paper["paperId"]
-        except Exception as exc:
-            logger.debug("Failed to resolve paper id '{}': {}", pid, exc)
+        except httpx.HTTPError as exc:
+            logger.warning("Failed to resolve paper id '{}': {}", pid, exc)
         return None
 
 

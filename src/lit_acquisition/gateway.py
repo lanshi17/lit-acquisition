@@ -939,6 +939,7 @@ async def call_provider_with_retry(
     deterministic failures are never retried (see :func:`_is_retryable`).
     """
     all_traces: list[OnlineAcquisitionSourceTraceEntry] = []
+    all_warnings: list[str] = []
     last_result: OnlineAcquisitionGatewayResult | None = None
 
     for attempt in range(1, max_attempts + 1):
@@ -947,19 +948,22 @@ async def call_provider_with_retry(
         for trace in result.source_trace:
             trace.attempt = attempt
         all_traces.extend(result.source_trace)
+        all_warnings.extend(result.warnings)
 
         if result.success:
             result.source_trace = all_traces
+            result.warnings = all_warnings
             return result
         last_result = result
         if not _is_retryable(result):
-            break  # deterministic failure — retrying only wastes time
+            break  # deterministic failure - retrying only wastes time
         if attempt < max_attempts:
             rate_limited = any("PROVIDER_HTTP_429" in w for w in result.warnings)
             await asyncio.sleep(2.0 * attempt if rate_limited else 0.5 * attempt)
 
     if last_result:
         last_result.source_trace = all_traces
+        last_result.warnings = all_warnings
         return last_result
     return _failure_result(request.provider, RuntimeError("no result"), request.action)
 

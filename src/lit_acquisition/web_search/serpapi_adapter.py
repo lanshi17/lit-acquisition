@@ -7,11 +7,13 @@ and snippets — useful for finding academic PDFs via Google Scholar.
 
 from __future__ import annotations
 
+import asyncio
 import re
 from typing import Any
 
 from loguru import logger
 
+from ..net.security import redact_secrets
 from .adapter import SearchLink, WebSearchAdapter, WebSearchResult
 
 # Regex for PDF URLs in snippets.
@@ -66,20 +68,22 @@ class SerpApiAdapter(WebSearchAdapter):
             from serpapi import GoogleSearch
 
             params = self._build_params(query, language)
-            import asyncio
-
             loop = asyncio.get_running_loop()
-            response = await loop.run_in_executor(
-                None,
-                lambda: GoogleSearch(params).get_dict(),
+            response = await asyncio.wait_for(
+                loop.run_in_executor(None, lambda: GoogleSearch(params).get_dict()),
+                timeout=self.timeout,
             )
 
-            # Organic results (standard Google)
-            for item in response.get("organic_results", []):
+            organic = response.get("organic_results", [])
+            seen_urls: set[str] = set()
+
+            # Organic search results (standard Google / Scholar share this key)
+            for item in organic:
                 url = item.get("link", "")
                 title = item.get("title", "")
-                if not url:
+                if not url or url in seen_urls:
                     continue
+                seen_urls.add(url)
                 all_links.append(
                     SearchLink(
                         url=url,
@@ -88,25 +92,12 @@ class SerpApiAdapter(WebSearchAdapter):
                     )
                 )
 
-            # Google Scholar results (when engine=google_scholar)
-            for item in response.get("organic_results", []):
-                url = item.get("link", "")
-                title = item.get("title", "")
-                if not url or any(link.url == url for link in all_links):
-                    continue
-                all_links.append(
-                    SearchLink(
-                        url=url,
-                        source="serpapi-google_scholar",
-                        title=title or None,
-                    )
-                )
-
             # Inline PDF links from result resources (Scholar-specific)
-            for item in response.get("organic_results", []):
+            for item in organic:
                 for resource in item.get("resources", []):
                     resource_url = resource.get("link", "")
-                    if resource_url and resource_url not in {link.url for link in all_links}:
+                    if resource_url and resource_url not in seen_urls:
+                        seen_urls.add(resource_url)
                         all_links.append(
                             SearchLink(
                                 url=resource_url,
@@ -115,8 +106,12 @@ class SerpApiAdapter(WebSearchAdapter):
                             )
                         )
 
+        except TimeoutError:
+            msg = f"serpapi search timed out after {self.timeout}s"
+            logger.warning(msg)
+            warnings.append(msg)
         except Exception as exc:
-            msg = f"serpapi search failed: {exc}"
+            msg = f"serpapi search failed: {redact_secrets(str(exc))}"
             logger.warning(msg)
             warnings.append(msg)
 

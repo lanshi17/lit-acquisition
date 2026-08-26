@@ -8,10 +8,12 @@ the content Tavily already provides.
 
 from __future__ import annotations
 
+import asyncio
 import re
 
 from loguru import logger
 
+from ..net.security import redact_secrets
 from .adapter import SearchLink, WebSearchAdapter, WebSearchResult
 
 # Regex for PDF URLs in content snippets returned by Tavily.
@@ -63,17 +65,19 @@ class TavilyAdapter(WebSearchAdapter):
 
         try:
             client = self._get_client()
-            # Tavily SDK is sync — run in executor to avoid blocking the event loop.
-            import asyncio
-
+            # Tavily SDK is sync - run in executor (bounded by wait_for so a
+            # hung SDK call cannot stall the whole acquisition phase).
             loop = asyncio.get_running_loop()
-            response = await loop.run_in_executor(
-                None,
-                lambda: client.search(
-                    query=query,
-                    search_depth=self._search_depth,
-                    max_results=self.max_results,
+            response = await asyncio.wait_for(
+                loop.run_in_executor(
+                    None,
+                    lambda: client.search(
+                        query=query,
+                        search_depth=self._search_depth,
+                        max_results=self.max_results,
+                    ),
                 ),
+                timeout=self.timeout,
             )
 
             for item in response.get("results", []):
@@ -89,8 +93,12 @@ class TavilyAdapter(WebSearchAdapter):
                     )
                 )
 
+        except TimeoutError:
+            msg = f"tavily search timed out after {self.timeout}s"
+            logger.warning(msg)
+            warnings.append(msg)
         except Exception as exc:
-            msg = f"tavily search failed: {exc}"
+            msg = f"tavily search failed: {redact_secrets(str(exc))}"
             logger.warning(msg)
             warnings.append(msg)
 
@@ -111,12 +119,10 @@ class TavilyAdapter(WebSearchAdapter):
 
         try:
             client = self._get_client()
-            import asyncio
-
             loop = asyncio.get_running_loop()
-            response = await loop.run_in_executor(
-                None,
-                lambda: client.extract(url),
+            response = await asyncio.wait_for(
+                loop.run_in_executor(None, lambda: client.extract(url)),
+                timeout=self.timeout,
             )
 
             # Tavily extract returns {"results": [{"url": ..., "raw_content": ...}]}
@@ -126,7 +132,9 @@ class TavilyAdapter(WebSearchAdapter):
                     pdf_url = match.group(0)
                     links.append(SearchLink(url=pdf_url, source="tavily-extract"))
 
+        except TimeoutError:
+            logger.warning("tavily extract timed out after {}s for {}", self.timeout, url)
         except Exception as exc:
-            logger.debug("tavily extract failed for {}: {}", url, exc)
+            logger.debug("tavily extract failed for {}: {}", url, redact_secrets(str(exc)))
 
         return links

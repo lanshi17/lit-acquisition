@@ -133,6 +133,7 @@ class RelevanceGateResult:
     errors: int = 0
     judgments: list[RelevanceJudgment] = field(default_factory=list)
     removed_paths: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────
@@ -165,8 +166,13 @@ def _extract_text(
     return "\n".join(chunks)[:max_chars]
 
 
-def _parse_response(raw: str) -> tuple[bool, str, str]:
-    """Parse LLM JSON response into (relevant, doc_type, reason)."""
+def _parse_response(raw: str) -> tuple[bool, str, str, str]:
+    """Parse LLM JSON response into (relevant, doc_type, reason, error).
+
+    ``error`` is non-empty when the response could not be parsed as JSON.
+    An unparseable verdict is not an explicit ``relevant: false`` - callers
+    must surface it as an error judgment so the file is kept.
+    """
     text = raw.strip()
     # Strip markdown fences
     if text.startswith("```"):
@@ -179,9 +185,10 @@ def _parse_response(raw: str) -> tuple[bool, str, str]:
             bool(obj.get("relevant", False)),
             str(obj.get("doc_type", "")),
             str(obj.get("reason", "")),
+            "",
         )
-    except json.JSONDecodeError:
-        return False, "", "json_parse_error"
+    except json.JSONDecodeError as exc:
+        return False, "", f"json_parse_error: {exc}", "json_parse_error"
 
 
 # ── Core ──────────────────────────────────────────────────────────────────
@@ -214,7 +221,12 @@ async def _check_one(
     else:
         if not file_path or not Path(file_path).exists():
             return RelevanceJudgment(file_path=file_path, error="file_not_found")
-        text = await asyncio.to_thread(_extract_text, file_path, max_pages, max_chars)
+        try:
+            text = await asyncio.to_thread(_extract_text, file_path, max_pages, max_chars)
+        except Exception as exc:
+            # A page-level PyMuPDF exception must not crash the whole gate;
+            # keep the file by returning an error judgment.
+            return RelevanceJudgment(file_path=file_path, error=f"extract_text_failed: {exc}")
         if not text or len(text.strip()) < 30:
             return RelevanceJudgment(file_path=file_path, error="empty_text")
 
@@ -241,7 +253,16 @@ async def _check_one(
                 max_tokens=max_tokens,
             )
             raw = (resp.choices[0].message.content or "").strip()
-            relevant, doc_type, reason = _parse_response(raw)
+            relevant, doc_type, reason, parse_error = _parse_response(raw)
+            if parse_error:
+                # Unparseable verdict is not an explicit relevant:false -
+                # return an error judgment so the file is kept, not deleted.
+                return RelevanceJudgment(
+                    file_path=file_path,
+                    relevant=False,
+                    reason=reason,
+                    error=parse_error,
+                )
 
             # If literature_types is set, the LLM MUST emit a known doc_type
             # AND it must match. Missing/unknown doc_type is conservatively
@@ -313,45 +334,57 @@ async def run_relevance_gate(
         return RelevanceGateResult(
             total=len(downloads),
             relevant=len(downloads),
+            warnings=["RELEVANCE_GATE_SKIPPED: no llm config"],
         )
     if not api_keys:
         logger.warning("relevance_gate skipped: no LLM API key configured")
         return RelevanceGateResult(
             total=len(downloads),
             relevant=len(downloads),
+            warnings=["RELEVANCE_GATE_SKIPPED: no llm api key configured"],
         )
 
     max_tokens = resolve_max_tokens(cfg.llm.max_tokens, percentage=0.5)
     from openai import AsyncOpenAI  # lazy: heavy import, only needed when gating runs
 
-    client = AsyncOpenAI(base_url=base_url, api_key=api_keys[0])
-    sem = asyncio.Semaphore(concurrency)
-
-    logger.info(f"relevance_gate: checking {len(downloads)} downloads against query: {query[:80]}")
-    if literature_types:
-        logger.info(f"relevance_gate: document type filter active: {literature_types}")
-
-    tasks = [
-        _check_one(client, sem, model, query, dl, max_pages, max_chars, max_tokens, literature_types)
-        for dl in downloads
-    ]
-
     result = RelevanceGateResult(total=len(downloads))
 
-    for coro in asyncio.as_completed(tasks):
-        judgment = await coro
-        result.judgments.append(judgment)
+    async with AsyncOpenAI(
+        base_url=base_url,
+        api_key=api_keys[0],
+        timeout=cfg.llm.timeout,
+        max_retries=1,
+    ) as client:
+        sem = asyncio.Semaphore(concurrency)
 
-        if judgment.error:
-            result.errors += 1
-            # Treat errored files as relevant (keep them)
-            logger.debug(f"relevance_gate error: {judgment.file_path}: {judgment.error}")
-        elif judgment.relevant:
-            result.relevant += 1
-        else:
-            result.irrelevant += 1
-            result.removed_paths.append(judgment.file_path)
-            logger.info(f"relevance_gate: removing {Path(judgment.file_path).name} — {judgment.reason[:80]}")
+        logger.info(f"relevance_gate: checking {len(downloads)} downloads against query: {query[:80]}")
+        if literature_types:
+            logger.info(f"relevance_gate: document type filter active: {literature_types}")
+
+        tasks = [
+            _check_one(client, sem, model, query, dl, max_pages, max_chars, max_tokens, literature_types)
+            for dl in downloads
+        ]
+
+        for coro in asyncio.as_completed(tasks):
+            judgment = await coro
+            result.judgments.append(judgment)
+
+            if judgment.error:
+                result.errors += 1
+                # Treat errored files as relevant (keep them)
+                logger.warning(f"relevance_gate error: {judgment.file_path}: {judgment.error}")
+            elif judgment.relevant:
+                result.relevant += 1
+            else:
+                result.irrelevant += 1
+                result.removed_paths.append(judgment.file_path)
+                logger.info(f"relevance_gate: removing {Path(judgment.file_path).name} - {judgment.reason[:80]}")
+
+    if result.errors:
+        result.warnings.append(
+            f"RELEVANCE_GATE_ERRORS: {result.errors}/{result.total} items failed and were kept"
+        )
 
     # Delete irrelevant files from disk
     if delete_files and result.removed_paths:

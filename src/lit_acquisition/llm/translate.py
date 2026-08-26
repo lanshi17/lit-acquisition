@@ -108,33 +108,52 @@ async def translate_query(
     Args:
         query: Source query in any language.
         client: Pre-built OpenAI client (optional, built from config if omitted).
-        model: Model override (default: ``cfg.translation.model``).
-        base_url: Base URL override (default: ``cfg.translation.base_url``).
-        api_key: API key override (default: first key from ``cfg.translation.all_api_keys``).
+        model: Model override (default: ``cfg.translation.model``, falling
+            back to ``cfg.llm.model`` when unset).
+        base_url: Base URL override (default: ``cfg.translation.base_url``,
+            falling back to ``cfg.llm.base_url`` when unset).
+        api_key: API key override (default: first key from
+            ``cfg.translation.all_api_keys``, falling back to ``cfg.llm``).
 
     Returns:
         TranslatedQueries with one string per target language.
 
     Raises:
-        ValueError: If LLM config is missing or response is unparseable.
+        ValueError: If LLM config (model, base_url, or API key) is missing
+            or the response is unparseable.
     """
     if not query or not query.strip():
         raise ValueError("query must be a non-empty string")
 
     cfg = get_config()
 
-    resolved_model = model or (cfg.translation.model or "").strip()
-    resolved_base_url = (base_url or cfg.translation.base_url or "").strip().rstrip("/")
-    resolved_api_key = api_key or (cfg.translation.all_api_keys[0] if cfg.translation.all_api_keys else "")
+    # TranslationLLMConfig falls back to LLMConfig when fields are empty
+    # (same pattern as rerank._endpoint).
+    resolved_model = model or (cfg.translation.model or "").strip() or (cfg.llm.model or "").strip()
+    resolved_base_url = (
+        base_url or cfg.translation.base_url or cfg.llm.base_url or ""
+    ).strip().rstrip("/")
+    translation_keys = cfg.translation.all_api_keys
+    resolved_api_key = api_key or (translation_keys[0] if translation_keys else cfg.llm.api_key) or ""
 
     if not resolved_model or not resolved_base_url:
         raise ValueError("LLM model and base_url are required for query translation")
+    if client is None and not resolved_api_key:
+        raise ValueError(
+            "API key is required for query translation: set LIT_TRANSLATION_API_KEY "
+            "(or LIT_LLM_API_KEY to reuse the main LLM key)"
+        )
 
     own_client = client is None
     if own_client:
         from openai import AsyncOpenAI  # lazy: heavy import
 
-        client = AsyncOpenAI(base_url=resolved_base_url, api_key=resolved_api_key)
+        client = AsyncOpenAI(
+            base_url=resolved_base_url,
+            api_key=resolved_api_key,
+            timeout=cfg.translation.timeout or _DEFAULT_TIMEOUT,
+            max_retries=1,
+        )
 
     try:
         max_tokens = resolve_max_tokens(cfg.translation.max_tokens, percentage=0.25)

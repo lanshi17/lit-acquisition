@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import os
 
+from loguru import logger
 from pydantic import BaseModel, Field
 
 # ── Config models ────────────────────────────────────────────────────────
@@ -425,7 +426,7 @@ def _load_from_env() -> LitAcquisitionConfig:
         try:
             cfg.llm.max_tokens = int(max_tok)
         except ValueError:
-            pass
+            logger.warning("invalid LIT_LLM_MAX_TOKENS={!r}, keeping default {}", max_tok, cfg.llm.max_tokens)
 
     # Translation LLM
     cfg.translation.base_url = os.getenv("LIT_TRANSLATION_BASE_URL", "")
@@ -454,13 +455,15 @@ def _load_from_env() -> LitAcquisitionConfig:
         try:
             cfg.network.max_redirects = max(0, min(20, int(max_redir)))
         except ValueError:
-            pass
+            logger.warning("invalid LIT_MAX_REDIRECTS={!r}, keeping default {}", max_redir, cfg.network.max_redirects)
     max_dl = os.getenv("LIT_MAX_DOWNLOAD_BYTES")
     if max_dl:
         try:
             cfg.network.max_download_bytes = max(1024 * 1024, int(max_dl))
         except ValueError:
-            pass
+            logger.warning(
+                "invalid LIT_MAX_DOWNLOAD_BYTES={!r}, keeping default {}", max_dl, cfg.network.max_download_bytes
+            )
 
     # PubMed
     cfg.pubmed.api_key = os.getenv("LIT_PUBMED_API_KEY", os.getenv("PUBMED_API_KEY", ""))
@@ -494,13 +497,13 @@ def _load_from_env() -> LitAcquisitionConfig:
         try:
             cfg.http.provider_timeout = max(1.0, float(ptimeout))
         except ValueError:
-            pass
+            logger.warning("invalid LIT_PROVIDER_TIMEOUT={!r}, keeping default {}", ptimeout, cfg.http.provider_timeout)
     dtimeout = os.getenv("LIT_DOWNLOAD_TIMEOUT")
     if dtimeout:
         try:
             cfg.http.download_timeout = max(5.0, float(dtimeout))
         except ValueError:
-            pass
+            logger.warning("invalid LIT_DOWNLOAD_TIMEOUT={!r}, keeping default {}", dtimeout, cfg.http.download_timeout)
 
     # Aggregator keys
     cfg.aggregator_keys.base_api_key = os.getenv("LIT_BASE_API_KEY", os.getenv("BASE_API_KEY", ""))

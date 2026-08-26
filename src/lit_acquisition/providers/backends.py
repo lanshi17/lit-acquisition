@@ -22,6 +22,7 @@ Error taxonomy:
 
 from __future__ import annotations
 
+import asyncio
 import xml.etree.ElementTree as ET
 from collections.abc import Awaitable, Callable
 from typing import Any
@@ -489,6 +490,9 @@ async def search_arxiv(
         items = parse_arxiv_atom(resp.text)
         if items:
             return items
+        # arXiv asks for 3+ seconds between requests; fan-out makes immediate
+        # retries a throttling (503) risk.
+        await asyncio.sleep(1.0)
     return []
 
 

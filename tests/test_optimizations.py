@@ -296,6 +296,40 @@ def test_snapshot_reports_stats():
     assert snap["x"].success_count == 1
 
 
+
+def test_circuit_breaker_half_open_after_cooldown(monkeypatch):
+    """An open circuit allows a probe once failures age past the cooldown."""
+    import lit_acquisition.health as health_mod
+
+    tracker = ProviderHealthTracker(window_seconds=3600, min_samples=3, probe_cooldown=120.0)
+    now = 1000.0
+    monkeypatch.setattr(health_mod.time, "time", lambda: now)
+    for _ in range(3):
+        tracker.record("flaky", success=False, latency_ms=50)
+    assert tracker.should_skip("flaky") is True
+
+    # Fresh failures: still open.
+    assert tracker.should_skip("flaky") is True
+
+    # After the cooldown elapses since the last failure, a probe is allowed.
+    now += 121
+    assert tracker.should_skip("flaky") is False
+
+
+def test_health_tracker_prunes_old_records(monkeypatch):
+    """record() prunes in place so the stored list cannot grow unbounded."""
+    import lit_acquisition.health as health_mod
+
+    tracker = ProviderHealthTracker(window_seconds=10, min_samples=3)
+    now = 0.0
+    monkeypatch.setattr(health_mod.time, "time", lambda: now)
+    for _ in range(100):
+        tracker.record("p", success=True, latency_ms=1)
+    assert len(tracker._records["p"]) == 100
+    now += 11  # outside the window; next record prunes the 100 old entries
+    tracker.record("p", success=True, latency_ms=1)
+    assert len(tracker._records["p"]) == 1
+
 # ── Agent-facing response contract ───────────────────────────────────────
 
 

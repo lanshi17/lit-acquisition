@@ -277,6 +277,7 @@ async def _acquire_links_web_search(
                 TavilyAdapter(
                     api_key=ws.tavily_api_key,
                     search_depth=ws.tavily_search_depth,
+                    timeout=ws.timeout,
                     max_results=ws.max_results,
                 ),
             )
@@ -291,6 +292,7 @@ async def _acquire_links_web_search(
                 SerpApiAdapter(
                     api_key=ws.serpapi_api_key,
                     engine=ws.serpapi_engine,
+                    timeout=ws.timeout,
                     max_results=ws.max_results,
                 ),
             )
@@ -313,7 +315,7 @@ async def _acquire_links_web_search(
 
     if not adapter_specs:
         logger.info(
-            "web search skipped: no TAVILY_API_KEY, SERPAPI_API_KEY, or WEB_SEARCH_FIRECRAWL_API_KEY configured"
+            "web search skipped: no TAVILY_API_KEY, SERPAPI_API_KEY, or LIT_FIRECRAWL_API_KEY/WEB_SEARCH_API_KEY configured"
         )
         return []
 
@@ -352,6 +354,8 @@ async def _acquire_links_web_search(
                     if link.url and link.url not in seen_urls:
                         seen_urls.add(link.url)
                         all_links.append(link)
+            elif isinstance(sr, Exception):
+                logger.warning("scrape_links failed: {}", sr)
 
     return all_links
 
@@ -614,33 +618,39 @@ async def _download_candidates(
                 except Exception as exc:
                     logger.debug("unpaywall download failed for {}: {}", doi, exc)
 
-            # Route 2: PMCID → EuropePMC render (primary) → PMC direct (fallback)
+            # Route 2: PMCID -> EuropePMC render (primary) -> PMC direct (fallback)
             if pmcid:
                 pmcid_url_candidates = [
                     f"https://europepmc.org/articles/{pmcid}?pdf=render",
                     f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}/pdf/",
                 ]
-                for pdf_url in pmcid_url_candidates:
-                    file_path, final_url, warns = await download_file_from_url(pdf_url, download_path, filename_stem)
-                    if file_path:
-                        return DownloadResult(
-                            file_path=file_path,
-                            source="pmc",
-                            pmcid=pmcid,
-                            url=final_url,
-                            warnings=warns,
-                        )
+                try:
+                    for pdf_url in pmcid_url_candidates:
+                        file_path, final_url, warns = await download_file_from_url(pdf_url, download_path, filename_stem)
+                        if file_path:
+                            return DownloadResult(
+                                file_path=file_path,
+                                source="pmc",
+                                pmcid=pmcid,
+                                url=final_url,
+                                warnings=warns,
+                            )
+                except Exception as exc:
+                    logger.warning("pmc download failed for {}: {}", pmcid, exc)
 
             # Route 3: Direct URL download
             if url:
-                file_path, final_url, warns = await download_file_from_url(url, download_path, filename_stem)
-                if file_path:
-                    return DownloadResult(
-                        file_path=file_path,
-                        source=candidate.get("_source_provider", "direct"),
-                        url=final_url,
-                        warnings=warns,
-                    )
+                try:
+                    file_path, final_url, warns = await download_file_from_url(url, download_path, filename_stem)
+                    if file_path:
+                        return DownloadResult(
+                            file_path=file_path,
+                            source=candidate.get("_source_provider", "direct"),
+                            url=final_url,
+                            warnings=warns,
+                        )
+                except Exception as exc:
+                    logger.warning("direct download failed for {}: {}", url, exc)
 
         return None
 
@@ -915,8 +925,8 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
             try:
                 normalized = normalize_items("firecrawl", [item])
                 normalized_items.extend(normalized)
-            except Exception:
-                pass
+            except Exception as exc:
+                warnings.append(f"NORMALIZE_FAILED: {provider}: {exc}")
 
     normalized_items, candidates = _apply_type_filter(
         normalized_items,
@@ -982,13 +992,13 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
         relevant_paths = {j.file_path for j in gate_result.judgments if j.relevant or j.error}
         filtered = [d for d in downloads if d.get("file_path") in relevant_paths]
         removed = gate_result.irrelevant
+        warnings.extend(gate_result.warnings)
         if removed:
             warnings.append(f"RELEVANCE_GATE: {removed}/{gate_result.total} downloads removed as irrelevant")
             downloads = filtered
-
     return _finalize_response(
         OnlineAcquisitionResponse(
-            success=bool(download_results),
+            success=bool(downloads),
             items=normalized_items,
             downloads=downloads,
             warnings=warnings,
@@ -1215,8 +1225,8 @@ async def multilingual_acquisition_workflow(
             try:
                 normalized = normalize_items("crossref", [item])
                 normalized_items.extend(normalized)
-            except Exception:
-                pass
+            except Exception as exc:
+                warnings.append(f"NORMALIZE_FAILED: {provider}: {exc}")
 
     normalized_items, all_candidates = _apply_type_filter(
         normalized_items,
@@ -1297,15 +1307,15 @@ async def multilingual_acquisition_workflow(
         relevant_paths = {j.file_path for j in gate_result.judgments if j.relevant or j.error}
         filtered = [d for d in downloads if d.get("file_path") in relevant_paths]
         removed = gate_result.irrelevant
+        warnings.extend(gate_result.warnings)
         if removed:
             warnings.append(f"RELEVANCE_GATE: {removed}/{gate_result.total} downloads removed as irrelevant")
             downloads = filtered
 
     return _finalize_response(
         OnlineAcquisitionResponse(
-            success=bool(download_results),
+            success=bool(downloads),
             items=normalized_items,
-            downloads=downloads,
             warnings=warnings,
             route=OnlineAcquisitionRouteInfo(
                 prefer=request.prefer,

@@ -6,11 +6,13 @@ structured metadata extraction (title, DOI, PDF URLs).
 
 from __future__ import annotations
 
+import asyncio
 import re
 from typing import Any
 
 from loguru import logger
 
+from ..net.security import redact_secrets
 from .adapter import SearchLink, WebSearchAdapter, WebSearchResult
 
 # Fallback regex patterns for extracting PDF links from markdown/HTML
@@ -132,7 +134,9 @@ class FirecrawlAdapter(WebSearchAdapter):
 
         try:
             client = self._get_client()
-            raw_result = await client.search(query, limit=self.max_results)
+            raw_result = await asyncio.wait_for(
+                client.search(query, limit=self.max_results), timeout=self.timeout
+            )
             result = _to_dict(raw_result)
 
             web_results = result.get("web", [])
@@ -150,8 +154,12 @@ class FirecrawlAdapter(WebSearchAdapter):
                     continue
                 all_links.append(SearchLink(url=url, source="firecrawl-search", title=title or None))
 
+        except TimeoutError:
+            msg = f"firecrawl search timed out after {self.timeout}s"
+            logger.warning(msg)
+            warnings.append(msg)
         except Exception as exc:
-            msg = f"firecrawl search failed: {exc}"
+            msg = f"firecrawl search failed: {redact_secrets(str(exc))}"
             logger.warning(msg)
             warnings.append(msg)
 
@@ -174,7 +182,8 @@ class FirecrawlAdapter(WebSearchAdapter):
         # ── Try JSON mode first ──
         try:
             client = self._get_client()
-            raw_result = await client.scrape(
+            raw_result = await asyncio.wait_for(
+                client.scrape(
                 url,
                 formats=[
                     {
@@ -187,6 +196,8 @@ class FirecrawlAdapter(WebSearchAdapter):
                         ),
                     }
                 ],
+                ),
+                timeout=self.timeout,
             )
             result = _to_dict(raw_result)
 
@@ -217,13 +228,21 @@ class FirecrawlAdapter(WebSearchAdapter):
                     logger.debug("firecrawl json scrape: {} links from {}", len(links), url)
                     return links
 
+        except TimeoutError:
+            logger.warning("firecrawl json scrape timed out after {}s for {}", self.timeout, url)
         except Exception as exc:
-            logger.debug("firecrawl json scrape failed for {}, falling back to markdown: {}", url, exc)
+            logger.debug(
+                "firecrawl json scrape failed for {}, falling back to markdown: {}",
+                url,
+                redact_secrets(str(exc)),
+            )
 
         # ── Fallback: markdown + regex ──
         try:
             client = self._get_client()
-            raw_result = await client.scrape(url, formats=["markdown"])
+            raw_result = await asyncio.wait_for(
+                client.scrape(url, formats=["markdown"]), timeout=self.timeout
+            )
             result = _to_dict(raw_result)
 
             markdown = result.get("markdown", "")
@@ -236,7 +255,9 @@ class FirecrawlAdapter(WebSearchAdapter):
             if links:
                 logger.debug("firecrawl markdown fallback: {} links from {}", len(links), url)
 
+        except TimeoutError:
+            logger.warning("firecrawl markdown scrape timed out after {}s for {}", self.timeout, url)
         except Exception as exc:
-            logger.warning("firecrawl scrape failed for {}: {}", url, exc)
+            logger.warning("firecrawl scrape failed for {}: {}", url, redact_secrets(str(exc)))
 
         return links

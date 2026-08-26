@@ -215,3 +215,68 @@ async def test_secure_fetch_success_and_redirect_limit():
     loop_client = _FakeClient(redirect_loop)
     with pytest.raises(DownloadSecurityError):
         await secure_fetch(loop_client, "http://8.8.8.8/a", timeout=5, max_redirects=3, max_bytes=1024)
+
+
+# ── download_file_from_url (Rust-path cap + atomic writes) ────────────────
+
+
+@pytest.mark.asyncio
+async def test_download_rust_path_enforces_size_cap(tmp_path, monkeypatch):
+    """The Rust download path must honor max_download_bytes (OOM guard)."""
+    from lit_acquisition.net import download as dl
+
+    class _FakeNetIo:
+        async def download_file(self, url, timeout_ms=0, proxy=None):
+            return {
+                "status_code": 200,
+                "final_url": url,
+                "bytes": b"%PDF-1.4" + b"x" * 4096,
+            }
+
+    monkeypatch.setattr(dl, "net_io", _FakeNetIo())
+    monkeypatch.setattr(dl.get_config().network, "max_download_bytes", 1024)
+
+    file_path, _final_url, warnings = await dl.download_file_from_url(
+        "https://example.com/paper.pdf", str(tmp_path), "paper"
+    )
+    assert file_path is None
+    assert any("too_large" in w for w in warnings)
+    assert not list(tmp_path.glob("*.pdf"))
+
+
+@pytest.mark.asyncio
+async def test_download_rust_path_atomic_write_no_partial(tmp_path, monkeypatch):
+    """A successful download leaves only the final file, never a .part."""
+    from lit_acquisition.net import download as dl
+
+    class _FakeNetIo:
+        async def download_file(self, url, timeout_ms=0, proxy=None):
+            return {"status_code": 200, "final_url": url, "bytes": b"%PDF-1.4 content"}
+
+    monkeypatch.setattr(dl, "net_io", _FakeNetIo())
+
+    file_path, _final_url, _warnings = await dl.download_file_from_url(
+        "https://example.com/paper.pdf", str(tmp_path), "paper"
+    )
+    assert file_path is not None
+    assert (tmp_path / "paper.pdf").read_bytes().startswith(b"%PDF")
+    assert not list(tmp_path.glob("*.part"))
+
+
+@pytest.mark.asyncio
+async def test_download_rust_oversize_does_not_write_partial(tmp_path, monkeypatch):
+    """Oversized Rust responses are rejected before any write."""
+    from lit_acquisition.net import download as dl
+
+    class _FakeNetIo:
+        async def download_file(self, url, timeout_ms=0, proxy=None):
+            return {"status_code": 200, "final_url": url, "bytes": b"%PDF" + b"z" * 99999}
+
+    monkeypatch.setattr(dl, "net_io", _FakeNetIo())
+    monkeypatch.setattr(dl.get_config().network, "max_download_bytes", 1024)
+
+    file_path, _, _ = await dl.download_file_from_url(
+        "https://example.com/big.pdf", str(tmp_path), "big"
+    )
+    assert file_path is None
+    assert list(tmp_path.iterdir()) == []

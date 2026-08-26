@@ -92,8 +92,10 @@ def validate_url_safe(url: str) -> None:
 _SECRET_PARAM_RE = re.compile(r"(?i)([?&](?:api_?key|apikey|access_?token|token|secret|auth|email)=)([^&#\s]+)")
 
 # URL userinfo credentials (``scheme://user:pass@host``), e.g. an authenticated
-# proxy. Both the username and password are masked.
-_USERINFO_RE = re.compile(r"(?i)(^[a-z][a-z0-9+.\-]*://)([^:/@\s]+):([^@\s]+)@")
+# proxy. Both the username and password are masked. Unanchored on purpose so
+# credentials embedded mid-string (e.g. inside a logged message quoting the
+# URL) are redacted too, not only URLs that start with the scheme.
+_USERINFO_RE = re.compile(r"(?i)([a-z][a-z0-9+.\-]*://)([^:/@\s]+):([^@\s]+)@")
 
 
 def redact_secrets(text: str) -> str:

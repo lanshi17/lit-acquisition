@@ -79,7 +79,7 @@ class ClinicalTrialsService:
         if resp.status_code == 403:
             # TLS-fingerprint bot protection — fall back to system curl.
             payload = await self._curl_json(url, params)
-            return list(payload.get("studies") or [])
+            return list((payload or {}).get("studies") or [])
         resp.raise_for_status()
         payload = resp.json()
         return list(payload.get("studies") or [])
@@ -106,7 +106,7 @@ class ClinicalTrialsService:
         resp.raise_for_status()
         return resp.json()
 
-    async def _curl_json(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
+    async def _curl_json(self, url: str, params: dict[str, Any]) -> dict[str, Any] | None:
         """GET a JSON endpoint via the system ``curl`` binary.
 
         Used as a fallback when ClinicalTrials.gov's TLS-fingerprint
@@ -114,6 +114,10 @@ class ClinicalTrialsService:
         command as an argument list (no shell), restricts the scheme to
         HTTPS, and SSRF-validates the target as defense in depth. No
         ``-L`` is passed, so curl will not follow redirects.
+
+        Returns ``None`` on HTTP 404 (study does not exist); raises on
+        other non-2xx responses so callers do not ingest an error body
+        as a study.
         """
         from ..net.security import validate_url_safe
 
@@ -125,12 +129,18 @@ class ClinicalTrialsService:
         proc = await asyncio.create_subprocess_exec(
             curl,
             "-sS",
+            "--fail-early",
             "--max-time",
             "30",
             "--proto",
             "=https",
             "-H",
             "Accept: application/json",
+            # Same browser UA as the httpx path - the TLS filter is UA-aware.
+            "-H",
+            f"User-Agent: {_BROWSER_HEADERS.get('User-Agent', '')}",
+            "-w",
+            "\n%{http_code}",
             full_url,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
@@ -138,7 +148,14 @@ class ClinicalTrialsService:
         stdout, stderr = await proc.communicate()
         if proc.returncode != 0:
             raise RuntimeError(f"curl fallback failed ({proc.returncode}): {stderr.decode(errors='replace')[:200]}")
-        return json.loads(stdout.decode(errors="replace") or "{}")
+        raw = stdout.decode(errors="replace")
+        body, _, status_str = raw.rpartition("\n")
+        status = int(status_str.strip() or "0")
+        if status == 404:
+            return None
+        if status >= 400:
+            raise RuntimeError(f"curl fallback got HTTP {status}")
+        return json.loads(body or "{}")
 
 
 def _extract_study_fields(study: dict[str, Any]) -> dict[str, Any]:

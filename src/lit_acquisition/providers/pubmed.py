@@ -167,7 +167,9 @@ class OnlineAcquisitionPubMedService:
         summary_resp.raise_for_status()
         summary_payload = summary_resp.json()
 
-        fetch_resp = await client.get(f"{self.base_url}/efetch.fcgi", params=fetch_params)
+        fetch_resp = await _request_with_retry(
+            client.get, f"{self.base_url}/efetch.fcgi", params=fetch_params
+        )
         fetch_resp.raise_for_status()
         fetch_xml = fetch_resp.text
 

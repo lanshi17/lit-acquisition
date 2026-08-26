@@ -32,3 +32,6 @@ htmlcov/
 paper/*.aux
 paper/*.log
 paper/*.out
+
+# Added by ggshield
+.cache_ggshield
