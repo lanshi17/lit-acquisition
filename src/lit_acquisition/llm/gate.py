@@ -17,6 +17,7 @@ Usage::
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 import os
 from dataclasses import dataclass, field
@@ -194,8 +195,42 @@ def _parse_response(raw: str) -> tuple[bool, str, str, str]:
 # ── Core ──────────────────────────────────────────────────────────────────
 
 
+async def _chat_create_with_rotation(
+    clients: list[AsyncOpenAI],
+    *,
+    model: str,
+    messages: list[dict[str, str]],
+    max_tokens: int,
+) -> Any:
+    """Call chat completions, rotating to the next configured key on
+    authentication (401/403) or rate-limit (429) errors."""
+    from openai import AuthenticationError, PermissionDeniedError, RateLimitError
+
+    last_exc: Exception | None = None
+    for idx, client in enumerate(clients):
+        try:
+            return await client.chat.completions.create(
+                model=model,
+                messages=messages,
+                temperature=0.0,
+                max_tokens=max_tokens,
+            )
+        except (AuthenticationError, PermissionDeniedError, RateLimitError) as exc:
+            # Key quota exhausted / rejected: try the next configured key.
+            last_exc = exc
+            logger.warning(
+                "LLM key {}/{} failed ({}), rotating",
+                idx + 1,
+                len(clients),
+                type(exc).__name__,
+            )
+            continue
+    assert last_exc is not None
+    raise last_exc
+
+
 async def _check_one(
-    client: AsyncOpenAI,
+    clients: list[AsyncOpenAI],
     sem: asyncio.Semaphore,
     model: str,
     query: str,
@@ -243,13 +278,13 @@ async def _check_one(
 
     async with sem:
         try:
-            resp = await client.chat.completions.create(
+            resp = await _chat_create_with_rotation(
+                clients,
                 model=model,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_msg},
                 ],
-                temperature=0.0,
                 max_tokens=max_tokens,
             )
             raw = (resp.choices[0].message.content or "").strip()
@@ -349,12 +384,15 @@ async def run_relevance_gate(
 
     result = RelevanceGateResult(total=len(downloads))
 
-    async with AsyncOpenAI(
-        base_url=base_url,
-        api_key=api_keys[0],
-        timeout=cfg.llm.timeout,
-        max_retries=1,
-    ) as client:
+    async with contextlib.AsyncExitStack() as stack:
+        # One client per configured key so _check_one can rotate on
+        # 401/403/429 (key quota / rate limits) without rebuilding clients.
+        clients = [
+            await stack.enter_async_context(
+                AsyncOpenAI(base_url=base_url, api_key=key, timeout=cfg.llm.timeout, max_retries=1)
+            )
+            for key in api_keys
+        ]
         sem = asyncio.Semaphore(concurrency)
 
         logger.info(f"relevance_gate: checking {len(downloads)} downloads against query: {query[:80]}")
@@ -362,7 +400,7 @@ async def run_relevance_gate(
             logger.info(f"relevance_gate: document type filter active: {literature_types}")
 
         tasks = [
-            _check_one(client, sem, model, query, dl, max_pages, max_chars, max_tokens, literature_types)
+            _check_one(clients, sem, model, query, dl, max_pages, max_chars, max_tokens, literature_types)
             for dl in downloads
         ]
 

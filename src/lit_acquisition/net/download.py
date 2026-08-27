@@ -14,15 +14,15 @@ import os
 import re
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from loguru import logger
 
 from .._rust_io import net_io
 from ..config import get_config
 from ..utils.text import sanitize_filename
-from .pool import get_shared_client
-from .security import redact_secrets, validate_url_safe
+from .pool import build_pinned_client, get_shared_client
+from .security import redact_secrets, resolve_safe_ip, validate_url_safe
 
 _PDF_LINK_PATTERNS = [
     re.compile(r'href=["\']([^"\']*\.pdf[^"\']*)["\']', re.IGNORECASE),
@@ -124,6 +124,68 @@ async def secure_fetch(
                     raise DownloadSecurityError(f"download_too_large: exceeded {max_bytes} bytes")
                 chunks.append(chunk)
             return b"".join(chunks), current, content_type
+    raise DownloadSecurityError(f"too_many_redirects: exceeded {max_redirects}")
+
+
+async def secure_download(
+    client: Any,
+    pins: dict[str, str],
+    url: str,
+    *,
+    timeout: float,
+    max_redirects: int,
+    max_bytes: int,
+    tmp_path: Path,
+) -> tuple[str, str]:
+    """GET *url* following redirects, streaming the body straight to *tmp_path*.
+
+    Same security properties as :func:`secure_fetch` — per-hop SSRF validation
+    and a size cap — plus two production properties:
+
+    * the body is never buffered whole in memory (memory use is O(chunk size),
+      not O(file size));
+    * each hop's hostname is resolved to a validated IP which is pinned for
+      the connection (recorded in *pins*), closing the DNS-rebinding window
+      between validation and connect (honored by a pinned direct client;
+      proxied clients connect to the proxy regardless).
+
+    The caller is responsible for renaming *tmp_path* to the final location
+    (or deleting it) based on the returned content type.
+
+    Returns ``(final_url, content_type)``.
+    """
+    current = url
+    for _hop in range(max_redirects + 1):
+        parsed = urlparse(current)
+        hostname = parsed.hostname or ""
+        if not hostname:
+            raise DownloadSecurityError(f"redirect target has no hostname: {redact_secrets(current)}")
+        ip = await resolve_safe_ip(hostname)  # raises ValueError on private/unresolvable
+        pins[hostname] = ip
+        async with client.stream("GET", current, follow_redirects=False, timeout=timeout) as resp:
+            if resp.status_code in (301, 302, 303, 307, 308):
+                location = resp.headers.get("location")
+                if not location:
+                    raise DownloadSecurityError(
+                        f"redirect_without_location: HTTP {resp.status_code} from {redact_secrets(current)}"
+                    )
+                current = urljoin(str(current), location)
+                continue
+            resp.raise_for_status()
+            content_length = resp.headers.get("content-length")
+            if content_length and content_length.isdigit() and int(content_length) > max_bytes:
+                raise DownloadSecurityError(
+                    f"download_too_large: content-length {content_length} exceeds {max_bytes} bytes"
+                )
+            content_type = str(resp.headers.get("content-type") or "").lower()
+            total = 0
+            with tmp_path.open("wb") as fh:
+                async for chunk in resp.aiter_bytes():
+                    total += len(chunk)
+                    if total > max_bytes:
+                        raise DownloadSecurityError(f"download_too_large: exceeded {max_bytes} bytes")
+                    fh.write(chunk)
+            return current, content_type
     raise DownloadSecurityError(f"too_many_redirects: exceeded {max_redirects}")
 
 
@@ -246,31 +308,62 @@ async def download_file_from_url(
                 warnings.append(f"rust_download_error:{redact_secrets(current_url)}:{redact_secrets(str(exc))}")
                 # Fall through to httpx fallback
 
-        # Fallback: httpx with per-hop SSRF validation, redirect cap and a
-        # download size cap (see ``secure_fetch``).
+        # httpx path. For direct connections use a pinned client: every hop
+        # is resolved to a validated IP and connected to exactly that IP
+        # (no DNS-rebinding window), and the body streams straight to a
+        # spool file instead of being buffered whole in memory.
+        spool = target.with_name(target.stem + ".spool")
+        spool_created = False
+        pinned_client = None
         try:
-            client = get_shared_client(proxy=proxy)
-            content, final_url, content_type = await secure_fetch(
-                client,
+            pins: dict[str, str] = {}
+            if proxy:
+                # Proxy connections dial the proxy, not the origin - IP
+                # pinning is moot; keep the shared (possibly proxied) client.
+                client = get_shared_client(proxy=proxy)
+                content, final_url, content_type = await secure_fetch(
+                    client,
+                    current_url,
+                    timeout=get_config().http.download_timeout,
+                    max_redirects=net_cfg.max_redirects,
+                    max_bytes=max_bytes,
+                )
+                if content.startswith(b"%PDF"):
+                    _atomic_write(target, content)
+                    return str(target), final_url, warnings
+                if "html" in content_type or b"<html" in content[:2048].lower():
+                    for link in extract_pdf_links_from_html(
+                        content.decode("utf-8", errors="replace"), current_url
+                    ):
+                        if link not in visited and len(queue) < MAX_LINK_CHASE:
+                            queue.append(link)
+                    continue
+                warnings.append(f"non_pdf_content_type:{content_type or 'unknown'}:{redact_secrets(current_url)}")
+                continue
+
+            pinned_client = build_pinned_client(pins, timeout=get_config().http.download_timeout)
+            spool_created = True
+            final_url, content_type = await secure_download(
+                pinned_client,
+                pins,
                 current_url,
                 timeout=get_config().http.download_timeout,
                 max_redirects=net_cfg.max_redirects,
                 max_bytes=max_bytes,
+                tmp_path=spool,
             )
-
-            if content.startswith(b"%PDF"):
-                _atomic_write(target, content)
+            with spool.open("rb") as fh:
+                head = fh.read(2048)
+            if head[:4] == b"%PDF":
+                os.replace(spool, target)  # spool is complete -> publish atomically
+                spool_created = False
                 return str(target), final_url, warnings
-
-            if "html" in content_type or b"<html" in content[:2048].lower():
-                extra_links = extract_pdf_links_from_html(
-                    content.decode("utf-8", errors="replace"), final_url or current_url
-                )
-                for link in extra_links:
+            if "html" in content_type or b"<html" in head.lower():
+                html_text = spool.read_text(encoding="utf-8", errors="replace")
+                for link in extract_pdf_links_from_html(html_text, final_url or current_url):
                     if link not in visited and len(queue) < MAX_LINK_CHASE:
                         queue.append(link)
                 continue
-
             warnings.append(f"non_pdf_content_type:{content_type or 'unknown'}:{redact_secrets(current_url)}")
 
         except DownloadSecurityError as sec_exc:
@@ -285,5 +378,13 @@ async def download_file_from_url(
             warnings.append(f"download_error:{redact_secrets(current_url)}:{redact_secrets(str(exc))}")
         except Exception as exc:
             warnings.append(f"download_error:{redact_secrets(current_url)}:{redact_secrets(str(exc))}")
+        finally:
+            if spool_created:
+                try:
+                    spool.unlink(missing_ok=True)
+                except OSError:
+                    pass
+            if pinned_client is not None:
+                await pinned_client.aclose()
 
     return None, None, warnings

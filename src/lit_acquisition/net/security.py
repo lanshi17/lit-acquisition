@@ -7,12 +7,13 @@ space. It is applied to every download candidate *and* to every hop of an
 HTTP redirect chain (see :mod:`net.download`), so a malicious server cannot
 bounce a request into the internal network via a redirect.
 
-Residual risk (documented): validation resolves DNS at check time while the
-HTTP client resolves again at connect time, so a determined attacker with a
-rebinding DNS server could still race the two lookups. Fully closing that
-requires pinning the resolved IP into the transport, which is out of scope
-here; per-hop validation nonetheless blocks the common static-redirect and
-direct-internal cases.
+Residual risk (documented): ``validate_url_safe`` resolves DNS at check
+time. The direct download path (:func:`net.download.secure_download`)
+closes the rebinding window by resolving via :func:`resolve_safe_ip` and
+pinning that validated IP into the transport, so the connection is made
+to the exact address that passed validation. The proxied metadata path
+connects to the proxy (which does its own resolution), so pinning is moot
+there.
 
 Privacy
 -------
@@ -25,6 +26,7 @@ otherwise leak them.
 
 from __future__ import annotations
 
+import asyncio
 import ipaddress
 import re
 import socket
@@ -69,6 +71,33 @@ def is_private_ip(hostname: str) -> bool:
             return True
     return False
 
+async def resolve_safe_ip(hostname: str) -> str:
+    """Resolve *hostname* and return the first globally-routable IP address.
+
+    Runs the (blocking) DNS lookup in a worker thread so the event loop is
+    never stalled. The returned IP can be pinned into the HTTP transport so
+    the connection is made to the exact address that was validated — this
+    closes the DNS-rebinding TOCTOU gap between validation and connect time.
+
+    Raises:
+        ValueError: If the host does not resolve or only resolves to
+            private/reserved addresses.
+    """
+
+    def _resolve() -> str:
+        try:
+            addrinfos = socket.getaddrinfo(hostname, None, proto=socket.IPPROTO_TCP)
+        except socket.gaierror as exc:
+            raise ValueError(f"could not resolve hostname: {hostname}") from exc
+        for _family, _type, _proto, _canonname, sockaddr in addrinfos:
+            try:
+                ip = _unwrap_ip(sockaddr[0])
+            except ValueError:
+                continue
+            if not _is_unsafe_ip(ip):
+                return str(ip)
+        raise ValueError(f"hostname resolves only to private/reserved addresses: {hostname}")
+    return await asyncio.to_thread(_resolve)
 
 def validate_url_safe(url: str) -> None:
     """Raise ValueError if *url* targets a private/reserved IP (SSRF guard).

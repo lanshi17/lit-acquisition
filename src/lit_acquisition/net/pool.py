@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import asyncio
 import threading
+from typing import Any
 
 import httpx
 from loguru import logger
@@ -49,6 +50,72 @@ def _build_client(proxy: str | None, timeout: float) -> httpx.AsyncClient:
         trust_env=False,
         follow_redirects=True,
         max_redirects=max(0, net_cfg.max_redirects),
+        headers=dict(_DEFAULT_HEADERS),
+    )
+
+
+def _pinned_network_backend(pins: dict[str, str]) -> object:
+    """Return an httpcore network backend that connects to pinned IPs.
+
+    *pins* maps hostname -> validated IP. httpcore passes the original
+    hostname to ``connect_tcp`` (and keeps using it for TLS SNI and
+    certificate verification); we dial the pinned IP instead, so the TCP
+    connection goes to the exact address that passed SSRF validation —
+    closing the DNS-rebinding TOCTOU gap.
+    """
+    from httpcore import AsyncNetworkBackend
+    from httpcore._backends.anyio import AnyIOBackend
+
+
+    class _PinnedBackend(AsyncNetworkBackend):
+        def __init__(self) -> None:
+            self._base = AnyIOBackend()
+
+        async def connect_tcp(self, host, port, timeout=None, local_address=None, socket_options=None):
+            target = pins.get(host, host)
+            return await self._base.connect_tcp(
+                target, port, timeout=timeout, local_address=local_address, socket_options=socket_options
+            )
+
+    return _PinnedBackend()
+
+
+class PinnedHTTPTransport(httpx.AsyncHTTPTransport):
+    """AsyncHTTPTransport whose pool dials hostname -> pinned IP addresses."""
+
+    def __init__(self, *args: Any, pins: dict[str, str] | None = None, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self._pins = pins or {}
+        # Inject the custom backend into the already-built connection pool.
+        try:
+            pool = self._pool
+            pool._network_backend = _pinned_network_backend(self._pins)  # type: ignore[attr-defined]
+        except Exception as exc:  # pragma: no cover - defensive against httpx internals
+            logger.debug("could not install pinned network backend: {}", exc)
+
+
+def build_pinned_client(pins: dict[str, str], *, timeout: float) -> httpx.AsyncClient:
+    """Build a one-shot client that pins validated IPs (direct connections).
+
+    Used for bulk downloads where the resolved IP must not change between
+    SSRF validation and the actual connection. Not pooled (each download
+    has its own redirect-chain pin set); callers must ``aclose()`` it.
+    """
+    cfg = get_config().http
+    limits = httpx.Limits(
+        max_connections=cfg.max_connections,
+        max_keepalive_connections=cfg.max_keepalive_connections,
+        keepalive_expiry=cfg.keepalive_expiry,
+    )
+    transport = PinnedHTTPTransport(
+        limits=limits,
+        trust_env=False,
+        pins=pins,
+    )
+    return httpx.AsyncClient(
+        timeout=timeout,
+        transport=transport,
+        follow_redirects=False,  # download code follows hops manually for pinning
         headers=dict(_DEFAULT_HEADERS),
     )
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from lit_acquisition.config import LitAcquisitionConfig
-from lit_acquisition.net.download import DownloadSecurityError, secure_fetch
+from lit_acquisition.net.download import DownloadSecurityError, secure_download, secure_fetch
 from lit_acquisition.net.security import is_private_ip, redact_secrets, validate_url_safe
 
 # ── is_private_ip ──────────────────────────────────────────────────────────
@@ -280,3 +280,90 @@ async def test_download_rust_oversize_does_not_write_partial(tmp_path, monkeypat
     )
     assert file_path is None
     assert list(tmp_path.iterdir()) == []
+
+
+# ── secure_download (pinned streaming to spool file) ──────────────────────
+
+
+@pytest.mark.asyncio
+async def test_secure_download_streams_to_file_and_pins(tmp_path, monkeypatch):
+    from lit_acquisition.net import download as dl
+
+    async def fake_resolve(hostname):
+        return "93.184.216.34"  # pretend host resolves to a public IP
+
+    monkeypatch.setattr(dl, "resolve_safe_ip", fake_resolve)
+
+    def responder(url):
+        return _FakeResp(
+            status_code=200,
+            headers={"content-type": "application/pdf"},
+            chunks=[b"%PDF-1.4", b" body"],
+        )
+
+    client = _FakeClient(responder)
+    spool = tmp_path / "x.spool"
+    pins: dict = {}
+    final_url, ctype = await secure_download(
+        client,
+        pins,
+        "http://example.com/doc.pdf",
+        timeout=5,
+        max_redirects=5,
+        max_bytes=1024,
+        tmp_path=spool,
+    )
+    assert final_url == "http://example.com/doc.pdf"
+    assert ctype == "application/pdf"
+    assert spool.read_bytes() == b"%PDF-1.4 body"
+    assert pins == {"example.com": "93.184.216.34"}
+
+
+@pytest.mark.asyncio
+async def test_secure_download_cap_rejects_oversized(tmp_path, monkeypatch):
+    from lit_acquisition.net import download as dl
+
+    async def fake_resolve(hostname):
+        return "93.184.216.34"
+
+    monkeypatch.setattr(dl, "resolve_safe_ip", fake_resolve)
+
+    def responder(url):
+        return _FakeResp(status_code=200, headers={}, chunks=[b"b" * 4096])
+
+    client = _FakeClient(responder)
+    spool = tmp_path / "x.spool"
+    with pytest.raises(DownloadSecurityError):
+        await secure_download(
+            client,
+            {},
+            "http://example.com/big.pdf",
+            timeout=5,
+            max_redirects=5,
+            max_bytes=100,
+            tmp_path=spool,
+        )
+    # Partial spool left for caller to clean up; never silently treated as complete.
+
+
+@pytest.mark.asyncio
+async def test_secure_download_blocks_private_target(tmp_path, monkeypatch):
+    from lit_acquisition.net import download as dl
+
+    async def fake_resolve(hostname):
+        raise ValueError(f"hostname resolves only to private/reserved addresses: {hostname}")
+
+    monkeypatch.setattr(dl, "resolve_safe_ip", fake_resolve)
+
+    client = _FakeClient(lambda url: _FakeResp(200, {}, [b"x"]))
+    spool = tmp_path / "x.spool"
+    with pytest.raises(ValueError):
+        await secure_download(
+            client,
+            {},
+            "http://intranet.internal/doc.pdf",
+            timeout=5,
+            max_redirects=5,
+            max_bytes=1024,
+            tmp_path=spool,
+        )

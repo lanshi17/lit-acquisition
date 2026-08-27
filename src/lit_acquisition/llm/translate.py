@@ -134,7 +134,9 @@ async def translate_query(
         base_url or cfg.translation.base_url or cfg.llm.base_url or ""
     ).strip().rstrip("/")
     translation_keys = cfg.translation.all_api_keys
-    resolved_api_key = api_key or (translation_keys[0] if translation_keys else cfg.llm.api_key) or ""
+    fallback_keys = [cfg.llm.api_key] if cfg.llm.api_key else []
+    all_keys = ([api_key] if api_key else []) or list(translation_keys) or fallback_keys
+    resolved_api_key = all_keys[0] if all_keys else ""
 
     if not resolved_model or not resolved_base_url:
         raise ValueError("LLM model and base_url are required for query translation")
@@ -148,24 +150,47 @@ async def translate_query(
     if own_client:
         from openai import AsyncOpenAI  # lazy: heavy import
 
-        client = AsyncOpenAI(
-            base_url=resolved_base_url,
-            api_key=resolved_api_key,
-            timeout=cfg.translation.timeout or _DEFAULT_TIMEOUT,
-            max_retries=1,
-        )
+        # One client per configured key for rotation on 401/403/429.
+        clients = [
+            AsyncOpenAI(
+                base_url=resolved_base_url,
+                api_key=key,
+                timeout=cfg.translation.timeout or _DEFAULT_TIMEOUT,
+                max_retries=1,
+            )
+            for key in all_keys
+        ]
 
-    try:
-        max_tokens = resolve_max_tokens(cfg.translation.max_tokens, percentage=0.25)
-        resp = await client.chat.completions.create(
+    async def _call(active_client):
+        return await active_client.chat.completions.create(
             model=resolved_model,
             messages=[
                 {"role": "system", "content": _SYSTEM_PROMPT},
                 {"role": "user", "content": _USER_TEMPLATE.format(query=query.strip())},
             ],
             temperature=0.2,
-            max_tokens=min(max_tokens, _DEFAULT_MAX_TOKENS),
+            max_tokens=min(resolve_max_tokens(cfg.translation.max_tokens, percentage=0.25), _DEFAULT_MAX_TOKENS),
         )
+
+    try:
+        if not own_client:
+            resp = await _call(client)
+        else:
+            from openai import AuthenticationError, PermissionDeniedError, RateLimitError
+
+            resp = None
+            last_exc: Exception | None = None
+            for idx, ac in enumerate(clients):
+                try:
+                    resp = await _call(ac)
+                    break
+                except (AuthenticationError, PermissionDeniedError, RateLimitError) as exc:
+                    last_exc = exc
+                    logger.warning("translation LLM key {}/{} failed ({}), rotating", idx + 1, len(clients), type(exc).__name__)
+                    continue
+            if resp is None:
+                assert last_exc is not None
+                raise last_exc
         raw = (resp.choices[0].message.content or "").strip()
         return _parse_response(raw, query.strip())
     except Exception:
@@ -173,7 +198,8 @@ async def translate_query(
         raise
     finally:
         if own_client:
-            await client.close()
+            for ac in clients:
+                await ac.close()
 
 
 def _parse_response(raw: str, source_query: str) -> TranslatedQueries:
