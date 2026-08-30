@@ -37,6 +37,7 @@ from lit_acquisition.orchestration import (
     search_parallel,
 )
 from lit_acquisition.providers.backends import (
+    _parse_jstage_feed,
     parse_arxiv_atom,
     parse_openaire_payload,
     search_unpaywall,
@@ -505,3 +506,70 @@ async def test_search_multilingual_delegates_to_search_parallel(monkeypatch):
     assert captured["candidate_limit"] == 7
     assert "pubmed" in captured["plan"]  # en plan routed with its language providers
     assert out[0]["title"] == "T"
+
+
+# ── J-STAGE httpx backend (pyjstage2 replacement) ────────────────────────
+
+_JSTAGE_OK_FEED = """<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/"
+      xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xml:lang="ja">
+  <result><status>0</status><message/></result>
+  <opensearch:totalResults>335</opensearch:totalResults>
+  <entry>
+    <article_title>
+      <en><![CDATA[Mining the Biomarkers]]></en>
+      <ja/>
+    </article_title>
+    <article_link>
+      <en>https://www.jstage.jst.go.jp/article/tjem/256/1/256_27/_article</en>
+      <ja>https://www.jstage.jst.go.jp/article/tjem/256/1/256_27/_article/-char/ja/</ja>
+    </article_link>
+    <author><en><name><![CDATA[Xiuying Kuang]]></name></en><ja/></author>
+    <material_title><en><![CDATA[The Tohoku Journal of Experimental Medicine]]></en></material_title>
+    <prism:issn>0040-8727</prism:issn>
+    <prism:eIssn>1349-3329</prism:eIssn>
+    <pubyear>2022</pubyear>
+    <prism:doi>10.1620/tjem.256.27</prism:doi>
+    <link href="https://www.jstage.jst.go.jp/article/tjem/256/1/256_27/_article/-char/ja/"/>
+  </entry>
+</feed>"""
+
+_JSTAGE_ERR_FEED = """<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/"
+      xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xml:lang="ja">
+  <result><status>ERR_001</status><message>ERR_001</message></result>
+  <opensearch:totalResults/><opensearch:startIndex/><opensearch:itemsPerPage/>
+  <entry><title/><link/><id/><updated/></entry>
+</feed>"""
+
+
+def test_parse_jstage_feed_maps_entries():
+    items = _parse_jstage_feed(_JSTAGE_OK_FEED)
+    assert len(items) == 1
+    item = items[0]
+    assert item["article_title_en"] == "Mining the Biomarkers"
+    assert item["article_title_ja"] == ""
+    assert item["material_title_en"] == "The Tohoku Journal of Experimental Medicine"
+    assert item["doi"] == "10.1620/tjem.256.27"
+    assert item["link"] == "https://www.jstage.jst.go.jp/article/tjem/256/1/256_27/_article"
+    assert item["issn"] == "0040-8727"
+    assert item["eissn"] == "1349-3329"
+    assert item["pubyear"] == "2022"
+
+
+def test_parse_jstage_feed_error_response_yields_empty():
+    """The exact response shape that crashed pyjstage (int(None)) returns []."""
+    assert _parse_jstage_feed(_JSTAGE_ERR_FEED) == []
+
+
+def test_tavily_and_serpapi_accept_timeout():
+    """Regression: the call site passed timeout= but the adapters did not accept it."""
+    from lit_acquisition.web_search.serpapi_adapter import SerpApiAdapter
+    from lit_acquisition.web_search.tavily_adapter import TavilyAdapter
+
+    tavily = TavilyAdapter(api_key="k", timeout=7)
+    assert tavily.timeout == 7
+    serpapi = SerpApiAdapter(api_key="k", timeout=11)
+    assert serpapi.timeout == 11

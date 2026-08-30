@@ -39,9 +39,10 @@ class TavilyAdapter(WebSearchAdapter):
         *,
         api_key: str,
         search_depth: str = "basic",
+        timeout: int = 30,
         max_results: int = 10,
     ) -> None:
-        super().__init__(api_key=api_key, max_results=max_results)
+        super().__init__(api_key=api_key, timeout=timeout, max_results=max_results)
         self._search_depth = search_depth
         self._client = None  # lazy-init
 

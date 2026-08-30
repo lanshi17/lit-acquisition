@@ -688,6 +688,94 @@ async def search_cinii(
     return items
 
 
+# ── J-STAGE ─────────────────────────────────────────────────────────────
+
+_JSTAGE_BASE = "https://api.jstage.jst.go.jp/searchapi/do"
+_JSTAGE_ATOM_NS = "{http://www.w3.org/2005/Atom}"
+_JSTAGE_PRISM_NS = "{http://prismstandard.org/namespaces/basic/2.0/}"
+
+
+def _parse_jstage_feed(xml_text: str) -> list[dict[str, Any]]:
+    """Parse a J-STAGE search API Atom response into normalizer dicts.
+
+    Tolerates the API's error replies, which carry ``<status>ERR_…</status>``
+    and *empty* ``opensearch:totalResults`` elements — exactly the shape
+    that crashed the pyjstage parser (``int(None)``). Item keys match the
+    shape ``normalize_jstage`` has always consumed.
+    """
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError as exc:
+        raise ValueError(f"jstage: invalid XML response: {exc}") from exc
+
+    status = (root.findtext(f"{_JSTAGE_ATOM_NS}result/{_JSTAGE_ATOM_NS}status") or "").strip()
+    if status and status != "0":
+        message = (root.findtext(f"{_JSTAGE_ATOM_NS}result/{_JSTAGE_ATOM_NS}message") or "").strip()
+        logger.debug("jstage: API status {} ({}) — no results", status, message)
+        return []
+
+    def _text(element: ET.Element | None, *path: str) -> str:
+        if element is None:
+            return ""
+        node = element
+        for segment in path:
+            node = node.find(segment)
+            if node is None:
+                return ""
+        return (node.text or "").strip()
+
+    items: list[dict[str, Any]] = []
+    for entry in root.findall(f"{_JSTAGE_ATOM_NS}entry"):
+        article_title = entry.find(f"{_JSTAGE_ATOM_NS}article_title")
+        material_title = entry.find(f"{_JSTAGE_ATOM_NS}material_title")
+        article_link = entry.find(f"{_JSTAGE_ATOM_NS}article_link")
+        link = _text(article_link, f"{_JSTAGE_ATOM_NS}en")
+        if not link:
+            link_el = entry.find(f"{_JSTAGE_ATOM_NS}link")
+            link = (link_el.get("href") or "").strip() if link_el is not None else ""
+        items.append(
+            {
+                "article_title_en": _text(article_title, f"{_JSTAGE_ATOM_NS}en"),
+                "article_title_ja": _text(article_title, f"{_JSTAGE_ATOM_NS}ja"),
+                "material_title_en": _text(material_title, f"{_JSTAGE_ATOM_NS}en"),
+                "material_title_ja": _text(material_title, f"{_JSTAGE_ATOM_NS}ja"),
+                "doi": _text(entry, f"{_JSTAGE_PRISM_NS}doi"),
+                "link": link,
+                "issn": _text(entry, f"{_JSTAGE_PRISM_NS}issn"),
+                "eissn": _text(entry, f"{_JSTAGE_PRISM_NS}eIssn"),
+                "pubyear": _text(entry, f"{_JSTAGE_ATOM_NS}pubyear"),
+            }
+        )
+    return items
+
+
+async def search_jstage(
+    query: str,
+    limit: int,
+    identifiers: dict[str, str] | None = None,
+    params: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """J-STAGE search API (service=3, Atom XML).
+
+    Free-text search via ``text=`` — the ``article=`` parameter pyjstage
+    used is title-restricted and rejects multi-word queries with
+    ``ERR_001``. Replaces the pyjstage2 dependency, whose URL builder
+    percent-encoded spaces as ``%20`` (J-STAGE rejects those) and whose
+    parser crashed on the resulting error responses.
+    """
+    term = (query or "").strip()
+    if not term:
+        return []
+    client = _client_for(_JSTAGE_BASE)
+    resp = await client.get(
+        _JSTAGE_BASE,
+        params={"service": 3, "text": term, "count": max(1, min(limit, 100))},
+        headers={"Accept": "application/xml"},
+    )
+    resp.raise_for_status()
+    return _parse_jstage_feed(resp.text)
+
+
 # ── SciELO ───────────────────────────────────────────────────────────────
 
 _SCIELO_BASE = "https://articlemeta.scielo.org.br/api/v1/article/"
@@ -798,7 +886,6 @@ async def search_base(
 
 _CORE_BASE = "https://api.core.ac.uk/v3/search/works"
 
-
 async def search_core(
     query: str,
     limit: int,
@@ -853,6 +940,7 @@ PY_SEARCH_BACKENDS: dict[str, BackendFn] = {
     "medrxiv": search_medrxiv,
     "openaire": search_openaire,
     "cinii": search_cinii,
+    "jstage": search_jstage,
     "scielo": search_scielo,
     "base": search_base,
     "core": search_core,
@@ -860,7 +948,7 @@ PY_SEARCH_BACKENDS: dict[str, BackendFn] = {
 
 #: Providers whose search is handled by dedicated Python services in the
 #: gateway (kept separate because they have richer per-service APIs).
-PYTHON_SERVICE_PROVIDERS = {"pubmed", "semantic_scholar", "clinical_trials", "zenodo", "jstage"}
+PYTHON_SERVICE_PROVIDERS = {"pubmed", "semantic_scholar", "clinical_trials", "zenodo"}
 
 
 def has_python_search(provider: str) -> bool:

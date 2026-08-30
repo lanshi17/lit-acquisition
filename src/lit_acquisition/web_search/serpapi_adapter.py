@@ -39,9 +39,10 @@ class SerpApiAdapter(WebSearchAdapter):
         *,
         api_key: str,
         engine: str = "google",
+        timeout: int = 30,
         max_results: int = 10,
     ) -> None:
-        super().__init__(api_key=api_key, max_results=max_results)
+        super().__init__(api_key=api_key, timeout=timeout, max_results=max_results)
         self._engine = engine
 
     def _build_params(self, query: str, language: str | None = None) -> dict[str, Any]:

@@ -10,7 +10,6 @@ this module only fetches metadata.
 from __future__ import annotations
 
 import asyncio
-import threading
 import time as _time
 from typing import Any
 
@@ -37,45 +36,6 @@ def _normalize_doi(doi: str) -> str:
     return doi.translate(_HYPHEN_TABLE)
 
 
-
-async def _await_blocking_daemon(fn: Any, timeout: float) -> Any:
-    """Run a blocking callable on a *daemon* thread and await its result.
-
-    ``asyncio.to_thread`` uses the default (non-daemon) executor, whose
-    threads keep the interpreter alive at exit. When a deadline cancels
-    the wait — e.g. J-STAGE's client retrying internally for minutes —
-    that would hang process shutdown long after the workflow finished.
-    Daemon threads do not block exit; the abandoned call simply dies
-    with the process.
-    """
-    loop = asyncio.get_running_loop()
-    fut: asyncio.Future[Any] = loop.create_future()
-
-    def _settle(value: Any = None, exc: BaseException | None = None) -> None:
-        if fut.done():
-            return
-        if exc is not None:
-            fut.set_exception(exc)
-        else:
-            fut.set_result(value)
-
-    def _worker() -> None:
-        try:
-            value = fn()
-        except BaseException as exc:  # settle the future with any failure
-            try:
-                loop.call_soon_threadsafe(_settle, None, exc)
-            except RuntimeError:
-                pass  # loop already closed; nothing to settle
-            return
-        try:
-            loop.call_soon_threadsafe(_settle, value, None)
-        except RuntimeError:
-            pass
-
-    thread = threading.Thread(target=_worker, daemon=True, name="lit-blocking-provider")
-    thread.start()
-    return await asyncio.wait_for(fut, timeout=timeout)
 
 
 def _choose_item(
@@ -285,76 +245,6 @@ def _timed_failure(
     )
 
 
-async def _search_jstage_via_pyjstage(
-    request: OnlineAcquisitionGatewayRequest,
-) -> OnlineAcquisitionGatewayResult:
-    """Search J-STAGE using pyjstage-py312 library (bypasses broken Rust endpoint)."""
-    start = _time.monotonic()
-    try:
-        try:
-            from pyjstage.pyjstage import Pyjstage
-        except ImportError as exc:
-            elapsed = (_time.monotonic() - start) * 1000
-            get_health_tracker().record("jstage", success=False, latency_ms=elapsed)
-            return _failure_result(
-                "jstage",
-                exc,
-                "search",
-                warning="CONFIG_MISSING:jstage:pyjstage2 package not installed (pip install pyjstage2)",
-            )
-
-        pj = Pyjstage()
-        query = (request.query or "").strip()
-        if not query:
-            return _failure_result("jstage", ValueError("empty query"), "search")
-
-        limit = min(request.limit or 20, 100)
-        # pyjstage is a blocking library; run it on a daemon thread so the
-        # gateway deadline (asyncio.wait_for upstream) can cancel promptly
-        # without stalling the event loop — and so an abandoned call does
-        # not hold the interpreter open at exit.
-        result = await _await_blocking_daemon(lambda: pj.search(article=query, count=limit), timeout=300)
-
-        items: list[dict[str, Any]] = []
-        for entry in result.entries:
-            items.append(
-                {
-                    "article_title_en": (entry.article_title or {}).get("en", ""),
-                    "article_title_ja": (entry.article_title or {}).get("ja", ""),
-                    "material_title_en": (entry.material_title or {}).get("en", ""),
-                    "material_title_ja": (entry.material_title or {}).get("ja", ""),
-                    "doi": entry.doi or "",
-                    "link": entry.link or "",
-                    "issn": entry.issn or "",
-                    "eissn": entry.eissn or "",
-                    "pubyear": entry.pubyear or "",
-                }
-            )
-
-        elapsed = (_time.monotonic() - start) * 1000
-        get_health_tracker().record("jstage", success=True, latency_ms=elapsed)
-        trace = OnlineAcquisitionSourceTraceEntry(
-            provider="jstage",
-            attempt=1,
-            action="search",
-            success=True,
-            items_count=len(items),
-            downloads_count=0,
-            warnings=[],
-        )
-        return OnlineAcquisitionGatewayResult(
-            provider="jstage",
-            success=True,
-            items=items,
-            downloads=[],
-            warnings=[],
-            source_trace=[trace],
-        )
-    except Exception as exc:
-        elapsed = (_time.monotonic() - start) * 1000
-        get_health_tracker().record("jstage", success=False, latency_ms=elapsed)
-        logger.warning("pyjstage search failed: {}", redact_secrets(str(exc)))
-        return _failure_result("jstage", exc, "search")
 
 
 async def _search_semantic_scholar(
@@ -839,8 +729,6 @@ async def call_provider(request: OnlineAcquisitionGatewayRequest) -> OnlineAcqui
     timeout = _provider_deadline(request)
 
     if action == "search":
-        if provider == "jstage":
-            return await _with_deadline(_search_jstage_via_pyjstage(request), provider, action, timeout)
         if provider == "pubmed":
             return await _with_deadline(_search_pubmed(request), provider, action, timeout)
         if provider == "semantic_scholar":
