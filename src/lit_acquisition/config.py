@@ -215,9 +215,17 @@ class HttpPoolConfig(BaseModel):
     Wall time stays bounded because fan-out is parallel, stops early once
     enough candidates are gathered, and the circuit breaker skips
     providers that fail persistently.
+
+    ``connect_timeout`` is separate and much shorter: TCP/TLS setup to an
+    API endpoint should never take tens of seconds. Without it, a
+    network-black-holed host (SciELO and CiNii are common offenders)
+    burns the whole ``provider_timeout`` on connect before any read even
+    starts — and the retry policy then doubles the wait.
     """
 
     provider_timeout: float = 30.0
+    connect_timeout: float = 10.0
+
     download_timeout: float = 60.0
     max_connections: int = 64
     max_keepalive_connections: int = 32
@@ -504,6 +512,12 @@ def _load_from_env() -> LitAcquisitionConfig:
             cfg.http.download_timeout = max(5.0, float(dtimeout))
         except ValueError:
             logger.warning("invalid LIT_DOWNLOAD_TIMEOUT={!r}, keeping default {}", dtimeout, cfg.http.download_timeout)
+    ctimeout = os.getenv("LIT_HTTP_CONNECT_TIMEOUT")
+    if ctimeout:
+        try:
+            cfg.http.connect_timeout = max(1.0, float(ctimeout))
+        except ValueError:
+            logger.warning("invalid LIT_HTTP_CONNECT_TIMEOUT={!r}, keeping default {}", ctimeout, cfg.http.connect_timeout)
 
     # Aggregator keys
     cfg.aggregator_keys.base_api_key = os.getenv("LIT_BASE_API_KEY", os.getenv("BASE_API_KEY", ""))

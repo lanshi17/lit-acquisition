@@ -1083,16 +1083,31 @@ async def search_language(
     language: str,
     candidate_limit: int = 15,
     trace_sink: list[OnlineAcquisitionSourceTraceEntry] | None = None,
+    warning_sink: list[str] | None = None,
+    phase_timeout: float = 30.0,
 ) -> list[dict[str, Any]]:
-    """Search providers for a single language, return candidates tagged with search_lang."""
+    """Search providers for a single language, return candidates tagged with search_lang.
+
+    ``phase_timeout`` bounds the whole per-language fan-out: six languages
+    run concurrently, and without a wall-clock cap the phase waited for
+    the slowest provider chain (network-dead SciELO/CiNii burned its full
+    deadline, then the retry doubled it) — the 40-80s tail reported in
+    production. Providers still in flight when the budget expires are
+    cancelled and reported via trace/warnings.
+    """
     plan = build_provider_plan(language=language)
+    lang_warnings: list[str] = []
     candidates = await search_parallel(
         query=query,
         plan=plan,
         concurrency=4,
         candidate_limit=candidate_limit,
         trace_sink=trace_sink,
+        warning_sink=lang_warnings,
+        phase_timeout=phase_timeout,
     )
+    if warning_sink is not None:
+        warning_sink.extend(f"search-{language}:{w}" if w.startswith("PHASE_TIMEOUT") else w for w in lang_warnings)
     for c in candidates:
         c["search_lang"] = language
     return candidates
@@ -1140,7 +1155,13 @@ async def multilingual_acquisition_workflow(
     # === Phase 1: Parallel Multi-Lingual Search ===
     per_lang_limit = max(5, request.limit // len(TARGET_LANGUAGES))
     search_tasks = [
-        search_language(query, lang, candidate_limit=per_lang_limit, trace_sink=source_trace)
+        search_language(
+            query,
+            lang,
+            candidate_limit=per_lang_limit,
+            trace_sink=source_trace,
+            warning_sink=warnings,
+        )
         for lang, query in translations.as_dict().items()
     ]
     lang_results = await asyncio.gather(*search_tasks, return_exceptions=True)
@@ -1345,7 +1366,12 @@ async def search_multilingual(
 ) -> list[dict[str, Any]]:
     """Search across multiple providers with language-based routing.
 
-    Calls gateway.search_provider directly (not workflow).
+    Calls gateway.search_provider via :func:`search_parallel` (not the
+    full workflow): concurrent fan-out with circuit-breaker skipping,
+    early stop, per-provider deadlines and ranking. The previous
+    sequential per-provider loop had a worst case of
+    ``len(plan) x deadline`` wall time and burned a full round trip per
+    provider before deciding to continue.
     """
     query = f"{target} {disease} case report".strip()
     if not query:
@@ -1353,27 +1379,12 @@ async def search_multilingual(
 
     plan = build_provider_plan(language=language, provider_hints=provider_hints)
     plan = get_health_tracker().reorder_plan(plan)
-    collected: list[dict[str, Any]] = []
-    preferred_provider = plan[0]["provider"] if plan else None
-
-    for plan_item in plan:
-        if get_health_tracker().should_skip(plan_item["provider"]):
-            continue
-        result = await search_provider(
-            provider=plan_item["provider"],
-            query=query,
-            limit=candidate_limit,
-        )
-        items = normalize_items(result.provider, result.items) if result.success else []
-        for item in items:
-            collected.append(normalize_candidate(item.model_dump(), plan_item))
-
-        collected = dedupe_candidates(collected)
-        collected = rank_candidates(collected, expected_title=target, preferred_provider=preferred_provider)
-        if len(collected) >= candidate_limit:
-            return collected[:candidate_limit]
-
-    return rank_candidates(collected, expected_title=target, preferred_provider=preferred_provider)[:candidate_limit]
+    return await search_parallel(
+        query=query,
+        plan=plan,
+        concurrency=4,
+        candidate_limit=candidate_limit,
+    )
 
 
 async def search_parallel(
@@ -1385,6 +1396,8 @@ async def search_parallel(
     identifiers: dict[str, str] | None = None,
     trace_sink: list[OnlineAcquisitionSourceTraceEntry] | None = None,
     early_stop: bool = True,
+    phase_timeout: float | None = None,
+    warning_sink: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     """Search multiple providers concurrently, merge and dedupe results.
 
@@ -1396,7 +1409,11 @@ async def search_parallel(
     * early stop - once ``2 x candidate_limit`` raw candidates are
       collected, the remaining in-flight searches are cancelled so one
       slow upstream cannot dominate wall time;
-    * per-provider deadlines are enforced inside the gateway.
+    * per-provider deadlines are enforced inside the gateway;
+    * optional ``phase_timeout`` caps the whole fan-out in wall time:
+      when it expires, in-flight searches are cancelled (with
+      ``SKIPPED:<provider>:phase budget exhausted`` trace entries) and a
+      ``PHASE_TIMEOUT:search:...`` warning is emitted.
     """
     tracker = get_health_tracker()
     active_plan: list[ProviderPlanItem] = []
@@ -1439,17 +1456,43 @@ async def search_parallel(
             items = normalize_items(result.provider, result.items) if result.success else []
             return [normalize_candidate(i.model_dump(), item) for i in items]
 
-    tasks = [asyncio.create_task(_search_one(item)) for item in active_plan]
+    task_provider: dict[asyncio.Task, str] = {}
+    for item in active_plan:
+        task_provider[asyncio.create_task(_search_one(item))] = item["provider"]
     collected: list[dict[str, Any]] = []
-    pending = set(tasks)
+    pending = set(task_provider)
     # Early-stop gates (see _acquire_links_api for rationale): item target
     # plus a completed-provider floor for source diversity.
     early_stop_at = candidate_limit * 2
     min_done = max(2, len(active_plan) // 2)
     done_count = 0
+    end = _time.monotonic() + phase_timeout if phase_timeout and phase_timeout > 0 else None
     try:
         while pending:
-            done, pending = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+            remaining: float | None = None
+            if end is not None:
+                remaining = end - _time.monotonic()
+                if remaining <= 0:
+                    if warning_sink is not None:
+                        warning_sink.append(
+                            f"PHASE_TIMEOUT:search:{len(pending)} provider(s) cancelled after {phase_timeout:.0f}s budget"
+                        )
+                    if trace_sink is not None:
+                        for task in pending:
+                            trace_sink.append(
+                                OnlineAcquisitionSourceTraceEntry(
+                                    provider=task_provider[task],
+                                    attempt=0,
+                                    action="search",
+                                    success=False,
+                                    items_count=0,
+                                    downloads_count=0,
+                                    warnings=[f"SKIPPED:{task_provider[task]}:phase budget exhausted"],
+                                    error="phase_timeout",
+                                )
+                            )
+                    break
+            done, pending = await asyncio.wait(pending, timeout=remaining, return_when=asyncio.FIRST_COMPLETED)
             for task in done:
                 done_count += 1
                 try:
@@ -1463,7 +1506,6 @@ async def search_parallel(
             task.cancel()
         if pending:
             await asyncio.gather(*pending, return_exceptions=True)
-
     collected = dedupe_candidates(collected)
     # Drop empty candidates (no title, DOI or URL): they cannot be shown to a
     # user nor downloaded, and only dilute relevance ranking.

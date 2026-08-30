@@ -7,6 +7,10 @@ contract (summary / diagnostics / compact mode).
 
 from __future__ import annotations
 
+import asyncio
+import time
+from typing import Any
+
 import httpx
 import pytest
 
@@ -18,10 +22,20 @@ from lit_acquisition import (
     ProviderHealthTracker,
 )
 from lit_acquisition.algorithms import lexical_relevance, rank_candidates
-from lit_acquisition.gateway import _classify_provider_error, _is_retryable, resolve_oa_url
-from lit_acquisition.models import OnlineAcquisitionGatewayResult
+from lit_acquisition.gateway import (
+    _classify_provider_error,
+    _is_retryable,
+    call_provider_with_retry,
+    resolve_oa_url,
+)
+from lit_acquisition.models import OnlineAcquisitionGatewayRequest, OnlineAcquisitionGatewayResult
+from lit_acquisition.net.pool import _split_timeout
 from lit_acquisition.normalize import normalize_items, normalize_pmc
-from lit_acquisition.orchestration import _dedupe_warnings, _finalize_response
+from lit_acquisition.orchestration import (
+    _dedupe_warnings,
+    _finalize_response,
+    search_parallel,
+)
 from lit_acquisition.providers.backends import (
     parse_arxiv_atom,
     parse_openaire_payload,
@@ -383,3 +397,111 @@ def test_finalize_response_compact_drops_bulk_fields():
 def test_dedupe_warnings_preserves_order():
     warnings = ["a", "b", "a", "c", "b"]
     assert _dedupe_warnings(warnings) == ["a", "b", "c"]
+
+
+# ── Search-phase latency guards ──────────────────────────────────────────
+
+
+def test_split_timeout_caps_connect():
+    t = _split_timeout(30.0)
+    assert t.connect == 10.0
+    assert t.read == 30.0
+    assert t.write == 30.0
+    # A shorter provider timeout must never be raised by the connect cap.
+    t2 = _split_timeout(5.0)
+    assert t2.connect == 5.0
+    assert t2.read == 5.0
+
+
+async def test_retry_budget_skips_retry_after_slow_attempt(monkeypatch):
+    from lit_acquisition import gateway as gw
+
+    attempts = {"n": 0}
+
+    async def slow_fail(request):
+        attempts["n"] += 1
+        await asyncio.sleep(0.3)
+        return OnlineAcquisitionGatewayResult(
+            provider=request.provider,
+            success=False,
+            items=[],
+            warnings=[f"TIMEOUT:{request.provider}:exceeded 0s deadline"],
+        )
+
+    monkeypatch.setattr(gw, "call_provider", slow_fail)
+    request = OnlineAcquisitionGatewayRequest(provider="scielo", action="search", timeout=0.5)
+    result = await call_provider_with_retry(request)
+    assert attempts["n"] == 1  # first attempt burned >= deadline/2 -> no retry
+    assert result.success is False
+
+
+async def test_retry_budget_allows_fast_failures(monkeypatch):
+    from lit_acquisition import gateway as gw
+
+    attempts = {"n": 0}
+
+    async def fast_fail(request):
+        attempts["n"] += 1
+        return OnlineAcquisitionGatewayResult(
+            provider=request.provider,
+            success=False,
+            items=[],
+            warnings=["NETWORK_ERROR:x:ConnectError: refused"],
+        )
+
+    monkeypatch.setattr(gw, "call_provider", fast_fail)
+    request = OnlineAcquisitionGatewayRequest(provider="cinii", action="search", timeout=30.0)
+    await call_provider_with_retry(request)
+    assert attempts["n"] == 2  # instant failure stays retryable
+
+
+async def test_search_parallel_phase_timeout_cancels_slow_providers(monkeypatch):
+    from lit_acquisition import orchestration as orch
+
+    async def fake_search(provider, query=None, identifiers=None, limit=20, raw=False, params=None, timeout=None):
+        if provider == "slow":
+            await asyncio.sleep(5.0)
+        return OnlineAcquisitionGatewayResult(provider=provider, success=True, items=[], warnings=[])
+
+    monkeypatch.setattr(orch, "search_provider", fake_search)
+    plan = [
+        {"route": "api", "provider": "fast"},
+        {"route": "api", "provider": "slow"},
+    ]
+    trace: list[OnlineAcquisitionSourceTraceEntry] = []
+    warnings: list[str] = []
+    start = time.monotonic()
+    out = await search_parallel(
+        query="q",
+        plan=plan,
+        concurrency=2,
+        candidate_limit=5,
+        trace_sink=trace,
+        warning_sink=warnings,
+        phase_timeout=0.5,
+    )
+    elapsed = time.monotonic() - start
+    assert elapsed < 3.0  # the hung provider did not hold the phase for 5s
+    skipped = [e for e in trace if e.error == "phase_timeout"]
+    assert [e.provider for e in skipped] == ["slow"]
+    assert any(w.startswith("PHASE_TIMEOUT:search:") for w in warnings)
+    assert out == []
+
+
+async def test_search_multilingual_delegates_to_search_parallel(monkeypatch):
+    from lit_acquisition import orchestration as orch
+
+    captured: dict[str, Any] = {}
+
+    async def fake_search_parallel(*, query, plan, concurrency, candidate_limit, **kwargs):
+        captured["query"] = query
+        captured["plan"] = [item["provider"] for item in plan]
+        captured["candidate_limit"] = candidate_limit
+        return [{"title": "T", "provider": "crossref"}]
+
+    monkeypatch.setattr(orch, "search_parallel", fake_search_parallel)
+    out = await orch.search_multilingual(target="ibd", disease="crohn", language="en", candidate_limit=7)
+    assert captured["query"] == "ibd crohn case report"
+    assert captured["candidate_limit"] == 7
+    assert "pubmed" in captured["plan"]  # en plan routed with its language providers
+    assert out[0]["title"] == "T"

@@ -937,10 +937,19 @@ async def call_provider_with_retry(
     Backoff is error-aware: rate limits (429) and server errors wait
     longer between attempts than plain network glitches, and
     deterministic failures are never retried (see :func:`_is_retryable`).
+
+    A total-attempt budget bounds the retry chain: once an attempt has
+    consumed at least half the provider deadline, no further attempt is
+    made — an upstream that hung for the whole deadline rarely answers
+    within another one, and in a parallel fan-out the doubled wait is
+    pure latency. Fast failures (instant connect refusals, 429s) stay
+    retryable.
     """
     all_traces: list[OnlineAcquisitionSourceTraceEntry] = []
     all_warnings: list[str] = []
     last_result: OnlineAcquisitionGatewayResult | None = None
+    deadline = _provider_deadline(request)
+    start = _time.monotonic()
 
     for attempt in range(1, max_attempts + 1):
         result = await call_provider(request)
@@ -958,6 +967,8 @@ async def call_provider_with_retry(
         if not _is_retryable(result):
             break  # deterministic failure - retrying only wastes time
         if attempt < max_attempts:
+            if _time.monotonic() - start >= deadline / 2:
+                break  # budget spent - retrying would double the fan-out wait
             rate_limited = any("PROVIDER_HTTP_429" in w for w in result.warnings)
             await asyncio.sleep(2.0 * attempt if rate_limited else 0.5 * attempt)
 

@@ -33,6 +33,20 @@ _pool: dict[tuple[int, str | None, float], tuple[httpx.AsyncClient, asyncio.Abst
 _pool_lock = threading.Lock()
 
 
+def _split_timeout(total: float) -> httpx.Timeout:
+    """Scalar timeout with a short connect phase.
+
+    ``httpx.AsyncClient(timeout=float)`` applies the same value to
+    connect/read/write/pool. A host that accepts no TCP connection then
+    holds the client for the full total (OS-level SYN retries) — e.g.
+    SciELO/CiNii network black holes — before the gateway deadline cuts
+    it off. Capping connect separately fails those in seconds while
+    leaving read budgets untouched.
+    """
+    connect = min(get_config().http.connect_timeout, total)
+    return httpx.Timeout(total, connect=connect)
+
+
 def _build_client(proxy: str | None, timeout: float) -> httpx.AsyncClient:
     cfg = get_config().http
     limits = httpx.Limits(
@@ -43,7 +57,7 @@ def _build_client(proxy: str | None, timeout: float) -> httpx.AsyncClient:
     net_cfg = get_config().network
     return httpx.AsyncClient(
         proxy=proxy,
-        timeout=timeout,
+        timeout=_split_timeout(timeout),
         limits=limits,
         # Proxy routing is explicit configuration; ambient HTTP_PROXY /
         # ALL_PROXY environment variables must not silently reroute requests.
@@ -113,7 +127,7 @@ def build_pinned_client(pins: dict[str, str], *, timeout: float) -> httpx.AsyncC
         pins=pins,
     )
     return httpx.AsyncClient(
-        timeout=timeout,
+        timeout=_split_timeout(timeout),
         transport=transport,
         follow_redirects=False,  # download code follows hops manually for pinning
         headers=dict(_DEFAULT_HEADERS),
