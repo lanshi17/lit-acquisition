@@ -119,10 +119,20 @@ class OnlineAcquisitionRouteInfo(BaseModel):
 # --- Response ---
 
 
+#: Version of the standardized JSON response envelope emitted by the
+#: acquisition workflows. Bump on any breaking field change and document
+#: the migration in the changelog.
+RESPONSE_SCHEMA_VERSION = "1.0"
+
+
 class OnlineAcquisitionResponse(BaseModel):
     """Unified response for literature search/download."""
 
     success: bool
+    schema_version: str = Field(
+        default=RESPONSE_SCHEMA_VERSION,
+        description="Version of the standardized JSON response format (see response_json_schema()).",
+    )
     items: list[OnlineAcquisitionItem] = Field(default_factory=list)
     downloads: list[dict[str, Any]] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
@@ -140,6 +150,22 @@ class OnlineAcquisitionResponse(BaseModel):
         default_factory=dict,
         description="Structured acquisition diagnostics: elapsed_ms, per-provider status/latency/counts.",
     )
+
+
+def response_json_schema() -> dict[str, Any]:
+    """Return the JSON Schema of the standardized response envelope.
+
+    Every workflow (``online_acquisition_workflow``,
+    ``multilingual_acquisition_workflow``) emits a
+    ``model_dump()`` of :class:`OnlineAcquisitionResponse` carrying
+    ``schema_version``. Agents can validate that JSON against this
+    schema (draft 2020-12) instead of hard-coding field checks, and
+    detect format drift by comparing ``schema_version``.
+    """
+    schema = OnlineAcquisitionResponse.model_json_schema()
+    schema["$schema"] = "https://json-schema.org/draft/2020-12/schema"
+    schema["$id"] = f"lit-acquisition/response/v{RESPONSE_SCHEMA_VERSION}"
+    return schema
 
 
 # --- Gateway contracts (internal) ---

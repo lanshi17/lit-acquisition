@@ -1,14 +1,23 @@
 """Tests for lit_acquisition contracts and classifiers."""
 
 from lit_acquisition import (
+    RESPONSE_SCHEMA_VERSION,
     LiteratureType,
     OnlineAcquisitionItem,
     OnlineAcquisitionRequest,
+    OnlineAcquisitionResponse,
+    OnlineAcquisitionRouteInfo,
     build_provider_plan,
     classify_item,
     dedupe_candidates,
     rank_candidates,
+    response_json_schema,
 )
+
+import time
+
+from lit_acquisition.enums import PreferStrategy
+from lit_acquisition.orchestration import _finalize_response
 from lit_acquisition.models import DownloadResult
 
 
@@ -150,3 +159,65 @@ def test_rank_candidates_title_match():
     ]
     result = rank_candidates(candidates, expected_title="Target Paper")
     assert result[0]["title"] == "Target Paper"
+
+
+# --- Standardized JSON response envelope ---
+
+
+_REQUIRED_ENVELOPE_KEYS = {
+    "success",
+    "schema_version",
+    "items",
+    "downloads",
+    "warnings",
+    "route",
+    "raw",
+    "candidate_links",
+    "summary",
+    "diagnostics",
+}
+
+
+def _envelope(**overrides) -> OnlineAcquisitionResponse:
+    kwargs = {"success": True, "route": OnlineAcquisitionRouteInfo(prefer=PreferStrategy.AUTO)}
+    kwargs.update(overrides)
+    return OnlineAcquisitionResponse(**kwargs)
+
+
+def test_response_schema_version_default():
+    """Every response carries the current schema version."""
+    assert _envelope().schema_version == RESPONSE_SCHEMA_VERSION
+
+
+def test_response_json_schema_structure():
+    """Exported schema covers the full envelope and is draft 2020-12."""
+    schema = response_json_schema()
+    assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
+    assert schema["$id"] == f"lit-acquisition/response/v{RESPONSE_SCHEMA_VERSION}"
+    assert set(schema["properties"]) == _REQUIRED_ENVELOPE_KEYS
+    # Only fields without defaults are required.
+    assert set(schema["required"]) == {"success", "route"}
+
+
+def test_finalize_response_emits_standardized_envelope():
+    """Workflow output passes every envelope key with consistent types."""
+    started = time.monotonic()
+    out = _finalize_response(_envelope(), started_at=started, source_trace=[], compact=False)
+    assert set(out) == _REQUIRED_ENVELOPE_KEYS
+    assert out["schema_version"] == RESPONSE_SCHEMA_VERSION
+    assert isinstance(out["warnings"], list)
+    assert isinstance(out["items"], list)
+    assert isinstance(out["diagnostics"], dict) and "elapsed_ms" in out["diagnostics"]
+    assert out["summary"]
+    # Compact mode drops bulk fields but keeps the envelope shape.
+    compact = _finalize_response(_envelope(), started_at=started, source_trace=[], compact=True)
+    assert set(compact) == _REQUIRED_ENVELOPE_KEYS
+    assert compact["candidate_links"] == [] and compact["raw"] is None
+
+
+def test_response_round_trips_through_schema_model():
+    """A dumped envelope validates back into the model unchanged."""
+    out = _finalize_response(_envelope(), started_at=time.monotonic(), source_trace=[], compact=False)
+    reparsed = OnlineAcquisitionResponse.model_validate(out)
+    assert reparsed.schema_version == RESPONSE_SCHEMA_VERSION
+    assert reparsed.model_dump() == out

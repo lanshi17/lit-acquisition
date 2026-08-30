@@ -110,6 +110,7 @@ from .llm import (
 
 # --- Data structures ---
 from .models import (
+    RESPONSE_SCHEMA_VERSION,
     DownloadResult,
     OnlineAcquisitionGatewayRequest,
     OnlineAcquisitionGatewayResult,
@@ -119,6 +120,7 @@ from .models import (
     OnlineAcquisitionRouteInfo,
     OnlineAcquisitionSourceTraceEntry,
     ProviderPlanItem,
+    response_json_schema,
 )
 
 # --- Network layer ---
@@ -196,6 +198,7 @@ __all__ = [
     "ProviderStats",
     "ProviderStatus",
     "PubMedConfig",
+    "RESPONSE_SCHEMA_VERSION",
     "RelevanceGateResult",
     "RelevanceJudgment",
     "RouteChoice",
@@ -237,6 +240,7 @@ __all__ = [
     "reload_config",
     "rerank_enabled",
     "resolve_oa_url",
+    "response_json_schema",
     "run_relevance_gate",
     "search_literature",
     "search_multilingual",
@@ -247,4 +251,4 @@ __all__ = [
     "validate_url_safe",
 ]
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"

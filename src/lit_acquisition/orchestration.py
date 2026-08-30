@@ -696,12 +696,19 @@ def _apply_type_filter(
 # ── Main Entry Point ────────────────────────────────────────────────────
 
 
-async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]:
+async def online_acquisition_workflow(
+    payload: dict[str, Any],
+    initial_warnings: list[str] | None = None,
+) -> dict[str, Any]:
     """Main entry point — three-phase online acquisition pipeline.
 
     Phase 1: Parallel link acquisition (API providers + Firecrawl).
     Phase 2: Download by candidate type (DOI→OA, PMCID→PMC, URL→direct).
     Phase 3: LLM content gate on downloaded PDFs.
+
+    ``initial_warnings`` seeds the response warnings (used by the
+    multilingual workflow when it falls back here, so the returned
+    envelope records why the fallback happened).
     """
     # --- Validate request ---
     try:
@@ -726,9 +733,9 @@ async def online_acquisition_workflow(payload: dict[str, Any]) -> dict[str, Any]
         api_provider=request.api_provider,
         used="web" if request.prefer == "web" else "api",
         reason="parallel_acquisition",
-        fallback_used=False,
+        fallback_used=bool(initial_warnings),
     )
-    warnings: list[str] = []
+    warnings: list[str] = list(initial_warnings or [])
     source_trace: list[OnlineAcquisitionSourceTraceEntry] = []
 
     download_path = request.download_path
@@ -1149,8 +1156,10 @@ async def multilingual_acquisition_workflow(
     except Exception as exc:
         logger.warning("query translation failed, falling back to single-language search: {}", exc)
         warnings.append(f"TRANSLATION_FAILED: {exc}")
-        # Fall back to the original single-language workflow
-        return await online_acquisition_workflow(payload)
+        # Fall back to the original single-language workflow, carrying the
+        # reason into the returned envelope (warnings + fallback_used) so
+        # agents can see why the multilingual path was not taken.
+        return await online_acquisition_workflow(payload, initial_warnings=warnings)
 
     # === Phase 1: Parallel Multi-Lingual Search ===
     per_lang_limit = max(5, request.limit // len(TARGET_LANGUAGES))
