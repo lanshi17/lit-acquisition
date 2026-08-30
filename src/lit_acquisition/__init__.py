@@ -250,5 +250,4 @@ __all__ = [
     "traverse_citation_graph",
     "validate_url_safe",
 ]
-
-__version__ = "0.3.2"
+__version__ = "0.4.0"
