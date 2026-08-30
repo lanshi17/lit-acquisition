@@ -1,6 +1,6 @@
 [project]
 name = "lit-acquisition"
-version = "0.4.0"
+version = "0.4.1"
 description = "Multilingual biomedical literature acquisition toolkit - search, download, and classify academic papers from 18+ providers with citation graph traversal"
 readme = "README.md"
 requires-python = ">=3.12"
