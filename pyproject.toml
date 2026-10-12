@@ -1,6 +1,6 @@
 [project]
 name = "lit-acquisition"
-version = "0.4.1"
+version = "0.5.0"
 description = "Multilingual biomedical literature acquisition toolkit - search, download, and classify academic papers from 18+ providers with citation graph traversal"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -22,10 +22,15 @@ dependencies = [
     "pydantic>=2.7.0",
     "loguru>=0.7.0",
     "pymupdf>=1.27.2",
-    "openai>=1.0.0",
 ]
 
 [project.optional-dependencies]
+# Agent edition: adds the OpenAI-compatible client used by the LLM-backed
+# features (query translation, relevance gate) and the agent tool entry.
+# The base install is the lite edition: provider API keys only, no LLM.
+agent = [
+    "openai>=1.0.0",
+]
 paper = [
     "scienceplots>=2.2.2",
     "scipy>=1.18.0",
@@ -39,6 +44,7 @@ rust-io = [
     "rust-io",
 ]
 dev = [
+    "openai>=1.0.0",
     "pytest>=8.2.0",
     "pytest-asyncio>=0.23.0",
     "ruff>=0.5.0",

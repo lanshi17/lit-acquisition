@@ -691,18 +691,21 @@ wheels = [
 
 [[package]]
 name = "lit-acquisition"
-version = "0.4.0"
+version = "0.5.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx", extra = ["socks"] },
     { name = "loguru" },
-    { name = "openai" },
     { name = "pydantic" },
     { name = "pymupdf" },
 ]
 
 [package.optional-dependencies]
+agent = [
+    { name = "openai" },
+]
 dev = [
+    { name = "openai" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
@@ -726,7 +729,8 @@ requires-dist = [
     { name = "google-search-results", marker = "extra == 'web-search'", specifier = ">=2.4.2" },
     { name = "httpx", extras = ["socks"], specifier = ">=0.27.0" },
     { name = "loguru", specifier = ">=0.7.0" },
-    { name = "openai", specifier = ">=1.0.0" },
+    { name = "openai", marker = "extra == 'agent'", specifier = ">=1.0.0" },
+    { name = "openai", marker = "extra == 'dev'", specifier = ">=1.0.0" },
     { name = "pydantic", specifier = ">=2.7.0" },
     { name = "pymupdf", specifier = ">=1.27.2" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.2.0" },
@@ -737,7 +741,7 @@ requires-dist = [
     { name = "scipy", marker = "extra == 'paper'", specifier = ">=1.18.0" },
     { name = "tavily-python", marker = "extra == 'web-search'", specifier = ">=0.5.0" },
 ]
-provides-extras = ["paper", "web-search", "rust-io", "dev"]
+provides-extras = ["agent", "paper", "web-search", "rust-io", "dev"]
 
 [[package]]
 name = "loguru"

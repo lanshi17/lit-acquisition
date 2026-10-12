@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from openai import AsyncOpenAI
 
 from ..config import get_config
+from .availability import agent_edition_hint, llm_available
 from .params import resolve_max_tokens
 
 # ── Contracts ──────────────────────────────────────────────────────────────
@@ -126,6 +127,13 @@ async def translate_query(
         raise ValueError("query must be a non-empty string")
 
     cfg = get_config()
+
+    if not llm_available():
+        # Same failure mode as missing config: orchestration catches this
+        # and falls back to single-language search.
+        raise ValueError(
+            f"openai is not installed; query translation requires the agent edition ({agent_edition_hint()})"
+        )
 
     # TranslationLLMConfig falls back to LLMConfig when fields are empty
     # (same pattern as rerank._endpoint).

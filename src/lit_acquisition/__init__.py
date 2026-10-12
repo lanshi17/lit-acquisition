@@ -96,12 +96,14 @@ from .gateway import (
 # --- Health tracking ---
 from .health import ProviderHealthTracker, ProviderStats, get_health_tracker
 
-# --- LLM features ---
+# --- LLM features (active only in the agent edition) ---
 from .llm import (
     TARGET_LANGUAGES,
     RelevanceGateResult,
     RelevanceJudgment,
     TranslatedQueries,
+    agent_edition_hint,
+    llm_available,
     neural_rerank,
     rerank_enabled,
     run_relevance_gate,
@@ -162,6 +164,7 @@ from .providers import (
 __all__ = [
     "LANG_PROVIDER_MATRIX",
     "LITERATURE_SEARCH_TOOL_SCHEMA",
+    "RESPONSE_SCHEMA_VERSION",
     "TARGET_LANGUAGES",
     "TOOL_DESCRIPTION",
     "TOOL_NAME",
@@ -198,7 +201,6 @@ __all__ = [
     "ProviderStats",
     "ProviderStatus",
     "PubMedConfig",
-    "RESPONSE_SCHEMA_VERSION",
     "RelevanceGateResult",
     "RelevanceJudgment",
     "RouteChoice",
@@ -212,6 +214,7 @@ __all__ = [
     "ZenodoConfig",
     "ZenodoService",
     "aclose_all",
+    "agent_edition_hint",
     "build_candidate_id",
     "build_provider_plan",
     "call_provider",
@@ -230,6 +233,7 @@ __all__ = [
     "get_shared_client",
     "get_zenodo_service",
     "lexical_relevance",
+    "llm_available",
     "multilingual_acquisition_workflow",
     "neural_rerank",
     "normalize_candidate",
@@ -250,4 +254,4 @@ __all__ = [
     "traverse_citation_graph",
     "validate_url_safe",
 ]
-__version__ = "0.4.1"
+__version__ = "0.5.0"

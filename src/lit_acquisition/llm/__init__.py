@@ -8,6 +8,7 @@ configured.
 
 from __future__ import annotations
 
+from .availability import agent_edition_hint, llm_available
 from .gate import RelevanceGateResult, RelevanceJudgment, run_relevance_gate
 from .params import resolve_max_tokens
 from .rerank import neural_rerank, rerank_enabled
@@ -18,6 +19,8 @@ __all__ = [
     "RelevanceGateResult",
     "RelevanceJudgment",
     "TranslatedQueries",
+    "agent_edition_hint",
+    "llm_available",
     "neural_rerank",
     "rerank_enabled",
     "resolve_max_tokens",

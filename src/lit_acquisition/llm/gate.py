@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from openai import AsyncOpenAI
 
 from ..config import get_config
+from .availability import agent_edition_hint, llm_available
 from .params import resolve_max_tokens
 
 # ── Prompt templates ──────────────────────────────────────────────────────
@@ -364,6 +365,14 @@ async def run_relevance_gate(
     base_url = (cfg.llm.base_url or "").strip().rstrip("/")
     api_keys = cfg.llm.all_api_keys
 
+    if not llm_available():
+        hint = agent_edition_hint()
+        logger.warning("relevance_gate skipped: openai not installed (lite edition); {}", hint)
+        return RelevanceGateResult(
+            total=len(downloads),
+            relevant=len(downloads),
+            warnings=[f"RELEVANCE_GATE_SKIPPED: lite edition, openai not installed ({hint})"],
+        )
     if not model or not base_url:
         logger.warning("relevance_gate skipped: missing LLM config")
         return RelevanceGateResult(

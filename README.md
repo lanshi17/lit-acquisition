@@ -7,13 +7,13 @@ Multilingual biomedical literature acquisition toolkit - search, download, and c
 - **18+ provider integrations**: Crossref, PubMed, OpenAlex, EuropePMC, DOAJ, J-STAGE, arXiv, bioRxiv, medRxiv, SciELO, BASE, CORE, OpenAIRE, CiNii, Unpaywall, Semantic Scholar, ClinicalTrials.gov, Zenodo
 - **Works out of the box (no native extension required)**: every provider has a pure-Python `httpx` backend. The optional `rust-io` extension is no longer needed to reach providers that lack a dedicated Python service.
 - **Citation graph traversal**: Discover related papers by traversing citation networks via Semantic Scholar's API - goes beyond keyword search to find topically related work
-- **Multilingual search**: Query translation into 6 languages (en, zh, ja, de, fr, ru) with language-aware provider routing
+- **Multilingual search** *(agent edition)*: Query translation into 6 languages (en, zh, ja, de, fr, ru) with language-aware provider routing; the lite edition searches the source language only
 - **PDF download**: DOI -> Unpaywall OA resolution, PMCID -> EuropePMC render, direct URL with HTML->PDF redirect handling
-- **Relevance gate**: LLM-based classification to filter irrelevant downloads
+- **Relevance gate** *(agent edition)*: LLM-based classification to filter irrelevant downloads
 - **Literature type classification**: Keyword-based classification (case report, sequencing, functional study) across 10+ languages
 - **Web search fallback**: Firecrawl, Tavily, and SerpApi adapters for discovering papers beyond academic APIs
 - **Provider health tracking + circuit breaker**: Sliding-window stats deprioritize unhealthy providers and stop calling ones that are persistently failing
-- **Relevance-aware ranking**: Results are ordered by topical match to the query (token-overlap scoring, CJK-bigram aware), with an optional neural rerank stage
+- **Relevance-aware ranking**: Results are ordered by topical match to the query (token-overlap scoring, CJK-bigram aware), with an optional neural rerank stage in the agent edition
 - **Fast, bounded fan-out**: shared keep-alive connection pool, per-provider deadlines, and early stopping once enough candidates are gathered - a single slow upstream can no longer stall the whole request
 - **Agent-friendly responses**: every workflow returns a one-line `summary` plus structured `diagnostics` (per-provider status/latency/counts, elapsed time), a `compact` mode, and actionable warning codes
 - **License awareness**: Each result includes license metadata when available (OA status, CC license, public domain)
@@ -55,9 +55,32 @@ Users are responsible for ensuring their use of retrieved content complies with 
 
 ## Installation
 
+Two editions share the same codebase and import surface; the edition is
+chosen at install time:
+
+| | Lite edition | Agent edition |
+|---|---|---|
+| Install | `pip install lit-acquisition` | `pip install "lit-acquisition[agent]"` |
+| Extra dependency | — | `openai` (OpenAI-compatible client) |
+| Configuration | literature provider API keys only | provider keys + LLM config (`LIT_LLM_*`, `LIT_TRANSLATION_*`) |
+| Query translation | disabled → single-language search | 6-language translation |
+| Relevance gate | skipped with `RELEVANCE_GATE_SKIPPED` | LLM classification of downloaded PDFs |
+| Neural rerank | off (heuristic order preserved) | cross-encoder rerank (`LIT_RERANK_ENABLED`) |
+| Response profile | fastest: pure heuristic ranking, zero LLM calls | higher accuracy: LLM gate + rerank + translation add latency |
+
 ```bash
+# Lite edition: literature API keys only, extremely fast
 pip install lit-acquisition
+
+# Agent edition: LLM config + agent framework, higher accuracy
+pip install "lit-acquisition[agent]"
 ```
+
+Both editions expose the same symbols; `llm_available()` reports whether
+the agent-edition client layer is installed. In the lite edition the
+LLM-backed stages degrade to the pure-heuristic pipeline with explicit
+warnings (`RELEVANCE_GATE_SKIPPED`, `TRANSLATION_FAILED`) instead of
+raising.
 
 With web search support:
 
@@ -278,6 +301,10 @@ Notes on configuration-gated providers:
 ## Configuration Reference
 
 ### Environment Variables
+
+`LIT_LLM_*` and `LIT_TRANSLATION_*` are active only in the agent edition
+(`pip install "lit-acquisition[agent]"`); the lite edition ignores them and
+skips LLM-backed stages with explicit warnings.
 
 | Variable | Description | Default |
 |----------|-------------|---------|
