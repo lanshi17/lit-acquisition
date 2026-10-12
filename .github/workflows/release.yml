@@ -1,0 +1,57 @@
+name: Release
+
+# Publish to PyPI on version tags (vX.Y.Z). Uses PyPI Trusted Publishing
+# (OIDC) — no API token stored in GitHub. One-time prerequisite on PyPI:
+# add a "Trusted Publisher" for this project (owner: lanshi17, repository:
+# lit-acquisition, workflow: release.yml, environment: pypi).
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --extra dev --locked
+      - run: uv run --no-sync pytest -q
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Verify tag matches pyproject version
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PYPROJECT_VERSION="$(uv run --no-sync python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")"
+          if [ "$TAG_VERSION" != "$PYPROJECT_VERSION" ]; then
+            echo "::error::tag v${TAG_VERSION} != pyproject ${PYPROJECT_VERSION}"
+            exit 1
+          fi
+      - run: uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # OIDC trusted publishing to PyPI
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: List artifacts
+        run: ls -la dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1

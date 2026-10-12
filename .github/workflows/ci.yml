@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --extra dev --locked
+      - run: uv run --no-sync ruff check src tests
+
+  test-lite:
+    # Lite edition contract: base dependencies only, openai absent.
+    # The full suite must pass with LLM-backed stages degrading gracefully.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --locked
+      - name: Assert openai is absent (true lite environment)
+        run: uv run --no-sync python -c "import importlib.util; assert importlib.util.find_spec('openai') is None, 'openai leaked into lite env'"
+      - name: Install test runner (does not pull openai)
+        run: uv pip install pytest pytest-asyncio
+      - run: uv run --no-sync pytest -q
+
+  test-agent:
+    # Agent edition: openai installed via the dev extra.
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: uv sync --extra dev --locked
+      - run: uv run --no-sync pytest -q
