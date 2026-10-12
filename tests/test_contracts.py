@@ -1,5 +1,7 @@
 """Tests for lit_acquisition contracts and classifiers."""
 
+import time
+
 from lit_acquisition import (
     RESPONSE_SCHEMA_VERSION,
     LiteratureType,
@@ -13,12 +15,9 @@ from lit_acquisition import (
     rank_candidates,
     response_json_schema,
 )
-
-import time
-
 from lit_acquisition.enums import PreferStrategy
-from lit_acquisition.orchestration import _finalize_response
 from lit_acquisition.models import DownloadResult
+from lit_acquisition.orchestration import _finalize_response
 
 
 def test_online_acquisition_request_defaults():
