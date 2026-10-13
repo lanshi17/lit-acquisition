@@ -29,9 +29,8 @@ htmlcov/
 *.swp
 
 # LaTeX build artifacts
-paper/*.aux
-paper/*.log
-paper/*.out
+paper/
+preprint/ 
 
 # Added by ggshield
 .cache_ggshield
