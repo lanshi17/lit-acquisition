@@ -1,0 +1,15 @@
+\begin{table}[h]
+\centering\small
+\caption{Full per-method metrics over 43 variants (macro means). Precision@$K$ uses a fixed denominator $K$; Precision@Retr.\ is over the retrieved list.}
+\label{tab:supp-metrics}
+\begin{tabular}{lccccccc}
+\toprule
+Method & SetRec. & Rec@5 & Rec@20 & Rec@50 & P@20 & nDCG@20 & nDCG@50 \\
+\midrule
+M1 PubMed-only & 0.269 & 0.076 & 0.171 & 0.218 & 0.155 & 0.205 & 0.219 \\
+M2 multi-source & 0.472 & 0.044 & 0.153 & 0.275 & 0.147 & 0.164 & 0.222 \\
+M3 +translation & 0.465 & 0.085 & 0.276 & 0.446 & 0.265 & 0.301 & 0.381 \\
+M4n +citation (nested) & 0.467 & 0.085 & 0.276 & 0.446 & 0.265 & 0.301 & 0.381 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -29,8 +29,25 @@ htmlcov/
 *.swp
 
 # LaTeX build artifacts
-paper/
-preprint/ 
+# Track the sources and deliverables in paper/, but keep generated aux files out.
+# (A blanket `paper/` ignore would also hide new manuscript files, so the ignore
+# rules are scoped to the generated extensions instead.)
+paper/*
+!paper/appnote/
+!paper/BIOINFORMATICS_PLAN.md
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/appnote/*.aux
+paper/appnote/*.log
+paper/appnote/*.out
+paper/appnote/*.fls
+paper/appnote/*.fdb_latexmk
+paper/appnote/*.synctex.gz
+preprint/
 
 # Added by ggshield
 .cache_ggshield

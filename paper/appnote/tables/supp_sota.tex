@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering\small
+\caption{Single-channel baselines (uniform 20-paper budget over the same PubMed candidate pool unless noted). Significance is versus M4n.}
+\label{tab:supp-sota}
+\begin{tabular}{lccc}
+\toprule
+Method & SetRecall & Recall@20 & $p_{\mathrm{Holm}}$ vs M4n \\
+\midrule
+S1 Dense (bge-m3) & 0.269 & 0.182 & 3.86e-04 \\
+S2 Cross-encoder rerank & 0.269 & 0.171 & 3.86e-04 \\
+S3 Hybrid BM25+dense+rerank & 0.421 & 0.271 & 1.00e+00 \\
+S4 LLM query expansion & 0.270 & 0.173 & 3.86e-04 \\
+S5 Agentic 2-round search & 0.269 & 0.171 & 3.86e-04 \\
+S6 Multilingual dense (bge-m3) & 0.269 & 0.181 & 3.86e-04 \\
+\midrule
+\textbf{M4n pipeline} & \textbf{0.467} & \textbf{0.276} & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
