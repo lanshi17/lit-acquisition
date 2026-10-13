@@ -36,6 +36,19 @@ jobs:
         run: uv pip install pytest pytest-asyncio
       - run: uv run --no-sync pytest -q
 
+  paper-numbers:
+    # The Applications Note must never drift from the benchmark artifacts:
+    # check_numbers.py recomputes every headline number from
+    # benchmarks/results/*.json and asserts it appears in the manuscript.
+    # Stdlib only -- no dependency install needed.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python paper/appnote/check_numbers.py
+
   test-agent:
     # Agent edition: openai installed via the dev extra.
     runs-on: ubuntu-latest
