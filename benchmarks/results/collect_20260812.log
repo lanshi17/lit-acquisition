@@ -598,7 +598,7 @@ Running method: full_pipeline
   [full_pipeline] V029: 40 papers (73.3s)
   [full_pipeline] V030: 29 papers (69.7s)
 
-Collected results saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/collected_results.json
+Collected results saved to <repo>/benchmarks/results/collected_results.json
   pubmed_only: 426 total papers across 30 variants
   multisource_no_translation: 600 total papers across 30 variants
   multisource_with_translation: 578 total papers across 30 variants
@@ -614,8 +614,8 @@ Results (K=50)
 | multisource_with_translation | 0.329±0.099 | 0.320±0.143 | 0.316±0.115 | 0.310±0.100 |
 | pubmed_only | 0.171±0.183 | 0.229±0.240 | 0.172±0.161 | 0.195±0.170 |
 
-Summary saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/summary.md
-Detailed metrics saved to /data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/results/metrics.json
+Summary saved to <repo>/benchmarks/results/summary.md
+Detailed metrics saved to <repo>/benchmarks/results/metrics.json
 
 ================================================================================
 Source Coverage Analysis
@@ -640,13 +640,13 @@ europepmc                              8
 Total unique papers: 731
 Found by multiple sources: 0 (0.0%)
 Traceback (most recent call last):
-  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 273, in <module>
+  File "<repo>/benchmarks/run_benchmark.py", line 273, in <module>
     main()
-  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 269, in main
+  File "<repo>/benchmarks/run_benchmark.py", line 269, in main
     run_analysis()
-  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/run_benchmark.py", line 231, in run_analysis
+  File "<repo>/benchmarks/run_benchmark.py", line 231, in run_analysis
     analyze_source_coverage(all_results, variants)
-  File "/data/yangzs/Projects/01_ACMG_Lingua/17_lit-acquisition/benchmarks/analysis/coverage.py", line 82, in analyze_source_coverage
+  File "<repo>/benchmarks/analysis/coverage.py", line 82, in analyze_source_coverage
     with open(output_path, "w") as f:
          ^^^^^^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: 'results/source_coverage.json'

@@ -335,6 +335,46 @@ skips LLM-backed stages with explicit warnings.
 | `LIT_PROVIDER_TIMEOUT` | Per-provider search deadline in seconds | `30` |
 | `LIT_DOWNLOAD_TIMEOUT` | Per-PDF download deadline in seconds | `60` |
 
+## Troubleshooting
+
+Every workflow returns a `diagnostics` block; read
+`result["diagnostics"]["providers"]` first — it lists each provider's
+`status`, `attempts`, `items`, and coded `warnings`. Warnings are designed
+to be branched on programmatically:
+
+| Warning | Meaning | Action |
+|---------|---------|--------|
+| `CONFIG_MISSING:<provider>:…` | Provider needs configuration | Set the named key/email. Retrying will not help. |
+| `PROVIDER_UNAVAILABLE:<provider>:…` | No usable backend for this action | Check the provider supports the requested action (search vs download). |
+| `TIMEOUT:<provider>:…` | Per-provider deadline exceeded | Transient; retry may help. Raise `LIT_PROVIDER_TIMEOUT` for slow networks. |
+| `NETWORK_ERROR:<provider>:…` | Connection problem | Transient; check proxy settings (`LIT_PROXY`). |
+| `PROVIDER_HTTP_429:<provider>:…` | Rate limited | Set an API key (see below). |
+| `PROVIDER_HTTP_<status>:<provider>` | Other HTTP error | 5xx is transient, 4xx is permanent. |
+| `RELEVANCE_GATE_SKIPPED:…` | Lite edition / no LLM config | Expected in the lite edition; install `lit-acquisition[agent]` and set `LIT_LLM_*` to enable. |
+| `TRANSLATION_FAILED:…` | Query translation failed | Falls back to the source language; check the translation model config. |
+| `no_results` | Search succeeded, nothing matched | Broaden the query or use `language="multilingual"` — do not retry verbatim. |
+
+Common cases:
+
+- **BASE / CORE return nothing or are skipped** — both need free API keys
+  (`LIT_BASE_API_KEY`, `LIT_CORE_API_KEY`); without them they are skipped with
+  `CONFIG_MISSING` instead of failing mid-flight.
+- **Unpaywall skipped (HTTP 422)** — the API requires a contact email; set
+  `LIT_UNPAYWALL_EMAIL`. Unset means the provider is skipped, so DOI→OA PDF
+  resolution degrades.
+- **Semantic Scholar 429s on large runs** — anonymous access is aggressively
+  rate-limited from shared/data-center IPs. Set
+  `LIT_SEMANTIC_SCHOLAR_API_KEY`. The same applies to `LIT_PUBMED_API_KEY`
+  for high-volume PubMed E-utilities use.
+- **Downloads fail or are rejected** — only open-access full text is fetched
+  (Unpaywall, EuropePMC/PMC, DOAJ, Zenodo, Semantic Scholar OA links).
+  Non-`http(s)` schemes, private/reserved addresses (SSRF guard), chains
+  longer than `LIT_MAX_REDIRECTS`, and bodies larger than
+  `LIT_MAX_DOWNLOAD_BYTES` are refused by design.
+- **Empty `items` but `success: true`** — that is the intended contract: an
+  empty result is reported with a `no_results` warning so an agent branches
+  instead of looping.
+
 ## Agent / Tool Integration
 
 Every acquisition workflow (`online_acquisition_workflow`,

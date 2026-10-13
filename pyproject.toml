@@ -17,12 +17,19 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
+
 dependencies = [
     "httpx[socks]>=0.27.0",
     "pydantic>=2.7.0",
     "loguru>=0.7.0",
     "pymupdf>=1.27.2",
 ]
+
+[project.urls]
+Homepage = "https://github.com/lanshi17/lit-acquisition"
+Repository = "https://github.com/lanshi17/lit-acquisition"
+Issues = "https://github.com/lanshi17/lit-acquisition/issues"
+Changelog = "https://github.com/lanshi17/lit-acquisition/blob/master/progress.txt"
 
 [project.optional-dependencies]
 # Agent edition: adds the OpenAI-compatible client used by the LLM-backed

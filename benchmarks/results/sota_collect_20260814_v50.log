@@ -210,5 +210,5 @@ Running method: sota_mdense
   [sota_mdense] V030: 50 papers
   sota_mdense: 1379 papers in 127.5s
 
-Merged 6 methods into /data/yangzs/Projects/17_lit-acquisition-paper/benchmarks/results/collected_results.json
-Manifest saved to /data/yangzs/Projects/17_lit-acquisition-paper/benchmarks/results/sota_manifest.json
+Merged 6 methods into <repo>/benchmarks/results/collected_results.json
+Manifest saved to <repo>/benchmarks/results/sota_manifest.json
