@@ -1,0 +1,65 @@
+{
+ "schema_version": 1,
+ "composed_at_utc": "2026-10-13T03:58:21.092606+00:00",
+ "provenance": {
+  "source": "benchmarks/results/run_manifest.json",
+  "collection_window_utc": [
+   "2026-08-14T13:14:07.272071+00:00",
+   "2026-08-14T13:59:18.880401+00:00"
+  ],
+  "command": {
+   "limit": 100,
+   "cg_budget": 20,
+   "cg_depth": 1
+  },
+  "note": "Full pipeline = translation-phase run (multisource_with_translation) + citation phase, both measured in the same 43-variant session. Composition, not a fresh end-to-end run."
+ },
+ "n_variants": 43,
+ "phases": {
+  "pubmed_only": {
+   "total_s": 178.4,
+   "mean_s": 4.15,
+   "median_s": 3.77,
+   "p90_s": 6.16,
+   "max_s": 11.39,
+   "min_s": 2.02
+  },
+  "multisource_no_translation": {
+   "total_s": 1154.5,
+   "mean_s": 26.85,
+   "median_s": 22.26,
+   "p90_s": 40.6,
+   "max_s": 88.87,
+   "min_s": 16.35
+  },
+  "multisource_with_translation": {
+   "total_s": 1294.2,
+   "mean_s": 30.1,
+   "median_s": 25.4,
+   "p90_s": 41.99,
+   "max_s": 69.34,
+   "min_s": 19.69
+  },
+  "full_pipeline_citation_phase": {
+   "total_s": 84.2,
+   "mean_s": 1.96,
+   "median_s": 1.71,
+   "p90_s": 3.25,
+   "max_s": 4.23,
+   "min_s": 0.89
+  }
+ },
+ "composed_full_pipeline": {
+  "total_s": 1378.4,
+  "mean_s": 32.06,
+  "median_s": 28.65,
+  "p90_s": 44.61,
+  "max_s": 72.59,
+  "min_s": 20.75
+ },
+ "caveats": [
+  "Wall clock includes provider rate-limit backoff and network variance.",
+  "No memory or download-throughput data here; see download_throughput.json.",
+  "A fresh live run would not correspond to the frozen benchmark lists."
+ ]
+}

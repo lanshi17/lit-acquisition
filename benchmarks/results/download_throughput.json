@@ -1,0 +1,106 @@
+{
+ "schema_version": 1,
+ "measured_at_utc": "2026-10-13T03:57:58.661174+00:00",
+ "provenance": {
+  "command": "python benchmarks/measure_download_and_memory.py --variants 4 --limit 8",
+  "reference_set": "benchmarks/gold_standard/variants.jsonl",
+  "note": "Wall clock covers search + download phases for one call per variant. Live APIs; relevance gate disabled; PDFs written to a temporary directory and deleted after measuring."
+ },
+ "config": {
+  "variants": [
+   "V001",
+   "V002",
+   "V003",
+   "V004"
+  ],
+  "candidate_budget_per_variant": 8,
+  "language": "en",
+  "relevance_gate": false
+ },
+ "per_variant": [
+  {
+   "variant_id": "V001",
+   "query": "MECP2 Rett syndrome case report",
+   "elapsed_s": 46.04,
+   "candidates": 45,
+   "downloads": 5,
+   "bytes": 4688865,
+   "sources": {
+    "unpaywall": 5
+   },
+   "success": true,
+   "summary": "ok: 45 items, 5 downloads in 46.0s (8 providers); top: crossref(8), doaj(8), openalex(8); failed: base,core,web_search",
+   "warnings": [
+    "CONFIG_MISSING:base:no API key configured (set LIT_BASE_API_KEY)",
+    "CONFIG_MISSING:core:no API key configured (set LIT_CORE_API_KEY)"
+   ]
+  },
+  {
+   "variant_id": "V002",
+   "query": "BRCA1 5266dupC breast cancer",
+   "elapsed_s": 154.41,
+   "candidates": 44,
+   "downloads": 7,
+   "bytes": 4795889,
+   "sources": {
+    "unpaywall": 7
+   },
+   "success": true,
+   "summary": "ok: 44 items, 7 downloads in 154.4s (8 providers); top: crossref(8), doaj(8), jstage(8); failed: base,core,web_search",
+   "warnings": [
+    "CONFIG_MISSING:base:no API key configured (set LIT_BASE_API_KEY)",
+    "CONFIG_MISSING:core:no API key configured (set LIT_CORE_API_KEY)"
+   ]
+  },
+  {
+   "variant_id": "V003",
+   "query": "CFTR Phe508del cystic fibrosis functional",
+   "elapsed_s": 30.94,
+   "candidates": 44,
+   "downloads": 4,
+   "bytes": 9607715,
+   "sources": {
+    "unpaywall": 4
+   },
+   "success": true,
+   "summary": "ok: 44 items, 4 downloads in 30.9s (9 providers); top: crossref(8), jstage(8), openalex(8); failed: base,core,web_search",
+   "warnings": [
+    "CONFIG_MISSING:base:no API key configured (set LIT_BASE_API_KEY)",
+    "CONFIG_MISSING:core:no API key configured (set LIT_CORE_API_KEY)"
+   ]
+  },
+  {
+   "variant_id": "V004",
+   "query": "LDLR familial hypercholesterolemia variant functional",
+   "elapsed_s": 39.61,
+   "candidates": 54,
+   "downloads": 2,
+   "bytes": 1022167,
+   "sources": {
+    "crossref": 1,
+    "unpaywall": 1
+   },
+   "success": true,
+   "summary": "ok: 54 items, 2 downloads in 39.6s (9 providers); top: crossref(8), doaj(8), openalex(8); failed: web_search; skipped: base,core",
+   "warnings": []
+  }
+ ],
+ "aggregate": {
+  "n_variants": 4,
+  "candidates_total": 187,
+  "pdfs_total": 18,
+  "pdf_success_rate": 0.0963,
+  "bytes_total": 20114636,
+  "seconds_total": 271.0,
+  "pdfs_per_minute": 3.99,
+  "seconds_per_pdf": 15.06,
+  "peak_rss_mb": 85.7,
+  "median_variant_seconds": 42.83
+ },
+ "caveats": [
+  "Small sample (see config.variants); not a full-corpus throughput benchmark.",
+  "Relevance-gate latency and false-positive rate are NOT measured here.",
+  "Unpaywall's DOI->OA route requires LIT_UNPAYWALL_EMAIL; when unset only PMC/EuropePMC and direct-URL routes can succeed.",
+  "Provider rate limits are included in the wall clock, as in the collection runs."
+ ]
+}
