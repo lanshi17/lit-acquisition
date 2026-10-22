@@ -1,0 +1,38 @@
+# Never send local state or credentials to the build daemon.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+
+# Python / tooling caches
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.coverage
+htmlcov
+
+# Rust build output (rebuilt inside the image)
+server/target
+
+# Repository content the image does not need
+benchmarks
+paper
+preprint
+docs
+tests
+scripts
+downloads
+.worktrees
+dist
+*.zip
+
+# Editor / OS noise
+.idea
+.vscode
+*.swp
+.DS_Store

@@ -1,0 +1,44 @@
+# Local run of the lit-acquisition service image.
+#
+#   cp .env.example .env     # fill in provider keys
+#   docker compose up --build
+#   curl -s http://127.0.0.1:8080/healthz
+#
+# Provider credentials come from .env at run time and are never baked into the
+# image. The container always listens on 8080; expose it on a different host
+# port with LIT_SERVICE_HOST_PORT.
+name: lit-acquisition
+
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lit-acquisition:local
+    ports:
+      - "${LIT_SERVICE_HOST_PORT:-8080}:8080"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Keep the container-side port stable even if .env sets LIT_SERVICE_PORT.
+      LIT_SERVICE_ADDR: "0.0.0.0:8080"
+      LIT_SERVICE_WORKERS: "${LIT_SERVICE_WORKERS:-2}"
+      LIT_SERVICE_REQUEST_TIMEOUT: "${LIT_SERVICE_REQUEST_TIMEOUT:-180}"
+      # Uncomment to require a bearer token on / and /v1/*:
+      # LIT_SERVICE_API_KEY: "change-me"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import os, urllib.request; addr=os.getenv('LIT_SERVICE_ADDR','0.0.0.0:8080'); port=addr.rsplit(':',1)[-1]; urllib.request.urlopen('http://127.0.0.1:'+port+'/healthz', timeout=3)"
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3

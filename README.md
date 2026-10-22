@@ -313,6 +313,43 @@ open for orchestrators.
 provider variable, including the port, the API key and the provider keys. See
 `server/README.md` for the wire protocol, error codes and deployment notes.
 
+### Docker
+
+The repository ships a multi-stage image: a Rust builder compiles the axum
+binary, a Python stage installs the worker environment with `uv`, and the
+runtime contains only those two artifacts plus the CA bundle.
+
+```bash
+# build
+docker build -t lit-acquisition:0.1.0 .
+
+# run (provider keys come from .env at run time, never baked into the image)
+docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.1.0
+curl -s http://127.0.0.1:8080/healthz
+
+# or use the compose file (also loads .env when present)
+LIT_SERVICE_HOST_PORT=8080 docker compose up --build
+```
+
+The image:
+- runs as the unprivileged user `app` (uid/gid 10001) and ships a `HEALTHCHECK`
+  that probes `/healthz` with the standard library;
+- listens on `0.0.0.0:8080` inside the container; publish it on another host
+  port with `-p 9000:8080` (compose: `LIT_SERVICE_HOST_PORT=9000`);
+- includes the `agent` extra, so multilingual translation works; set the
+  provider keys through `--env-file`/compose and `LIT_SERVICE_API_KEY` for auth;
+- excludes `.env`, tests, benchmarks and Git history via `.dockerignore`, and
+  keeps the Cargo registry in a BuildKit cache rather than in the layer.
+
+To rebuild and verify the image end to end (health, worker boot, search,
+non-root user, graceful stop):
+
+```bash
+scripts/docker-smoke.sh
+```
+
+Rebuilding for another platform: `docker buildx build --platform linux/arm64 -t lit-acquisition:0.1.0 .`.
+
 ## Supported Providers
 
 All 18 providers are reachable through built-in pure-Python backends

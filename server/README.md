@@ -188,6 +188,20 @@ clients and exits, which is how graceful shutdown reaches Python.
 * Requests are passed as JSON arguments to Python — no shell is involved.
 * Query length, provider id, body size and worker response size are bounded.
 
+## Container image
+
+The service is packaged as a multi-stage image (Rust builder + Python worker
+environment, non-root runtime with a `/healthz` healthcheck). Build and run it
+from the repository root:
+
+```bash
+docker build -t lit-acquisition:0.1.0 .
+docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.1.0
+```
+
+`docker compose up --build` does the same and loads `.env` when present; see
+the Docker section of the root README for ports, auth and platform notes.
+
 ## Test
 
 ```bash

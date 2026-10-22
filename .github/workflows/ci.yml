@@ -48,6 +48,36 @@ jobs:
           workspaces: server
       - run: cargo test --locked --manifest-path server/Cargo.toml
 
+  docker-image:
+    # The image is the deployment artifact: build it and prove the container
+    # actually serves /healthz and /readyz (worker import included).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: lit-acquisition:ci
+          # `load: true` needs a plain single-platform image, not a manifest list.
+          provenance: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Smoke test the image
+        run: |
+          docker run -d --name smoke -p 18080:8080 lit-acquisition:ci
+          ok=0
+          for _ in $(seq 1 60); do
+            if curl -sf -m 2 http://127.0.0.1:18080/healthz > /dev/null; then ok=1; break; fi
+            sleep 2
+          done
+          if [ "$ok" != 1 ]; then docker logs smoke; exit 1; fi
+          curl -sf -m 120 http://127.0.0.1:18080/readyz
+          test "$(docker exec smoke id -u)" = "10001"
+          docker rm -f smoke
+
   paper-numbers:
     # The Applications Note must never drift from the benchmark artifacts:
     # check_numbers.py recomputes every headline number from
