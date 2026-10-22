@@ -54,3 +54,7 @@ preprint/
 
 # Rust build artifacts (axum service)
 server/target/
+
+# Local scratch: agent/eval workspace exports and downloaded PDFs
+.worktrees/
+downloads/
