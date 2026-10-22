@@ -52,9 +52,19 @@ preprint/
 # Added by ggshield
 .cache_ggshield
 
+# Benchmark caches (reproducible from the scripts; large)
+benchmarks/results/api_score_cache.json
+benchmarks/results/embedding_cache.npz
+benchmarks/results/clinvar_cache.json
+benchmarks/results/citation_seed_cache.json
+benchmarks/results/abstracts_cache.json
+
 # Rust build artifacts (axum service)
 server/target/
 
 # Local scratch: agent/eval workspace exports and downloaded PDFs
 .worktrees/
 downloads/
+
+# Shell history snapshot produced by local tooling
+command.log
