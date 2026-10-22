@@ -263,6 +263,56 @@ async def main():
 asyncio.run(main())
 ```
 
+## HTTP Service (axum)
+
+`server/` is an optional HTTP entry point written in Rust with
+[axum](https://github.com/tokio-rs/axum). It binds a port and executes searches
+through a pool of long-lived Python workers, so the HTTP layer can enforce
+timeouts, recycle crashed workers and restart independently of the acquisition
+pipeline. The Python API and response schema are unchanged.
+
+```bash
+# terminal 1: run the service (loads .env; workers inherit provider keys)
+LIT_SERVICE_PYTHON=.venv/bin/python \
+LIT_SERVICE_PYTHONPATH=src \
+LIT_SERVICE_ADDR=127.0.0.1:8080 \
+cargo run --release --manifest-path server/Cargo.toml
+
+# terminal 2: probe and search
+curl -s http://127.0.0.1:8080/healthz
+curl -s http://127.0.0.1:8080/readyz
+curl -s -X POST http://127.0.0.1:8080/v1/search \
+  -H 'content-type: application/json' \
+  -d '{"query":"MECP2 Rett syndrome","limit":5}'
+```
+
+| Method | Path | Purpose |
+|--------|------|---------|
+| `GET` | `/healthz` | Liveness; never touches the worker pool |
+| `GET` | `/readyz` | Readiness; pings a worker (200/503) |
+| `GET` | `/v1/version` | Server, Python package and schema versions |
+| `POST` | `/v1/search` | Query, `limit` (1-50), `language`, `provider`, `literature_types` |
+
+`POST /v1/search` returns the same versioned envelope as the Python workflows
+(`schema_version`, `items`, `diagnostics`, ...), with `x-request-id` and
+`x-schema-version` headers. Set `LIT_SERVICE_API_KEY` to require
+`Authorization: Bearer <key>` on `/` and `/v1/*`; `/healthz` and `/readyz` stay
+open for orchestrators.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `LIT_SERVICE_ADDR` | `0.0.0.0:8080` | Bind address; wins over host/port |
+| `LIT_SERVICE_HOST` / `LIT_SERVICE_PORT` | `0.0.0.0` / `8080` | Bind address parts (`PORT` is honoured too) |
+| `LIT_SERVICE_API_KEY` | unset | Bearer token protecting `/` and `/v1/*` |
+| `LIT_SERVICE_PYTHON` / `LIT_SERVICE_PYTHONPATH` | `python3` / inherited | Interpreter and import path for the worker |
+| `LIT_SERVICE_WORKERS` | CPU count, capped at 4 | Concurrent searches |
+| `LIT_SERVICE_REQUEST_TIMEOUT` | `180` | Seconds per search |
+| `LIT_SERVICE_MAX_BODY_BYTES` | `131072` | Maximum request body |
+
+`cp .env.example .env` gives you a commented template with every service and
+provider variable, including the port, the API key and the provider keys. See
+`server/README.md` for the wire protocol, error codes and deployment notes.
+
 ## Supported Providers
 
 All 18 providers are reachable through built-in pure-Python backends
@@ -301,6 +351,11 @@ Notes on configuration-gated providers:
 ## Configuration Reference
 
 ### Environment Variables
+
+`.env.example` is a complete, commented template covering provider keys, LLM
+settings, the network/proxy knobs and the axum service; run
+`cp .env.example .env` and fill in what you need. Variables already present in
+the process environment take precedence over the file.
 
 `LIT_LLM_*` and `LIT_TRANSLATION_*` are active only in the agent edition
 (`pip install "lit-acquisition[agent]"`); the lite edition ignores them and

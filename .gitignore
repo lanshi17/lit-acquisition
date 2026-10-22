@@ -51,3 +51,6 @@ preprint/
 
 # Added by ggshield
 .cache_ggshield
+
+# Rust build artifacts (axum service)
+server/target/

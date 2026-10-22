@@ -36,6 +36,18 @@ jobs:
         run: uv pip install pytest pytest-asyncio
       - run: uv run --no-sync pytest -q
 
+  rust-service:
+    # The axum entry point lives outside the Python package but must keep
+    # building; these tests cover config parsing, validation and HTTP wiring.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: server
+      - run: cargo test --locked --manifest-path server/Cargo.toml
+
   paper-numbers:
     # The Applications Note must never drift from the benchmark artifacts:
     # check_numbers.py recomputes every headline number from
