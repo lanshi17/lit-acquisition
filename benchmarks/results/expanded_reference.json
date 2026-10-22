@@ -1,0 +1,5399 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "plan_reference": "supporting analysis for paper/appnote/EXPERIMENT_OPTIMIZATION_PLAN.md §1 (E1) and §3 (E3); extends the reference set the same way §2 (E2) questions it",
+    "no_live_retrieval": true,
+    "expansion": "gold_standard/build_variants.py heuristic (gene +3, variant +5, disease keyword +1) with threshold > 4 and a required variant-string hit, applied to the pooled candidate lists of all ten recorded systems",
+    "caveats": "Pooled judgments come from titles only, exactly like the frozen set, and every system contributes to the pool (so no single system is favoured); the rule is the project's own, not an external gold standard, and human adjudication (plan §2.3) remains necessary."
+  },
+  "sizes": {
+    "pool_size_total": 11161,
+    "frozen_gold_total": 822,
+    "expanded_gold_total": 1135,
+    "frozen_total": 822,
+    "added_total": 313,
+    "expanded_total": 1135,
+    "variants_with_additions": 15
+  },
+  "per_variant_additions": {
+    "V002": {
+      "frozen": 29,
+      "added": 4,
+      "expanded": 33
+    },
+    "V003": {
+      "frozen": 19,
+      "added": 65,
+      "expanded": 84
+    },
+    "V005": {
+      "frozen": 32,
+      "added": 7,
+      "expanded": 39
+    },
+    "V010": {
+      "frozen": 21,
+      "added": 35,
+      "expanded": 56
+    },
+    "V019": {
+      "frozen": 24,
+      "added": 30,
+      "expanded": 54
+    },
+    "V026": {
+      "frozen": 18,
+      "added": 38,
+      "expanded": 56
+    },
+    "V028": {
+      "frozen": 20,
+      "added": 2,
+      "expanded": 22
+    },
+    "V030": {
+      "frozen": 25,
+      "added": 14,
+      "expanded": 39
+    },
+    "V031": {
+      "frozen": 24,
+      "added": 1,
+      "expanded": 25
+    },
+    "V033": {
+      "frozen": 23,
+      "added": 1,
+      "expanded": 24
+    },
+    "V035": {
+      "frozen": 28,
+      "added": 6,
+      "expanded": 34
+    },
+    "V036": {
+      "frozen": 36,
+      "added": 87,
+      "expanded": 123
+    },
+    "V038": {
+      "frozen": 20,
+      "added": 3,
+      "expanded": 23
+    },
+    "V041": {
+      "frozen": 18,
+      "added": 1,
+      "expanded": 19
+    },
+    "V043": {
+      "frozen": 14,
+      "added": 19,
+      "expanded": 33
+    }
+  },
+  "additions_sample": {
+    "V002": [
+      {
+        "title": "Haplotypic characterization of BRCA1 c.5266dupC, the prevailing mutation in Brazilian hereditary breast/ovarian cancer.",
+        "doi": "10.1590//1678-4685-GMB-2019-0072",
+        "pmid": "32453342",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "The frequency of BRCA1 founder mutation c.5266dupC (5382insC) in breast cancer patients from Ukraine.",
+        "doi": "10.1186/s13053-015-0040-3",
+        "pmid": "26468334",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "On the origin and diffusion of BRCA1 c.5266dupC (5382insC) in European populations.",
+        "doi": "10.1038/ejhg.2010.203",
+        "pmid": "21119707",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Absence of Germline BRCA1 c.68_69delAG and c.5266dupC Mutations among Hormone Receptor-negative Breast Cancer Patients: A First Impression at a Tertiary Cancer-care Facility in Tanzania",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ],
+    "V003": [
+      {
+        "title": "Real-World Clinical Outcomes of Lumacaftor-Ivacaftor or Tezacaftor-Ivacaftor Therapy in Children With Cystic Fibrosis Homozygous for Phe508del.",
+        "doi": "10.1002/ppul.71701",
+        "pmid": "42272190",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Comparative efficacy and safety of CFTR modulators for people with cystic fibrosis with phe508del mutation: a systematic review and bayesian network meta-analysis.",
+        "doi": "10.1016/j.eclinm.2025.103655",
+        "pmid": "41377908",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Comparison of the Effect of CFTR Modulators elexacaftor/tezacaftor/ivacaftor and lumacaftor/ivacaftor via Serum Human Epididymis Protein 4 Concentration in p.Phe508del-CFTR Homozygous Cystic Fibrosis Patients.",
+        "doi": "10.3390/jcm14176188",
+        "pmid": "40943949",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Real-world effectiveness and safety of elexacaftor/tezacaftor/ivacaftor in cystic fibrosis patients with Phe508del -gating and -residual function genotypes.",
+        "doi": "10.1016/j.rmed.2025.108221",
+        "pmid": "40571167",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "p.Phe508del-CFTR Trafficking: A Protein Quality Control Perspective Through UPR, UPS, and Autophagy.",
+        "doi": "10.3390/ijms26083623",
+        "pmid": "40332143",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Successful Therapy over 12 Months of People with Cystic Fibrosis with Rare Non-phe508del Cystic Fibrosis Transmembrane Conductance Regulator (CFTR) Mutations with Elexacaftor/Tezacaftor/Ivacaftor (ETI).",
+        "doi": "10.3390/arm92060049",
+        "pmid": "39727500",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Corrigendum: Effect of elexacaftor-tezacaftor-ivacaftor on nasal potential difference and lung function in Phe508del rats.",
+        "doi": "10.3389/fphar.2024.1428213",
+        "pmid": "38863980",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "PTI-801 (posenacaftor) shares a common mechanism with VX-445 (elexacaftor) to rescue p.Phe508del-CFTR.",
+        "doi": "10.1016/j.ejphar.2024.176390",
+        "pmid": "38336013",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Effect of elexacaftor-tezacaftor-ivacaftor on nasal potential difference and lung function in Phe508del rats.",
+        "doi": "10.3389/fphar.2024.1362325",
+        "pmid": "38545546",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "The Inhibition of the Membrane-Bound Transcription Factor Site-1 Protease (MBTP1) Alleviates the p.Phe508del-Cystic Fibrosis Transmembrane Conductance Regulator (CFTR) Defects in Cystic Fibrosis Cells.",
+        "doi": "10.3390/cells13020185",
+        "pmid": "38247876",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Real-life experience with a generic formulation of lumacaftor-ivacaftor in patients with cystic fibrosis homozygous for the Phe508del CFTR mutation.",
+        "doi": "10.1002/ppul.26690",
+        "pmid": "37712606",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Human epididymis protein 4 (HE4) plasma concentration inversely correlates with the improvement of cystic fibrosis lung disease in p.Phe508del-CFTR homozygous cases treated with the CFTR modulator lumacaftor/ivacaftor combination.",
+        "doi": "10.1016/j.jcf.2023.04.001",
+        "pmid": "37087300",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Identification of single nucleotide variants in SLC26A9 gene in patients with cystic fibrosis (p.Phe508del homozygous) and its association to Orkambi® (Lumacaftor and Ivacaftor) response in vitro.",
+        "doi": "10.1016/j.gene.2023.147428",
+        "pmid": "37068695",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Evaluation of the Complex p.[Leu467Phe;Phe508del] CFTR Allele in the Intestinal Organoids Model: Implications for Therapy.",
+        "doi": "10.3390/ijms231810377",
+        "pmid": "36142302",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Mutation profiling of the c.1521_1523delCTT (p.Phe508del, F508del) cystic fibrosis transmembrane conductance regulator allele using haplotype-resolved long-read next generation sequencing.",
+        "doi": "10.1002/humu.24352",
+        "pmid": "35170824",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Clinical presentation and basic defect of the CFTR genotype p.Phe508del / p.Arg117His in a mother and her monozygous twin daughters.",
+        "doi": "10.1016/j.jcf.2021.08.018",
+        "pmid": "34489188",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Identification and selection of healthy spermatozoa in heterozygous carriers of the Phe508del-variant of the CFTR-gene in assisted reproduction.",
+        "doi": "10.1038/s41598-022-05925-1",
+        "pmid": "35115637",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Cystic Fibrosis: Systems Biology Analysis from Homozygous p.Phe508del Variant Patients' Samples Reveals Perturbations in Tissue-Specific Pathways.",
+        "doi": "10.1155/2021/5262000",
+        "pmid": "34901273",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Effectiveness and safety of elexacaftor/tezacaftor/ivacaftor in patients with cystic fibrosis and advanced lung disease with the Phe508del/minimal function genotype.",
+        "doi": "10.1016/j.rmed.2021.106646",
+        "pmid": "34673344",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Riociguat for the treatment of Phe508del homozygous adults with cystic fibrosis.",
+        "doi": "10.1016/j.jcf.2021.07.015",
+        "pmid": "34419414",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Triple Therapy for Cystic Fibrosis Phe508del-Gating and -Residual Function Genotypes.",
+        "doi": "10.1056/NEJMoa2100665",
+        "pmid": "34437784",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Effectiveness of Elexacaftor/Tezacaftor/Ivacaftor Therapy in Three Subjects with the Cystic Fibrosis Genotype Phe508del/Unknown and Advanced Lung Disease.",
+        "doi": "10.3390/genes12081178",
+        "pmid": "34440351",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Long-term safety and efficacy of tezacaftor-ivacaftor in individuals with cystic fibrosis aged 12 years or older who are homozygous or heterozygous for Phe508del CFTR (EXTEND): an open-label extension study.",
+        "doi": "10.1016/S2213-2600(20)30510-5",
+        "pmid": "33581080",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Effects of Lumacaftor-Ivacaftor on Lung Clearance Index, Magnetic Resonance Imaging, and Airway Microbiome in Phe508del Homozygous Patients with Cystic Fibrosis.",
+        "doi": "10.1513/AnnalsATS.202008-1054OC",
+        "pmid": "33600745",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Elexacaftor-tezacaftor-ivacaftor: The new paradigm to treat people with cystic fibrosis with at least one p.Phe508del mutation.",
+        "doi": "10.1016/j.coph.2021.01.001",
+        "pmid": "33582393",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "EPS3.03 Effects of lumacaftor-ivacaftor therapy on CFTR function in Phe508del homozygous patients with cystic fibrosis",
+        "doi": "10.1016/s1569-1993(18)30248-0",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Effects of Lumacaftor‐Ivacaftor Therapy on Cystic Fibrosis Transmembrane Conductance Regulator Function in Phe508del Homozygous Patients with Cystic Fibrosis",
+        "doi": "10.1164/rccm.201710-1983OC",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Efficacy and safety of lumacaftor/ivacaftor combination therapy in patients with cystic fibrosis homozygous for Phe508del CFTR by pulmonary function subgroup",
+        "doi": "10.1016/S2213-2600(16)30121-7",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "A CFTR corrector (lumacaftor) and a CFTR potentiator (ivacaftor) for treatment of patients with cystic fibrosis who have a phe508del CFTR mutation: a phase 2 randomised controlled trial.",
+        "doi": "10.1016/S2213-2600(14)70132-8",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Phenotypic characterization and comparison of Phe508del and cystic fibrosis transmembrane conductance regulator (CFTR) knockout rat models of cystic fibrosis generated by CRISPR/Cas9 gene editing.",
+        "doi": "10.1016/j.ajpath.2020.01.009",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Evaluation of eluforsen, a novel RNA oligonucleotide for restoration of CFTR function in in vitro and murine models of p.Phe508del cystic fibrosis",
+        "doi": "10.1371/journal.pone.0219182",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Effects of Lumacaftor-Ivacaftor Therapy on CFTR Function in Phe508del Homozygous Patients with Cystic Fibrosis",
+        "doi": "10.1183/13993003.congress-2018.pa3415",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "P071 Elexacaftor/tezacaftor/ivacaftor in patients with cystic fibrosis and Phe508del–gating or Phe508del–residual function genotypes: an Italian real-world experience",
+        "doi": "10.1016/s1569-1993(24)00375-8",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "First report of the cystic fibrosis transmembrane conductance regulator mutation c.1521_1523delCTT (p. Phe508del) in two Qatari patients with cystic fibrosis",
+        "doi": "10.5339/qmj.2021.24",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "IPD2.10 Observational study of glucose tolerance abnormalities in patients with cystic fibrosis homozygous for Phe508del CFTR treated by lumacaftor-ivacaftor",
+        "doi": "10.1016/S1569-1993(18)30294-7",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "P068 Real-life experience with a generic formulation of lumacaftor-ivacaftor in patients with cystic fibrosis homozygous for the Phe508del CFTR mutation",
+        "doi": "10.1016/s1569-1993(23)00443-5",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Association of CFTR activity in sweat test, NPD, and ICM with ivacaftor and lumacaftor serum levels in Phe508del homozygous patients with cystic fibrosis",
+        "doi": "10.22541/au.166171143.33189125/v1",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "165 Assessing CFTR function and lung mechanics in Phe508del rats treated with modulators",
+        "doi": "10.1016/s1569-1993(23)01096-2",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Real-life initiation of lumacaftor/ivacaftor combination in adults with cystic fibrosis homozygous for the Phe508del CFTR mutation and severe lung disease.",
+        "doi": "10.1016/j.jcf.2017.03.003",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Triple Therapy for Cystic Fibrosis with a Phe508del\n            <i>CFTR</i>\n            Mutation",
+        "doi": "10.1056/nejmc1916747",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Tezacaftor-Ivacaftor in Patients with Cystic Fibrosis and Phe508del and a Residual Function Mutation",
+        "doi": "10.1056/NEJMoa1709847",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Lumacaftor–Ivacaftor in Patients with Cystic Fibrosis Homozygous for Phe508del CFTR",
+        "doi": "10.1016/j.ypdi.2016.01.040",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "669: Phe508del and knockout cystic fibrosis rat lung phenotype assessment via flexiVent and x-ray velocimetry",
+        "doi": "10.1016/s1569-1993(21)02092-0",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Lumacaftor–Ivacaftor in Patients with Cystic Fibrosis Homozygous for Phe508del <i>CFTR</i>",
+        "doi": "10.1056/nejmc1510466",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Prolonged co-treatment with HGF sustains epithelial integrity and improves pharmacological rescue of Phe508del-CFTR",
+        "doi": "10.1038/s41598-018-31514-2",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Elexacaftor-tezacaftor-ivacaftor for cystic fibrosis with Phe508del mutation: Evidence from randomized controlled trials.",
+        "doi": "10.1177/20503121231225874",
+        "pmid": null,
+        "source": "europepmc",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Successful Therapy over 12 Months of People with Cystic Fibrosis with Rare Non-phe508del-CFTR Mutations with Elexacaftor/Tezacaftor/Ivacaftor (ETI)",
+        "doi": "10.20944/preprints202410.1731.v1",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Elexacaftor–Tezacaftor–Ivacaftor for Cystic Fibrosis with a Single Phe508del Allele",
+        "doi": "10.1056/nejmoa1908639",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "P020 Therapy with elexacaftor/tezacaftor/ivacaftor in a patient with compound heterozygous CFTR mutation and the complex CFTR-allele Phe508del; Leu467Phe",
+        "doi": "10.1016/s1569-1993(23)00396-x",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "651: Difficulties in prescribing targeted drugs in a cystic fibrosis patient with genotype p.[Phe508del]:[Phe508del-Leu467Phe]",
+        "doi": "10.1016/s1569-1993(21)02074-9",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Delayed identification of compound heterozygous (Phe508del/Arg117His) cystic fibrosis variants in a patient awaiting liver transplantation.",
+        "doi": "10.1136/bcr-2023-255602",
+        "pmid": null,
+        "source": "europepmc",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Compound Heterozygosity for CFTR Phe508del/Pro750Leu in Two Siblings with Normal Sweat Chloride, Lung Function, Growth, and Fecal Elastase",
+        "doi": "10.24966/pmrr-0177/100010",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "The stony road to phe508del CFTR pharmacotherapy: smoothing the first rock",
+        "doi": "10.1016/s2213-2600(14)70136-5",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Combination therapy in Phe508del CFTR: how many will be enough?",
+        "doi": "10.29245/2689-999x/2017/1.1113",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Real-life effect of lumacaftor-ivacaftor or tezacaftor-ivacaftor in children with Phe508del CFTR mutation",
+        "doi": "10.1183/13993003.congress-2025.pa4788",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Lumacaftor/ivacaftor for patients homozygous for Phe508del-CFTR: should we curb our enthusiasm?",
+        "doi": "10.1136/thoraxjnl-2015-207369",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Assessment of p.Phe508del-CFTR functional restoration in pediatric primary cystic fibrosis airway epithelial cells.",
+        "doi": "10.1371/journal.pone.0191618",
+        "pmid": "29360847",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Lumacaftor/ivacaftor combination for cystic fibrosis patients homozygous for Phe508del-CFTR.",
+        "doi": "10.1358/dot.2016.52.4.2467205",
+        "pmid": "27252987",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Lumacaftor-Ivacaftor in Patients with Cystic Fibrosis Homozygous for Phe508del CFTR.",
+        "doi": "10.1056/NEJMoa1409547",
+        "pmid": "25981758",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Morbidity and mortality in carriers of the cystic fibrosis mutation CFTR Phe508del in the general population.",
+        "doi": "10.1183/13993003.00558-2020",
+        "pmid": "32398304",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "VX-445-Tezacaftor-Ivacaftor in Patients with Cystic Fibrosis and One or Two Phe508del Alleles.",
+        "doi": "10.1056/NEJMoa1807120",
+        "pmid": "30334692",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Functional analysis of the p.[Arg74Trp;Val201Met;Asp1270Asn]/p.Phe508del CFTR mutation genotype in human native colon.",
+        "doi": "10.1002/mgg3.526",
+        "pmid": "30600599",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Tezacaftor-Ivacaftor in Patients with Cystic Fibrosis Homozygous for Phe508del.",
+        "doi": "10.1056/NEJMoa1709846",
+        "pmid": "29099344",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "VX-659-Tezacaftor-Ivacaftor in Patients with Cystic Fibrosis and One or Two Phe508del Alleles.",
+        "doi": "10.1056/NEJMoa1807119",
+        "pmid": "30334693",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "First experience in Switzerland in Phe508del homozygous cystic fibrosis patients with end-stage pulmonary disease enrolled in a lumacaftor-ivacaftor therapy trial - preliminary results.",
+        "doi": "10.4414/smw.2018.14593",
+        "pmid": "29451946",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      }
+    ],
+    "V005": [
+      {
+        "title": "Abstract 2956: High throughput RNAi screening of synthetic lethal genes interacting with the common <i>TP53</i> mutation R175H",
+        "doi": "10.1158/1538-7445.am2012-2956",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "High throughput RNAi screening identifies ID1 as a synthetic sick/lethal gene interacting with the common TP53 mutation R175H",
+        "doi": "10.3892/or.2013.2953",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Dynamic Telomere Shortening and Chromosomal Instability in Irradiated CD34+ Cells Transduced with TP53 Hotspot Mutations R175H, R248W and R249S",
+        "doi": "10.1182/blood.v126.23.4832.4832",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "1315 A novel T cell engager targeting HLA-A*02:01 TP53-R175H for cancer immunotherapy",
+        "doi": "10.1136/jitc-2024-sitc2024.1315",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "TP53 Mutations R175H and R249S Are Rare in Indian Head and Neck Cancer Patients",
+        "doi": "10.1055/s-0043-1774776",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Abstract 3521: A novel T cell engager targeting HLA-A02:01 TP53-R175H for cancer immunotherapy",
+        "doi": "10.1158/1538-7445.am2025-3521",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Modeling the cooperative effects of GNAS^[R201C], KRAS^[G12V], and TP53^[R175H] in human pancreatic ductal epithelial cells",
+        "doi": "10.17918/00011125",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ],
+    "V010": [
+      {
+        "title": "Unusual phenotype in 35delG mutation: a case report.",
+        "doi": "10.1186/s13256-024-04559-3",
+        "pmid": "38734626",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "A novel compound heterozygous mutation (35delG, 363delC) in the Connexin 26 gene causes non-syndromic autosomal recessive hearing loss.",
+        "doi": "",
+        "pmid": "25149889",
+        "source": "pubmed",
+        "reason": "variant+disease+disease",
+        "score": 7
+      },
+      {
+        "title": "Uniparental disomy of chromosome 13q causing homozygosity for the 35delG mutation in the gene encoding connexin26 (GJB2) results in prelingual hearing impairment in two unrelated Spanish patients.",
+        "doi": "10.1136/jmg.40.8.636",
+        "pmid": "12920081",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Moderate hearing loss and pseudodominant inheritance due to L90P/35delG mutations in the GJB2 (connexin 26) gene.",
+        "doi": "",
+        "pmid": "14738110",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "A case report of non-syndromic sensorineural hearing loss with a compound heterozygous mutation (35delG/del120E) in the GJB2 gene",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Hearing loss associated with 35delG mutation in Connexin-26 (GJB2) gene: audiogram analysis",
+        "doi": "10.1258/002221504322731547",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Comprehensive Analysis and Genetic Insights Into GJB2 c.35delG Mutation‐Associated Non‐Syndromic Hearing Loss in Morocco",
+        "doi": "10.1002/oto2.70276",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Common mutation analysis of GJB2 and GJB6 genes in affected families with autosomal recessive non-syndromic hearing loss from Iran: Simultaneous detection of two common mutations (35delG/del(GJB6-D13S1830)) in the DFNB1-related deafness",
+        "doi": "10.1016/j.ijporl.2007.02.007",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Detection of the 35delG/\n                    <i>GJB2</i>\n                    and del(\n                    <i>GJB6</i>\n                    -D13S1830) Mutations in Venezuelan Patients with Autosomal Recessive Nonsyndromic Hearing Loss",
+        "doi": "10.1089/gte.2006.0526",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The Prevalence of GJB2 Mutation (35delG) in Patients With Non-syndromic Hearing Loss From Northern Iranian Population",
+        "doi": "10.32598/cjns.12.44.308.3",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Paternal uniparental disomy of chromosome 13 causing homozygous 35delG mutation of the <i>GJB2</i> gene and hearing loss",
+        "doi": "10.1002/ajmg.a.31553",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Moderate hearing loss and pseudodominant inheritance due to L90P/35delG mutations in the GJB2 (connexin 26) gene.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "GJB2 (connexin 26) gene mutations in Moroccan patients with autosomal recessive non-syndromic hearing loss and carrier frequency of the common GJB2-35delG mutation.",
+        "doi": "10.1016/J.IJPORL.2007.04.019",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Update of spectrum c.35delG and c.‐23+1G>A mutations on the GJB2 gene in individuals with autosomal recessive nonsyndromic hearing loss",
+        "doi": "10.1111/ahg.12284",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Prevalence of the c.35delG and p.W24X mutations in the GJB2 gene in patients with nonsyndromic hearing loss from North-West Romania",
+        "doi": "10.1016/j.ijporl.2009.12.015",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "C.35delG/ GJB2 and del(GJB6-D13S1830) mutations in Croatians with prelingual non-syndromic hearing impairment",
+        "doi": "10.1186/1472-6815-5-11",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Phenotypic variability of non-syndromic hearing loss in patients heterozygous for both c.35delG of GJB2 and the 342-kb deletion involving GJB6",
+        "doi": "10.1016/s0378-5955(03)00346-0",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "A novel compound heterozygous mutation (35delG, 363delC) in the Connexin 26 gene causes non-syndromic autosomal recessive hearing loss.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "variant+disease+disease",
+        "score": 7
+      },
+      {
+        "title": "Genetics of Hereditary Hearing Loss in the Middle East: A Systematic Review of the Carrier Frequency of the GJB2 Mutation (35delG)",
+        "doi": "10.1159/000502201",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "High Frequency of 35delG\n                    <i>GJB2</i>\n                    Mutation and Absence of del(\n                    <i>GJB6-D13S1830</i>\n                    ) in Greek Cypriot Patients with Nonsyndromic Hearing Loss",
+        "doi": "10.1089/gte.2006.10.285",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Updated carrier rates for c.35delG (GJB2) associated with hearing loss in Russia and common c.35delG haplotypes in Siberia",
+        "doi": "10.1186/s12881-018-0650-5",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Prevalence of the 35delG Mutation in the\n                    <i>GJB2</i>\n                    Gene of Patients with Nonsyndromic Hearing Loss from Croatia",
+        "doi": "10.1089/gte.2005.9.297",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Homoplasmy of the G7444A mtDNA and heterozygosity of the GJB2 c.35delG mutations in a family with hearing loss",
+        "doi": "10.1016/j.ijporl.2010.10.016",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Immunological Reactivity and Nonspecific Resistance in Children with Hearing Loss Depending on Genes' Polymorphic Variants CJB2 (C.35DELG) and IL-4 (C-590T)",
+        "doi": "10.13187/ejm.s.b.2016.5.4",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Autosomal recessive and sporadic deafness in Morocco: High frequency of the 35delG GJB2 mutation and absence of the 342-kb GJB6 variant",
+        "doi": "10.1016/j.heares.2005.08.001",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Spectrum of Genetic Changes in Patients with Non-Syndromic Hearing Impairment and Extremely High Carrier Frequency of 35delG GJB2 Mutation in Belarus",
+        "doi": "10.1371/journal.pone.0036354",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Pathogenic variant c.35delG of the GJB2 gene associated with nonsyndromic prelingual deafness",
+        "doi": "10.56294/saludcyt2024766",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Low prevalence of the deafness‐associated 35delG mutation in the connexin‐26 (GJB2) gene in a Sicilian population",
+        "doi": "10.1034/j.1399-0004.2003.00071.x",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Effect of GJB2 235delC and 30-35delG genetic polymorphisms on risk of congenital deafness in a Chinese population",
+        "doi": "10.4238/gmr16019165",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Statistical study of 35delG mutation of GJB2 gene: A meta-analysis of carrier frequency",
+        "doi": "10.1080/14992020802607449",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Prevalence of GJB2 gene mutation 35delG among healthy population of Northwest Region of Russia",
+        "doi": "10.17816/maj9241-45",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Prenatal diagnosis of prelingual deafness: carrier testing and prenatal diagnosis of the common GJB2 35delG mutation",
+        "doi": "10.1002/1097-0223(200101)21:1<10::aid-pd968>3.0.co;2-h",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Table 1: Primers for\n                      <i>GJB2</i>\n                      :c.35delG testing and sequencing of the\n                      <i>GJB2</i>\n                      ,\n                      <i>GJB3</i>\n                      and\n                      <i>GJB6</i>\n                      genes.",
+        "doi": "10.7717/peerj.14514/table-1",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Unauffälliges UNHS-Screening bei einem homozygoten Träger der 35delG-Mutation im Connexin 26 kodierenden gjb2-Gen",
+        "doi": "10.1007/s00112-003-0829-4",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Table 4: Frequency distribution of the\n                      <i>GJB2</i>\n                      :c.358_360delGAG and\n                      <i>GJB2</i>\n                      :c.35delG variants in ethnic groups of Russian Federation.",
+        "doi": "10.7717/peerj.14514/table-4",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ],
+    "V019": [
+      {
+        "title": "Genetic or pharmacological disruption of the MSH3 Y245/K246 IDL binding pocket slows CAG repeat expansion.",
+        "doi": "10.1093/narmme/ugag031",
+        "pmid": "42317610",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Huntington's disease LIG1 modifier variant increases ligase fidelity and suppresses somatic CAG repeat expansion.",
+        "doi": "10.1073/pnas.2518854123",
+        "pmid": "41770933",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "USP7 deubiquitinase stabilizes FAN1 to support DNA crosslink repair and suppress CAG repeat expansion.",
+        "doi": "10.1038/s41467-026-70051-9",
+        "pmid": "41786746",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Sequence Variants in Small CAG Repeat Expansions of the HTT Gene and Disease Onset and Progression in Huntington Disease.",
+        "doi": "10.1212/WNL.0000000000214404",
+        "pmid": "41418088",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "A Study of Triplet-Primed PCR for Identification of CAG Repeat Expansion in the HTT Gene in a Cohort of 503 Indian Cases with Huntington’s Disease Symptoms",
+        "doi": "10.1007/s40291-018-0327-y",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Late-Onset Huntington Disease: Clinical Cases with Intermediate CAG Repeat Expansions (P2.010)",
+        "doi": "10.1212/wnl.88.16_supplement.p2.010",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Enhanced Detection and Sizing of the &lt;b&gt;&lt;i&gt;HTT&lt;/i&gt;&lt;/b&gt; CAG Repeat Expansion in Huntington Disease Using an Improved Triplet-Primed PCR Assay",
+        "doi": "10.1159/000444714",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "De novo Huntington disease caused by 26–44 CAG repeat expansion on a low-risk haplotype",
+        "doi": "10.1212/wnl.0b013e3182a4a4af",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Children with Mild CAG Repeat Expansion in HTT Gene Showing Psychiatric but not Neurological Presentation: Is It One More Shade of Huntington Disease?",
+        "doi": "10.4172/2161-0460.1000335",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "The ‘flap’ endonuclease gene FEN1 is excluded as a candidate gene implicated in the CAG repeat expansion underlying Huntington disease",
+        "doi": "10.1034/j.1399-0004.2001.590210.x",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Huntington Disease Like Phenotypes Not Linked to CAG Repeat Expansions in the HTT Gene (S32.002)",
+        "doi": "10.1212/wnl.78.1_meetingabstracts.s32.002",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Huntington Disease: The ‘typical’ phenotype for the commonest CAG repeat expansion in the ENROLL-HD study across varying functional levels (P4.039)",
+        "doi": "10.1212/wnl.90.15_supplement.p4.039",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Huntington Disease: The ‘typical’ phenotype for the commonest CAG repeat expansion in the ENROLL-HD study (P4.041)",
+        "doi": "10.1212/wnl.90.15_supplement.p4.041",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Faculty Opinions recommendation of CAG repeat expansion in Huntington disease determines age at onset in a fully dominant fashion.",
+        "doi": "10.3410/f.13922958.15379058",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Characterization of the Huntington intermediate CAG repeat expansion phenotype in PHAROS",
+        "doi": "10.1212/wnl.0b013e318294b304",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Mutant HTT protein decreases with CAG repeat expansion: implications for therapeutics and bioassays",
+        "doi": "10.1101/2024.06.11.598410",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Approaches to Sequence the\n                    <i>HTT</i>\n                    CAG Repeat Expansion and Quantify Repeat Length Variation",
+        "doi": "10.3233/jhd-200433",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Analysis of HTT CAG repeat expansion among healthy individuals and patients with chorea in Korea",
+        "doi": "10.1016/j.parkreldis.2023.105930",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "A009 Characterising the role of HTT transcription in somatic CAG repeat expansion",
+        "doi": "10.1136/jnnp-2024-ehdn.9",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Huntington's Disease with Small CAG Repeat Expansions.",
+        "doi": "10.1002/mds.29427",
+        "pmid": "37288993",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "CAG repeat expansion in the Huntington's disease gene shapes linear and circular RNAs biogenesis.",
+        "doi": "10.1371/journal.pgen.1010988",
+        "pmid": "37831730",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Huntington's disease mouse models: unraveling the pathology caused by CAG repeat expansion.",
+        "doi": "10.12703/r/10-77",
+        "pmid": "34746930",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Antisense oligonucleotide-mediated MSH3 suppression reduces somatic CAG repeat expansion in Huntington's disease iPSC-derived striatal neurons.",
+        "doi": "10.1126/scitranslmed.adn4600",
+        "pmid": "39937881",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "FAN1 controls mismatch repair complex assembly via MLH1 retention to stabilize CAG repeat expansion in Huntington's disease.",
+        "doi": "10.1016/j.celrep.2021.109649",
+        "pmid": "34469738",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Mutant huntingtin protein decreases with CAG repeat expansion: implications for therapeutics and bioassays.",
+        "doi": "10.1093/braincomms/fcae410",
+        "pmid": "39713241",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Huntington's disease LIG1 modifier variant increases ligase fidelity and suppresses somatic CAG repeat expansion.",
+        "doi": "10.1101/2025.07.15.664798",
+        "pmid": "40791503",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Promotion of somatic CAG repeat expansion by Fan1 knock-out in Huntington's disease knock-in mice is blocked by Mlh1 knock-out.",
+        "doi": "10.1093/hmg/ddaa196",
+        "pmid": "32876667",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Reply: Late onset Huntington's disease with 29 CAG repeat expansion.",
+        "doi": "10.1016/j.jns.2016.07.021",
+        "pmid": "27538661",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "PMS1 as a target for splice modulation to prevent somatic CAG repeat expansion in Huntington's disease.",
+        "doi": "10.1101/2023.07.25.550489",
+        "pmid": "37547003",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Antagonistic pleiotropy in mice carrying a CAG repeat expansion in the range causing Huntington's disease.",
+        "doi": "10.1038/s41598-018-37102-8",
+        "pmid": "30631090",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      }
+    ],
+    "V026": [
+      {
+        "title": "Noncarrier mothers of hemophilia A patients with Intron 22 inversions often have other rearrangements.",
+        "doi": "10.1016/j.jtha.2025.12.014",
+        "pmid": "41500367",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Application of capillary gel electrophoresis in detection of Factor VIII gene intron 22 inversion of hemophilia A.",
+        "doi": "10.1007/s12308-025-00655-5",
+        "pmid": "40824325",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Progressive cephalohematoma in a neonate revealing severe hemophilia a owing to intron 22 inversion: a case report.",
+        "doi": "10.3389/fped.2025.1649183",
+        "pmid": "40755915",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Prevalence and Clinical Correlation of Intron 22 Inversion in Hemophilia A in Northeast India.",
+        "doi": "10.7759/cureus.82365",
+        "pmid": "40385865",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Development of a Single-Tube Reverse Transcription Real-Time PCR Assay for Diagnosis of F8 Intron 22 Inversion in Patients and Carriers of Haemophilia A.",
+        "doi": "10.1111/hae.70014",
+        "pmid": "39995019",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Lack of factor VIII detection in humans and dogs with an intron 22 inversion challenges hypothesis regarding inhibitor risk.",
+        "doi": "10.1016/j.jtha.2024.08.007",
+        "pmid": "39233012",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Early immune tolerance induction is a unique predictor of favorable outcomes in hemophilia A children with intron 22 inversion and high-responding inhibitors.",
+        "doi": "10.1016/j.thromres.2023.04.002",
+        "pmid": "37121012",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Prenatal diagnosis for hemophilia A (intron 22 inversion) reveals a rare association with Klinefelter syndrome with diagnostic difficulties in molecular interpretation.",
+        "doi": "10.1097/MBC.0000000000001165",
+        "pmid": "36165062",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Frequency of Intron 22 Inversion in Severe Hemophilia A Patients.",
+        "doi": "10.7759/cureus.28247",
+        "pmid": "36158401",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Novel Severe Hemophilia A Mouse Model with Factor VIII Intron 22 Inversion.",
+        "doi": "10.3390/biology10080704",
+        "pmid": "34439937",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Factor VIII inhibitor development in Egyptian hemophilia patients: does intron 22 inversion mutation play a role?",
+        "doi": "10.1186/s13052-020-00878-5",
+        "pmid": "32928254",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "A Closed-Tube Nested Quantitative PCR Assay for Rapid Detection of Intron 22 Inversions in the Factor VIII Gene.",
+        "doi": "10.1093/clinchem/hvz021",
+        "pmid": "32040575",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "F8 intron 22 inversions and SNP rs73563631 in unrelated families with severe haemophilia A: clinical features and gene testing implications.",
+        "doi": "10.1160/TH15-08-0643",
+        "pmid": "26489971",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "New protocol for detection of intron 22 inversion mutation from cases with hemophilia A.",
+        "doi": "10.1177/1076029613498817",
+        "pmid": "24057397",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Genotyping of intron 22 inversion of factor VIII gene for diagnosis of hemophilia A by inverse-shifting polymerase chain reaction and capillary electrophoresis.",
+        "doi": "10.1007/s00216-014-7969-3",
+        "pmid": "24994666",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Severe hemophilia A in a Japanese female caused by an F8-intron 22 inversion associated with skewed X chromosome inactivation",
+        "doi": "10.1007/s12185-010-0659-9",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Variant of intron 22 inversions in the factor VIII gene in severe hemophilia A",
+        "doi": "10.1097/00001721-199710000-00011",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Factor VIII Intron 22 Inversion Screening of Newborn Males for Hemophilia A: A Cost-Effectiveness Study",
+        "doi": "10.1182/blood.v116.21.734.734",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "An investigation of a hemophilia A female with heterozygous intron 22 inversion and skewed X chromosome inactivation.",
+        "doi": "10.3389/fgene.2024.1500167",
+        "pmid": null,
+        "source": "pmc",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Application of new molecular methods in detection of Intron 22 inversion mutation of factor VIII gene in patients with Hemophilia A",
+        "doi": "10.1016/j.clinbiochem.2011.08.223",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Identification of intron 1 and intron 22 inversions of factor VIII gene in Serbian patients with hemophilia A",
+        "doi": "10.2298/gensr1301207i",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Analysis of intron 22 inversions of the factor VIII gene in severe hemophilia A: implications for genetic counseling",
+        "doi": "10.1182/blood.v84.7.2197.bloodjournal8472197",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Rapid identification of the intron 22 inversion in haemophilia A",
+        "doi": "10.1111/hae.13142",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Unique heterozygous intron 22 inversion band pattern in a haemophilic male detected by long polymerase chain reaction (PCR)",
+        "doi": "10.1160/th07-12-0731",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Unleashing the long-distance PCR for detection of the intron 22 inversion of the factor VIII gene in severe haemophilia A",
+        "doi": "10.1055/s-0037-1613561",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Aberrant Splicing and Premature Termination of Transcription of the FVIII Gene as a Cause of Severe Canine Hemophilia A: Similarities with the Intron 22 Inversion Mutation in Human Hemophilia",
+        "doi": "10.1055/s-0037-1613063",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Factor VIII Intron 22 Inversion Mutation in Samples of Iraqi Patients with Hemophilia A",
+        "doi": "10.4103/mjbl.mjbl_1361_23",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Haemophilia A, factor VIII intron 22 inversion screening using subcycling-PCR",
+        "doi": "10.1160/th05-09-0605",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Factor VIII Intron 22 Inversion in Severe Hemophilia A Patients in Palestine",
+        "doi": "10.1155/2020/3428648",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Association of Intron 22 inversion and HLA-DRB1*15:01 allele with inhibitor development in hemophilia A: A genetic analysis of risk factors",
+        "doi": "10.12982/jams.2026.041",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "CLINICAL AND HEMORRHAGIC PROFILES OF HEMOPHILIA A FEMALE CARRIERS OF INTRON 22 INVERSION",
+        "doi": "10.1016/j.htct.2022.09.475",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Effect of CTLA-4 and TNF-α Gene Polymorphisms on Inhibitor Development in a Turkish Cohort of Severe Hemophilia A Cases with Intron 22 Inversion Mutation: An Analytical Study",
+        "doi": "10.5336/medsci.2021-86664",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Carrier detection and prenatal diagnosis by intron 22 inversion analysis of the factor VIII gene",
+        "doi": "10.1111/j.1365-2516.1995.tb00071.x",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "QUALITY OF LIFE OF HEMOPHILIA A FEMALE CARRIERS OF INTRON 22 INVERSION",
+        "doi": "10.1016/j.htct.2022.09.478",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Subcycling PCR for Long-Distance Amplifications of Regions with High and Low Guanine–Cystine Content: Amplification of the Intron 22 Inversion of the FVIII Gene",
+        "doi": "10.1385/1-59259-384-4:101",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Mutations in Intron 1 and Intron 22 Inversion Negative Haemophilia A Patients from Western India",
+        "doi": "10.1371/journal.pone.0097337",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Separation of intron 22 inversion type 1 and 2 of hemophilia A by modified inverse-shifting polymerase chain reaction and capillary gel electrophoresis",
+        "doi": "10.1016/j.talanta.2014.06.072",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Prevalence of Intron 22 Inversion of the Factor VIII Gene among Pediatric Patients in Belarus",
+        "doi": "10.34883/pi.2022.8.1.015",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      }
+    ],
+    "V028": [
+      {
+        "title": "SMA carrier testing – validation of hemizygous SMN exon 7 deletion test for the identification of proximal spinal muscular atrophy carriers and patients with a single allele deletion",
+        "doi": "10.1038/sj.ejhg.5200404",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Next generation sequencing is a highly reliable method to analyze exon 7 deletion of survival motor neuron 1 (SMN1) gene",
+        "doi": "10.1038/s41598-021-04325-1",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ],
+    "V030": [
+      {
+        "title": "Identification of ZNF850 as a novel CTG repeat expansion-related gene in myotonic dystrophy type 1 patient-derived iPSCs.",
+        "doi": "10.1093/hmg/ddae186",
+        "pmid": "39679849",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "AntimiR treatment corrects myotonic dystrophy primary cell defects across several CTG repeat expansions with a dual mechanism of action.",
+        "doi": "10.1126/sciadv.adn6525",
+        "pmid": "39383229",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Decreased expression of DMPK: correlation with CTG repeat expansion and fibre type composition in myotonic dystrophy type 1",
+        "doi": "10.1007/s10072-005-0466-x",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Detection of the CTG repeat expansion in congenital myotonic dystrophy",
+        "doi": "10.1007/bf02766919",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Modification of the triplet repeat primed polymerase chain reaction method for detection of the CTG repeat expansion in myotonic dystrophy type 1: application in preimplantation genetic diagnosis.",
+        "doi": "10.1016/j.fertnstert.2009.10.050",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Myotonic dystrophy type 1 evaluation from a generation and CTG repeat expansion perspective",
+        "doi": "10.1093/eurheartj/ehaf784.4200",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Syncope and hyperCKemia as minimal manifestations of short CTG repeat expansions in myotonic dystrophy type 1.",
+        "doi": "10.1016/j.repc.2014.11.018",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "The CTG repeat expansion size correlates with the splicing defects observed in muscles from myotonic dystrophy type 1 patients",
+        "doi": "10.1136/jmg.2008.058909",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Development and analysis of CTG repeat expansion cell lines to understand molecular events in myotonic dystrophy type 1",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "FP.43 Congenital myotonic dystrophy patients exhibit unique patterns of transcriptomic dysregulation independent of CTG repeat expansion",
+        "doi": "10.1016/j.nmd.2022.07.361",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Facial emotion recognition in myotonic dystrophy type 1 correlates with CTG repeat expansion",
+        "doi": "10.7358/neur-2009-005-winb",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Relative stability of a minimal CTG repeat expansion in a large kindred with myotonic dystrophy",
+        "doi": "10.1212/wnl.50.5.1501",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "[Effects of CTG repeat expansion on quantitative muscle histopathology in myotonic dystrophy].",
+        "doi": null,
+        "pmid": "9436439",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Facial emotion recognition in myotonic dystrophy type 1 correlates with CTG repeat expansion.",
+        "doi": "10.1136/jnnp.2005.070763",
+        "pmid": "16421126",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      }
+    ],
+    "V031": [
+      {
+        "title": "Search of the p.M918T Mutation in the RET Oncogene in Mexican Adult Patients with Medullary Thyroid Carcinoma.",
+        "doi": "10.1055/s-0042-121661",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      }
+    ],
+    "V033": [
+      {
+        "title": "A THANATOPHORIC DYSPLASIA TYPE I CASE WITH A FGFR3 P.R248C MUTATION AND SURVIVAL BEYOND THE NEONATAL PERIOD.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      }
+    ],
+    "V035": [
+      {
+        "title": "Case of Vibrio Vulnificus bacteremia in a patient heterozygous for HFE p.C282Y mutation and alcoholic liver cirrhosis.",
+        "doi": "10.1177/2050313X231172329",
+        "pmid": "37205158",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Increased frequency of GNPAT p.D519G in compound HFE p.C282Y/p.H63D heterozygotes with elevated serum ferritin levels.",
+        "doi": "10.1016/j.bcmd.2020.102463",
+        "pmid": "32652459",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Chromosome 6p SNP microhaplotypes and IgG3 levels in hemochromatosis probands with HFE p.C282Y homozygosity.",
+        "doi": "10.1016/j.bcmd.2020.102461",
+        "pmid": "32623342",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Phenotypes Associated with HFE p.C282Y Homozygosity, the Main Hereditary Hemochromatosis Genotype, in Four Large Genetic Cohorts",
+        "doi": "10.1182/blood-2023-179875",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "HFE p.C282Y homozygosity predisposes to rapid serum ferritin rise after menopause: A genotype-stratified cohort study of hemochromatosis in Australian women.",
+        "doi": "10.1111/jgh.13621",
+        "pmid": "27784128",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Genotyping of the hemochromatosis HFE p.H63D and p.C282Y mutations by high-resolution melting with the Rotor-Gene 6000® instrument.",
+        "doi": "10.1515/CCLM.2011.654",
+        "pmid": "21679129",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      }
+    ],
+    "V036": [
+      {
+        "title": "Cohort profile: a nationwide study in Dutch CHEK2 c.1100delC families using the infrastructure of the HEreditary Breast and Ovarian cancer study Netherlands - Hebon-CHEK2.",
+        "doi": "10.1136/bmjopen-2024-086688",
+        "pmid": "39384226",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Germline testing of BRCA1, BRCA2, PALB2 and CHEK2 c.1100delC in 1514 triple negative familial and isolated breast cancers from a single centre, with extended testing of ATM, RAD51C and RAD51D in over 400.",
+        "doi": "10.1136/jmg-2023-109671",
+        "pmid": "38123987",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The benefit of adding polygenic risk scores, lifestyle factors, and breast density to family history and genetic status for breast cancer risk and surveillance classification of unaffected women from germline CHEK2 c.1100delC families.",
+        "doi": "10.1016/j.breast.2023.103611",
+        "pmid": "38039887",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Association of the CHEK2 c.1100delC variant, radiotherapy, and systemic treatment with contralateral breast cancer risk and breast cancer-specific survival.",
+        "doi": "10.21203/rs.3.rs-2569372/v1",
+        "pmid": "36824750",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Clinical utility of testing for PALB2 and CHEK2 c.1100delC in breast and ovarian cancer.",
+        "doi": "10.1038/s41436-021-01234-6",
+        "pmid": "34113003",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "A Case of Male Breast Cancer Patient with CHEK2*1100delC Mutation.",
+        "doi": "10.7759/cureus.8972",
+        "pmid": "32766014",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 c.1100delC mutation is associated with an increased risk for male breast cancer in Finnish patient population.",
+        "doi": "10.1186/s12885-017-3631-8",
+        "pmid": "28874143",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Genomic profiling of pelvic genital type leiomyosarcoma in a woman with a germline CHEK2:c.1100delC mutation and a concomitant diagnosis of metastatic invasive ductal breast carcinoma.",
+        "doi": "10.1101/mcs.a001628",
+        "pmid": "28514723",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Age- and Tumor Subtype-Specific Breast Cancer Risk Estimates for CHEK2*1100delC Carriers.",
+        "doi": "10.1200/JCO.2016.66.5844",
+        "pmid": "27269948",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Increased Risk for Other Cancers in Addition to Breast Cancer for CHEK2*1100delC Heterozygotes Estimated From the Copenhagen General Population Study.",
+        "doi": "10.1200/JCO.2015.63.3594",
+        "pmid": "26884562",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "BRCA1, BRCA2 and PALB2 mutations and CHEK2 c.1100delC in different South African ethnic groups diagnosed with premenopausal and/or triple negative breast cancer.",
+        "doi": "10.1186/s12885-015-1913-6",
+        "pmid": "26577449",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Genomic profiling of CHEK2*1100delC-mutated breast carcinomas.",
+        "doi": "10.1186/s12885-015-1880-y",
+        "pmid": "26553136",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "CHEK2 c.1100delC allele is rarely identified in Greek breast cancer cases.",
+        "doi": "10.1016/j.cancergen.2015.02.006",
+        "pmid": "25835597",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The CHEK2 1100delC allelic variant is not present in familial and sporadic breast cancer cases from Moroccan population.",
+        "doi": "10.1186/s40064-014-0778-5",
+        "pmid": "25674498",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC and Del5395bp mutations in BRCA-negative individuals from Serbian hereditary breast and ovarian cancer families.",
+        "doi": "",
+        "pmid": "24065469",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Excess breast cancer risk in first degree relatives of CHEK2∗1100delC positive familial breast cancer cases.",
+        "doi": "10.1016/j.ejca.2013.01.009",
+        "pmid": "23415889",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2*1100delC heterozygosity in women with breast cancer associated with early death, breast cancer-specific death, and increased risk of a second breast cancer.",
+        "doi": "10.1200/JCO.2012.42.7336",
+        "pmid": "23109706",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100DELC germline mutation: a frequency study in hereditary breast and colon cancer Brazilian families.",
+        "doi": "10.1590/s0004-28032012000400008",
+        "pmid": "23329222",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "[Prevalence of mutations BRCA1 5382insC, and CHEK2 1100delC in the population of Siberian region].",
+        "doi": "",
+        "pmid": "22946335",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Gene expression profiling assigns CHEK2 1100delC breast cancers to the luminal intrinsic subtypes.",
+        "doi": "10.1007/s10549-011-1588-x",
+        "pmid": "21614566",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2*1100delC homozygosity is associated with a high breast cancer risk in women.",
+        "doi": "10.1136/jmedgenet-2011-100380",
+        "pmid": "22058428",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Breast tumors from CHEK2 1100delC-mutation carriers: genomic landscape and clinical implications.",
+        "doi": "10.1186/bcr3015",
+        "pmid": "21542898",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The checkpointkinase 2 (CHK2) 1100delC germ line mutation is not associated with the development of squamous cell carcinoma of the head and neck (SCCHN).",
+        "doi": "10.1186/1477-5751-9-10",
+        "pmid": "21184685",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Chk2*1100delC Acts in synergy with the Ron receptor tyrosine kinase to accelerate mammary tumorigenesis in mice.",
+        "doi": "10.1016/j.canlet.2010.04.011",
+        "pmid": "20434834",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Absence of CHEK2*1100delC mutation in families with hereditary breast cancer in North America.",
+        "doi": "10.1016/j.cancergencyto.2010.07.124",
+        "pmid": "20875877",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Mice with the CHEK2*1100delC SNP are predisposed to cancer with a strong gender bias.",
+        "doi": "10.1073/pnas.0909237106",
+        "pmid": "19805189",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "CHEK2 1100delC and male breast cancer in the Netherlands.",
+        "doi": "10.1007/s10549-008-0162-7",
+        "pmid": "18759107",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Family history, genetic testing, and clinical risk prediction: pooled analysis of CHEK2 1100delC in 1,828 bilateral breast cancers and 7,030 controls.",
+        "doi": "10.1158/1055-9965.EPI-08-0416",
+        "pmid": "19124502",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The breast cancer susceptibility allele CHEK2*1100delC promotes genomic instability in a knock-in mouse model.",
+        "doi": "10.1016/J.MRFMMM.2006.11.025",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease+disease",
+        "score": 11
+      },
+      {
+        "title": "The CHEK2*1100delC variant acts as a breast cancer risk modifier in non-BRCA1/BRCA2 multiple-case families.",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "No increased susceptibility to breast cancer from combined CHEK2 1100delC genotype and the HLA class III region risk factors.",
+        "doi": "10.1016/J.EJCA.2005.04.035",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2*1100delC and susceptibility to breast cancer: a collaborative analysis involving 10,860 breast cancer cases and 9,065 controls from 10 studies.",
+        "doi": "10.1086/421251",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The CHEK2 c.1100delC germline mutation rarely contributes to breast cancer development in the Czech Republic",
+        "doi": "10.1007/s10549-004-4023-8",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Faculty Opinions recommendation of Low-penetrance susceptibility to breast cancer due to CHEK2(*)1100delC in noncarriers of BRCA1 or BRCA2 mutations.",
+        "doi": "10.3410/f.1005973.70407",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC and polygenic susceptibility to breast cancer and colorectal cancer",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC does not contribute significantly to breast cancer risk in Malaysias multi-ethnic population",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Risk for contralateral breast cancer among carriers of the CHEK2*1100delC mutation in the WECARE Study",
+        "doi": "10.1038/sj.bjc.6604228",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Increased CHEK2 1100delC genotype frequency (also) in unselected breast cancer patients.",
+        "doi": "10.1200/JCO.2004.22.90140.9536",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Excess Risk for Contralateral Breast Cancer in CHEK2*1100delC Germline Mutation Carriers",
+        "doi": "10.1023/B:BREA.0000010697.49896.03",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Contribution of the CHEK2 1100delC variant to risk of multiple colorectal adenoma and carcinoma.",
+        "doi": "10.1016/S0304-3835(03)00391-4",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The CHEK2 1100delC mutation is not present in Korean patients with breast cancer cases tested for BRCA1 and BRCA2 mutation",
+        "doi": "10.1007/s10549-007-9878-z",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC and Del5395bp mutations in BRCA-negative individuals from Serbian hereditary breast and ovarian cancer families.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "P7 The CHEK2 1100delC mutation is not present in Korean patients with breast cancer tested for BRCA1 and BRCA2 mutation",
+        "doi": "10.1016/s0960-9776(07)70072-3",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Peer Review Report For: Absence of the CHEK2 c.1100delC mutation in familial breast and ovarian cancer in Colombia: a case-control study [version 1; peer review: 2 approved with reservations]",
+        "doi": "10.5256/f1000research.14514.r46435",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Erratum to ‘The benefit of adding polygenic risk scores, lifestyle factors, and breast density to family history and genetic status for breast cancer risk and surveillance classification of unaffected women from germline CHEK2 c.1100delC families’ [The Breast 73 (2024) 103611]",
+        "doi": null,
+        "pmid": null,
+        "source": "europepmc",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Frequency of the CHEK2 1100delC mutation among women with breast cancer: an international study.",
+        "doi": "10.1158/0008-5472.CAN-07-5187",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Contribution of large genomic rearrangements in BRCA1/2 genes and CHEK2 1100delC allele variant to the development of breast/ovarian cancer in Argentinian population",
+        "doi": "10.1007/s10549-024-07576-4",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "German populations with infrequent CHEK2*1100delC and minor associations with early-onset and familial breast cancer.",
+        "doi": "10.1016/J.EJCA.2005.04.049",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC in patients with metachronous cancers of the breast and the colorectum",
+        "doi": "10.1186/1471-2407-6-64",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Germline CHEK2*1100delC mutations in breast cancer patients with multiple primary cancers",
+        "doi": "10.1136/jmg.2004.022913",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Deleterious CHEK2 1100delC and L303X mutants identified among 38 human breast cancer cell lines",
+        "doi": "10.1007/s10549-008-9942-3",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Breast cancer low-penetrance allele 1100delC in the CHEK2 gene: Not present in the Chinese familial breast cancer population",
+        "doi": "10.1007/s12325-008-0057-3",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Low frequency of CHEK2 1100delC mutation in breast cancer patients and hereditary breast cancer families in the Czech Republic.",
+        "doi": "10.1200/jco.2004.22.14_suppl.9538",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The benefit of adding polygenic risk scores, lifestyle factors, and breast density to family history and genetic status for breast cancer risk and surveillance classification of unaffected women from germline CHEK2 c.1100delC families",
+        "doi": null,
+        "pmid": null,
+        "source": "europepmc",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "A Multicenter Study of Cancer Incidence in CHEK2 1100delC Mutation Carriers",
+        "doi": "10.1158/1055-9965.EPI-06-0687",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The CHEK2*1100delC Allelic Variant and Risk of Breast Cancer: Screening Results from the Breast Cancer Family Registry",
+        "doi": "10.1158/1055-9965.EPI-05-0557",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC is present in familial breast cancer cases of the Basque Country",
+        "doi": "10.1007/s10549-006-9351-4",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Breast cancer survival and tumor characteristics in premenopausal women carrying the CHEK2*1100delC germline mutation.",
+        "doi": "10.1200/JCO.2006.06.3024",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "161P Cancer risks for other sites in addition to breast in CHEK2 c.1100delC families",
+        "doi": "10.1016/j.esmoop.2024.103183",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Role of <i>CHEK2</i>*1100delC in unselected series of non‐BRCA1/2 male breast cancers",
+        "doi": "10.1002/ijc.11385",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Correlation of CHEK2 protein expression and c.1100delC mutation status with tumor characteristics among unselected breast cancer patients",
+        "doi": "10.1002/ijc.20638",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Absence of the CHEK2 c.1100delC mutation in familial breast and ovarian cancer in Colombia: a case-control study",
+        "doi": "10.12688/F1000RESEARCH.13368.1",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Survival and contralateral breast cancer in CHEK2 1100delC breast cancer patients: impact of adjuvant chemotherapy",
+        "doi": "10.1038/bjc.2014.306",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The breast cancer low‐penetrance allele 1100delC in the CHEK2 gene is not present in Spanish familial breast cancer population",
+        "doi": "10.1002/ijc.11414",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Frequency of the CHEK2 1100delC Mutation in Korean Women with Early Onset Breast Cancer",
+        "doi": "10.4048/JBC.2008.11.1.25",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "<i>CHEK2</i>*1100delC Screening of Asian Women With a Family History of Breast Cancer Is Unwarranted",
+        "doi": "10.1200/jco.2008.16.4335",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 gene alterations in the forkhead-associated domain, 1100delC and del5395 do not modify the risk of sporadic pancreatic cancer",
+        "doi": "10.1016/j.canep.2010.06.008",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Edinburgh Research Explorer Age-and Tumor Subtype-Specific Breast Cancer Risk Estimates for CHEK2*1100delC Carriers",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The &lt;b&gt;&lt;i&gt;CHEK2&lt;/i&gt;&lt;/b&gt;*1100delC Mutation and Adolescent Breast Cancer: A Case Report of Breast Cancer in a 19-Year-Old and a Review of the Literature",
+        "doi": "10.1159/000513679",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2 1100delC mutation is frequent among Russian breast cancer patients",
+        "doi": "10.1007/s10549-006-9227-7",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "<i>CHEK2</i>:1100delC and female breast cancer in the United States",
+        "doi": "10.1002/ijc.20439",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Low frequency of CHEK2 1100delC allele in Australian multiple-case breast cancer families: functional analysis in heterozygous individuals",
+        "doi": "10.1038/sj.bjc.6602381",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Abstract P4-02-26: CHEK2-Associated Cancer Risk Beyond 1100delC: Insights from a Northeast Brazilian Cohort",
+        "doi": "10.1158/1557-3265.sabcs24-p4-02-26",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "ASSOCIATION OF IVS2+1G&gt;A AND 1100DELC MUTATIONS OF THE CHEK2 GENE WITH BREAST CANCER IN THE UZBEK POPULATION",
+        "doi": "10.17513/srbs.1405",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "The CHEK2 1100delC allele is not relevant for risk assessment in HNPCC and HBCC Spanish families",
+        "doi": "10.1007/s10689-004-5813-1",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Absence of CHEK2 1100delC, R145W and I157T Mutations in Breast Cancer in a Moroccan Population",
+        "doi": "10.12691/JCRT-2-1-2",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "CHEK2*1100delC is not an important high-risk gene in families with hereditary prostate cancer in southern Sweden",
+        "doi": "10.1080/00365590500368518",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The CHEK2 c.1100delC mutation plays an irrelevant role in breast cancer predisposition in Italy",
+        "doi": "10.1002/humu.20051",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Mutação 1100delC no gene CHEK2 na triagem molecular da síndrome de câncer de mama e cólon hereditário em um hospital público universitário do estado de São Paulo",
+        "doi": "10.47749/t/unicamp.2019.1089552",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Colorectal cancer risk associated with the CHEK2 1100delC variant",
+        "doi": "10.1016/j.ejca.2017.05.045",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "МУТАЦИЯ C.1100DELC ГЕНА CHEK2 У БОЛЬНЫХ МЕЛКОКЛЕТОЧНЫМ РАКОМ ЛЕГКОГО  ИЗ РЕСПУБЛИКИ БАШКОРТОСТАН",
+        "doi": "10.33184/fmpve2022-2022-10-19.212",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Fig. 1. Melting curves of the amplification products of BRCA1 5382insC (a), CHEK2 1100delC and BLM c.1642C&gt;T genes; (b): wt – absence of mutation, genotype “norm”, mut5382insC – presence of mutation)",
+        "doi": "10.17816/ecogen16362-71-4455",
+        "pmid": null,
+        "source": "crossref",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "The CHEK2*1100delC variant acts as a breast cancer risk modifier in non-BRCA1/BRCA2 multiple-case families.",
+        "doi": null,
+        "pmid": "14678969",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Frequency of CHEK2*1100delC in New York breast cancer cases and controls.",
+        "doi": "10.1186/1471-2350-4-1",
+        "pmid": "12529183",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Colorectal cancer and the CHEK2 1100delC mutation.",
+        "doi": "10.1002/gcc.20195",
+        "pmid": "15852425",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "CHEK2 1100delC is a susceptibility allele for HNPCC-related colorectal cancer.",
+        "doi": "10.1158/1078-0432.CCR-08-0389",
+        "pmid": "18676774",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Tumour characteristics and prognosis of breast cancer patients carrying the germline CHEK2*1100delC variant.",
+        "doi": "10.1136/jmg.2004.019737",
+        "pmid": "15466005",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      }
+    ],
+    "V038": [
+      {
+        "title": "Low Efficiency of Homology-Independent Targeted Integration for CRISPR/Cas9 Correction in the Vicinity of the SLC26A4 c.919-2A>G Variant.",
+        "doi": "10.3390/ijms26114980",
+        "pmid": "40507794",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Insight into the Natural History of Pathogenic Variant c.919-2A>G in the SLC26A4 Gene Involved in Hearing Loss: The Evidence for Its Common Origin in Southern Siberia (Russia).",
+        "doi": "10.3390/genes14040928",
+        "pmid": "37107686",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      },
+      {
+        "title": "Generation of a human iPS cell line (CGMH.SLC26A4919-2) from a Pendred syndrome patient carrying SLC26A4 c.919-2A>G splice-site mutation.",
+        "doi": "10.1016/j.scr.2019.101524",
+        "pmid": "31415960",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      }
+    ],
+    "V041": [
+      {
+        "title": "Associations between ATM c.7271T>G and cancer risk: analysis of Breast Cancer Association Consortium and UK Biobank data.",
+        "doi": "10.1136/jmg-2025-110769",
+        "pmid": "40451289",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ],
+    "V043": [
+      {
+        "title": "Intrauterine Limb Ischemia in Patient Heterozygous for the 677C>T) RS1801133 (Polymorphism of Methylenetetrahydrofolate Reductase MTHR Gene.",
+        "doi": "10.1155/2022/2701548",
+        "pmid": "36313901",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "The roles of methylenetetrahydrofolate reductase 677C>T and 1298A>C polymorphisms in moyamoya disease patients.",
+        "doi": "10.1007/s00381-014-2495-3",
+        "pmid": "25098357",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Factor V Leiden, prothrombin 20210G>A, MTHFR 677C>T and 1298A>C, and homocysteinemia in Tunisian blood donors.",
+        "doi": "10.1002/jcla.21506",
+        "pmid": "22628232",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Serum folate, total homocysteine levels and methylenetetrahydrofolate reductase 677C>T polymorphism in young healthy female Japanese.",
+        "doi": "",
+        "pmid": "22507617",
+        "source": "pubmed",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Hyperhomocysteinemia and homozygous MTHFR 677C>T mutation finding in an Alzheimer's disease case with metabolic syndrome diagnosis.",
+        "doi": "",
+        "pmid": "20383813",
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Folate/homocysteine phenotypes and MTHFR 677C>T genotypes are associated with serum levels of monocyte chemoattractant protein-1.",
+        "doi": "10.1016/j.clim.2009.06.008",
+        "pmid": "19625220",
+        "source": "pubmed",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Plasma total homocysteine level and methylenetetrahydrofolate reductase 677C>T genetic polymorphism in Japanese patients with rheumatoid arthritis.",
+        "doi": "10.1080/13547500902730664",
+        "pmid": "19283524",
+        "source": "pubmed",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Clinical utility of genotyping the 677C>T variant of methylenetetrahydrofolate reductase in humans is decreased in the post-folic acid fortification era.",
+        "doi": "10.3945/jn.108.096511",
+        "pmid": "19056652",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "Homocysteine, 5,10-methylenetetrahydrofolate reductase 677C>T polymorphism, nutrient intake, and incident cardiovascular disease in 24,968 initially healthy women.",
+        "doi": "10.1373/clinchem.2006.083881",
+        "pmid": "17332146",
+        "source": "pubmed",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Lack of association of methylenetetrahydrofolate reductase 677C>T mutation with coronary artery disease in a Pakistani population.",
+        "doi": "10.4172/1747-0862.1000007",
+        "pmid": "19565010",
+        "source": "pubmed",
+        "reason": "variant",
+        "score": 5
+      },
+      {
+        "title": "ENDOCRINOLOGY, NUTRITION & METABOLISM | RESEARCH ARTICLE Association of MTHFR 677C>T genetic polymorphism with hyperhomocysteinemia in type 2 diabetes patients",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Hyperhomocysteinemia and homozygous MTHFR 677C>T mutation finding in an Alzheimer's disease case with metabolic syndrome diagnosis.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "gene+variant+disease+disease",
+        "score": 10
+      },
+      {
+        "title": "Common Methylenetetrahydrofolate Reductase Polymorphism MTHFR 677C>T (rs1801133), Plasma Homocysteine, and Non-Valvular Atrial Fibrillation in Overweight/Obese Patients: Causality Indicated by Mediation and One-Sample Mendelian Randomization Analysis.",
+        "doi": "10.3390/diagnostics15222870",
+        "pmid": null,
+        "source": "pmc",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "MTHFR 677C>T (rs1801133) variant is associated with homocysteinemia but not with clinical severity in patients with peripheral arterial occlusive disease",
+        "doi": "10.21203/rs.3.rs-887964/v1",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Effect of MTHFR 677C>T on plasma total homocysteine levels in renal graft recipients.",
+        "doi": "10.1046/J.1523-1755.1999.0550031072.X",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Methylenetetrahydrofolate reductase (MTHFR) 677C>T and methionine synthase reductase (MTRR) 66A>G polymorphisms: association with serum homocysteine and angiographic coronary artery disease in the era of flour products fortified with folic acid.",
+        "doi": "10.1016/S0021-9150(03)00098-4",
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "gene+variant+disease",
+        "score": 9
+      },
+      {
+        "title": "Abstract 3936: Homocysteine Concentration, 5, 10-Methylenetetrahydrofolate Reductase 677C>T Gene Polymorphism, and Intake of Folate and B-Vitamins in 24,968 Asymptomatic Women",
+        "doi": null,
+        "pmid": null,
+        "source": "semantic_scholar",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Serum folate, total homocysteine levels and methylenetetrahydrofolate reductase 677C>T polymorphism in young healthy female Japanese.",
+        "doi": null,
+        "pmid": null,
+        "source": "pubmed",
+        "reason": "variant+disease",
+        "score": 6
+      },
+      {
+        "title": "Genotype and haplotype distributions of MTHFR677C>T and 1298A>C single nucleotide polymorphisms: a meta-analysis.",
+        "doi": "10.1007/s100380300000",
+        "pmid": "12560871",
+        "source": "pubmed",
+        "reason": "gene+variant",
+        "score": 8
+      }
+    ]
+  },
+  "method_labels": {
+    "pubmed_only": "M1 PubMed only",
+    "multisource_no_translation": "M2 multi-source, no translation",
+    "multisource_with_translation": "M3 + translation",
+    "full_pipeline": "M4 full pipeline (recorded)",
+    "full_pipeline_nested": "M4n nested full pipeline",
+    "sota_dense": "S1 dense",
+    "sota_rerank": "S2 cross-encoder (recorded, unranked pool)",
+    "sota_hybrid": "S3 hybrid BM25+dense (recorded, unranked pool)",
+    "sota_expand": "S4 LLM query expansion",
+    "sota_agent": "S5 agentic two-round",
+    "sota_mdense": "S6 multilingual dense"
+  },
+  "aggregates_frozen": {
+    "pubmed_only": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.07575985720527952,
+          "std": 0.06463701131470542
+        },
+        "10": {
+          "mean": 0.11178976459677642,
+          "std": 0.0951567551372948
+        },
+        "15": {
+          "mean": 0.15962737872601973,
+          "std": 0.16496202714368777
+        },
+        "20": {
+          "mean": 0.17134074961532592,
+          "std": 0.17257939554254065
+        },
+        "50": {
+          "mean": 0.21812480188158648,
+          "std": 0.18720898171996492
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2744186046511628,
+          "std": 0.2283337248117875
+        },
+        "10": {
+          "mean": 0.20697674418604653,
+          "std": 0.17573149290523313
+        },
+        "15": {
+          "mean": 0.18914728682170542,
+          "std": 0.175461139234668
+        },
+        "20": {
+          "mean": 0.15465116279069768,
+          "std": 0.14659466085663275
+        },
+        "50": {
+          "mean": 0.07953488372093023,
+          "std": 0.06744346429528417
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.11470114518646876,
+          "std": 0.09228596075335085
+        },
+        "10": {
+          "mean": 0.14066402213080506,
+          "std": 0.11779265051803746
+        },
+        "15": {
+          "mean": 0.1651497347422597,
+          "std": 0.1517443936880929
+        },
+        "20": {
+          "mean": 0.15565571660860275,
+          "std": 0.14373870123502422
+        },
+        "50": {
+          "mean": 0.11331619267591597,
+          "std": 0.09278659504696732
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.27381270738054503,
+          "std": 0.22978040280373221
+        },
+        "10": {
+          "mean": 0.23039924659178873,
+          "std": 0.1834250024414812
+        },
+        "15": {
+          "mean": 0.2203479442217366,
+          "std": 0.18379124288949414
+        },
+        "20": {
+          "mean": 0.2051148432996341,
+          "std": 0.17260934529402425
+        },
+        "50": {
+          "mean": 0.2187789887407702,
+          "std": 0.1729805579456547
+        }
+      },
+      "set_recall": {
+        "mean": 0.26918456942829083,
+        "std": 0.20116710234035534
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1448058682133505,
+        "std": 0.2336671557972229
+      },
+      "micro": {
+        "relevant_found": 213,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.2591240875912409,
+        "precision_at_retrieved": 0.061400980109541654
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 213
+      },
+      "language_coverage": {
+        "unknown": 213
+      }
+    },
+    "multisource_no_translation": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.043736463146126565,
+          "std": 0.04606638768769345
+        },
+        "10": {
+          "mean": 0.08763218241515502,
+          "std": 0.07795355510692273
+        },
+        "15": {
+          "mean": 0.12405280334832419,
+          "std": 0.0974529077526218
+        },
+        "20": {
+          "mean": 0.1528189483744435,
+          "std": 0.10816596878481398
+        },
+        "50": {
+          "mean": 0.27464546173075505,
+          "std": 0.1536062925475768
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.17674418604651165,
+          "std": 0.1890455947246658
+        },
+        "10": {
+          "mean": 0.16744186046511628,
+          "std": 0.14260195085354319
+        },
+        "15": {
+          "mean": 0.15813953488372093,
+          "std": 0.12116851896173596
+        },
+        "20": {
+          "mean": 0.14651162790697675,
+          "std": 0.10421096047631664
+        },
+        "50": {
+          "mean": 0.10465116279069768,
+          "std": 0.06912573098849971
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.06942356403351724,
+          "std": 0.07276989747073768
+        },
+        "10": {
+          "mean": 0.11344883075973371,
+          "std": 0.09820196189561547
+        },
+        "15": {
+          "mean": 0.13702497054124185,
+          "std": 0.10492001443257425
+        },
+        "20": {
+          "mean": 0.1474481491334046,
+          "std": 0.10242971295000775
+        },
+        "50": {
+          "mean": 0.14909367495764342,
+          "std": 0.0914849586838359
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.17391650764046576,
+          "std": 0.19219972498420246
+        },
+        "10": {
+          "mean": 0.16873199866682423,
+          "std": 0.14295030985336873
+        },
+        "15": {
+          "mean": 0.16339327839933687,
+          "std": 0.12685038997905712
+        },
+        "20": {
+          "mean": 0.16384169219068706,
+          "std": 0.11830002218097078
+        },
+        "50": {
+          "mean": 0.2217677451164514,
+          "std": 0.13426629686927374
+        }
+      },
+      "set_recall": {
+        "mean": 0.4721498020439755,
+        "std": 0.22872756707700556
+      },
+      "precision_at_retrieved": {
+        "mean": 0.08674418604651163,
+        "std": 0.044862629096540464
+      },
+      "micro": {
+        "relevant_found": 373,
+        "total_relevant": 822,
+        "total_retrieved": 4300,
+        "set_recall": 0.4537712895377129,
+        "precision_at_retrieved": 0.08674418604651163
+      },
+      "candidates_per_variant": {
+        "mean": 100.0,
+        "min": 100,
+        "max": 100
+      },
+      "source_coverage": {
+        "pmc": 48,
+        "pubmed": 63,
+        "crossref": 100,
+        "europepmc": 46,
+        "semantic_scholar": 116
+      },
+      "language_coverage": {
+        "unknown": 305,
+        "en": 66,
+        "de": 2
+      }
+    },
+    "multisource_with_translation": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08520156908761668,
+          "std": 0.06995108214607879
+        },
+        "10": {
+          "mean": 0.15033984417117827,
+          "std": 0.10664887071240542
+        },
+        "15": {
+          "mean": 0.21588546768991063,
+          "std": 0.1435894707984174
+        },
+        "20": {
+          "mean": 0.2759892526146109,
+          "std": 0.1494277916148047
+        },
+        "50": {
+          "mean": 0.4461773003923409,
+          "std": 0.14182697113866902
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.33488372093023255,
+          "std": 0.2684007078372746
+        },
+        "10": {
+          "mean": 0.2930232558139535,
+          "std": 0.21174287702493091
+        },
+        "15": {
+          "mean": 0.2806201550387597,
+          "std": 0.19158425031419313
+        },
+        "20": {
+          "mean": 0.2651162790697674,
+          "std": 0.1597726887192341
+        },
+        "50": {
+          "mean": 0.1744186046511628,
+          "std": 0.07449995553553833
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.13454979790348193,
+          "std": 0.10866773147781539
+        },
+        "10": {
+          "mean": 0.19606516940315225,
+          "std": 0.137264892116619
+        },
+        "15": {
+          "mean": 0.2405295845466435,
+          "std": 0.15806232437718976
+        },
+        "20": {
+          "mean": 0.264962617198491,
+          "std": 0.14861208408426313
+        },
+        "50": {
+          "mean": 0.247054276891503,
+          "std": 0.0937668589687368
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.33443640392994134,
+          "std": 0.280456158391277
+        },
+        "10": {
+          "mean": 0.3055027582672144,
+          "std": 0.2253535229469674
+        },
+        "15": {
+          "mean": 0.2950680165736774,
+          "std": 0.2045852343667473
+        },
+        "20": {
+          "mean": 0.30063750681843865,
+          "std": 0.18365830606079409
+        },
+        "50": {
+          "mean": 0.3806608622510464,
+          "std": 0.16127957095970938
+        }
+      },
+      "set_recall": {
+        "mean": 0.465301058124061,
+        "std": 0.15093081171601253
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1316320700241083,
+        "std": 0.061919630319153984
+      },
+      "micro": {
+        "relevant_found": 392,
+        "total_relevant": 822,
+        "total_retrieved": 3109,
+        "set_recall": 0.4768856447688564,
+        "precision_at_retrieved": 0.12608555805725313
+      },
+      "candidates_per_variant": {
+        "mean": 72.30232558139535,
+        "min": 46,
+        "max": 92
+      },
+      "source_coverage": {
+        "europepmc": 15,
+        "pmc": 90,
+        "crossref": 222,
+        "semantic_scholar": 65
+      },
+      "language_coverage": {
+        "unknown": 253,
+        "en": 117,
+        "de": 12,
+        "fr": 10
+      }
+    },
+    "full_pipeline": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08520156908761668,
+          "std": 0.06995108214607879
+        },
+        "10": {
+          "mean": 0.15033984417117827,
+          "std": 0.10664887071240542
+        },
+        "15": {
+          "mean": 0.21588546768991063,
+          "std": 0.1435894707984174
+        },
+        "20": {
+          "mean": 0.2759892526146109,
+          "std": 0.1494277916148047
+        },
+        "50": {
+          "mean": 0.4461773003923409,
+          "std": 0.14182697113866902
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.33488372093023255,
+          "std": 0.2684007078372746
+        },
+        "10": {
+          "mean": 0.2930232558139535,
+          "std": 0.21174287702493091
+        },
+        "15": {
+          "mean": 0.2806201550387597,
+          "std": 0.19158425031419313
+        },
+        "20": {
+          "mean": 0.2651162790697674,
+          "std": 0.1597726887192341
+        },
+        "50": {
+          "mean": 0.1744186046511628,
+          "std": 0.07449995553553833
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.13454979790348193,
+          "std": 0.10866773147781539
+        },
+        "10": {
+          "mean": 0.19606516940315225,
+          "std": 0.137264892116619
+        },
+        "15": {
+          "mean": 0.2405295845466435,
+          "std": 0.15806232437718976
+        },
+        "20": {
+          "mean": 0.264962617198491,
+          "std": 0.14861208408426313
+        },
+        "50": {
+          "mean": 0.247054276891503,
+          "std": 0.0937668589687368
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.33443640392994134,
+          "std": 0.280456158391277
+        },
+        "10": {
+          "mean": 0.3055027582672144,
+          "std": 0.2253535229469674
+        },
+        "15": {
+          "mean": 0.2950680165736774,
+          "std": 0.2045852343667473
+        },
+        "20": {
+          "mean": 0.30063750681843865,
+          "std": 0.18365830606079409
+        },
+        "50": {
+          "mean": 0.3806608622510464,
+          "std": 0.16127957095970938
+        }
+      },
+      "set_recall": {
+        "mean": 0.4669335475271999,
+        "std": 0.15215012864183014
+      },
+      "precision_at_retrieved": {
+        "mean": 0.12100374026345845,
+        "std": 0.05679320652033442
+      },
+      "micro": {
+        "relevant_found": 394,
+        "total_relevant": 822,
+        "total_retrieved": 3408,
+        "set_recall": 0.4793187347931874,
+        "precision_at_retrieved": 0.11561032863849766
+      },
+      "candidates_per_variant": {
+        "mean": 79.25581395348837,
+        "min": 46,
+        "max": 106
+      },
+      "source_coverage": {
+        "europepmc": 15,
+        "pmc": 90,
+        "crossref": 222,
+        "citation_graph": 2,
+        "semantic_scholar": 65
+      },
+      "language_coverage": {
+        "unknown": 255,
+        "en": 117,
+        "de": 12,
+        "fr": 10
+      }
+    },
+    "full_pipeline_nested": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08520156908761668,
+          "std": 0.06995108214607879
+        },
+        "10": {
+          "mean": 0.15033984417117827,
+          "std": 0.10664887071240542
+        },
+        "15": {
+          "mean": 0.21588546768991063,
+          "std": 0.1435894707984174
+        },
+        "20": {
+          "mean": 0.2759892526146109,
+          "std": 0.1494277916148047
+        },
+        "50": {
+          "mean": 0.4461773003923409,
+          "std": 0.14182697113866902
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.33488372093023255,
+          "std": 0.2684007078372746
+        },
+        "10": {
+          "mean": 0.2930232558139535,
+          "std": 0.21174287702493091
+        },
+        "15": {
+          "mean": 0.2806201550387597,
+          "std": 0.19158425031419313
+        },
+        "20": {
+          "mean": 0.2651162790697674,
+          "std": 0.1597726887192341
+        },
+        "50": {
+          "mean": 0.1744186046511628,
+          "std": 0.07449995553553833
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.13454979790348193,
+          "std": 0.10866773147781539
+        },
+        "10": {
+          "mean": 0.19606516940315225,
+          "std": 0.137264892116619
+        },
+        "15": {
+          "mean": 0.2405295845466435,
+          "std": 0.15806232437718976
+        },
+        "20": {
+          "mean": 0.264962617198491,
+          "std": 0.14861208408426313
+        },
+        "50": {
+          "mean": 0.247054276891503,
+          "std": 0.0937668589687368
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.33443640392994134,
+          "std": 0.280456158391277
+        },
+        "10": {
+          "mean": 0.3055027582672144,
+          "std": 0.2253535229469674
+        },
+        "15": {
+          "mean": 0.2950680165736774,
+          "std": 0.2045852343667473
+        },
+        "20": {
+          "mean": 0.30063750681843865,
+          "std": 0.18365830606079409
+        },
+        "50": {
+          "mean": 0.3806608622510464,
+          "std": 0.16127957095970938
+        }
+      },
+      "set_recall": {
+        "mean": 0.4669335475271999,
+        "std": 0.15215012864183014
+      },
+      "precision_at_retrieved": {
+        "mean": 0.12100374026345845,
+        "std": 0.05679320652033442
+      },
+      "micro": {
+        "relevant_found": 394,
+        "total_relevant": 822,
+        "total_retrieved": 3408,
+        "set_recall": 0.4793187347931874,
+        "precision_at_retrieved": 0.11561032863849766
+      },
+      "candidates_per_variant": {
+        "mean": 79.25581395348837,
+        "min": 46,
+        "max": 106
+      },
+      "source_coverage": {
+        "europepmc": 15,
+        "pmc": 90,
+        "crossref": 222,
+        "citation_graph": 2,
+        "semantic_scholar": 65
+      },
+      "language_coverage": {
+        "unknown": 255,
+        "en": 117,
+        "de": 12,
+        "fr": 10
+      }
+    },
+    "sota_dense": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08079460866970826,
+          "std": 0.06941926553081137
+        },
+        "10": {
+          "mean": 0.12940267777357384,
+          "std": 0.11567653585195893
+        },
+        "15": {
+          "mean": 0.16131537710894636,
+          "std": 0.13001096205402526
+        },
+        "20": {
+          "mean": 0.1820806886047881,
+          "std": 0.16409905850033055
+        },
+        "50": {
+          "mean": 0.23593282604641633,
+          "std": 0.18635885150883022
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.29767441860465116,
+          "std": 0.24541220387484503
+        },
+        "10": {
+          "mean": 0.23488372093023255,
+          "std": 0.19395962290226085
+        },
+        "15": {
+          "mean": 0.19689922480620156,
+          "std": 0.15482155327528593
+        },
+        "20": {
+          "mean": 0.16279069767441862,
+          "std": 0.1342909992203732
+        },
+        "50": {
+          "mean": 0.08697674418604652,
+          "std": 0.06872712756851024
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1235013260666809,
+          "std": 0.10145936143072469
+        },
+        "10": {
+          "mean": 0.1607164292808302,
+          "std": 0.13188984813864477
+        },
+        "15": {
+          "mean": 0.17165244859823206,
+          "std": 0.13225069411544108
+        },
+        "20": {
+          "mean": 0.16562631613203205,
+          "std": 0.1346784508811242
+        },
+        "50": {
+          "mean": 0.12386359402015391,
+          "std": 0.09433936693164212
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.32730311724719424,
+          "std": 0.2616879907661105
+        },
+        "10": {
+          "mean": 0.2758783538350257,
+          "std": 0.21283727122146245
+        },
+        "15": {
+          "mean": 0.2442715722851288,
+          "std": 0.17915959865242165
+        },
+        "20": {
+          "mean": 0.22866303908712382,
+          "std": 0.16823691303996863
+        },
+        "50": {
+          "mean": 0.2480870498910817,
+          "std": 0.17040940603098376
+        }
+      },
+      "set_recall": {
+        "mean": 0.26918456942829083,
+        "std": 0.20116710234035534
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1448058682133505,
+        "std": 0.2336671557972229
+      },
+      "micro": {
+        "relevant_found": 213,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.2591240875912409,
+        "precision_at_retrieved": 0.061400980109541654
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 213
+      },
+      "language_coverage": {
+        "unknown": 213
+      }
+    },
+    "sota_rerank": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.07575985720527952,
+          "std": 0.06463701131470542
+        },
+        "10": {
+          "mean": 0.11178976459677642,
+          "std": 0.0951567551372948
+        },
+        "15": {
+          "mean": 0.15962737872601973,
+          "std": 0.16496202714368777
+        },
+        "20": {
+          "mean": 0.17134074961532592,
+          "std": 0.17257939554254065
+        },
+        "50": {
+          "mean": 0.21812480188158648,
+          "std": 0.18720898171996492
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2744186046511628,
+          "std": 0.2283337248117875
+        },
+        "10": {
+          "mean": 0.20697674418604653,
+          "std": 0.17573149290523313
+        },
+        "15": {
+          "mean": 0.18914728682170542,
+          "std": 0.175461139234668
+        },
+        "20": {
+          "mean": 0.15465116279069768,
+          "std": 0.14659466085663275
+        },
+        "50": {
+          "mean": 0.07953488372093023,
+          "std": 0.06744346429528417
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.11470114518646876,
+          "std": 0.09228596075335085
+        },
+        "10": {
+          "mean": 0.14066402213080506,
+          "std": 0.11779265051803746
+        },
+        "15": {
+          "mean": 0.1651497347422597,
+          "std": 0.1517443936880929
+        },
+        "20": {
+          "mean": 0.15565571660860275,
+          "std": 0.14373870123502422
+        },
+        "50": {
+          "mean": 0.11331619267591597,
+          "std": 0.09278659504696732
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.27381270738054503,
+          "std": 0.22978040280373221
+        },
+        "10": {
+          "mean": 0.23039924659178873,
+          "std": 0.1834250024414812
+        },
+        "15": {
+          "mean": 0.2203479442217366,
+          "std": 0.18379124288949414
+        },
+        "20": {
+          "mean": 0.2051148432996341,
+          "std": 0.17260934529402425
+        },
+        "50": {
+          "mean": 0.2187789887407702,
+          "std": 0.1729805579456547
+        }
+      },
+      "set_recall": {
+        "mean": 0.26918456942829083,
+        "std": 0.20116710234035534
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1448058682133505,
+        "std": 0.2336671557972229
+      },
+      "micro": {
+        "relevant_found": 213,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.2591240875912409,
+        "precision_at_retrieved": 0.061400980109541654
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 213
+      },
+      "language_coverage": {
+        "unknown": 213
+      }
+    },
+    "sota_hybrid": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.09935493152652065,
+          "std": 0.06363759301764252
+        },
+        "10": {
+          "mean": 0.18412615227378967,
+          "std": 0.10985395166670424
+        },
+        "15": {
+          "mean": 0.24381088255427605,
+          "std": 0.14534922052751093
+        },
+        "20": {
+          "mean": 0.2705755539817945,
+          "std": 0.16143198949508888
+        },
+        "50": {
+          "mean": 0.3751194113002052,
+          "std": 0.2001991175606661
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.39069767441860465,
+          "std": 0.26920550936721455
+        },
+        "10": {
+          "mean": 0.3511627906976744,
+          "std": 0.2255454298828713
+        },
+        "15": {
+          "mean": 0.3085271317829458,
+          "std": 0.19237305264181206
+        },
+        "20": {
+          "mean": 0.25697674418604655,
+          "std": 0.16051566443476648
+        },
+        "50": {
+          "mean": 0.14,
+          "std": 0.07906429529628196
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.15657466748735446,
+          "std": 0.09953874300614349
+        },
+        "10": {
+          "mean": 0.2360360698973004,
+          "std": 0.1420421411772465
+        },
+        "15": {
+          "mean": 0.26649569723956923,
+          "std": 0.15905943490149763
+        },
+        "20": {
+          "mean": 0.25788723855007284,
+          "std": 0.1533127353791719
+        },
+        "50": {
+          "mean": 0.2000167670421473,
+          "std": 0.10667493065646504
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.42150142198698093,
+          "std": 0.2822592682962505
+        },
+        "10": {
+          "mean": 0.3857867116637328,
+          "std": 0.23367140176379034
+        },
+        "15": {
+          "mean": 0.35466303914537084,
+          "std": 0.20970261859310563
+        },
+        "20": {
+          "mean": 0.3324603896025867,
+          "std": 0.19302341195956046
+        },
+        "50": {
+          "mean": 0.3702266969078892,
+          "std": 0.19077325945230234
+        }
+      },
+      "set_recall": {
+        "mean": 0.42060932244585114,
+        "std": 0.2213915580364452
+      },
+      "precision_at_retrieved": {
+        "mean": 0.17368560051500975,
+        "std": 0.22260277770689366
+      },
+      "micro": {
+        "relevant_found": 337,
+        "total_relevant": 822,
+        "total_retrieved": 3466,
+        "set_recall": 0.4099756690997567,
+        "precision_at_retrieved": 0.09723023658395845
+      },
+      "candidates_per_variant": {
+        "mean": 80.6046511627907,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 337
+      },
+      "language_coverage": {
+        "unknown": 337
+      }
+    },
+    "sota_expand": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.06886956947043853,
+          "std": 0.05934986033469437
+        },
+        "10": {
+          "mean": 0.11166056563036815,
+          "std": 0.09280140824673855
+        },
+        "15": {
+          "mean": 0.15962737872601973,
+          "std": 0.16365148083043393
+        },
+        "20": {
+          "mean": 0.17250354031300033,
+          "std": 0.17092860480257957
+        },
+        "50": {
+          "mean": 0.2180636023711826,
+          "std": 0.18443057992083303
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.25116279069767444,
+          "std": 0.21171733352076355
+        },
+        "10": {
+          "mean": 0.20697674418604653,
+          "std": 0.1717154878323231
+        },
+        "15": {
+          "mean": 0.18914728682170542,
+          "std": 0.1736849341271944
+        },
+        "20": {
+          "mean": 0.1558139534883721,
+          "std": 0.1451580142728115
+        },
+        "50": {
+          "mean": 0.07953488372093023,
+          "std": 0.06647095845562734
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1040866666240364,
+          "std": 0.08301464267946373
+        },
+        "10": {
+          "mean": 0.14055328015959798,
+          "std": 0.11466673268986602
+        },
+        "15": {
+          "mean": 0.1651497347422597,
+          "std": 0.1500461135462885
+        },
+        "20": {
+          "mean": 0.15681850730627717,
+          "std": 0.1420882984553904
+        },
+        "50": {
+          "mean": 0.11330656293928928,
+          "std": 0.09124116764302118
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.25272000289871366,
+          "std": 0.21159008565695883
+        },
+        "10": {
+          "mean": 0.22527999988303987,
+          "std": 0.17135297590982787
+        },
+        "15": {
+          "mean": 0.21631855270211733,
+          "std": 0.1756240860622204
+        },
+        "20": {
+          "mean": 0.20212951418877917,
+          "std": 0.16511168231558498
+        },
+        "50": {
+          "mean": 0.2152876645669891,
+          "std": 0.16401034844604162
+        }
+      },
+      "set_recall": {
+        "mean": 0.2704765590923735,
+        "std": 0.2006823532072019
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1450384263528854,
+        "std": 0.23355772973342573
+      },
+      "micro": {
+        "relevant_found": 214,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.26034063260340634,
+        "precision_at_retrieved": 0.06168924762179302
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 214
+      },
+      "language_coverage": {
+        "unknown": 214
+      }
+    },
+    "sota_agent": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.07575985720527952,
+          "std": 0.06463701131470542
+        },
+        "10": {
+          "mean": 0.11178976459677642,
+          "std": 0.0951567551372948
+        },
+        "15": {
+          "mean": 0.15962737872601973,
+          "std": 0.16496202714368777
+        },
+        "20": {
+          "mean": 0.17134074961532592,
+          "std": 0.17257939554254065
+        },
+        "50": {
+          "mean": 0.21812480188158648,
+          "std": 0.18720898171996492
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2744186046511628,
+          "std": 0.2283337248117875
+        },
+        "10": {
+          "mean": 0.20697674418604653,
+          "std": 0.17573149290523313
+        },
+        "15": {
+          "mean": 0.18914728682170542,
+          "std": 0.175461139234668
+        },
+        "20": {
+          "mean": 0.15465116279069768,
+          "std": 0.14659466085663275
+        },
+        "50": {
+          "mean": 0.07953488372093023,
+          "std": 0.06744346429528417
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.11470114518646876,
+          "std": 0.09228596075335085
+        },
+        "10": {
+          "mean": 0.14066402213080506,
+          "std": 0.11779265051803746
+        },
+        "15": {
+          "mean": 0.1651497347422597,
+          "std": 0.1517443936880929
+        },
+        "20": {
+          "mean": 0.15565571660860275,
+          "std": 0.14373870123502422
+        },
+        "50": {
+          "mean": 0.11331619267591597,
+          "std": 0.09278659504696732
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.27381270738054503,
+          "std": 0.22978040280373221
+        },
+        "10": {
+          "mean": 0.23033800391142972,
+          "std": 0.18348022893760005
+        },
+        "15": {
+          "mean": 0.22030047054292942,
+          "std": 0.1838351455035273
+        },
+        "20": {
+          "mean": 0.2050709939394907,
+          "std": 0.1726496305589633
+        },
+        "50": {
+          "mean": 0.2187351393806268,
+          "std": 0.17302421970514364
+        }
+      },
+      "set_recall": {
+        "mean": 0.26918456942829083,
+        "std": 0.20116710234035534
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1448058682133505,
+        "std": 0.2336671557972229
+      },
+      "micro": {
+        "relevant_found": 213,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.2591240875912409,
+        "precision_at_retrieved": 0.061400980109541654
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 213
+      },
+      "language_coverage": {
+        "unknown": 213
+      }
+    },
+    "sota_mdense": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08489571871797073,
+          "std": 0.06895516669532262
+        },
+        "10": {
+          "mean": 0.12817868756549547,
+          "std": 0.1151082908606318
+        },
+        "15": {
+          "mean": 0.15739326562869535,
+          "std": 0.1286163946421985
+        },
+        "20": {
+          "mean": 0.18126545473257039,
+          "std": 0.16388667372898977
+        },
+        "50": {
+          "mean": 0.23002719999949928,
+          "std": 0.18490659713938515
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.3116279069767442,
+          "std": 0.24514760842985003
+        },
+        "10": {
+          "mean": 0.23255813953488372,
+          "std": 0.19376433808319254
+        },
+        "15": {
+          "mean": 0.1922480620155039,
+          "std": 0.1549922410831775
+        },
+        "20": {
+          "mean": 0.16279069767441862,
+          "std": 0.13601172284283455
+        },
+        "50": {
+          "mean": 0.08511627906976744,
+          "std": 0.06875545113351583
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1298176154573144,
+          "std": 0.10103929143471363
+        },
+        "10": {
+          "mean": 0.15911258004265857,
+          "std": 0.13109600570918656
+        },
+        "15": {
+          "mean": 0.16744655024638344,
+          "std": 0.13138441490558633
+        },
+        "20": {
+          "mean": 0.16519128639760813,
+          "std": 0.135202586039354
+        },
+        "50": {
+          "mean": 0.12107949924480549,
+          "std": 0.0941932179526411
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.32966416946340177,
+          "std": 0.2603615308952183
+        },
+        "10": {
+          "mean": 0.2706566269882791,
+          "std": 0.21297785526066504
+        },
+        "15": {
+          "mean": 0.23785424412003944,
+          "std": 0.18020625505973228
+        },
+        "20": {
+          "mean": 0.22502031869287703,
+          "std": 0.16860128652861125
+        },
+        "50": {
+          "mean": 0.24186195624270163,
+          "std": 0.1686167621142019
+        }
+      },
+      "set_recall": {
+        "mean": 0.26918456942829083,
+        "std": 0.20116710234035534
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1448058682133505,
+        "std": 0.2336671557972229
+      },
+      "micro": {
+        "relevant_found": 213,
+        "total_relevant": 822,
+        "total_retrieved": 3469,
+        "set_recall": 0.2591240875912409,
+        "precision_at_retrieved": 0.061400980109541654
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 213
+      },
+      "language_coverage": {
+        "unknown": 213
+      }
+    }
+  },
+  "aggregates_expanded": {
+    "pubmed_only": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.06496555840866153,
+          "std": 0.05842040939905027
+        },
+        "10": {
+          "mean": 0.09798757780717134,
+          "std": 0.08909895447375048
+        },
+        "15": {
+          "mean": 0.1355811387911115,
+          "std": 0.1525343015151873
+        },
+        "20": {
+          "mean": 0.14730348391169087,
+          "std": 0.15931614956122012
+        },
+        "50": {
+          "mean": 0.19821851418318184,
+          "std": 0.17390999900161186
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2837209302325582,
+          "std": 0.22918483711171944
+        },
+        "10": {
+          "mean": 0.2255813953488372,
+          "std": 0.1989425805390625
+        },
+        "15": {
+          "mean": 0.2046511627906977,
+          "std": 0.1994283037546105
+        },
+        "20": {
+          "mean": 0.1744186046511628,
+          "std": 0.18023630903823853
+        },
+        "50": {
+          "mean": 0.09953488372093024,
+          "std": 0.10356333840793171
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.09914723842306869,
+          "std": 0.08000583187267093
+        },
+        "10": {
+          "mean": 0.12668649138326185,
+          "std": 0.10837885301547225
+        },
+        "15": {
+          "mean": 0.1454618781106957,
+          "std": 0.1324787773557615
+        },
+        "20": {
+          "mean": 0.14214630908383355,
+          "std": 0.13052687501436452
+        },
+        "50": {
+          "mean": 0.11871787135355183,
+          "std": 0.09841167064323393
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.28958760064908534,
+          "std": 0.2351858591238583
+        },
+        "10": {
+          "mean": 0.25068491313826374,
+          "std": 0.20785379854856187
+        },
+        "15": {
+          "mean": 0.237928761207005,
+          "std": 0.2091973184445839
+        },
+        "20": {
+          "mean": 0.22279819496936606,
+          "std": 0.19865396124331575
+        },
+        "50": {
+          "mean": 0.21773143745840276,
+          "std": 0.17095463457956211
+        }
+      },
+      "set_recall": {
+        "mean": 0.2624610241839895,
+        "std": 0.19336983075532344
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1727322896180328,
+        "std": 0.24550586919972547
+      },
+      "micro": {
+        "relevant_found": 311,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2740088105726872,
+        "precision_at_retrieved": 0.08965119631017585
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 311
+      },
+      "language_coverage": {
+        "unknown": 311
+      }
+    },
+    "multisource_no_translation": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.043013130383748446,
+          "std": 0.044187887664717304
+        },
+        "10": {
+          "mean": 0.08753063349818417,
+          "std": 0.07288405710796973
+        },
+        "15": {
+          "mean": 0.12453523784135119,
+          "std": 0.09255395034703018
+        },
+        "20": {
+          "mean": 0.1526511370294203,
+          "std": 0.10041125771517673
+        },
+        "50": {
+          "mean": 0.2926632906416421,
+          "std": 0.14806048934925217
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.22325581395348837,
+          "std": 0.22909042522836748
+        },
+        "10": {
+          "mean": 0.22325581395348837,
+          "std": 0.1998106188280055
+        },
+        "15": {
+          "mean": 0.21550387596899226,
+          "std": 0.1965265349146149
+        },
+        "20": {
+          "mean": 0.19999999999999998,
+          "std": 0.18172301949382608
+        },
+        "50": {
+          "mean": 0.16604651162790696,
+          "std": 0.1805693776980191
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.06973993377477057,
+          "std": 0.06987664670976154
+        },
+        "10": {
+          "mean": 0.11871430739260277,
+          "std": 0.09342487461874825
+        },
+        "15": {
+          "mean": 0.14693051520268138,
+          "std": 0.10384014375634577
+        },
+        "20": {
+          "mean": 0.1598565145717087,
+          "std": 0.10181108973744092
+        },
+        "50": {
+          "mean": 0.19108060760746082,
+          "std": 0.13435008649874278
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.2247783848138996,
+          "std": 0.24210037517723845
+        },
+        "10": {
+          "mean": 0.22472077990159575,
+          "std": 0.2016482016619048
+        },
+        "15": {
+          "mean": 0.22016751589177855,
+          "std": 0.19538106228693425
+        },
+        "20": {
+          "mean": 0.21671626572144037,
+          "std": 0.18404663739068347
+        },
+        "50": {
+          "mean": 0.26950582432542836,
+          "std": 0.18304797569350809
+        }
+      },
+      "set_recall": {
+        "mean": 0.5045066036153785,
+        "std": 0.21577693365943248
+      },
+      "precision_at_retrieved": {
+        "mean": 0.13953488372093023,
+        "std": 0.15380376334906543
+      },
+      "micro": {
+        "relevant_found": 600,
+        "total_relevant": 1135,
+        "total_retrieved": 4300,
+        "set_recall": 0.5286343612334802,
+        "precision_at_retrieved": 0.13953488372093023
+      },
+      "candidates_per_variant": {
+        "mean": 100.0,
+        "min": 100,
+        "max": 100
+      },
+      "source_coverage": {
+        "pmc": 53,
+        "pubmed": 120,
+        "crossref": 188,
+        "semantic_scholar": 175,
+        "europepmc": 64
+      },
+      "language_coverage": {
+        "unknown": 457,
+        "en": 141,
+        "de": 2
+      }
+    },
+    "multisource_with_translation": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08106583957744504,
+          "std": 0.06827930942327476
+        },
+        "10": {
+          "mean": 0.14625868227361052,
+          "std": 0.10311841098198796
+        },
+        "15": {
+          "mean": 0.2071383641180904,
+          "std": 0.1369548756653404
+        },
+        "20": {
+          "mean": 0.26725043672172444,
+          "std": 0.13847913155499136
+        },
+        "50": {
+          "mean": 0.43000245293610934,
+          "std": 0.14809109929457207
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.3953488372093023,
+          "std": 0.30035133564582217
+        },
+        "10": {
+          "mean": 0.36279069767441857,
+          "std": 0.2606104245839733
+        },
+        "15": {
+          "mean": 0.34573643410852717,
+          "std": 0.24747022432682622
+        },
+        "20": {
+          "mean": 0.3313953488372093,
+          "std": 0.22439149131309663
+        },
+        "50": {
+          "mean": 0.2144186046511628,
+          "std": 0.12812244008707824
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1304725593478793,
+          "std": 0.10577184115416953
+        },
+        "10": {
+          "mean": 0.1983702383011478,
+          "std": 0.1330460973677322
+        },
+        "15": {
+          "mean": 0.24389969792114527,
+          "std": 0.15284992827741778
+        },
+        "20": {
+          "mean": 0.2750384984715198,
+          "std": 0.14408513261916664
+        },
+        "50": {
+          "mean": 0.26629668812970597,
+          "std": 0.1087092149426099
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.4078670511087855,
+          "std": 0.320608657349444
+        },
+        "10": {
+          "mean": 0.3809627795025499,
+          "std": 0.27897089979313366
+        },
+        "15": {
+          "mean": 0.3657008559918936,
+          "std": 0.26166492798636565
+        },
+        "20": {
+          "mean": 0.3683864770064164,
+          "std": 0.2390568736366496
+        },
+        "50": {
+          "mean": 0.40507871149351976,
+          "std": 0.1735593081172174
+        }
+      },
+      "set_recall": {
+        "mean": 0.4453799218548543,
+        "std": 0.15889369125424463
+      },
+      "precision_at_retrieved": {
+        "mean": 0.15975532494286637,
+        "std": 0.09700257499018598
+      },
+      "micro": {
+        "relevant_found": 478,
+        "total_relevant": 1135,
+        "total_retrieved": 3109,
+        "set_recall": 0.4211453744493392,
+        "precision_at_retrieved": 0.15374718559022194
+      },
+      "candidates_per_variant": {
+        "mean": 72.30232558139535,
+        "min": 46,
+        "max": 92
+      },
+      "source_coverage": {
+        "europepmc": 16,
+        "pmc": 93,
+        "crossref": 279,
+        "semantic_scholar": 90
+      },
+      "language_coverage": {
+        "unknown": 299,
+        "en": 155,
+        "de": 13,
+        "fr": 10,
+        "ru": 1
+      }
+    },
+    "full_pipeline": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08106583957744504,
+          "std": 0.06827930942327476
+        },
+        "10": {
+          "mean": 0.14625868227361052,
+          "std": 0.10311841098198796
+        },
+        "15": {
+          "mean": 0.2071383641180904,
+          "std": 0.1369548756653404
+        },
+        "20": {
+          "mean": 0.26725043672172444,
+          "std": 0.13847913155499136
+        },
+        "50": {
+          "mean": 0.43000245293610934,
+          "std": 0.14809109929457207
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.3953488372093023,
+          "std": 0.30035133564582217
+        },
+        "10": {
+          "mean": 0.36279069767441857,
+          "std": 0.2606104245839733
+        },
+        "15": {
+          "mean": 0.34573643410852717,
+          "std": 0.24747022432682622
+        },
+        "20": {
+          "mean": 0.3313953488372093,
+          "std": 0.22439149131309663
+        },
+        "50": {
+          "mean": 0.2144186046511628,
+          "std": 0.12812244008707824
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1304725593478793,
+          "std": 0.10577184115416953
+        },
+        "10": {
+          "mean": 0.1983702383011478,
+          "std": 0.1330460973677322
+        },
+        "15": {
+          "mean": 0.24389969792114527,
+          "std": 0.15284992827741778
+        },
+        "20": {
+          "mean": 0.2750384984715198,
+          "std": 0.14408513261916664
+        },
+        "50": {
+          "mean": 0.26629668812970597,
+          "std": 0.1087092149426099
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.4078670511087855,
+          "std": 0.320608657349444
+        },
+        "10": {
+          "mean": 0.3809627795025499,
+          "std": 0.27897089979313366
+        },
+        "15": {
+          "mean": 0.3657008559918936,
+          "std": 0.26166492798636565
+        },
+        "20": {
+          "mean": 0.3683864770064164,
+          "std": 0.2390568736366496
+        },
+        "50": {
+          "mean": 0.40507871149351976,
+          "std": 0.1735593081172174
+        }
+      },
+      "set_recall": {
+        "mean": 0.44676863801785227,
+        "std": 0.1598287485122149
+      },
+      "precision_at_retrieved": {
+        "mean": 0.14671046349902853,
+        "std": 0.08854114060286628
+      },
+      "micro": {
+        "relevant_found": 480,
+        "total_relevant": 1135,
+        "total_retrieved": 3408,
+        "set_recall": 0.42290748898678415,
+        "precision_at_retrieved": 0.14084507042253522
+      },
+      "candidates_per_variant": {
+        "mean": 79.25581395348837,
+        "min": 46,
+        "max": 106
+      },
+      "source_coverage": {
+        "europepmc": 16,
+        "pmc": 93,
+        "crossref": 279,
+        "semantic_scholar": 90,
+        "citation_graph": 2
+      },
+      "language_coverage": {
+        "unknown": 301,
+        "en": 155,
+        "de": 13,
+        "fr": 10,
+        "ru": 1
+      }
+    },
+    "full_pipeline_nested": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08106583957744504,
+          "std": 0.06827930942327476
+        },
+        "10": {
+          "mean": 0.14625868227361052,
+          "std": 0.10311841098198796
+        },
+        "15": {
+          "mean": 0.2071383641180904,
+          "std": 0.1369548756653404
+        },
+        "20": {
+          "mean": 0.26725043672172444,
+          "std": 0.13847913155499136
+        },
+        "50": {
+          "mean": 0.43000245293610934,
+          "std": 0.14809109929457207
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.3953488372093023,
+          "std": 0.30035133564582217
+        },
+        "10": {
+          "mean": 0.36279069767441857,
+          "std": 0.2606104245839733
+        },
+        "15": {
+          "mean": 0.34573643410852717,
+          "std": 0.24747022432682622
+        },
+        "20": {
+          "mean": 0.3313953488372093,
+          "std": 0.22439149131309663
+        },
+        "50": {
+          "mean": 0.2144186046511628,
+          "std": 0.12812244008707824
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1304725593478793,
+          "std": 0.10577184115416953
+        },
+        "10": {
+          "mean": 0.1983702383011478,
+          "std": 0.1330460973677322
+        },
+        "15": {
+          "mean": 0.24389969792114527,
+          "std": 0.15284992827741778
+        },
+        "20": {
+          "mean": 0.2750384984715198,
+          "std": 0.14408513261916664
+        },
+        "50": {
+          "mean": 0.26629668812970597,
+          "std": 0.1087092149426099
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.4078670511087855,
+          "std": 0.320608657349444
+        },
+        "10": {
+          "mean": 0.3809627795025499,
+          "std": 0.27897089979313366
+        },
+        "15": {
+          "mean": 0.3657008559918936,
+          "std": 0.26166492798636565
+        },
+        "20": {
+          "mean": 0.3683864770064164,
+          "std": 0.2390568736366496
+        },
+        "50": {
+          "mean": 0.40507871149351976,
+          "std": 0.1735593081172174
+        }
+      },
+      "set_recall": {
+        "mean": 0.44676863801785227,
+        "std": 0.1598287485122149
+      },
+      "precision_at_retrieved": {
+        "mean": 0.14671046349902853,
+        "std": 0.08854114060286628
+      },
+      "micro": {
+        "relevant_found": 480,
+        "total_relevant": 1135,
+        "total_retrieved": 3408,
+        "set_recall": 0.42290748898678415,
+        "precision_at_retrieved": 0.14084507042253522
+      },
+      "candidates_per_variant": {
+        "mean": 79.25581395348837,
+        "min": 46,
+        "max": 106
+      },
+      "source_coverage": {
+        "europepmc": 16,
+        "pmc": 93,
+        "crossref": 279,
+        "semantic_scholar": 90,
+        "citation_graph": 2
+      },
+      "language_coverage": {
+        "unknown": 301,
+        "en": 155,
+        "de": 13,
+        "fr": 10,
+        "ru": 1
+      }
+    },
+    "sota_dense": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08190699220075558,
+          "std": 0.06777546143571818
+        },
+        "10": {
+          "mean": 0.13148155630247702,
+          "std": 0.11293701279652377
+        },
+        "15": {
+          "mean": 0.15943649606546662,
+          "std": 0.12072458229406859
+        },
+        "20": {
+          "mean": 0.18315066545252331,
+          "std": 0.15290747852560616
+        },
+        "50": {
+          "mean": 0.23248311497319368,
+          "std": 0.1813132176472016
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.386046511627907,
+          "std": 0.30922363048548207
+        },
+        "10": {
+          "mean": 0.313953488372093,
+          "std": 0.2672699143917887
+        },
+        "15": {
+          "mean": 0.26356589147286824,
+          "std": 0.22594206495857588
+        },
+        "20": {
+          "mean": 0.2302325581395349,
+          "std": 0.21811548436863187
+        },
+        "50": {
+          "mean": 0.12837209302325583,
+          "std": 0.1526956272132174
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.1279348107935303,
+          "std": 0.09886043544313086
+        },
+        "10": {
+          "mean": 0.17057658608885845,
+          "std": 0.12982540418778818
+        },
+        "15": {
+          "mean": 0.18174417752573768,
+          "std": 0.12793634540722595
+        },
+        "20": {
+          "mean": 0.18326600562084855,
+          "std": 0.13491143149544932
+        },
+        "50": {
+          "mean": 0.14732874347068842,
+          "std": 0.128141146036485
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.42176560045460276,
+          "std": 0.31364363988931776
+        },
+        "10": {
+          "mean": 0.3613275254359334,
+          "std": 0.2754557546078154
+        },
+        "15": {
+          "mean": 0.3196116865434355,
+          "std": 0.24276425211755598
+        },
+        "20": {
+          "mean": 0.30087818246244796,
+          "std": 0.23339260459395264
+        },
+        "50": {
+          "mean": 0.2819223644812119,
+          "std": 0.2009503068893711
+        }
+      },
+      "set_recall": {
+        "mean": 0.2624610241839895,
+        "std": 0.19336983075532344
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1727322896180328,
+        "std": 0.24550586919972547
+      },
+      "micro": {
+        "relevant_found": 311,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2740088105726872,
+        "precision_at_retrieved": 0.08965119631017585
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 311
+      },
+      "language_coverage": {
+        "unknown": 311
+      }
+    },
+    "sota_rerank": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.06496555840866153,
+          "std": 0.05842040939905027
+        },
+        "10": {
+          "mean": 0.09798757780717134,
+          "std": 0.08909895447375048
+        },
+        "15": {
+          "mean": 0.1355811387911115,
+          "std": 0.1525343015151873
+        },
+        "20": {
+          "mean": 0.14730348391169087,
+          "std": 0.15931614956122012
+        },
+        "50": {
+          "mean": 0.19821851418318184,
+          "std": 0.17390999900161186
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2837209302325582,
+          "std": 0.22918483711171944
+        },
+        "10": {
+          "mean": 0.2255813953488372,
+          "std": 0.1989425805390625
+        },
+        "15": {
+          "mean": 0.2046511627906977,
+          "std": 0.1994283037546105
+        },
+        "20": {
+          "mean": 0.1744186046511628,
+          "std": 0.18023630903823853
+        },
+        "50": {
+          "mean": 0.09953488372093024,
+          "std": 0.10356333840793171
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.09914723842306869,
+          "std": 0.08000583187267093
+        },
+        "10": {
+          "mean": 0.12668649138326185,
+          "std": 0.10837885301547225
+        },
+        "15": {
+          "mean": 0.1454618781106957,
+          "std": 0.1324787773557615
+        },
+        "20": {
+          "mean": 0.14214630908383355,
+          "std": 0.13052687501436452
+        },
+        "50": {
+          "mean": 0.11871787135355183,
+          "std": 0.09841167064323393
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.28958760064908534,
+          "std": 0.2351858591238583
+        },
+        "10": {
+          "mean": 0.25068491313826374,
+          "std": 0.20785379854856187
+        },
+        "15": {
+          "mean": 0.237928761207005,
+          "std": 0.2091973184445839
+        },
+        "20": {
+          "mean": 0.22279819496936606,
+          "std": 0.19865396124331575
+        },
+        "50": {
+          "mean": 0.21773143745840276,
+          "std": 0.17095463457956211
+        }
+      },
+      "set_recall": {
+        "mean": 0.2624610241839895,
+        "std": 0.19336983075532344
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1727322896180328,
+        "std": 0.24550586919972547
+      },
+      "micro": {
+        "relevant_found": 311,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2740088105726872,
+        "precision_at_retrieved": 0.08965119631017585
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 311
+      },
+      "language_coverage": {
+        "unknown": 311
+      }
+    },
+    "sota_hybrid": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.0959889619877719,
+          "std": 0.06037491370842808
+        },
+        "10": {
+          "mean": 0.17407531851608227,
+          "std": 0.10216876500544195
+        },
+        "15": {
+          "mean": 0.22998977785558342,
+          "std": 0.12639994405269514
+        },
+        "20": {
+          "mean": 0.2544525852399845,
+          "std": 0.13628036472122204
+        },
+        "50": {
+          "mean": 0.365783613390811,
+          "std": 0.17924973281960035
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.4604651162790698,
+          "std": 0.2973835788492238
+        },
+        "10": {
+          "mean": 0.41395348837209306,
+          "std": 0.2655239623477597
+        },
+        "15": {
+          "mean": 0.3736434108527132,
+          "std": 0.2478390470801902
+        },
+        "20": {
+          "mean": 0.3174418604651163,
+          "std": 0.23049081123041532
+        },
+        "50": {
+          "mean": 0.18976744186046512,
+          "std": 0.1703824476724386
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.15390214377271932,
+          "std": 0.09366348288727269
+        },
+        "10": {
+          "mean": 0.23105991289486308,
+          "std": 0.1321316222315143
+        },
+        "15": {
+          "mean": 0.2657478463570974,
+          "std": 0.14229325676152918
+        },
+        "20": {
+          "mean": 0.26101762898532066,
+          "std": 0.13839780515217748
+        },
+        "50": {
+          "mean": 0.22645549380615984,
+          "std": 0.13013343681862669
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.4976845160021691,
+          "std": 0.29746589106524896
+        },
+        "10": {
+          "mean": 0.45402124160150087,
+          "std": 0.26269729041478845
+        },
+        "15": {
+          "mean": 0.4226487642114817,
+          "std": 0.24865935617805665
+        },
+        "20": {
+          "mean": 0.3934781889950347,
+          "std": 0.23277934536361547
+        },
+        "50": {
+          "mean": 0.3992065126048879,
+          "std": 0.19891296973995468
+        }
+      },
+      "set_recall": {
+        "mean": 0.41617836465190605,
+        "std": 0.20988470540645338
+      },
+      "precision_at_retrieved": {
+        "mean": 0.21366707649966352,
+        "std": 0.24325127802527555
+      },
+      "micro": {
+        "relevant_found": 486,
+        "total_relevant": 1135,
+        "total_retrieved": 3466,
+        "set_recall": 0.4281938325991189,
+        "precision_at_retrieved": 0.1402192729371033
+      },
+      "candidates_per_variant": {
+        "mean": 80.6046511627907,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 486
+      },
+      "language_coverage": {
+        "unknown": 486
+      }
+    },
+    "sota_expand": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.06143043141017441,
+          "std": 0.0565238400983218
+        },
+        "10": {
+          "mean": 0.09715701302311819,
+          "std": 0.08917616706972815
+        },
+        "15": {
+          "mean": 0.13645784606316763,
+          "std": 0.15261289512756165
+        },
+        "20": {
+          "mean": 0.14877603113752425,
+          "std": 0.15957093346340978
+        },
+        "50": {
+          "mean": 0.19846707120093685,
+          "std": 0.1726923968817781
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2604651162790698,
+          "std": 0.2136499363322019
+        },
+        "10": {
+          "mean": 0.22093023255813954,
+          "std": 0.19236368116195549
+        },
+        "15": {
+          "mean": 0.2046511627906977,
+          "std": 0.19734430560172816
+        },
+        "20": {
+          "mean": 0.1744186046511628,
+          "std": 0.17730937783383158
+        },
+        "50": {
+          "mean": 0.09906976744186045,
+          "std": 0.1012437526866989
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.09337246026532206,
+          "std": 0.07673405719224599
+        },
+        "10": {
+          "mean": 0.12527704811335347,
+          "std": 0.10804628672365736
+        },
+        "15": {
+          "mean": 0.1462162280298016,
+          "std": 0.13235486305897207
+        },
+        "20": {
+          "mean": 0.1432279748491121,
+          "std": 0.1303384602346587
+        },
+        "50": {
+          "mean": 0.11848735202045588,
+          "std": 0.0963586485521697
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.2655838742942519,
+          "std": 0.21603789317471683
+        },
+        "10": {
+          "mean": 0.24059502063106597,
+          "std": 0.19260697962174525
+        },
+        "15": {
+          "mean": 0.23216856191334984,
+          "std": 0.19943879126623135
+        },
+        "20": {
+          "mean": 0.21793244015481428,
+          "std": 0.19022371593296536
+        },
+        "50": {
+          "mean": 0.21475431798999267,
+          "std": 0.16535988537433186
+        }
+      },
+      "set_recall": {
+        "mean": 0.26375301384807215,
+        "std": 0.19291052012016047
+      },
+      "precision_at_retrieved": {
+        "mean": 0.17296484775756768,
+        "std": 0.2453752558799879
+      },
+      "micro": {
+        "relevant_found": 312,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2748898678414097,
+        "precision_at_retrieved": 0.08993946382242721
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 312
+      },
+      "language_coverage": {
+        "unknown": 312
+      }
+    },
+    "sota_agent": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.06496555840866153,
+          "std": 0.05842040939905027
+        },
+        "10": {
+          "mean": 0.09798757780717134,
+          "std": 0.08909895447375048
+        },
+        "15": {
+          "mean": 0.1355811387911115,
+          "std": 0.1525343015151873
+        },
+        "20": {
+          "mean": 0.14730348391169087,
+          "std": 0.15931614956122012
+        },
+        "50": {
+          "mean": 0.19821851418318184,
+          "std": 0.17390999900161186
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.2837209302325582,
+          "std": 0.22918483711171944
+        },
+        "10": {
+          "mean": 0.2255813953488372,
+          "std": 0.1989425805390625
+        },
+        "15": {
+          "mean": 0.2046511627906977,
+          "std": 0.1994283037546105
+        },
+        "20": {
+          "mean": 0.1744186046511628,
+          "std": 0.18023630903823853
+        },
+        "50": {
+          "mean": 0.09953488372093024,
+          "std": 0.10356333840793171
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.09914723842306869,
+          "std": 0.08000583187267093
+        },
+        "10": {
+          "mean": 0.12668649138326185,
+          "std": 0.10837885301547225
+        },
+        "15": {
+          "mean": 0.1454618781106957,
+          "std": 0.1324787773557615
+        },
+        "20": {
+          "mean": 0.14214630908383355,
+          "std": 0.13052687501436452
+        },
+        "50": {
+          "mean": 0.11871787135355183,
+          "std": 0.09841167064323393
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.28958760064908534,
+          "std": 0.2351858591238583
+        },
+        "10": {
+          "mean": 0.25062367045790473,
+          "std": 0.20790851151068165
+        },
+        "15": {
+          "mean": 0.23788128752819784,
+          "std": 0.20923987921990428
+        },
+        "20": {
+          "mean": 0.2227543456092227,
+          "std": 0.19869286845351905
+        },
+        "50": {
+          "mean": 0.21768758809825936,
+          "std": 0.17099854500172956
+        }
+      },
+      "set_recall": {
+        "mean": 0.2624610241839895,
+        "std": 0.19336983075532344
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1727322896180328,
+        "std": 0.24550586919972547
+      },
+      "micro": {
+        "relevant_found": 311,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2740088105726872,
+        "precision_at_retrieved": 0.08965119631017585
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 311
+      },
+      "language_coverage": {
+        "unknown": 311
+      }
+    },
+    "sota_mdense": {
+      "n_variants": 43,
+      "recall_at": {
+        "5": {
+          "mean": 0.08485454004894422,
+          "std": 0.06737223170784196
+        },
+        "10": {
+          "mean": 0.12852677041695457,
+          "std": 0.1128594725055884
+        },
+        "15": {
+          "mean": 0.1564128186231845,
+          "std": 0.12096721813210982
+        },
+        "20": {
+          "mean": 0.18265071447377615,
+          "std": 0.15280417962868942
+        },
+        "50": {
+          "mean": 0.22635775433107552,
+          "std": 0.17902748858899714
+        }
+      },
+      "precision_at": {
+        "5": {
+          "mean": 0.3953488372093023,
+          "std": 0.3064830420378711
+        },
+        "10": {
+          "mean": 0.3069767441860465,
+          "std": 0.27056817808835326
+        },
+        "15": {
+          "mean": 0.2573643410852713,
+          "std": 0.22622912414094423
+        },
+        "20": {
+          "mean": 0.2302325581395349,
+          "std": 0.22050141983504296
+        },
+        "50": {
+          "mean": 0.12697674418604651,
+          "std": 0.15628737519458705
+        }
+      },
+      "f1_at": {
+        "5": {
+          "mean": 0.13246873863519662,
+          "std": 0.09848586556259555
+        },
+        "10": {
+          "mean": 0.16662787242363927,
+          "std": 0.13026359958001063
+        },
+        "15": {
+          "mean": 0.17783033400117623,
+          "std": 0.12804301051572883
+        },
+        "20": {
+          "mean": 0.1830964694525513,
+          "std": 0.136224051738834
+        },
+        "50": {
+          "mean": 0.14466783049361503,
+          "std": 0.12955946634155985
+        }
+      },
+      "ndcg_at": {
+        "5": {
+          "mean": 0.4288225594333224,
+          "std": 0.31512744352446975
+        },
+        "10": {
+          "mean": 0.3577906453826688,
+          "std": 0.2802395239001585
+        },
+        "15": {
+          "mean": 0.3155762666825446,
+          "std": 0.24567522458141725
+        },
+        "20": {
+          "mean": 0.3003069763253014,
+          "std": 0.23708564992129125
+        },
+        "50": {
+          "mean": 0.27942010831926173,
+          "std": 0.2046017968511996
+        }
+      },
+      "set_recall": {
+        "mean": 0.2624610241839895,
+        "std": 0.19336983075532344
+      },
+      "precision_at_retrieved": {
+        "mean": 0.1727322896180328,
+        "std": 0.24550586919972547
+      },
+      "micro": {
+        "relevant_found": 311,
+        "total_relevant": 1135,
+        "total_retrieved": 3469,
+        "set_recall": 0.2740088105726872,
+        "precision_at_retrieved": 0.08965119631017585
+      },
+      "candidates_per_variant": {
+        "mean": 80.67441860465117,
+        "min": 1,
+        "max": 100
+      },
+      "source_coverage": {
+        "pubmed": 311
+      },
+      "language_coverage": {
+        "unknown": 311
+      }
+    }
+  },
+  "tests_holm_expanded": {
+    "m4n_vs_m1_setrecall": {
+      "delta": 0.18430761383386277,
+      "p": 3.788103901822409e-05,
+      "r": 0.7297895902547066,
+      "n_nonzero": 42,
+      "ci95": [
+        0.10860710054939386,
+        0.25653280618715757
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": null,
+      "p_holm": 0.0002651672731275686,
+      "significant_holm": true
+    },
+    "m2_vs_m1_setrecall": {
+      "delta": 0.242045579431389,
+      "p": 9.204372375914678e-07,
+      "r": 0.8693244739756367,
+      "n_nonzero": 42,
+      "ci95": [
+        0.17360765585510204,
+        0.3096697843101223
+      ],
+      "base": "pubmed_only",
+      "improved": "multisource_no_translation",
+      "metric": null,
+      "p_holm": 7.363497900731743e-06,
+      "significant_holm": true
+    },
+    "m4n_vs_m1_recall20": {
+      "delta": 0.11994695281003355,
+      "p": 0.00039256668883875753,
+      "r": 0.627906976744186,
+      "n_nonzero": 42,
+      "ci95": [
+        0.05818806136447346,
+        0.17871642783717337
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": "20",
+      "p_holm": 0.0011777000665162726,
+      "significant_holm": true
+    },
+    "m4n_vs_m1_ndcg20": {
+      "delta": 0.14558828203705035,
+      "p": 0.00024130401561706094,
+      "r": 0.6194503171247357,
+      "n_nonzero": 43,
+      "ci95": [
+        0.07264697372347531,
+        0.21661851322617748
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": "ndcg",
+      "p_holm": 0.0009652160624682438,
+      "significant_holm": true
+    },
+    "m4n_vs_s3_setrecall": {
+      "delta": 0.030590273365946215,
+      "p": 0.5861597605433806,
+      "r": 0.09878048780487805,
+      "n_nonzero": 40,
+      "ci95": [
+        -0.05876220237356925,
+        0.11952496344189333
+      ],
+      "base": "sota_hybrid",
+      "improved": "full_pipeline_nested",
+      "metric": null,
+      "p_holm": 0.5861597605433806,
+      "significant_holm": false
+    },
+    "m4n_vs_s1_setrecall": {
+      "delta": 0.18430761383386277,
+      "p": 3.788103901822409e-05,
+      "r": 0.7297895902547066,
+      "n_nonzero": 42,
+      "ci95": [
+        0.10860710054939386,
+        0.25653280618715757
+      ],
+      "base": "sota_dense",
+      "improved": "full_pipeline_nested",
+      "metric": null,
+      "p_holm": 0.0002651672731275686,
+      "significant_holm": true
+    },
+    "m4n_vs_s6_setrecall": {
+      "delta": 0.18430761383386277,
+      "p": 3.788103901822409e-05,
+      "r": 0.7297895902547066,
+      "n_nonzero": 42,
+      "ci95": [
+        0.10860710054939386,
+        0.25653280618715757
+      ],
+      "base": "sota_mdense",
+      "improved": "full_pipeline_nested",
+      "metric": null,
+      "p_holm": 0.0002651672731275686,
+      "significant_holm": true
+    },
+    "m4n_vs_m1_precretrieved": {
+      "delta": -0.02602182611900425,
+      "p": 0.2137213845755923,
+      "r": 0.21987315010570824,
+      "n_nonzero": 43,
+      "ci95": [
+        -0.09720769278452959,
+        0.03415448941890127
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": "retr",
+      "p_holm": 0.4274427691511846,
+      "significant_holm": false
+    }
+  }
+}

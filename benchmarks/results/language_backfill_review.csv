@@ -1,0 +1,50 @@
+variant_id,pmid,doi,detected_language,confidence,method,langdetect,llm,evidence,title
+V002,,10.53846/goediss-1027,de,high,lexical,de,,de score 10.2 vs en 1.0 (distinctive hits: 3),Zur Risikokalkulation für Mutationen in den Genen BRCA1 und BRCA2 in Familien mit Brustkrebs
+V008,,10.1055/s-0038-1635218,de,high,lexical,de,,de score 3.8 vs en 0.0 (distinctive hits: 1),Beidseitiges Neoplasma mammae bei Cowden-Syndrom – ein Fallbericht
+V027,,10.26226/morressier.57bc22f3d462b80296c9af9e,de,medium,lexical,de,,de score 4.4 vs en 1.6 (distinctive hits: 0),Ataluren: Ergebnis der klinischen Studien in Duchenne-Muskeldystrophie mit Nonsense-Mutation (nmDMD)
+V008,,10.1186/s40348-022-00135-1,en,high,lexical,en,,nl score 2.6 vs en 6.8 (distinctive hits: 0),PTEN hamartoma tumor syndrome in childhood and adolescence—a comprehensive review and presentation of the German pediatric guideline
+V010,,10.1038/s41598-026-37393-2,en,high,lexical,en,,it score 1.0 vs en 3.2 (distinctive hits: 0),GJB2 c.109G > A mutation activating IFI27-mediated mitochondrial apoptosis pathway leading to hereditary non-syndromic hearing loss.
+V012,,10.1101/2024.04.01.587576,en,high,lexical,ca,,fr score 1.2 vs en 2.2 (distinctive hits: 0),Anti-EGFR aptamer exhibits direct anti-cancer effects in NSCLC cells harboring EGFR L858R mutations
+V012,,10.1056/nejmoa2512071,en,medium,lexical,en,,it score 1.0 vs en 1.0 (distinctive hits: 0),"Sacituzumab Tirumotecan in EGFR-TKI-Resistant, EGFR-Mutated Advanced NSCLC."
+V014,,10.1007/s10689-026-00593-w,en,high,lexical,en,,fr score 2.2 vs en 7.8 (distinctive hits: 0),Routes to colorectal cancer in Lynch syndrome: a decade of molecular and clinical insights converging on Schrödinger's cat.
+V014,,10.1093/carcin/bgag040,en,high,lexical,en,,it score 1.0 vs en 4.0 (distinctive hits: 0),Wnt/β-catenin signaling in hepatocellular carcinoma: a key player in resistance to targeted and immunotherapies.
+V019,,10.1192/j.eurpsy.2026.12150,en,high,lexical,en,,nl score 1.0 vs en 5.8 (distinctive hits: 0),Psychotic manifestations as the first presentation of Huntington’s disease: a case report.
+V019,,10.1192/j.eurpsy.2026.11295,en,high,lexical,en,,nl score 1.0 vs en 3.2 (distinctive hits: 0),"Psychiatric Onset of Huntington’s Disease: Clinical, Genetic and Ethical Considerations."
+V019,,10.1136/jnnp-2025-abn.186,en,high,lexical,en,,it score 1.0 vs en 2.6 (distinctive hits: 0),186 Investigating genetic anticipation in huntington’s disease by studying sperm HTT-CAG variability in HTT expansion-carriers
+V019,,10.1136/jnnp-2022-ehdn.1,en,high,lexical,en,,nl score 2.0 vs en 5.6 (distinctive hits: 0),A01 Somatic mosaicism of the HTT cag repeat in intermediate allele carriers with neurocognitive symptoms compatible with huntington disease
+V020,,10.3389/fnins.2026.1885103,en,high,lexical,en,,nl score 2.0 vs en 5.6 (distinctive hits: 0),"Research progress on the α-synuclein-lysosome axis in Parkinson's disease: molecular mechanisms of protein aggregation, autophagy dysfunction, and therapeutic targeting."
+V020,,10.1038/s41467-026-76173-4,en,medium,lexical,en,,it score 1.0 vs en 1.6 (distinctive hits: 0),α-Synuclein blocks endoplasmic reticulum co-translational protein translocation early in Parkinson's disease.
+V020,,10.1177/1877718X261461375,en,high,lexical,en,,nl score 2.0 vs en 2.0 (distinctive hits: 0),Structural biology of alpha-synuclein amyloid ﬁlaments: Implications in synucleinopathies.
+V020,,10.14336/AD.2025.0642,en,high,lexical,en,,nl score 2.0 vs en 5.6 (distinctive hits: 0),Recent Advances in Autophagy and Immunotherapy for the Clearance of Aggregated α-Synuclein in Parkinson's Disease.
+V021,,10.1016/j.fmre.2026.04.016,en,high,lexical,en,,nl score 2.0 vs en 4.0 (distinctive hits: 0),Multispectral photoacoustic microscopy and NIR-II fluorescence imaging of TREM2-positive microglia in Aβ-driven Alzheimer's pathogenesis.
+V021,,10.1177/0271678X251366082,en,high,lexical,en,,it score 1.0 vs en 3.0 (distinctive hits: 0),Transcriptional and post-transcriptional responses to amyloid-β in cerebral amyloid angiopathy.
+V023,,10.17504/protocols.io.5jyl8p8qdg2w/v1,en,medium,lexical,en,,nl score 1.0 vs en 1.0 (distinctive hits: 0),Generation of Gba L444P mutant mouse v1
+V023,,10.1101/2020.11.09.375048,en,medium,lexical,en,,it score 1.0 vs en 1.6 (distinctive hits: 0),Sphingolipid changes in Parkinson L444P GBA mutation fibroblasts promote α-synuclein aggregation
+V025,,10.4314/ahs.v26i2.7,en,high,lexical,en,,it score 1.0 vs en 3.4 (distinctive hits: 0),ß-Globin gene cluster haplotypes in Moroccan sickle cell disease patients: diversity pilot study.
+V025,,10.34297/ajbsr.2021.13.001842,en,high,lexical,en,,nl score 2.0 vs en 8.6 (distinctive hits: 0),A Compound Heterozygous HBB: C.79G&gt;A Associated with HBB: C.-78A&gt;G Mutation of HBB Gene Leading to Β-Thalassemia Intermedia in A Vietnamese Patient: A Case Study
+V026,,10.1038/s41598-026-43654-x,en,medium,lexical,en,,de score 0.0 vs en 1.6 (distinctive hits: 0),Xq28 duplication not F8 inversion: integrated genetic reanalysis redefines prenatal carrier diagnosis.
+V030,,10.1016/j.nbd.2019.104533,en,medium,lexical,en,,nl score 1.0 vs en 1.0 (distinctive hits: 0),Molecular genetics of congenital myotonic dystrophy.
+V030,,10.3390/genes13020367,en,medium,lexical,en,,de score 0.0 vs en 1.0 (distinctive hits: 0),Myotonic Dystrophies: A Genetic Overview
+V031,33268590,10.11817/j.issn.1672-7347.2020.190140,en,high,lexical,en,,fr score 0.6 vs en 4.4 (distinctive hits: 0),Multiple endocrine neoplasia-IIb with RET gene mutation p.M918T： A case report.
+V032,22304488,10.1089/gtmb.2011.0272,en,medium,lexical,en,,it score 1.0 vs en 1.6 (distinctive hits: 0),"JAK2 V617F mutation prevalence in myeloproliferative neoplasms in Pernambuco, Brazil."
+V033,19449430,10.1002/ajmg.a.32880,en,medium,lexical,en,,fr score 0.6 vs en 1.6 (distinctive hits: 0),Thanatophoric dysplasia caused by double missense FGFR3 mutations.
+V033,8845844,10.1093/hmg/5.4.509,en,medium,lexical,en,,it score 2.0 vs en 1.6 (distinctive hits: 0),Missense FGFR3 mutations create cysteine residues in thanatophoric dwarfism type I (TD1).
+V035,12416729,10.1007/BF02982788,en,medium,lexical,en,,it score 1.0 vs en 1.0 (distinctive hits: 0),HFE and non-HFE hemochromatosis.
+V035,10694284,10.1155/2000/360372,en,medium,lexical,en,,de score 0.0 vs en 1.2 (distinctive hits: 0),HFE-associated hereditary hemochromatosis.
+V002,,10.70675/b9cc0672z2680z442azad30ze1cd63ffcac8,fr,high,lexical,fr,,fr score 9.1 vs en 1.2 (distinctive hits: 1),Facteurs prédictifs de mutation germinale BRCA1 dans le cancer du sein héréditaire
+V002,,10.70675/a8d5c998za99cz4c79z834azb88c6d461a62,fr,high,lexical,fr,,fr score 8.4 vs en 0.6 (distinctive hits: 0),Etude de l’influence du stroma BRCA1 muté sur les étapes précoces de transformation tumorale dans le modèle du cancer du sein
+V007,,10.1051/medsci/2008242120,fr,high,lexical,fr,,fr score 7.3 vs en 0.6 (distinctive hits: 1),"PALB2/FANCN, acteur dans la prédisposition au cancer du sein ?"
+V023,,10.70675/fa7a5078z1170z48a0z81a7z05c9d8e7a135,fr,high,lexical,fr,,fr score 7.9 vs en 0.0 (distinctive hits: 2),Rôle des sphingolipides dans la cancérogenèse : l'exemple de la maladie de Gaucher
+V023,,10.12681/eadd/4035,fr,high,lexical,de,,fr score 5.8 vs en 1.0 (distinctive hits: 1),LA SPLENECTOMIE DANS LA MALADIE DE GAUCHER (ET DE NEIMANN-PICK). A PROPOS DE 12OBSERVATIONS
+V024,,10.3917/rbm.365.0005,fr,high,lexical,fr,,fr score 9.3 vs en 0.0 (distinctive hits: 3),Le dépistage phénotypique du déficit en G6PD
+V030,,10.70675/4a793500za69ez4c8ez9b95zeb0cf4250bf7,fr,high,lexical,fr,,fr score 8.1 vs en 0.0 (distinctive hits: 1),Familles atypiques et rôle des interruptions sur l'instabilité des triplets CTG impliqués dans la Dystrophie Myotonique de type 1 (DM1)
+V030,,10.70675/f3859e6fz04eez467bzad42z7bff6e7f6ed7,fr,high,lexical,fr,,fr score 5.5 vs en 0.0 (distinctive hits: 0),Identification de nouveaux facteurs chimiques capables de moduler l'instabilité des répétitions CTG dans la dystrophie myotonique de type 1
+V030,,10.70675/a815b2bdz5318z4d0fz8de3z45f6eea049ed,fr,high,lexical,fr,,fr score 8.5 vs en 0.0 (distinctive hits: 0),"Conséquences pathologiques des expansions CTG sur le système nerveux central d’un modèle murin de la dystrophie myotonique de Steinert : approches moléculaires, protéomiques et cellulaires"
+V019,,10.29184/1980-7813.rcfmc.114.vol.5.n2.2010,pt,high,lexical,pt,,pt score 7.5 vs en 1.6 (distinctive hits: 1),Instabilidade meiótica da expansão patogênica (CAG)n=38 no gene HTT em caso familiar de doença de Huntington
+V025,,10.47573/aya.5379.2.95.14,pt,high,lexical,pt,,pt score 4.8 vs en 1.6 (distinctive hits: 0),CRISPR-CAS9 e a terapia gênica na reprogramação do gene HBB da anemia falciforme
+V001,,10.13112/pc.664,unknown,none,lexical,hr,,fr score 1.0 vs en 0.0 (distinctive hits: 0),Molekularna analiza gena MECP2 u bolesnica sa sindromom Rett
+V005,,10.4267/2042/66935,unknown,none,lexical,fr,,fr score 0.6 vs en 0.6 (distinctive hits: 0),TP53 (Tumour protein p53 (Li-Fraumeni syndrome))
+V012,,10.2210/pdb5edp/pdb,unknown,none,lexical,lt,,de score 0.0 vs en 0.0 (distinctive hits: 0),EGFR kinase (T790M/L858R) apo
+V019,,10.1038/s41586-026-10671-9,unknown,none,lexical,en,,de score 0.0 vs en 0.6 (distinctive hits: 0),Restoring cortical disinhibition improves Huntington's disease phenotypes.
+V037,12832749,,unknown,none,lexical,en,,de score 0.0 vs en 0.0 (distinctive hits: 0),"Portuguese-type amyloidosis (transthyretin amyloidosis, ATTR V30M)."
+V028,,10.53106/241553062025090107005,zh,high,unicode-script,ko,,20 CJK characters,脊髓性肌肉萎縮症產前未檢出案：基因檢測失誤

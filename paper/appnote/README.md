@@ -9,11 +9,13 @@ described in [`../BIOINFORMATICS_PLAN.md`](../BIOINFORMATICS_PLAN.md).
 |---|---|
 | `main.tex` | Manuscript source. **3 pages**: 2 pages of text + 1 page holding Figure 1 and the references. |
 | `main.pdf` | Compiled manuscript (also the artifact used for the page-limit check). |
-| `supplementary.tex` / `supplementary.pdf` | Supplementary material (5 pages): reference-set caveats, protocol, full metrics, significance family, SOTA detail, language recovery, provider failures, cost measurements, reproducibility, usage examples. |
+| `supplementary.tex` / `supplementary.pdf` | Supplementary material: reference-set caveats, protocol, full metrics, significance family, SOTA detail, language recovery, provider failures, cost measurements, reproducibility, usage examples, plus the nine review-hardening sections (pooled reference-set expansion, M2--M3 deconfounding, language backfill, ClinVar-curated truth, dual-track unbound-pool SOTA, reranking defect and gating, citation-seed sensitivity, relevance-gate measurement, annotation-package status). |
 | `figure1.pdf` / `figure1.png` | Figure 1, three panels, generated from the benchmark artifacts. |
 | `make_figure1.py` | Regenerates Figure 1 (reads `benchmarks/results/paper_data.json`). |
 | `make_supplementary_tables.py` | Regenerates `tables/*.tex` from `paper_data.json`. |
-| `check_numbers.py` | Recomputes every headline number from the artifacts and asserts it appears in `main.tex`. |
+| `make_review_hardening.py` | Generates `tables/supp_hardening.tex` from the hardening artifacts (plan `EXPERIMENT_OPTIMIZATION_PLAN.md`); every number is read from `benchmarks/results/*.json`. |
+| `EXPERIMENT_OPTIMIZATION_PLAN.md` | The reviewer-defence plan (E1--E4c) and its execution status, artifacts and findings. |
+| `check_numbers.py` | Recomputes every headline number from the artifacts and asserts it appears in the manuscript or the supplement (70 checks). |
 | `tables/` | Generated LaTeX tables included by `supplementary.tex`. **Do not edit by hand.** |
 
 ## Build
@@ -27,10 +29,34 @@ latexmk -pdf supplementary.tex   # supplement
 Regenerate derived material after any benchmark change:
 
 ```bash
+python paper/appnote/make_review_hardening.py
 python paper/appnote/make_figure1.py
 python paper/appnote/make_supplementary_tables.py
 python paper/appnote/check_numbers.py     # must print "N/N checks passed"
 ```
+
+## Review-hardening experiments
+
+The reviewer-defence plan in `EXPERIMENT_OPTIMIZATION_PLAN.md` is executed by
+scripts under `benchmarks/analysis/` and `benchmarks/gold_standard/`; all of them
+are offline-first and re-runnable from frozen artifacts:
+
+```bash
+python benchmarks/analysis/expanded_reference.py       # pooled reference-set expansion
+python benchmarks/analysis/deconfound_m2.py            # E1: translation x ranking factorial
+python benchmarks/analysis/backfill_languages.py --cross-check   # E4a: language backfill
+python benchmarks/gold_standard/build_clinvar_ground_truth.py    # E2a: ClinVar truth (network)
+python benchmarks/analysis/clinvar_eval.py             # E2a: offline evaluation
+python benchmarks/analysis/sota_fair_pool.py           # E3: dual-track SOTA (uses score cache)
+python benchmarks/analysis/rerank_eval_corrected.py    # E4c: corrected M5/M5g
+python benchmarks/analysis/citation_seeds.py           # E4c: seed sensitivity (network, cached)
+python benchmarks/analysis/gate_eval.py                # E4b: relevance-gate measurement (LLM)
+python benchmarks/annotation/build_e2b_sample.py       # E2b: annotation package
+```
+
+API results (cross-encoder scores, bge-m3 embeddings, ClinVar responses, citation
+traversals, abstracts) are cached under `benchmarks/results/` so re-runs need no
+network access beyond cache misses.
 
 ## Number provenance
 

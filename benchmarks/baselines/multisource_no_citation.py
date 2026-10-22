@@ -11,7 +11,7 @@ import asyncio
 from typing import Any
 
 from lit_acquisition import multilingual_acquisition_workflow
-from lit_acquisition.normalizers import normalize_items
+from lit_acquisition.normalize import normalize_items
 
 
 async def search_multisource_with_translation(

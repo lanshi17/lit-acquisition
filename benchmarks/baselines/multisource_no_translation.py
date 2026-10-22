@@ -10,7 +10,7 @@ import asyncio
 from typing import Any
 
 from lit_acquisition import build_provider_plan, search_parallel
-from lit_acquisition.normalizers import normalize_items
+from lit_acquisition.normalize import normalize_items
 
 
 async def search_multisource_no_translation(query: str, limit: int = 20) -> list[dict[str, Any]]:

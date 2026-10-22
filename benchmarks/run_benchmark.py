@@ -79,7 +79,7 @@ async def _citation_extension(
     not modified or re-retrieved.
     """
     from lit_acquisition import traverse_citation_graph
-    from lit_acquisition.normalizers import normalize_items
+    from lit_acquisition.normalize import normalize_items
 
     seed_doi = next((p.get("doi") for p in base if p.get("doi")), None)
     if not seed_doi:

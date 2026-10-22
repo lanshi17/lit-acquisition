@@ -1,0 +1,1747 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "plan_reference": "paper/appnote/EXPERIMENT_OPTIMIZATION_PLAN.md §2.2 (E2a)",
+    "source": "NCBI ClinVar submitter assertion citations (SCV -> PubMed links)",
+    "collection": "esearch db=clinvar (several query forms) -> esummary verification on gene symbol and variant token -> elink dbfrom=clinvar db=pubmed -> esummary db=pubmed",
+    "generic_filter": {
+      "cross_variant_threshold": 2,
+      "known_generic_pmids": [
+        "24033266",
+        "24055113",
+        "25741868"
+      ],
+      "n_filtered": 275,
+      "filtered_pmids": [
+        "11280952",
+        "11466700",
+        "11598466",
+        "11896095",
+        "12394352",
+        "12402332",
+        "12692171",
+        "14576434",
+        "14607462",
+        "15604628",
+        "15789152",
+        "15994883",
+        "16858239",
+        "17060676",
+        "17224687",
+        "17392385",
+        "17508274",
+        "17576681",
+        "17591843",
+        "17761616",
+        "17924331",
+        "17954709",
+        "18163131",
+        "18197057",
+        "19042984",
+        "19305347",
+        "19888064",
+        "19914443",
+        "19914445",
+        "20031618",
+        "20065170",
+        "20104584",
+        "20298421",
+        "20301340",
+        "20301365",
+        "20301390",
+        "20301425",
+        "20301428",
+        "20301488",
+        "20301575",
+        "20301607",
+        "20301715",
+        "20605539",
+        "20664475",
+        "20675678",
+        "20831773",
+        "20981092",
+        "21267010",
+        "21310275",
+        "21324516",
+        "21422883",
+        "21500874",
+        "21778326",
+        "21810866",
+        "21829230",
+        "21938795",
+        "21990134",
+        "22006311",
+        "22009639",
+        "22138009",
+        "22274579",
+        "22430266",
+        "22475884",
+        "22703879",
+        "22811390",
+        "22855150",
+        "22857948",
+        "22918138",
+        "22947299",
+        "22964825",
+        "22975760",
+        "22981120",
+        "22992668",
+        "23012255",
+        "23037933",
+        "23144702",
+        "23169492",
+        "23188549",
+        "23199084",
+        "23299917",
+        "23429431",
+        "23469205",
+        "23619274",
+        "23619275",
+        "23652378",
+        "23659877",
+        "23667368",
+        "23788249",
+        "23817572",
+        "23835710",
+        "23852704",
+        "23881473",
+        "23917950",
+        "23918944",
+        "23946963",
+        "23970018",
+        "23970019",
+        "24014130",
+        "24022298",
+        "24033266",
+        "24055113",
+        "24061412",
+        "24071797",
+        "24111713",
+        "24121147",
+        "24310308",
+        "24319509",
+        "24366376",
+        "24366402",
+        "24394680",
+        "24432435",
+        "24436047",
+        "24493721",
+        "24598717",
+        "24627688",
+        "24673736",
+        "24705251",
+        "24793961",
+        "24799465",
+        "24799487",
+        "24829003",
+        "24868098",
+        "24884479",
+        "24893135",
+        "24905773",
+        "24929052",
+        "24996433",
+        "25006736",
+        "25087612",
+        "25173338",
+        "25186627",
+        "25351510",
+        "25356965",
+        "25373533",
+        "25394175",
+        "25417114",
+        "25431289",
+        "25452455",
+        "25488926",
+        "25525159",
+        "25626707",
+        "25637381",
+        "25645574",
+        "25730230",
+        "25741868",
+        "25741869",
+        "25980754",
+        "25981758",
+        "25999548",
+        "26140447",
+        "26270727",
+        "26295337",
+        "26324357",
+        "26389210",
+        "26389227",
+        "26389258",
+        "26389271",
+        "26389333",
+        "26389505",
+        "26440929",
+        "26445815",
+        "26467025",
+        "26556299",
+        "26681312",
+        "26689913",
+        "26822237",
+        "26845104",
+        "26969326",
+        "26990548",
+        "27153395",
+        "27433846",
+        "27532257",
+        "27539324",
+        "27595995",
+        "27798748",
+        "27831900",
+        "27854360",
+        "27884173",
+        "27978560",
+        "27993330",
+        "28135145",
+        "28492532",
+        "28503720",
+        "28724667",
+        "28779002",
+        "28790153",
+        "28873162",
+        "28912153",
+        "28966033",
+        "29335925",
+        "29398453",
+        "29433453",
+        "29446198",
+        "29450531",
+        "29506128",
+        "29506920",
+        "29533785",
+        "29625052",
+        "29758562",
+        "29880043",
+        "29907814",
+        "29922827",
+        "29939838",
+        "29939840",
+        "29961768",
+        "30067863",
+        "30113427",
+        "30152102",
+        "30303587",
+        "30311386",
+        "30322717",
+        "30452337",
+        "30613976",
+        "30676620",
+        "30696458",
+        "30813707",
+        "31006259",
+        "31022120",
+        "31090900",
+        "31159747",
+        "31263054",
+        "31275557",
+        "31429903",
+        "31447099",
+        "31479144",
+        "31479213",
+        "31589614",
+        "31672839",
+        "31829902",
+        "31891627",
+        "31911673",
+        "31980526",
+        "32171751",
+        "32289278",
+        "32295079",
+        "32338768",
+        "32341426",
+        "32404922",
+        "32418154",
+        "32528171",
+        "32546565",
+        "32581362",
+        "32686758",
+        "32725777",
+        "32853339",
+        "32885271",
+        "33056981",
+        "33226740",
+        "33410258",
+        "33451724",
+        "33471991",
+        "33497248",
+        "33514815",
+        "33516529",
+        "33939658",
+        "34012068",
+        "34043773",
+        "34131312",
+        "34185076",
+        "34242744",
+        "35101336",
+        "35534704",
+        "35653365",
+        "35802134",
+        "35924163",
+        "36474027",
+        "36744932",
+        "36988593",
+        "38186735",
+        "42258614",
+        "8841191",
+        "9042909",
+        "9145676",
+        "9150153",
+        "9536098"
+      ]
+    },
+    "independence": "ClinVar citations are entered by clinical laboratories and ClinGen expert panels; the project neither built this pool nor scored it, so recall against it is not circular with respect to the federated providers.",
+    "network_requests": 10,
+    "cache_hits": 229
+  },
+  "variants": [
+    {
+      "variant_id": "V001",
+      "gene": "MECP2",
+      "variant": "c.470C>T",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "MECP2[gene] AND \"c.470C>T\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "MECP2[gene] AND c.470C>T",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "MECP2[gene] AND \"470C>T\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "MECP2[gene] AND 470C>T",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.470C>T\"",
+          "n_ids": 500,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"470C>T\"",
+          "n_ids": 2,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V002",
+      "gene": "BRCA1",
+      "variant": "c.5266dupC",
+      "n_clinvar_records": 8,
+      "n_papers": 161,
+      "n_generic_removed": 108,
+      "clinvar_accessions": [
+        "VCV003336480",
+        "VCV000055446",
+        "VCV000125783",
+        "VCV000054958",
+        "VCV000055140",
+        "VCV000037543",
+        "VCV000017677",
+        "VCV000055480"
+      ],
+      "queries": [
+        {
+          "form": "BRCA1[gene] AND \"c.5266dupC\"",
+          "n_ids": 8,
+          "n_accepted": 8
+        }
+      ]
+    },
+    {
+      "variant_id": "V003",
+      "gene": "CFTR",
+      "variant": "Phe508del",
+      "n_clinvar_records": 6,
+      "n_papers": 275,
+      "n_generic_removed": 30,
+      "clinvar_accessions": [
+        "VCV004072070",
+        "VCV002582827",
+        "VCV000053854",
+        "VCV000634837",
+        "VCV000007105",
+        "VCV000053460"
+      ],
+      "queries": [
+        {
+          "form": "CFTR[gene] AND \"Phe508del\"",
+          "n_ids": 6,
+          "n_accepted": 6
+        }
+      ]
+    },
+    {
+      "variant_id": "V004",
+      "gene": "LDLR",
+      "variant": "c.913G>A",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "LDLR[gene] AND \"c.913G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "LDLR[gene] AND c.913G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "LDLR[gene] AND \"913G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "LDLR[gene] AND 913G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.913G>A\"",
+          "n_ids": 500,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"913G>A\"",
+          "n_ids": 1,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V005",
+      "gene": "TP53",
+      "variant": "R175H",
+      "n_clinvar_records": 1,
+      "n_papers": 81,
+      "n_generic_removed": 50,
+      "clinvar_accessions": [
+        "VCV000012374"
+      ],
+      "queries": [
+        {
+          "form": "TP53[gene] AND \"R175H\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V006",
+      "gene": "SCN5A",
+      "variant": "c.5266G>A",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "SCN5A[gene] AND \"c.5266G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SCN5A[gene] AND c.5266G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SCN5A[gene] AND \"5266G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SCN5A[gene] AND 5266G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.5266G>A\"",
+          "n_ids": 69,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"5266G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V007",
+      "gene": "PALB2",
+      "variant": "c.3113G>A",
+      "n_clinvar_records": 8,
+      "n_papers": 39,
+      "n_generic_removed": 60,
+      "clinvar_accessions": [
+        "VCV000659444",
+        "VCV000402305",
+        "VCV000231919",
+        "VCV000632929",
+        "VCV000126711",
+        "VCV000232125",
+        "VCV000241546",
+        "VCV000182742"
+      ],
+      "queries": [
+        {
+          "form": "PALB2[gene] AND \"c.3113G>A\"",
+          "n_ids": 8,
+          "n_accepted": 8
+        }
+      ]
+    },
+    {
+      "variant_id": "V008",
+      "gene": "PTEN",
+      "variant": "c.388C>T",
+      "n_clinvar_records": 1,
+      "n_papers": 33,
+      "n_generic_removed": 38,
+      "clinvar_accessions": [
+        "VCV000007819"
+      ],
+      "queries": [
+        {
+          "form": "PTEN[gene] AND \"c.388C>T\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V009",
+      "gene": "MYH7",
+      "variant": "c.2389G>A",
+      "n_clinvar_records": 1,
+      "n_papers": 37,
+      "n_generic_removed": 29,
+      "clinvar_accessions": [
+        "VCV000042901"
+      ],
+      "queries": [
+        {
+          "form": "MYH7[gene] AND \"c.2389G>A\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V010",
+      "gene": "GJB2",
+      "variant": "35delG",
+      "n_clinvar_records": 13,
+      "n_papers": 315,
+      "n_generic_removed": 34,
+      "clinvar_accessions": [
+        "VCV000044746",
+        "VCV000158604",
+        "VCV000021389",
+        "VCV000189051",
+        "VCV000177737",
+        "VCV000375406",
+        "VCV000017007",
+        "VCV000044749",
+        "VCV000017029",
+        "VCV000017016",
+        "VCV000017023",
+        "VCV000017000",
+        "VCV000017004"
+      ],
+      "queries": [
+        {
+          "form": "GJB2[gene] AND \"35delG\"",
+          "n_ids": 14,
+          "n_accepted": 13
+        }
+      ]
+    },
+    {
+      "variant_id": "V011",
+      "gene": "KRAS",
+      "variant": "c.35G>A (p.G12D)",
+      "n_clinvar_records": 1,
+      "n_papers": 75,
+      "n_generic_removed": 58,
+      "clinvar_accessions": [
+        "VCV000012582"
+      ],
+      "queries": [
+        {
+          "form": "KRAS[gene] AND \"c.35G>A (p.G12D)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "KRAS[gene] AND c.35G>A (p.G12D)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V012",
+      "gene": "EGFR",
+      "variant": "c.2573T>G (p.L858R)",
+      "n_clinvar_records": 1,
+      "n_papers": 47,
+      "n_generic_removed": 14,
+      "clinvar_accessions": [
+        "VCV000016609"
+      ],
+      "queries": [
+        {
+          "form": "EGFR[gene] AND \"c.2573T>G (p.L858R)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "EGFR[gene] AND c.2573T>G (p.L858R)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V013",
+      "gene": "BRAF",
+      "variant": "c.1799T>A (p.V600E)",
+      "n_clinvar_records": 1,
+      "n_papers": 105,
+      "n_generic_removed": 42,
+      "clinvar_accessions": [
+        "VCV000013961"
+      ],
+      "queries": [
+        {
+          "form": "BRAF[gene] AND \"c.1799T>A (p.V600E)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "BRAF[gene] AND c.1799T>A (p.V600E)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V014",
+      "gene": "APC",
+      "variant": "c.3927_3931delAAAGA",
+      "n_clinvar_records": 7,
+      "n_papers": 74,
+      "n_generic_removed": 38,
+      "clinvar_accessions": [
+        "VCV000633036",
+        "VCV000495358",
+        "VCV000217937",
+        "VCV000537503",
+        "VCV000000816",
+        "VCV000127278",
+        "VCV000236589"
+      ],
+      "queries": [
+        {
+          "form": "APC[gene] AND \"c.3927_3931delAAAGA\"",
+          "n_ids": 7,
+          "n_accepted": 7
+        }
+      ]
+    },
+    {
+      "variant_id": "V015",
+      "gene": "MLH1",
+      "variant": "c.1852_1854del (p.K618del)",
+      "n_clinvar_records": 1,
+      "n_papers": 56,
+      "n_generic_removed": 36,
+      "clinvar_accessions": [
+        "VCV000017080"
+      ],
+      "queries": [
+        {
+          "form": "MLH1[gene] AND \"c.1852_1854del (p.K618del)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "MLH1[gene] AND c.1852_1854del (p.K618del)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V016",
+      "gene": "MYBPC3",
+      "variant": "c.1504C>T (p.Arg502Trp)",
+      "n_clinvar_records": 5,
+      "n_papers": 87,
+      "n_generic_removed": 35,
+      "clinvar_accessions": [
+        "VCV000042540",
+        "VCV001475570",
+        "VCV000925428",
+        "VCV000161305",
+        "VCV000042541"
+      ],
+      "queries": [
+        {
+          "form": "MYBPC3[gene] AND \"c.1504C>T (p.Arg502Trp)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "MYBPC3[gene] AND c.1504C>T (p.Arg502Trp)",
+          "n_ids": 5,
+          "n_accepted": 5
+        }
+      ]
+    },
+    {
+      "variant_id": "V017",
+      "gene": "KCNQ1",
+      "variant": "c.1781G>A (p.Arg594Gln)",
+      "n_clinvar_records": 1,
+      "n_papers": 41,
+      "n_generic_removed": 12,
+      "clinvar_accessions": [
+        "VCV000053018"
+      ],
+      "queries": [
+        {
+          "form": "KCNQ1[gene] AND \"c.1781G>A (p.Arg594Gln)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "KCNQ1[gene] AND c.1781G>A (p.Arg594Gln)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V018",
+      "gene": "FBN1",
+      "variant": "c.5788G>A (p.Gly1930Arg)",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "FBN1[gene] AND \"c.5788G>A (p.Gly1930Arg)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND c.5788G>A (p.Gly1930Arg)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND \"5788G>A (p.Gly1930Arg)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND 5788G>A (p.Gly1930Arg)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND \"Gly1930Arg\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND Gly1930Arg",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND \"5788G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "FBN1[gene] AND 5788G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.5788G>A (p.Gly1930Arg)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"5788G>A (p.Gly1930Arg)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"Gly1930Arg\"",
+          "n_ids": 7,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"5788G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V019",
+      "gene": "HTT",
+      "variant": "CAG repeat expansion",
+      "n_clinvar_records": 1,
+      "n_papers": 8,
+      "n_generic_removed": 2,
+      "clinvar_accessions": [
+        "VCV001687507"
+      ],
+      "queries": [
+        {
+          "form": "HTT[gene] AND \"CAG repeat expansion\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V020",
+      "gene": "SNCA",
+      "variant": "c.209G>A (p.A53T)",
+      "n_clinvar_records": 1,
+      "n_papers": 30,
+      "n_generic_removed": 2,
+      "clinvar_accessions": [
+        "VCV000014007"
+      ],
+      "queries": [
+        {
+          "form": "SNCA[gene] AND \"c.209G>A (p.A53T)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SNCA[gene] AND c.209G>A (p.A53T)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SNCA[gene] AND \"209G>A (p.A53T)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "SNCA[gene] AND 209G>A (p.A53T)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V021",
+      "gene": "APP",
+      "variant": "Swedish mutation c.1780G>A",
+      "n_clinvar_records": 2,
+      "n_papers": 18,
+      "n_generic_removed": 8,
+      "clinvar_accessions": [
+        "VCV000018098",
+        "VCV000018093"
+      ],
+      "queries": [
+        {
+          "form": "APP[gene] AND \"Swedish mutation c.1780G>A\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "APP[gene] AND Swedish mutation c.1780G>A",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "APP[gene] AND \"Swedish\"",
+          "n_ids": 2,
+          "n_accepted": 2
+        }
+      ]
+    },
+    {
+      "variant_id": "V022",
+      "gene": "PAH",
+      "variant": "c.1222C>T (p.Arg408Trp)",
+      "n_clinvar_records": 7,
+      "n_papers": 89,
+      "n_generic_removed": 17,
+      "clinvar_accessions": [
+        "VCV000000577",
+        "VCV004688281",
+        "VCV000102636",
+        "VCV000102914",
+        "VCV000000623",
+        "VCV000102746",
+        "VCV000000612"
+      ],
+      "queries": [
+        {
+          "form": "PAH[gene] AND \"c.1222C>T (p.Arg408Trp)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "PAH[gene] AND c.1222C>T (p.Arg408Trp)",
+          "n_ids": 7,
+          "n_accepted": 7
+        }
+      ]
+    },
+    {
+      "variant_id": "V023",
+      "gene": "GBA",
+      "variant": "c.1448T>C (p.L444P)",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "GBA[gene] AND \"c.1448T>C (p.L444P)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND c.1448T>C (p.L444P)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND \"1448T>C (p.L444P)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND 1448T>C (p.L444P)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND \"L444P\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND L444P",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND \"1448T>C\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "GBA[gene] AND 1448T>C",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.1448T>C (p.L444P)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"1448T>C (p.L444P)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"L444P\"",
+          "n_ids": 57,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"1448T>C\"",
+          "n_ids": 2,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V024",
+      "gene": "G6PD",
+      "variant": "c.376A>G (p.Asn126Asp)",
+      "n_clinvar_records": 15,
+      "n_papers": 217,
+      "n_generic_removed": 17,
+      "clinvar_accessions": [
+        "VCV001722622",
+        "VCV001722747",
+        "VCV001722693",
+        "VCV001722726",
+        "VCV001722617",
+        "VCV000010382",
+        "VCV001065168",
+        "VCV001722697",
+        "VCV001722597",
+        "VCV000010361",
+        "VCV001722698",
+        "VCV000100055",
+        "VCV000037203",
+        "VCV000010388",
+        "VCV000037123"
+      ],
+      "queries": [
+        {
+          "form": "G6PD[gene] AND \"c.376A>G (p.Asn126Asp)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "G6PD[gene] AND c.376A>G (p.Asn126Asp)",
+          "n_ids": 15,
+          "n_accepted": 15
+        }
+      ]
+    },
+    {
+      "variant_id": "V025",
+      "gene": "HBB",
+      "variant": "c.20A>T (p.Glu7Val)",
+      "n_clinvar_records": 15,
+      "n_papers": 313,
+      "n_generic_removed": 20,
+      "clinvar_accessions": [
+        "VCV000015333",
+        "VCV000590773",
+        "VCV000446738",
+        "VCV000446748",
+        "VCV000446737",
+        "VCV000446735",
+        "VCV000446731",
+        "VCV000446747",
+        "VCV000439163",
+        "VCV000446736",
+        "VCV000446730",
+        "VCV000015213",
+        "VCV000015245",
+        "VCV000015202",
+        "VCV000015152"
+      ],
+      "queries": [
+        {
+          "form": "HBB[gene] AND \"c.20A>T (p.Glu7Val)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "HBB[gene] AND c.20A>T (p.Glu7Val)",
+          "n_ids": 15,
+          "n_accepted": 15
+        }
+      ]
+    },
+    {
+      "variant_id": "V026",
+      "gene": "F8",
+      "variant": "intron 22 inversion",
+      "n_clinvar_records": 5,
+      "n_papers": 19,
+      "n_generic_removed": 1,
+      "clinvar_accessions": [
+        "VCV000010150",
+        "VCV000618638",
+        "VCV000618100",
+        "VCV000914337",
+        "VCV000010159"
+      ],
+      "queries": [
+        {
+          "form": "F8[gene] AND \"intron 22 inversion\"",
+          "n_ids": 5,
+          "n_accepted": 5
+        }
+      ]
+    },
+    {
+      "variant_id": "V027",
+      "gene": "DMD",
+      "variant": "c.5899C>T (p.Arg1967Ter)",
+      "n_clinvar_records": 1,
+      "n_papers": 33,
+      "n_generic_removed": 3,
+      "clinvar_accessions": [
+        "VCV000011258"
+      ],
+      "queries": [
+        {
+          "form": "DMD[gene] AND \"c.5899C>T (p.Arg1967Ter)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "DMD[gene] AND c.5899C>T (p.Arg1967Ter)",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V028",
+      "gene": "SMN1",
+      "variant": "exon 7 deletion",
+      "n_clinvar_records": 96,
+      "n_papers": 106,
+      "n_generic_removed": 19,
+      "clinvar_accessions": [
+        "VCV000431179",
+        "VCV000870142",
+        "VCV004075817",
+        "VCV003338271",
+        "VCV003239717",
+        "VCV003239712",
+        "VCV003239632",
+        "VCV003239630",
+        "VCV002443947",
+        "VCV001679110",
+        "VCV001177497",
+        "VCV000916136",
+        "VCV000638580",
+        "VCV000634942",
+        "VCV000495832",
+        "VCV000039513",
+        "VCV000039512",
+        "VCV000009178",
+        "VCV000009172",
+        "VCV000009170",
+        "VCV004057250",
+        "VCV003338105",
+        "VCV003239715",
+        "VCV003239714",
+        "VCV003239713",
+        "VCV003239634",
+        "VCV003239633",
+        "VCV002571610",
+        "VCV002506919",
+        "VCV002422940",
+        "VCV002035672",
+        "VCV001949916",
+        "VCV001132070",
+        "VCV001105890",
+        "VCV000983312",
+        "VCV000983311",
+        "VCV000928626",
+        "VCV000832287",
+        "VCV000632984",
+        "VCV000583423",
+        "VCV000457356",
+        "VCV000009175",
+        "VCV003897011",
+        "VCV003376793",
+        "VCV003239716",
+        "VCV003239629",
+        "VCV002664372",
+        "VCV001699436",
+        "VCV000973541",
+        "VCV000929483",
+        "VCV000929467",
+        "VCV000692109",
+        "VCV000634932",
+        "VCV000634931",
+        "VCV000009180",
+        "VCV000009171",
+        "VCV000495827",
+        "VCV000009169",
+        "VCV000009167",
+        "VCV002690718",
+        "VCV002581366",
+        "VCV002203655",
+        "VCV002113655",
+        "VCV000928625",
+        "VCV000651822",
+        "VCV000571461",
+        "VCV000527330",
+        "VCV001929368",
+        "VCV000634937",
+        "VCV000586626",
+        "VCV000495833",
+        "VCV000632989",
+        "VCV000644259",
+        "VCV000448430",
+        "VCV000009173",
+        "VCV001331398",
+        "VCV001256472",
+        "VCV000448428",
+        "VCV000009177",
+        "VCV000805485",
+        "VCV000632985",
+        "VCV000586627",
+        "VCV000634946",
+        "VCV001699219",
+        "VCV000009176",
+        "VCV003239631",
+        "VCV000586628",
+        "VCV002190592",
+        "VCV000634947",
+        "VCV002988035",
+        "VCV000495829",
+        "VCV000009165",
+        "VCV000009179",
+        "VCV000009168",
+        "VCV000009164",
+        "VCV000009166"
+      ],
+      "queries": [
+        {
+          "form": "SMN1[gene] AND \"exon 7 deletion\"",
+          "n_ids": 98,
+          "n_accepted": 96
+        }
+      ]
+    },
+    {
+      "variant_id": "V029",
+      "gene": "CYP21A2",
+      "variant": "c.293-13A>G (IVS2-13A>G)",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "CYP21A2[gene] AND \"c.293-13A>G (IVS2-13A>G)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND c.293-13A>G (IVS2-13A>G)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND \"293-13A>G (IVS2-13A>G)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND 293-13A>G (IVS2-13A>G)",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND \"IVS2-13A>G\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND IVS2-13A>G",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND \"293-13A>G\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CYP21A2[gene] AND 293-13A>G",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"c.293-13A>G (IVS2-13A>G)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"293-13A>G (IVS2-13A>G)\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"IVS2-13A>G\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"293-13A>G\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V030",
+      "gene": "DMPK",
+      "variant": "CTG repeat expansion",
+      "n_clinvar_records": 138,
+      "n_papers": 12,
+      "n_generic_removed": 1,
+      "clinvar_accessions": [
+        "VCV003775836",
+        "VCV000188043",
+        "VCV000188042",
+        "VCV000188041",
+        "VCV000188039",
+        "VCV000188038",
+        "VCV000188037",
+        "VCV000188036",
+        "VCV000188035",
+        "VCV000188034",
+        "VCV000188033",
+        "VCV000188032",
+        "VCV000188030",
+        "VCV000188029",
+        "VCV000188028",
+        "VCV000188026",
+        "VCV000188025",
+        "VCV000188021",
+        "VCV000188020",
+        "VCV000188019",
+        "VCV000188017",
+        "VCV000188015",
+        "VCV000188014",
+        "VCV000188013",
+        "VCV000188011",
+        "VCV000188010",
+        "VCV000188008",
+        "VCV000188007",
+        "VCV000188006",
+        "VCV000188005",
+        "VCV000188003",
+        "VCV000188002",
+        "VCV000188000",
+        "VCV000187999",
+        "VCV000187996",
+        "VCV000187995",
+        "VCV000187994",
+        "VCV000187993",
+        "VCV000187992",
+        "VCV000187991",
+        "VCV000187990",
+        "VCV000187989",
+        "VCV000187988",
+        "VCV000187986",
+        "VCV000187985",
+        "VCV000187984",
+        "VCV000187983",
+        "VCV000187982",
+        "VCV000187981",
+        "VCV000187980",
+        "VCV000187979",
+        "VCV000187978",
+        "VCV000187977",
+        "VCV000187976",
+        "VCV000187975",
+        "VCV000187974",
+        "VCV000187973",
+        "VCV000187972",
+        "VCV000187971",
+        "VCV000187970",
+        "VCV000187969",
+        "VCV000187968",
+        "VCV000187967",
+        "VCV000187966",
+        "VCV000187965",
+        "VCV000187964",
+        "VCV000187963",
+        "VCV000187962",
+        "VCV000187961",
+        "VCV000187960",
+        "VCV000187959",
+        "VCV000187958",
+        "VCV000187957",
+        "VCV000187956",
+        "VCV000187955",
+        "VCV000187954",
+        "VCV000187953",
+        "VCV000187952",
+        "VCV000187951",
+        "VCV000187950",
+        "VCV000187949",
+        "VCV000187948",
+        "VCV000187947",
+        "VCV000187945",
+        "VCV000187944",
+        "VCV000187943",
+        "VCV000187942",
+        "VCV000187941",
+        "VCV000187940",
+        "VCV000187939",
+        "VCV000187938",
+        "VCV000187937",
+        "VCV000187936",
+        "VCV000187935",
+        "VCV000187934",
+        "VCV000187933",
+        "VCV000187932",
+        "VCV000187931",
+        "VCV000187930",
+        "VCV000187929",
+        "VCV000187928",
+        "VCV000187927",
+        "VCV000187926",
+        "VCV000187925",
+        "VCV000187923",
+        "VCV000187922",
+        "VCV000187921",
+        "VCV000187920",
+        "VCV000187919",
+        "VCV000187918",
+        "VCV000187917",
+        "VCV000187916",
+        "VCV000187915",
+        "VCV000187914",
+        "VCV000187913",
+        "VCV000187912",
+        "VCV000187911",
+        "VCV000187910",
+        "VCV000187909",
+        "VCV000187907",
+        "VCV000188040",
+        "VCV000188027",
+        "VCV000188024",
+        "VCV000188023",
+        "VCV000188022",
+        "VCV000188018",
+        "VCV000188016",
+        "VCV000188012",
+        "VCV000188009",
+        "VCV000188004",
+        "VCV000188001",
+        "VCV000187998",
+        "VCV000187997",
+        "VCV000187987",
+        "VCV000187946",
+        "VCV000187924",
+        "VCV000187908",
+        "VCV000188031"
+      ],
+      "queries": [
+        {
+          "form": "DMPK[gene] AND \"CTG repeat expansion\"",
+          "n_ids": 138,
+          "n_accepted": 138
+        }
+      ]
+    },
+    {
+      "variant_id": "V031",
+      "gene": "RET",
+      "variant": "p.M918T",
+      "n_clinvar_records": 2,
+      "n_papers": 58,
+      "n_generic_removed": 22,
+      "clinvar_accessions": [
+        "VCV000024969",
+        "VCV000013919"
+      ],
+      "queries": [
+        {
+          "form": "RET[gene] AND \"p.M918T\"",
+          "n_ids": 2,
+          "n_accepted": 2
+        }
+      ]
+    },
+    {
+      "variant_id": "V032",
+      "gene": "JAK2",
+      "variant": "p.V617F",
+      "n_clinvar_records": 1,
+      "n_papers": 27,
+      "n_generic_removed": 8,
+      "clinvar_accessions": [
+        "VCV000014662"
+      ],
+      "queries": [
+        {
+          "form": "JAK2[gene] AND \"p.V617F\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V033",
+      "gene": "FGFR3",
+      "variant": "p.R248C",
+      "n_clinvar_records": 1,
+      "n_papers": 66,
+      "n_generic_removed": 20,
+      "clinvar_accessions": [
+        "VCV000016332"
+      ],
+      "queries": [
+        {
+          "form": "FGFR3[gene] AND \"p.R248C\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V034",
+      "gene": "BRCA2",
+      "variant": "c.5946delT",
+      "n_clinvar_records": 7,
+      "n_papers": 58,
+      "n_generic_removed": 91,
+      "clinvar_accessions": [
+        "VCV000230411",
+        "VCV000126123",
+        "VCV000267665",
+        "VCV000135803",
+        "VCV000051927",
+        "VCV000038070",
+        "VCV000009325"
+      ],
+      "queries": [
+        {
+          "form": "BRCA2[gene] AND \"c.5946delT\"",
+          "n_ids": 7,
+          "n_accepted": 7
+        }
+      ]
+    },
+    {
+      "variant_id": "V035",
+      "gene": "HFE",
+      "variant": "p.C282Y",
+      "n_clinvar_records": 3,
+      "n_papers": 112,
+      "n_generic_removed": 49,
+      "clinvar_accessions": [
+        "VCV000000011",
+        "VCV000000009",
+        "VCV000000010"
+      ],
+      "queries": [
+        {
+          "form": "HFE[gene] AND \"p.C282Y\"",
+          "n_ids": 3,
+          "n_accepted": 3
+        }
+      ]
+    },
+    {
+      "variant_id": "V036",
+      "gene": "CHEK2",
+      "variant": "c.1100delC",
+      "n_clinvar_records": 10,
+      "n_papers": 270,
+      "n_generic_removed": 135,
+      "clinvar_accessions": [
+        "VCV000585213",
+        "VCV000141314",
+        "VCV000005596",
+        "VCV000142448",
+        "VCV000128042",
+        "VCV000128056",
+        "VCV000128068",
+        "VCV000005603",
+        "VCV000128071",
+        "VCV000005591"
+      ],
+      "queries": [
+        {
+          "form": "CHEK2[gene] AND \"c.1100delC\"",
+          "n_ids": 10,
+          "n_accepted": 10
+        }
+      ]
+    },
+    {
+      "variant_id": "V037",
+      "gene": "TTR",
+      "variant": "p.V30M",
+      "n_clinvar_records": 1,
+      "n_papers": 151,
+      "n_generic_removed": 10,
+      "clinvar_accessions": [
+        "VCV000013417"
+      ],
+      "queries": [
+        {
+          "form": "TTR[gene] AND \"p.V30M\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V038",
+      "gene": "SLC26A4",
+      "variant": "c.919-2A>G",
+      "n_clinvar_records": 8,
+      "n_papers": 77,
+      "n_generic_removed": 9,
+      "clinvar_accessions": [
+        "VCV004686660",
+        "VCV000417623",
+        "VCV001698554",
+        "VCV000004840",
+        "VCV001331489",
+        "VCV000558599",
+        "VCV000627475",
+        "VCV000004825"
+      ],
+      "queries": [
+        {
+          "form": "SLC26A4[gene] AND \"c.919-2A>G\"",
+          "n_ids": 8,
+          "n_accepted": 8
+        }
+      ]
+    },
+    {
+      "variant_id": "V039",
+      "gene": "VHL",
+      "variant": "p.R167W",
+      "n_clinvar_records": 2,
+      "n_papers": 52,
+      "n_generic_removed": 21,
+      "clinvar_accessions": [
+        "VCV000002219",
+        "VCV000002218"
+      ],
+      "queries": [
+        {
+          "form": "VHL[gene] AND \"p.R167W\"",
+          "n_ids": 2,
+          "n_accepted": 2
+        }
+      ]
+    },
+    {
+      "variant_id": "V040",
+      "gene": "RYR1",
+      "variant": "p.R614C",
+      "n_clinvar_records": 1,
+      "n_papers": 83,
+      "n_generic_removed": 24,
+      "clinvar_accessions": [
+        "VCV000012964"
+      ],
+      "queries": [
+        {
+          "form": "RYR1[gene] AND \"p.R614C\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    },
+    {
+      "variant_id": "V041",
+      "gene": "ATM",
+      "variant": "c.7271T>G",
+      "n_clinvar_records": 4,
+      "n_papers": 48,
+      "n_generic_removed": 59,
+      "clinvar_accessions": [
+        "VCV000267405",
+        "VCV000003023",
+        "VCV000481238",
+        "VCV000003047"
+      ],
+      "queries": [
+        {
+          "form": "ATM[gene] AND \"c.7271T>G\"",
+          "n_ids": 4,
+          "n_accepted": 4
+        }
+      ]
+    },
+    {
+      "variant_id": "V042",
+      "gene": "CDH1",
+      "variant": "p.1003C>T",
+      "n_clinvar_records": 0,
+      "n_papers": 0,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [],
+      "queries": [
+        {
+          "form": "CDH1[gene] AND \"p.1003C>T\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CDH1[gene] AND p.1003C>T",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CDH1[gene] AND \"1003C>T\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "CDH1[gene] AND 1003C>T",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"p.1003C>T\"",
+          "n_ids": 0,
+          "n_accepted": 0
+        },
+        {
+          "form": "\"1003C>T\"",
+          "n_ids": 4,
+          "n_accepted": 0
+        }
+      ]
+    },
+    {
+      "variant_id": "V043",
+      "gene": "MTHFR",
+      "variant": "c.677C>T",
+      "n_clinvar_records": 1,
+      "n_papers": 2,
+      "n_generic_removed": 0,
+      "clinvar_accessions": [
+        "VCV003768039"
+      ],
+      "queries": [
+        {
+          "form": "MTHFR[gene] AND \"c.677C>T\"",
+          "n_ids": 1,
+          "n_accepted": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "variants": 43,
+    "variants_with_records": 36,
+    "variants_with_citations": 36,
+    "cited_papers_after_filter": 3275,
+    "unique_pmids_after_filter": 3275
+  }
+}

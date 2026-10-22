@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "sheets": {
+    "a": "benchmarks/annotation/e2b_sheet_raterA.csv",
+    "b": "benchmarks/annotation/e2b_sheet_raterB.csv"
+  },
+  "n_items": 225,
+  "levels": {
+    "topic_relevant": {
+      "n": 0,
+      "kappa": null,
+      "agreement": null,
+      "matrix": {}
+    },
+    "variant_level_evidence": {
+      "n": 0,
+      "kappa": null,
+      "agreement": null,
+      "matrix": {}
+    }
+  },
+  "incomplete_cells": 450,
+  "status": "incomplete-sheets"
+}

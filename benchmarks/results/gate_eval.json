@@ -1,0 +1,1534 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "plan_reference": "paper/appnote/EXPERIMENT_OPTIMIZATION_PLAN.md §4.2 (E4b)",
+    "gate": "lit_acquisition.llm.gate.run_relevance_gate (production prompt and model)",
+    "input": "PubMed abstracts passed through the gate's parsed_markdown field (not PDFs)",
+    "truth": "project heuristic (provisional): positive = in the frozen reference set, negative = retrieved by some system and scored at or below the documented threshold",
+    "sample_seed": 20261014,
+    "sampling": "variant-stratified round-robin over all 43 variants, then shuffled",
+    "cost_note": "the gate API does not return token usage; characters and wall-clock are reported"
+  },
+  "status": "ok",
+  "error_rate": 0.0,
+  "model": "Qwen/Qwen2.5-72B-Instruct",
+  "base_url": "https://api.siliconflow.cn/v1",
+  "model_is_production_default": false,
+  "sample_size": 120,
+  "n_judged": 120,
+  "sample_with_abstract": 120,
+  "metrics": {
+    "n": 120,
+    "kept_relevant": 58,
+    "dropped_relevant": 2,
+    "kept_irrelevant": 58,
+    "dropped_irrelevant": 2,
+    "false_negative_rate": 0.0333,
+    "false_positive_rate": 0.9667,
+    "precision_at_retrieved_before": 0.5,
+    "precision_at_retrieved_after": 0.5,
+    "retained_fraction": 0.9667,
+    "errors": 0
+  },
+  "cost": {
+    "wall_clock_seconds": 147.99,
+    "ms_per_paper": 1233.3,
+    "mean_prompt_chars": 1649.8
+  },
+  "by_variant": {
+    "V001": {
+      "n": 4,
+      "gate_relevant": 3
+    },
+    "V002": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V003": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V004": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V005": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V006": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V007": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V008": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V009": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V010": {
+      "n": 4,
+      "gate_relevant": 3
+    },
+    "V011": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V012": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V013": {
+      "n": 4,
+      "gate_relevant": 3
+    },
+    "V014": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V015": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V016": {
+      "n": 4,
+      "gate_relevant": 4
+    },
+    "V017": {
+      "n": 4,
+      "gate_relevant": 3
+    },
+    "V018": {
+      "n": 3,
+      "gate_relevant": 3
+    },
+    "V019": {
+      "n": 3,
+      "gate_relevant": 3
+    },
+    "V020": {
+      "n": 3,
+      "gate_relevant": 3
+    },
+    "V021": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V022": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V023": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V024": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V025": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V026": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V027": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V028": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V029": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V030": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V031": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V032": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V033": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V034": {
+      "n": 1,
+      "gate_relevant": 1
+    },
+    "V035": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V036": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V037": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V038": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V039": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V040": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V041": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V042": {
+      "n": 2,
+      "gate_relevant": 2
+    },
+    "V043": {
+      "n": 2,
+      "gate_relevant": 2
+    }
+  },
+  "decisions": [
+    {
+      "variant_id": "V001",
+      "paper_id": "doi:10.1002/mdc3.70697",
+      "pmid": "42231686",
+      "title": "Atypical Atypical MECP2-Related Rett Syndrome Presenting with Movement Disorders- Predominating Phenotype.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document describes case reports of atypical MECP2-related Rett syndrome, focusing on patients with a movement disorder-predominant phenotype, which directly aligns with the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V002",
+      "paper_id": "doi:10.3390/ijerph19074314",
+      "pmid": "35409996",
+      "title": "Spectrum of BRCA1/2 Mutations in Romanian Breast and Ovarian Cancer Patients.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the spectrum of BRCA1/2 mutations in Romanian breast and ovarian cancer patients, including the c.5266dupC mutation in BRCA1, which is directly relevant to the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V003",
+      "paper_id": "doi:10.1016/j.jcf.2026.06.002",
+      "pmid": "42303492",
+      "title": "A functional comparison of vanzacaftor/tezacaftor/deutivacaftor and elexacaftor/tezacaftor/ivacaftor in patient-derived intestinal organoids with rare CFTR variants.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the functional effects of CFTR modulators on cystic fibrosis, including the Phe508del variant, which is central to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V004",
+      "paper_id": "doi:10.1371/journal.pgen.1012082",
+      "pmid": "41843552",
+      "title": "Functional interrogation of candidate cis-regulatory elements at the LDLR locus.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the functional aspects of candidate cis-regulatory elements at the LDLR locus, which is closely related to LDLR familial hypercholesterolemia variants.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V005",
+      "paper_id": "doi:10.3343/kjlm.2008.28.6.493",
+      "pmid": "19127115",
+      "title": "Genetic counseling can influence the course of a suspected familial cancer syndrome patient: from a case of Li-Fraumeni like syndrome with a germline mutation in the TP53 gene.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case of Li-Fraumeni like syndrome with a germline TP53 R175H mutation, which is directly relevant to the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V006",
+      "paper_id": "doi:10.1016/j.scr.2025.103755",
+      "pmid": "40561734",
+      "title": "Generation of a set of genetically modified long QT syndrome induced pluripotent stem cell lines carrying knock-in variants rs120074178 (KCNQ1 c.569G > A; p.Arg190Gln) and rs137854600 (SCN5A c.4865G > A; p.Arg1622Gln) and isogenic control lines.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the generation of genetically modified induced pluripotent stem cell lines carrying a specific SCN5A variant associated with long QT syndrome, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V007",
+      "paper_id": "doi:10.1097/cad.0000000000001712",
+      "pmid": "40029391",
+      "title": "Response to PARP inhibitor in EGFR-tyrosine kinase inhibitor-resistant metastatic lung adenocarcinoma with germline PALB2 mutation.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case of metastatic lung adenocarcinoma with a germline PALB2 mutation and its response to PARP inhibitor treatment, which is directly relevant to the topic of PALB2 mutations in the context of cancer.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V008",
+      "paper_id": "doi:10.1007/s12328-026-02389-y",
+      "pmid": "42397496",
+      "title": "PTEN negative adenocarcinoma developed in a gastric hamartoma polyp of a Cowden syndrome patient.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report about a Cowden syndrome patient who developed PTEN-negative adenocarcinoma in a gastric hamartoma polyp, which directly aligns with the search query on PTEN Cowden syndrome case reports.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V009",
+      "paper_id": "doi:10.1248/bpb.b26-00025",
+      "pmid": "42203436",
+      "title": "Modeling Hypertrophic Cardiomyopathy-Related MYH7 Variants: Insights into Structural Changes and Cardiovascular Drug-Binding Affinities.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses MYH7 variants related to hypertrophic cardiomyopathy and provides detailed functional analysis, including structural modeling and drug-binding affinities.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V010",
+      "paper_id": "doi:10.1002/mgg3.1574",
+      "pmid": "33443819",
+      "title": "Palmoplantar keratoderma with deafness phenotypic variability in a patient with an inherited GJB2 frameshift variant and novel missense variant.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case report involving a patient with a GJB2 frameshift variant (35delG) and a novel missense variant, resulting in profound bilateral sensorineural hearing loss and palmoplantar keratoderma. It provides substantive analysis and experimental data related to the GJB2 35delG variant.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V011",
+      "paper_id": "doi:10.21873/anticanres.16629",
+      "pmid": "37772552",
+      "title": "Cetuximab Enhances the Efficacy of MRTX1133, a Novel KRAS(G12D) Inhibitor, in Colorectal Cancer Treatment",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the KRAS G12D mutation in the context of colorectal cancer, evaluating the efficacy of a novel KRAS G12D inhibitor (MRTX1133) and its combination with cetuximab. It provides substantive data and analysis on the topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V012",
+      "paper_id": "doi:10.1111/1759-7714.14775",
+      "pmid": "36519636",
+      "title": "Non-small cell lung cancer with EGFR (L858R and E709X) and CNNB1 mutations responded to afatinib",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that discusses a patient with EGFR L858R mutation in lung cancer and their response to afatinib treatment, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V013",
+      "paper_id": "doi:10.1016/j.bbrc.2019.12.085",
+      "pmid": "31980175",
+      "title": "BRAF(V600E) dictates cell survival via c-Myc-dependent induction of Skp2 in human melanoma",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses the role of BRAF V600E mutation in melanoma, specifically focusing on how it influences cell survival and growth through the induction of Skp2. This is directly relevant to the query on BRAF V600E melanoma.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V014",
+      "paper_id": "doi:10.1136/bcr-2019-231232",
+      "pmid": "31712236",
+      "title": "Attenuated familial adenomatous polyposis (AFAP) in a patient associated with a novel mutation in APC",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case report of a patient with attenuated familial adenomatous polyposis (AFAP) associated with a novel mutation in the APC gene, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V015",
+      "paper_id": "doi:10.1016/j.cancergen.2022.01.005",
+      "pmid": "35149321",
+      "title": "Lynch syndrome caused by a novel deletion of the promoter and exons 1-13 of MLH1 gene",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses a case of Lynch syndrome caused by a novel deletion in the MLH1 gene, which is the primary focus of the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V016",
+      "paper_id": "doi:10.3389/fcvm.2025.1726463",
+      "pmid": "41488457",
+      "title": "Case Report: Lethal neonatal hypertrophic cardiomyopathy from compound heterozygous MYBPC3 variants",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report directly about lethal neonatal hypertrophic cardiomyopathy caused by compound heterozygous MYBPC3 variants, which matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V017",
+      "paper_id": "doi:10.1186/s12872-025-05335-x",
+      "pmid": "41299264",
+      "title": "Long QT syndrome type 1: clinical and functional characterization of KCNQ1 variant c.1111G > C",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document provides a detailed clinical and functional characterization of a specific KCNQ1 variant (c.1111G > C) associated with Long QT Syndrome type 1, including its impact on patient outcomes and channel conductance.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V018",
+      "paper_id": "doi:10.1093/ehjcr/ytac063",
+      "pmid": "35372756",
+      "title": "A previously undescribed pathogenic variant in FBN1 gene causing Marfan syndrome: a case report",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that discusses a previously undescribed pathogenic variant in the FBN1 gene causing Marfan syndrome, which directly matches the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V019",
+      "paper_id": "doi:10.1016/j.omtn.2024.102234",
+      "pmid": "38974999",
+      "title": "CircHTT(2,3,4,5,6) - co-evolving with the HTT CAG-repeat tract - modulates Huntington's disease phenotypes",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the circHTT(2,3,4,5,6) circular RNA, which is related to the HTT CAG-repeat tract and modulates Huntington's disease phenotypes. It provides substantive analysis and experimental data directly relevant to the topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V020",
+      "paper_id": "doi:10.1016/j.scr.2021.102600",
+      "pmid": "34826737",
+      "title": "Generation of two human induced pluripotent stem cell lines (iPSCs) with mutations of the α-synuclein (SNCA) gene associated with Parkinson's disease; the A53T mutation (LCSBi003) and a triplication of the SNCA gene (LCSBi007)",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the generation of iPSCs from patients carrying the A53T mutation and a triplication of the SNCA gene, which are directly associated with Parkinson's disease. This aligns with the search query on SNCA A53T Parkinson disease.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V021",
+      "paper_id": "doi:10.1126/scitranslmed.abn9380",
+      "pmid": "36260691",
+      "title": "Synaptogenic effect of APP-Swedish mutation in familial Alzheimer's disease",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the APP-Swedish mutation and its effects on synaptic connectivity in familial Alzheimer's disease, which matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V022",
+      "paper_id": "doi:10.1016/j.ymthe.2024.11.032",
+      "pmid": "39600089",
+      "title": "Amelioration of metabolic and behavioral defects through base editing in the Pah(R408W) phenylketonuria mouse model",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a study that directly addresses the R408W mutation in the Pah gene, which is the focus of the search query on PAH R408W phenylketonuria. It discusses the use of base editing to treat this specific mutation and provides substantive results and analysis.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V023",
+      "paper_id": "doi:10.1186/1471-2350-7-69",
+      "pmid": "16887033",
+      "title": "Polymorphisms in the glucocerebrosidase gene and pseudogene urge caution in clinical analysis of Gaucher disease allele c.1448T>C (L444P)",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the genetic analysis of the GBA L444P allele, which is a key mutation in Gaucher disease, and addresses the challenges and methods used to accurately identify this mutation in clinical settings.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V024",
+      "paper_id": "pmid:7055648",
+      "pmid": "7055648",
+      "title": "Severe-glucose-6-phosphate dehydrogenase (G6PD) deficiency associated with chronic hemolytic anemia, granulocyte dysfunction, and increased susceptibility to infections: description of a new molecular variant (G6PD Barcelona)",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document describes a new molecular variant of G6PD deficiency (G6PD Barcelona) and provides detailed molecular, kinetic, and functional studies related to this variant.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V025",
+      "paper_id": "doi:10.1080/03630269.2024.2314075",
+      "pmid": "38360540",
+      "title": "Splice Acceptor Mutation [HBB:c.93-2A > T] in a Patient with Hb S/β(0)-Thalassemia",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a specific mutation affecting the HBB gene, which is directly related to the sickle cell mutation. It also provides a case report involving the Hb Sickle mutation (HBB:c.20A > T).",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V026",
+      "paper_id": "doi:10.1016/j.thromres.2025.109410",
+      "pmid": "40738092",
+      "title": "Variant analysis of F8 in 123 patients with hemophilia A: Identification of 18 novel variants",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses F8 intron 22 inversions and their role in hemophilia A, providing detailed variant analysis and methodology.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V027",
+      "paper_id": "doi:10.3390/ijms241914716",
+      "pmid": "37834164",
+      "title": "Exome Sequencing and Optical Genome Mapping in Molecularly Unsolved Cases of Duchenne Muscular Dystrophy: Identification of a Causative X-Chromosomal Inversion Disrupting the DMD Gene",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the identification of a causative X-chromosomal inversion disrupting the DMD gene in molecularly unsolved cases of Duchenne muscular dystrophy, which is directly relevant to the search query on DMD Duchenne muscular dystrophy mutation.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V028",
+      "paper_id": "doi:10.1007/s12031-018-1079-1",
+      "pmid": "29799103",
+      "title": "c.835-5T>G Variant in SMN1 Gene Causes Transcript Exclusion of Exon 7 and Spinal Muscular Atrophy",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses a rare variant in the SMN1 gene that causes exon 7 skipping and spinal muscular atrophy (SMA), which matches the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V029",
+      "paper_id": "doi:10.1515/jpem-2022-0396",
+      "pmid": "36259452",
+      "title": "Congenital adrenal hyperplasia with a CYP21A2 deletion overlapping the tenascin-X gene: an atypical presentation",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a specific case of congenital adrenal hyperplasia (CAH) resulting from a CYP21A2 deletion, which overlaps with the tenascin-X gene. This is directly related to the query topic of CYP21A2 congenital adrenal hyperplasia and provides substantive information on an atypical presentation of the condition.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V030",
+      "paper_id": "doi:10.1038/s41431-021-00999-3",
+      "pmid": "34776509",
+      "title": "DMPK hypermethylation in sperm cells of myotonic dystrophy type 1 patients",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses DNA methylation in the DMPK gene, which is directly related to the CTG repeat expansion in myotonic dystrophy type 1 (DM1). It provides a substantive analysis of a specific aspect of DM1 genetic mechanisms.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V031",
+      "paper_id": "doi:10.1089/thy.2016.0334",
+      "pmid": "28068878",
+      "title": "Long-Term Control of Hypercortisolism by Vandetanib in a Case of Medullary Thyroid Carcinoma with a Somatic RET Mutation.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that directly discusses a patient with medullary thyroid carcinoma (MTC) with a somatic RET M918T mutation, which is the focus of the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V032",
+      "paper_id": "doi:10.1080/10428194.2020.1802448",
+      "pmid": "32762473",
+      "title": "Germline JAK2 V617F mutation as a susceptibility gene causing myeloproliferative neoplasm in first-degree relatives.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The title directly addresses the JAK2 V617F mutation in the context of myeloproliferative neoplasms, indicating that the document is relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V033",
+      "paper_id": "pmid:30226972",
+      "pmid": "30226972",
+      "title": "A THANATOPHORIC DYSPLASIA TYPE I CASE WITH A FGFR3 P.R248C MUTATION AND SURVIVAL BEYOND THE NEONATAL PERIOD.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case of Thanatophoric dysplasia type I with the FGFR3 p.R248C mutation, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V034",
+      "paper_id": "doi:10.1002/mgg3.301",
+      "pmid": "28944232",
+      "title": "Mutational analysis of BRCA1 and BRCA2 genes in Peruvian families with hereditary breast and ovarian cancer.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the mutational analysis of BRCA1 and BRCA2 genes in Peruvian families with hereditary breast and ovarian cancer, and specifically mentions the BRCA2 c.5946delT mutation, which is directly relevant to the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V035",
+      "paper_id": "doi:10.1155/2020/9396318",
+      "pmid": "33457423",
+      "title": "A Simple RFLP-Based Method for HFE Gene Multiplex Amplification and Determination of Hereditary Hemochromatosis-Causing Mutation C282Y and H63D Variant with Highly Sensitive Determination of Contamination.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a method for detecting the HFE C282Y mutation, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V036",
+      "paper_id": "doi:10.1186/bcr582",
+      "pmid": "12793891",
+      "title": "Familial breast cancer and the hCHK2 1100delC mutation: assessing cancer risk.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses the hCHK2 1100delC mutation and its role in assessing cancer risk in familial breast cancer cases, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V037",
+      "paper_id": "doi:10.1186/s40364-026-00970-8",
+      "pmid": "42436580",
+      "title": "Disrupted glutathione homeostasis in the pathogenesis of TTR-V30M amyloidosis.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the pathogenesis of TTR-V30M amyloidosis, focusing on the role of glutathione homeostasis and oxidative stress in disease progression.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V038",
+      "paper_id": "doi:10.1177/00034894241261491",
+      "pmid": "38877731",
+      "title": "Variability in Inner Ear Morphology Among a Family With Pendred Syndrome Due to a SLC26A4 Gene Variant.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses Pendred syndrome and a specific SLC26A4 gene variant, providing a case report that examines the variability in inner ear morphology among family members with the same mutation.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V039",
+      "paper_id": "doi:10.1038/s41419-021-04135-3",
+      "pmid": "35110537",
+      "title": "Deubiquitylase OTUD6B stabilizes the mutated pVHL and suppresses cell migration in clear cell renal cell carcinoma.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the stabilization of mutated pVHL, including the R167W mutation, in the context of clear cell renal cell carcinoma, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V040",
+      "paper_id": "doi:10.1074/jbc.m302165200",
+      "pmid": "12732639",
+      "title": "Functional defects in six ryanodine receptor isoform-1 (RyR1) mutations associated with malignant hyperthermia and their impact on skeletal excitation-contraction coupling.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the R614C mutation in the RYR1 gene and its impact on skeletal excitation-contraction coupling in the context of malignant hyperthermia.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V041",
+      "paper_id": "doi:10.3389/fped.2023.975696",
+      "pmid": "37009283",
+      "title": "Two novel heterozygote mutations of ATM in a Chinese family with dystonia-dominant ataxia telangiectasia and literature review.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses two novel ATM mutations in a family with dystonia-dominant ataxia telangiectasia, which is directly related to the query topic of ATM 7271T>G ataxia telangiectasia. It also provides a literature review and clinical characteristics of dystonia-dominant A-T.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V042",
+      "paper_id": "doi:10.1001/jamasurg.2020.6155",
+      "pmid": "33404644",
+      "title": "Hereditary Diffuse Gastric Cancer Syndrome and the Role of CDH1: A Review.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a review directly focused on hereditary diffuse gastric cancer syndrome and the role of CDH1 mutations, providing substantive discussion on management, genetic testing, and surveillance strategies.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V043",
+      "paper_id": "doi:10.1002/ijc.25375",
+      "pmid": "20473868",
+      "title": "Hyperhomocysteinemia, methylenetetrahydrofolate reductase c.677C>T polymorphism and risk of cancer: cross-sectional and prospective studies and meta-analyses of 75,000 cases and 93,000 controls.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the MTHFR 677C>T polymorphism, hyperhomocysteinemia, and their association with cancer risk, making it relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V001",
+      "paper_id": "doi:10.1002/epd2.70102",
+      "pmid": "40956574",
+      "title": "Adult-onset drug-resistant progressive epilepsy in a patient with novel MECP2 mutation.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report describing an adult-onset drug-resistant progressive epilepsy in a patient with a novel MECP2 mutation, which is directly related to the query on MECP2 Rett syndrome.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V002",
+      "paper_id": "doi:10.3390/cancers17040613",
+      "pmid": "40002208",
+      "title": "BRCA1 and BRCA2 Mutations in Polish Women with Ductal Carcinoma In Situ.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses BRCA1 and BRCA2 mutations, including the specific BRCA1 5266dupC mutation, in the context of ductal carcinoma in situ (DCIS), a form of breast cancer. It provides substantive analysis on the association of these mutations with DCIS risk and patient outcomes.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V003",
+      "paper_id": "doi:10.1097/fpc.0000000000000601",
+      "pmid": "42026798",
+      "title": "CFTR genotype-phenotype associations and clinical outcomes in pediatric cystic fibrosis.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the association between CFTR genotypes, including the F508del variant, and clinical outcomes in pediatric cystic fibrosis patients, which directly aligns with the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V004",
+      "paper_id": "doi:10.1038/s41431-025-01893-y",
+      "pmid": "40707777",
+      "title": "Novel start codon variant in the 5'UTR of LDLR associated with familial hypercholesterolaemia.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a novel start codon variant in the 5'UTR of LDLR associated with familial hypercholesterolemia, providing detailed functional analysis and experimental evidence.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V005",
+      "paper_id": "doi:10.1007/s10689-026-00571-2",
+      "pmid": "42171906",
+      "title": "Genotypic and phenotypic characteristics of germline TP53 variant carriers: experience from two cancer genetic counseling units.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses germline TP53 variants and their association with Li-Fraumeni syndrome, including a detailed analysis of the tumor spectrum and age of onset in variant carriers. It also mentions the specific TP53 R175H variant, which is a common mutation associated with LFS.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V006",
+      "paper_id": "doi:10.1016/j.yjmcc.2025.04.001",
+      "pmid": "40209984",
+      "title": "Clinical and electrophysiological characterization of a SCN5A gain-of-function mutation associated with CPVT-like arrhythmia.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the functional characterization of a SCN5A variant (I1333V) and its association with long QT syndrome type 3 (LQT3) and CPVT-like arrhythmia, making it directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V007",
+      "paper_id": "doi:10.1111/cas.70210",
+      "pmid": "41048130",
+      "title": "Emergence of PALB2 Reversion Mutations as a Mechanism of Resistance to Niraparib in Breast Cancer: A Case Report.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that directly discusses a patient with PALB2 Trp1038Ter breast cancer and the emergence of reversion mutations leading to resistance to niraparib, which is highly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V008",
+      "paper_id": "doi:10.1515/jpem-2025-0587",
+      "pmid": "41966075",
+      "title": "Endocrine and metabolic features of PTEN hamartoma tumor syndrome in childhood: a pediatric case series.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case series that directly discusses PTEN hamartoma tumor syndrome (PHTS), which is relevant to the query on PTEN Cowden syndrome. It provides substantive clinical data and analysis about the pediatric manifestations of PTEN mutations.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V009",
+      "paper_id": "doi:10.21037/cdt-2025-188",
+      "pmid": "41509624",
+      "title": "Identification of recurrent MYH7 variant hypertrophic cardiomyopathy patients in Korea: a case series.",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case series that provides clinical and genetic evidence for the MYH7 p.Tyr134His variant in hypertrophic cardiomyopathy patients, which is directly relevant to the query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V010",
+      "paper_id": "doi:10.1002/ajmg.a.36042",
+      "pmid": "23873582",
+      "title": "Homozygosity for the V37I GJB2 mutation in fifteen probands with mild to moderate sensorineural hearing impairment: further confirmation of pathogenicity and haplotype analysis in Asian populations.",
+      "heuristic_label": "positive",
+      "gate_relevant": false,
+      "gate_reason": "The document discusses a case report of the V37I GJB2 mutation, not the 35delG mutation, and focuses on mild to moderate sensorineural hearing impairment in Asian populations.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V011",
+      "paper_id": "doi:10.1038/s41419-026-08900-0",
+      "pmid": "42209458",
+      "title": "Efficacy of dual KRAS(G12D)-EGFR blockade versus triple combinations in patient-derived models of KRAS(G12D)-mutant colorectal cancer",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document focuses on KRAS G12D mutations in colorectal cancer and discusses the efficacy of various combination therapies, including dual KRAS G12D and EGFR inhibition, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V012",
+      "paper_id": "doi:10.1016/j.prp.2024.155304",
+      "pmid": "38657557",
+      "title": "Lung adenocarcinoma with EGFR L858R-K860I and L858R-L861F doublet mutations from which the L858R mutation is undetectable through the cobas EGFR mutation test v2",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses specific EGFR L858R doublet mutations and their detection using various methods, as well as the clinical response to EGFR tyrosine kinase inhibitors in patients with these mutations. This is directly relevant to the query on EGFR L858R lung cancer.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V013",
+      "paper_id": "doi:10.1038/ng.356",
+      "pmid": "19282848",
+      "title": "Braf(V600E) cooperates with Pten loss to induce metastatic melanoma",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a study focusing on BRAF V600E in the context of melanoma, specifically how it cooperates with Pten loss to induce metastatic melanoma. It also provides details on the genetic model used and the effects of various inhibitors, making it directly relevant to the topic of BRAF V600E melanoma.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V014",
+      "paper_id": "doi:10.1002/cnr2.70362",
+      "pmid": "41104667",
+      "title": "A Case of APC Gene Mutation-Associated Familial Adenomatous Polyposis With Multiple System Malignancies",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that directly discusses APC gene mutation-associated familial adenomatous polyposis (FAP) and its association with multiple system malignancies, including thyroid disorders and colorectal cancer.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V015",
+      "paper_id": "doi:10.1159/000516659",
+      "pmid": "34091457",
+      "title": "MLH1 Exon 12 Gene Deletion Leading to Lynch Syndrome: A Case Report",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that directly discusses an MLH1 gene deletion leading to Lynch syndrome, providing substantive analysis and discussion about the topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V016",
+      "paper_id": "pmid:20689143",
+      "pmid": "20689143",
+      "title": "Identification of a novel MYBPC3 gene variant in a patient with hypertrophic cardiomyopathy",
+      "heuristic_label": "positive",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the identification of a novel MYBPC3 gene variant in a patient with hypertrophic cardiomyopathy, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V017",
+      "paper_id": "doi:10.1016/j.jacc.2020.02.067",
+      "pmid": "32354382",
+      "title": "KCNQ1 Antibodies for Immunotherapy of Long QT Syndrome Type 2",
+      "heuristic_label": "positive",
+      "gate_relevant": false,
+      "gate_reason": "The document discusses KCNQ1 antibodies in the context of Long QT Syndrome Type 2 (LQTS2), which is a different subtype of the syndrome compared to the query (KCNQ1 long QT syndrome, typically referred to as LQTS1). While it is closely related, the primary focus is on LQTS2 rather than LQTS1.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V001",
+      "paper_id": "doi:10.1016/j.braindev.2006.06.001",
+      "pmid": "16844334",
+      "title": "MECP2 mutant allele in a boy with Rett syndrome and his unaffected heterozygous mother.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report discussing a MECP2 mutation in a boy with Rett syndrome and his unaffected heterozygous mother, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V002",
+      "paper_id": "doi:10.1186/s12885-016-2966-x",
+      "pmid": "27914478",
+      "title": "Germline mutations in BRCA1 and BRCA2 in epithelial ovarian cancer patients in Brazil.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses BRCA1 and BRCA2 germline mutations in ovarian cancer patients, including the specific mutation BRCA1 5266dupC, which is directly related to the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V003",
+      "paper_id": "doi:10.1002/ppul.25647",
+      "pmid": "34525262",
+      "title": "CFTR gene mutation spectrum among 735 Iranian patients with cystic fibrosis: A comprehensive systematic review.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the CFTR gene mutation spectrum, including the p.Phe508del mutation, in Iranian patients with cystic fibrosis, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V004",
+      "paper_id": "doi:10.1016/j.ebiom.2020.103079",
+      "pmid": "33096472",
+      "title": "Differential DNA methylation in familial hypercholesterolemia.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a study on familial hypercholesterolemia, specifically examining DNA methylation differences in patients with and without LDLR variants, which is directly related to the query about LDLR familial hypercholesterolemia variants.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V005",
+      "paper_id": "doi:10.1158/1940-6207.capr-20-0368",
+      "pmid": "32958587",
+      "title": "Reducing Fatty Acid Oxidation Improves Cancer-free Survival in a Mouse Model of Li-Fraumeni Syndrome.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses a study on a mouse model of Li-Fraumeni syndrome with the specific TP53 R172H mutation (homolog of the human TP53 R175H mutation) and its effects on cancer-free survival. It contains substantive analysis and data related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V006",
+      "paper_id": "doi:10.1073/pnas.1607187113",
+      "pmid": "27681629",
+      "title": "Early somatic mosaicism is a rare cause of long-QT syndrome.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a specific SCN5A variant (p.(V1762L)) and its functional consequences in causing long QT syndrome, including detailed analysis of the mutation's effect on sodium current and arrhythmia.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V008",
+      "paper_id": "doi:10.24953/turkjped.2021.5330",
+      "pmid": "36082652",
+      "title": "Sirolimus treatment of a PTEN hamartoma tumor syndrome presenting with melena.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report about an adolescent patient with Cowden syndrome, which is a type of PTEN hamartoma tumor syndrome. It provides substantive clinical and genetic details about the patient, as well as a discussion of the treatment with sirolimus.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V009",
+      "paper_id": "doi:10.3389/fmed.2026.1700541",
+      "pmid": "41695170",
+      "title": "An unusual trilogy: a case of comorbid aHUS, Fabry disease, and hypertrophic cardiomyopathy.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case report that includes a likely pathogenic MYH7 variant related to hypertrophic cardiomyopathy, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V010",
+      "paper_id": "doi:10.1002/humu.9464",
+      "pmid": "17041897",
+      "title": "Deficient membrane integration of the novel p.N14D-GJB2 mutant associated with non-syndromic hearing impairment.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case of non-syndromic hearing impairment associated with a novel GJB2 mutation (p.N14D) in compound heterozygosity with the c.35delG mutation, which directly relates to the query topic of GJB2 35delG hearing loss.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V011",
+      "paper_id": "doi:10.1016/j.canlet.2025.218132",
+      "pmid": "41241302",
+      "title": "Targeting DRP1 promotes radiotherapy-induced antitumor immunity via mitochondrial DNA-mediated cGAS-STING signaling in KRAS-mutated colorectal cancer.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the functional role of KRAS G12D mutation in colorectal cancer and its impact on radiotherapy-induced antitumor immunity. It also provides substantive data and analysis on how targeting DRP1 can enhance the therapeutic response in KRAS-mutated cancers.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V012",
+      "paper_id": "doi:10.3390/molecules31091504",
+      "pmid": "42123865",
+      "title": "Cudratricusxanthone A Exhibits Antitumor Activities Against NSCLC Harboring EGFR L792H and G796R Triple Mutations via Regulating EGFR-ERK/AKT/STAT3 Signaling.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses the antitumor activities of Cudratricusxanthone A against NSCLC harboring specific EGFR triple mutations, including L858R, which is directly relevant to the search query on EGFR L858R lung cancer.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V013",
+      "paper_id": "doi:10.1016/j.jtho.2025.12.001",
+      "pmid": "41553307",
+      "title": "Biology and Clinical Management of Non-V600 BRAF Alterations in NSCLC.",
+      "heuristic_label": "negative",
+      "gate_relevant": false,
+      "gate_reason": "The document primarily discusses non-V600 BRAF alterations in NSCLC, not BRAF V600E mutations in melanoma.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V014",
+      "paper_id": "doi:10.1002/humu.20549",
+      "pmid": "17486639",
+      "title": "Somatic APC mosaicism: a frequent cause of familial adenomatous polyposis (FAP).",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses somatic APC mosaicism as a frequent cause of familial adenomatous polyposis (FAP), providing detailed analysis and data on the topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V015",
+      "paper_id": "doi:10.3389/fonc.2026.1822606",
+      "pmid": "42147218",
+      "title": "Surgery-enabled precision oncology in an MSI-High pulmonary artery sarcoma with Lynch syndrome: a case report.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that directly discusses a patient with a pathogenic germline MLH1 variant, confirming Lynch syndrome, which matches the search query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V016",
+      "paper_id": "doi:10.3390/ijms24044031",
+      "pmid": "36835444",
+      "title": "Untargeted Metabolomics Identifies Potential Hypertrophic Cardiomyopathy Biomarkers in Carriers of MYBPC3 Founder Variants.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document focuses on a study identifying metabolite profiles associated with disease severity in carriers of MYBPC3 founder variants, which directly relates to the search query about MYBPC3 hypertrophic cardiomyopathy variants.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V017",
+      "paper_id": "doi:10.1002/humu.9085",
+      "pmid": "12442276",
+      "title": "KCNQ1 and KCNH2 mutations associated with long QT syndrome in a Chinese population.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses KCNQ1 mutations associated with long QT syndrome, providing substantive data and analysis on the topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V018",
+      "paper_id": "doi:10.1016/j.oftale.2026.502537",
+      "pmid": "42177986",
+      "title": "Dual molecular diagnosis of TYR-related oculocutaneous albinism type 1 and FBN1-associated Marfan syndrome: A novel case with ocular and systemic correlations.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report that includes a discussion of FBN1-associated Marfan syndrome, although it also covers another condition (TYR-related oculocutaneous albinism type 1). It provides substantive details about the molecular diagnosis and clinical findings related to Marfan syndrome.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V019",
+      "paper_id": "doi:10.3390/ijms25073845",
+      "pmid": "38612657",
+      "title": "Huntington's Disease: Complex Pathogenesis and Therapeutic Strategies.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a review that primarily discusses Huntington's disease, including its pathogenesis involving the expansion of CAG repeats in the HTT gene and various therapeutic strategies.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V020",
+      "paper_id": "doi:10.3390/cells11233770",
+      "pmid": "36497031",
+      "title": "UBA52 Is Crucial in HSP90 Ubiquitylation and Neurodegenerative Signaling during Early Phase of Parkinson's Disease.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the role of UBA52 in neurodegenerative signaling and ubiquitylation, specifically in the context of Parkinson's disease, and mentions SNCA A53T as part of the transgenic mouse model used in the study.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V021",
+      "paper_id": "doi:10.3390/cells12020283",
+      "pmid": "36672218",
+      "title": "The Expression of Cellular Prion Protein, PrPC, Favors pTau Propagation and Blocks NMDAR Signaling in Primary Cortical Neurons.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the APPSw/Ind transgenic mouse model, which expresses the Swedish and Indiana mutations of the human amyloid precursor protein (APP), and its relevance to Alzheimer's disease. It also examines the interaction between PrPC and NMDAR in this context, making it directly relevant to the query about the APP Swedish mutation and Alzheimer's disease.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V022",
+      "paper_id": "doi:10.1007/8904_2012_178",
+      "pmid": "23430547",
+      "title": "Molecular Genetics and Genotype-Based Estimation of BH4-Responsiveness in Serbian PKU Patients: Spotlight on Phenotypic Implications of p.L48S.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses PAH mutations, including p.R408W, in the context of phenylketonuria (PKU) and their implications for BH4-responsiveness and phenotypic classification.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V023",
+      "paper_id": "doi:10.1101/2024.03.22.586364",
+      "pmid": "38712038",
+      "title": "Development of quantitative high-throughput screening assays to identify, validate, and optimize small-molecule stabilizers of misfolded β-glucocerebrosidase with therapeutic potential for Gaucher disease and Parkinson's disease.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document focuses on the development of screening assays to identify and optimize small-molecule stabilizers of misfolded β-glucocerebrosidase, specifically mentioning the L444P variant, which is directly relevant to the query on GBA L444P Gaucher disease.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V024",
+      "paper_id": "doi:10.1186/s12879-018-3031-y",
+      "pmid": "29548282",
+      "title": "Prevalence of glucose-6-phosphate dehydrogenase (G6PD) deficiency among malaria patients in Upper Myanmar.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the prevalence and distribution of G6PD variants among malaria patients in Myanmar, which directly addresses the query about G6PD deficiency variants.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V025",
+      "paper_id": "doi:10.3390/diagnostics15121470",
+      "pmid": "40564791",
+      "title": "Encephalitis Unraveled: The Unlikely Encounter of Sickle Cell Disease and Cerebral Malaria in a Teenager.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the HBB sickle cell mutation in the context of sickle-cell disease and its interaction with cerebral malaria, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V026",
+      "paper_id": "doi:10.1002/rth2.12723",
+      "pmid": "35702590",
+      "title": "F8 gene mutation spectrum in severe hemophilia A with inhibitors: A large cohort data analysis from a single center in China.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the F8 gene mutation spectrum in severe hemophilia A, specifically mentioning the intron 22 inversion, which is a key aspect of the search query. It provides substantive data and analysis related to this mutation and its association with inhibitor development.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V027",
+      "paper_id": "doi:10.1089/hum.2012.099",
+      "pmid": "22647146",
+      "title": "Genetic therapeutic approaches for Duchenne muscular dystrophy.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document reviews genetic-based therapeutic strategies specifically aimed at treating Duchenne muscular dystrophy (DMD) and discusses mutations in the DMD gene as a central topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V028",
+      "paper_id": "doi:10.4161/rna.4.1.4534",
+      "pmid": "17585203",
+      "title": "Spinal muscular atrophy: position and functional importance of the branch site preceding SMN exon 7.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the position and functional importance of the branch site preceding SMN exon 7, which is a key aspect of spinal muscular atrophy.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V029",
+      "paper_id": "doi:10.3389/fendo.2022.803226",
+      "pmid": "35282436",
+      "title": "Congenital Adrenal Hyperplasia and Ehlers-Danlos Syndrome.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses congenital adrenal hyperplasia (CAH) secondary to 21-hydroxylase deficiency, which is directly related to the CYP21A2 gene. It also explores the genetic and clinical relationship between CAH and Ehlers-Danlos Syndrome, making it relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V030",
+      "paper_id": "doi:10.1002/jcsm.70112",
+      "pmid": "41250834",
+      "title": "Alternative Splicing of SORBS1 Affects Neuromuscular Junction Integrity in Myotonic Dystrophy Type 1.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the role of SORBS1 alternative splicing in Myotonic Dystrophy Type 1 (DM1), which is characterized by CTG repeat expansion in the DMPK gene. It provides substantive data and analysis on how this splicing defect affects neuromuscular junction integrity, making it directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V031",
+      "paper_id": "doi:10.4183/aeb.2023.260",
+      "pmid": "37908885",
+      "title": "MEN 2B CASES WITH ATYPICAL PRESENTATION, UNUSUAL CLINICAL COURSE AND A LITERATURE REVIEW.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses cases of MEN 2B, which is directly related to the RET M918T mutation and medullary thyroid carcinoma. It includes a literature review and detailed case reports that are relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V032",
+      "paper_id": "doi:10.1002/cam4.71015",
+      "pmid": "40607626",
+      "title": "Incidence, Outcomes and Risk Factors for Atrial Fibrillation in Patients With JAK2(V617F)-Positive Myeloproliferative Neoplasms.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document focuses on patients with JAK2V617F-positive myeloproliferative neoplasms and specifically discusses the incidence, outcomes, and risk factors for atrial fibrillation in this patient population. It includes substantive data and analysis related to the JAK2 V617F mutation.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V033",
+      "paper_id": "doi:10.1111/neup.12036",
+      "pmid": "23551494",
+      "title": "Brain malformation with loss of normal FGFR3 expression in thanatophoric dysplasia type I.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case of thanatophoric dysplasia type I with the FGFR3 R248C mutation, providing substantive analysis of the mutation's effects on brain malformation and FGFR3 expression.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V035",
+      "paper_id": "doi:10.1016/j.revmed.2023.07.002",
+      "pmid": "37507250",
+      "title": "[Diagnosis and treatment of iron overload].",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses type 1 genetic hemochromatosis, which is associated with the C282Y mutation on the HFE gene, and provides detailed information about its etiology, diagnosis, and treatment.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V036",
+      "paper_id": "doi:10.3389/fgene.2018.00161",
+      "pmid": "29868112",
+      "title": "Complex Landscape of Germline Variants in Brazilian Patients With Hereditary and Early Onset Breast Cancer.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a study on hereditary breast cancer in Brazilian patients and specifically mentions the CHEK2 1100delC variant, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V037",
+      "paper_id": "doi:10.1016/j.ejmech.2023.115837",
+      "pmid": "37837673",
+      "title": "PITB: A high affinity transthyretin aggregation inhibitor with optimal pharmacokinetic properties.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a new compound, PITB, which is a high affinity transthyretin aggregation inhibitor. It specifically mentions TTR V30M as one of the disease-associated variants and provides detailed information about the pharmacokinetic properties and potential therapeutic use of PITB for TTR amyloidosis.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V038",
+      "paper_id": "doi:10.2185/jrm.2020-011",
+      "pmid": "33033545",
+      "title": "Pendred syndrome with hyperthyroidism.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document presents a case report of Pendred syndrome with a specific SLC26A4 gene mutation, which is directly relevant to the search query on SLC26A4 Pendred syndrome mutations.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V039",
+      "paper_id": "pmid:24444636",
+      "pmid": "24444636",
+      "title": "[Endolymphatic sac tumor with von Hippel-Lindau disease: report of two cases with testing of von Hippel-Lindau gene].",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document presents a case report of endolymphatic sac tumors associated with von Hippel-Lindau (VHL) disease and includes specific genetic analysis, including the R167W mutation, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V040",
+      "paper_id": "doi:10.1002/humu.1203",
+      "pmid": "11668625",
+      "title": "Genotype-phenotype comparison of the Swiss malignant hyperthermia population.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the RYR1 R614C mutation in the context of malignant hyperthermia, providing substantive analysis and comparison with other mutations.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V041",
+      "paper_id": "doi:10.1074/jbc.m103160200",
+      "pmid": "11382771",
+      "title": "Residual ataxia telangiectasia mutated protein function in cells from ataxia telangiectasia patients, with 5762ins137 and 7271T-->G mutations, showing a less severe phenotype.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses the 7271T-->G mutation in ataxia telangiectasia patients and provides detailed analysis of the residual ATM protein function and its correlation with disease severity.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V042",
+      "paper_id": "doi:10.3389/fonc.2025.1634470",
+      "pmid": "41378303",
+      "title": "Hereditary diffuse gastric cancer: a case report.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document is a case report about hereditary diffuse gastric cancer (HDGC) and discusses genetic mutations, which is directly relevant to the query on CDH1 hereditary diffuse gastric cancer mutation.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V043",
+      "paper_id": "doi:10.3945/jn.109.109710",
+      "pmid": "19812220",
+      "title": "Body mass index is an important determinant of methylation biomarkers in women of reproductive ages.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses MTHFR 677C>T polymorphism and its association with hyperhomocysteinemia, which is directly related to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V001",
+      "paper_id": "doi:10.1016/j.pediatrneurol.2019.03.012",
+      "pmid": "31031039",
+      "title": "Diagnostic Clue in Repetitive Hand Movements.",
+      "heuristic_label": "negative",
+      "gate_relevant": false,
+      "gate_reason": "The excerpt is too short to determine relevance, but the title only mentions repetitive hand movements and does not specify MECP2 or Rett syndrome.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V002",
+      "paper_id": "doi:10.1186/s40001-024-01767-x",
+      "pmid": "38504328",
+      "title": "Systematic review of the molecular basis of hereditary breast and ovarian cancer syndrome in Brazil: the current scenario.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document provides a systematic review of the molecular basis of hereditary breast and ovarian cancer in Brazil, and specifically discusses the c.5266dupC mutation in the BRCA1 gene, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V003",
+      "paper_id": "doi:10.1183/13993003.01192-2015",
+      "pmid": "27103391",
+      "title": "Optimal correction of distinct CFTR folding mutants in rectal cystic fibrosis organoids.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses the correction of CFTR Phe508del and other CFTR folding mutants, which is highly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V004",
+      "paper_id": "doi:10.3390/ijms24043224",
+      "pmid": "36834635",
+      "title": "Genetic Heterogeneity of Familial Hypercholesterolemia: Repercussions for Molecular Diagnosis.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses the genetic and molecular bases of familial hypercholesterolemia, including pathogenic variants in the LDLR gene, which is directly relevant to the query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V005",
+      "paper_id": "doi:10.3390/ijms27062656",
+      "pmid": "41898519",
+      "title": "STK11 and DNA Repair Gene Mutations Define Hereditary Subset of Middle Eastern Papillary Thyroid Cancer.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses TP53 R175H mutation in the context of Li-Fraumeni syndrome and its association with a patient having a history of gastric cancer, which directly relates to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V006",
+      "paper_id": "doi:10.3390/biomedicines13041008",
+      "pmid": "40299689",
+      "title": "A Novel Bradycardia-Associated Variant in HCN4 as a Candidate Modifier in Type 3 Long QT Syndrome: Case Report and Deep In Silico Analysis.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a novel bradycardia-associated variant in HCN4 and its role as a candidate modifier in Type 3 Long QT Syndrome. It also includes functional analysis, which is directly relevant to the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V008",
+      "paper_id": "doi:10.23736/s0390-5616.25.06567-1",
+      "pmid": "41148183",
+      "title": "Dysplastic cerebellar gangliocytoma: a six-decade study.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses dysplastic cerebellar gangliocytoma (DCG), a rare cerebellar tumor, and specifically mentions PTEN mutations and their association with Cowden Syndrome, which matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V009",
+      "paper_id": "doi:10.1016/j.rec.2015.10.001",
+      "pmid": "26654849",
+      "title": "The Ups and Downs of Genetic Diagnosis of Hypertrophic Cardiomyopathy.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses genetic diagnosis of hypertrophic cardiomyopathy, specifically mentioning MYH7 and other related genes, and addresses the functional significance of variants.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V010",
+      "paper_id": "doi:10.1016/j.ijporl.2005.10.026",
+      "pmid": "16469394",
+      "title": "Late postnatal onset of hearing loss due to GJB2 mutations.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "This document is a case report that specifically discusses siblings with homozygous 35delG mutations in the GJB2 gene, presenting late-onset progressive sensorineural hearing loss. It is directly relevant to the search query on GJB2 35delG hearing loss case reports.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V011",
+      "paper_id": "doi:10.32604/or.2024.045356",
+      "pmid": "38686056",
+      "title": "Targeting KRAS in pancreatic cancer.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses KRAS mutations in pancreatic cancer, specifically focusing on the G12D mutation, which is directly relevant to the query topic. It also mentions functional aspects and potential therapeutic targeting of this mutation.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V012",
+      "paper_id": "doi:10.1016/j.ebiom.2024.105356",
+      "pmid": "39303667",
+      "title": "Customised design of antisense oligonucleotides targeting EGFR driver mutants for personalised treatment of non-small cell lung cancer.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a new therapeutic strategy using antisense oligonucleotides (ASOs) to target specific EGFR mutations, including L858R, in non-small cell lung cancer (NSCLC). It provides substantive data and analysis related to the treatment of EGFR L858R lung cancer.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V013",
+      "paper_id": "doi:10.1016/j.pathol.2021.11.002",
+      "pmid": "34937664",
+      "title": "BRAF mutation testing for patients diagnosed with stage III or stage IV melanoma: practical guidance for the Australian setting.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document provides detailed guidance on BRAF mutation testing for patients diagnosed with stage III or IV melanoma, including discussion on the use of IHC and DNA-based testing methods, which is directly relevant to the topic of BRAF V600E melanoma.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V014",
+      "paper_id": "doi:10.1016/j.bpg.2009.02.010",
+      "pmid": "19414146",
+      "title": "Familial adenomatous polyposis.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses APC gene mutations in Familial Adenomatous Polyposis (FAP) patients, which directly matches the query topic.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V015",
+      "paper_id": "doi:10.1007/s10689-008-9209-5",
+      "pmid": "18726168",
+      "title": "Recurring MLH1 deleterious mutations in unrelated Chinese Lynch syndrome families in Singapore.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses MLH1 mutations in the context of Lynch syndrome, including their recurrence and implications for genetic testing.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V016",
+      "paper_id": "doi:10.30802/aalas-cm-19-000108",
+      "pmid": "32753092",
+      "title": "MYBPC3 Haplotype Linked to Hypertrophic Cardiomyopathy in Rhesus Macaques (Macaca mulatta).",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a MYBPC3 haplotype linked to hypertrophic cardiomyopathy in rhesus macaques, which is closely related to the search query about MYBPC3 variants in hypertrophic cardiomyopathy.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V017",
+      "paper_id": "doi:10.1016/j.carpath.2025.107804",
+      "pmid": "41338455",
+      "title": "Mapping cardiac innervation in the long QT syndrome type 1 transgenic mouse model using whole heart imaging.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document directly discusses a study on cardiac innervation in a mouse model of Long QT Syndrome Type 1, which involves the Kcnq1 gene mutation. It provides substantive data and analysis relevant to the topic of KCNQ1 long QT syndrome.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V018",
+      "paper_id": "doi:10.1002/mgg3.1116",
+      "pmid": "31950671",
+      "title": "Compound heterozygous mutations in FBN1 in a large family with Marfan syndrome.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document discusses a case report of compound heterozygous mutations in FBN1 in a large family with Marfan syndrome, providing detailed clinical and genetic information.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V019",
+      "paper_id": "doi:10.64898/2026.03.08.708251",
+      "pmid": "41959367",
+      "title": "Scn4b Modulates Huntington's Disease Phenotype Severity in vivo.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily focuses on Huntington's disease, discussing the role of Scn4b in modulating HD phenotypes and how it affects gene expression and neuron function in the context of HD.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    },
+    {
+      "variant_id": "V020",
+      "paper_id": "doi:10.1073/pnas.2505240122",
+      "pmid": "41248289",
+      "title": "Dysregulated proteostasis in p.A53T-α-Synuclein astrocytes aggravates Lewy-like neuropathology in a Parkinson's disease iPSC model.",
+      "heuristic_label": "negative",
+      "gate_relevant": true,
+      "gate_reason": "The document primarily discusses the p.A53T mutation in alpha-Synuclein and its effects on astrocytes and dopamine neurons in a Parkinson's disease iPSC model, which is directly relevant to the search query.",
+      "gate_doc_type": "",
+      "gate_error": ""
+    }
+  ]
+}

@@ -68,3 +68,6 @@ downloads/
 
 # Shell history snapshot produced by local tooling
 command.log
+
+# Double-annotation blinding key: analyst-only, never share with raters
+benchmarks/annotation/e2b_key.csv

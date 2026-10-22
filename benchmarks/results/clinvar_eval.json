@@ -1,0 +1,659 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "plan_reference": "paper/appnote/EXPERIMENT_OPTIMIZATION_PLAN.md §2.2 (E2a)",
+    "ground_truth": "ClinVar submitter assertion citations (gold_standard/variants_clinvar.jsonl)",
+    "matching": "DOI, PMID or normalised title; candidate lists are heterogeneous",
+    "variants_evaluated": [
+      "V002",
+      "V003",
+      "V005",
+      "V007",
+      "V008",
+      "V009",
+      "V010",
+      "V011",
+      "V012",
+      "V013",
+      "V014",
+      "V015",
+      "V016",
+      "V017",
+      "V019",
+      "V020",
+      "V021",
+      "V022",
+      "V024",
+      "V025",
+      "V026",
+      "V027",
+      "V028",
+      "V030",
+      "V031",
+      "V032",
+      "V033",
+      "V034",
+      "V035",
+      "V036",
+      "V037",
+      "V038",
+      "V039",
+      "V040",
+      "V041",
+      "V043"
+    ],
+    "n_variants": 36,
+    "variants_without_clinvar_record": [
+      "V001",
+      "V004",
+      "V006",
+      "V018",
+      "V023",
+      "V029",
+      "V042"
+    ],
+    "no_live_retrieval": true,
+    "sensitivity": "clinvar_strict restricts truth to records whose title contains the variant token",
+    "cache": {
+      "rerank": 6687,
+      "embed": 0
+    }
+  },
+  "truth_sizes": {
+    "V002": {
+      "all": 161,
+      "strict": 0,
+      "in_pooled_candidates": 18
+    },
+    "V003": {
+      "all": 275,
+      "strict": 275,
+      "in_pooled_candidates": 13
+    },
+    "V005": {
+      "all": 81,
+      "strict": 0,
+      "in_pooled_candidates": 4
+    },
+    "V007": {
+      "all": 39,
+      "strict": 39,
+      "in_pooled_candidates": 6
+    },
+    "V008": {
+      "all": 33,
+      "strict": 33,
+      "in_pooled_candidates": 1
+    },
+    "V009": {
+      "all": 37,
+      "strict": 37,
+      "in_pooled_candidates": 3
+    },
+    "V010": {
+      "all": 315,
+      "strict": 0,
+      "in_pooled_candidates": 16
+    },
+    "V011": {
+      "all": 75,
+      "strict": 75,
+      "in_pooled_candidates": 0
+    },
+    "V012": {
+      "all": 47,
+      "strict": 47,
+      "in_pooled_candidates": 0
+    },
+    "V013": {
+      "all": 105,
+      "strict": 105,
+      "in_pooled_candidates": 0
+    },
+    "V014": {
+      "all": 74,
+      "strict": 0,
+      "in_pooled_candidates": 14
+    },
+    "V015": {
+      "all": 56,
+      "strict": 0,
+      "in_pooled_candidates": 7
+    },
+    "V016": {
+      "all": 87,
+      "strict": 87,
+      "in_pooled_candidates": 8
+    },
+    "V017": {
+      "all": 41,
+      "strict": 41,
+      "in_pooled_candidates": 8
+    },
+    "V019": {
+      "all": 8,
+      "strict": 0,
+      "in_pooled_candidates": 1
+    },
+    "V020": {
+      "all": 30,
+      "strict": 30,
+      "in_pooled_candidates": 3
+    },
+    "V021": {
+      "all": 18,
+      "strict": 0,
+      "in_pooled_candidates": 10
+    },
+    "V022": {
+      "all": 89,
+      "strict": 89,
+      "in_pooled_candidates": 26
+    },
+    "V024": {
+      "all": 217,
+      "strict": 217,
+      "in_pooled_candidates": 32
+    },
+    "V025": {
+      "all": 313,
+      "strict": 313,
+      "in_pooled_candidates": 9
+    },
+    "V026": {
+      "all": 19,
+      "strict": 0,
+      "in_pooled_candidates": 0
+    },
+    "V027": {
+      "all": 33,
+      "strict": 33,
+      "in_pooled_candidates": 4
+    },
+    "V028": {
+      "all": 106,
+      "strict": 0,
+      "in_pooled_candidates": 17
+    },
+    "V030": {
+      "all": 12,
+      "strict": 12,
+      "in_pooled_candidates": 2
+    },
+    "V031": {
+      "all": 58,
+      "strict": 0,
+      "in_pooled_candidates": 10
+    },
+    "V032": {
+      "all": 27,
+      "strict": 0,
+      "in_pooled_candidates": 2
+    },
+    "V033": {
+      "all": 66,
+      "strict": 0,
+      "in_pooled_candidates": 12
+    },
+    "V034": {
+      "all": 58,
+      "strict": 0,
+      "in_pooled_candidates": 3
+    },
+    "V035": {
+      "all": 112,
+      "strict": 0,
+      "in_pooled_candidates": 18
+    },
+    "V036": {
+      "all": 270,
+      "strict": 0,
+      "in_pooled_candidates": 52
+    },
+    "V037": {
+      "all": 151,
+      "strict": 0,
+      "in_pooled_candidates": 7
+    },
+    "V038": {
+      "all": 77,
+      "strict": 77,
+      "in_pooled_candidates": 21
+    },
+    "V039": {
+      "all": 52,
+      "strict": 0,
+      "in_pooled_candidates": 8
+    },
+    "V040": {
+      "all": 83,
+      "strict": 0,
+      "in_pooled_candidates": 11
+    },
+    "V041": {
+      "all": 48,
+      "strict": 48,
+      "in_pooled_candidates": 12
+    },
+    "V043": {
+      "all": 2,
+      "strict": 0,
+      "in_pooled_candidates": 0
+    }
+  },
+  "pool_coverage": {
+    "truth_papers_total": 3275,
+    "truth_papers_found_by_some_method": 358,
+    "note": "Only (variant, paper) matches that some method retrieved can count toward recall; the ceiling is set by the pooled candidate coverage, not by the reference set."
+  },
+  "method_labels": {
+    "pubmed_only": "M1 PubMed only",
+    "m2_recorded": "M2 recorded federation order",
+    "m2_lex": "M2_lex dedup + lexical rank",
+    "m2_rerank": "M2_rerank + cross-encoder",
+    "m3_recorded": "M3 recorded order (manuscript)",
+    "m3_lex": "M3_lex dedup + lexical rank",
+    "m3_rerank": "M3_rerank + cross-encoder",
+    "full_pipeline_nested": "M4n nested full pipeline",
+    "sota_dense": "S1 dense (recorded)",
+    "sota_hybrid": "S3 hybrid (recorded, unranked pool)",
+    "sota_mdense": "S6 multilingual dense (recorded)"
+  },
+  "temporal_profile": {
+    "truth": {
+      "n_dated": 3272,
+      "median_year": 2011,
+      "share_2015_or_later": 0.34
+    },
+    "methods": {
+      "pubmed_only": {
+        "n_dated": 2769,
+        "median_year": 2025,
+        "share_2015_or_later": 0.888
+      },
+      "m2_recorded": {
+        "n_dated": 2083,
+        "median_year": 2020,
+        "share_2015_or_later": 0.715
+      },
+      "m2_lex": {
+        "n_dated": 2083,
+        "median_year": 2020,
+        "share_2015_or_later": 0.715
+      },
+      "m2_rerank": {
+        "n_dated": 2083,
+        "median_year": 2020,
+        "share_2015_or_later": 0.715
+      },
+      "m3_recorded": {
+        "n_dated": 732,
+        "median_year": 2025,
+        "share_2015_or_later": 0.87
+      },
+      "m3_lex": {
+        "n_dated": 732,
+        "median_year": 2025,
+        "share_2015_or_later": 0.87
+      },
+      "m3_rerank": {
+        "n_dated": 732,
+        "median_year": 2025,
+        "share_2015_or_later": 0.87
+      },
+      "full_pipeline_nested": {
+        "n_dated": 1010,
+        "median_year": 2024,
+        "share_2015_or_later": 0.863
+      },
+      "sota_dense": {
+        "n_dated": 2769,
+        "median_year": 2025,
+        "share_2015_or_later": 0.888
+      },
+      "sota_hybrid": {
+        "n_dated": 2766,
+        "median_year": 2019,
+        "share_2015_or_later": 0.661
+      },
+      "sota_mdense": {
+        "n_dated": 2769,
+        "median_year": 2025,
+        "share_2015_or_later": 0.888
+      }
+    },
+    "note": "ClinVar citations are the historical evidence base for a variant (functional studies, segregation analyses, older cohorts); the benchmark queries and providers skew recent. Low absolute recall on this truth therefore measures temporal reach, not clinical utility."
+  },
+  "results_all_citations": {
+    "pubmed_only": {
+      "mean_set_recall": 0.045218791070404066,
+      "mean_recall_at_20": 0.016096838957742318,
+      "mean_recall_at_50": 0.026874432754535417,
+      "mean_precision_at_20": 0.056944444444444436,
+      "total_found": 143,
+      "total_truth": 3275
+    },
+    "m2_recorded": {
+      "mean_set_recall": 0.06420222846087437,
+      "mean_recall_at_20": 0.016353010571610982,
+      "mean_recall_at_50": 0.03169832874777228,
+      "mean_precision_at_20": 0.06944444444444445,
+      "total_found": 180,
+      "total_truth": 3275
+    },
+    "m2_lex": {
+      "mean_set_recall": 0.06420222846087437,
+      "mean_recall_at_20": 0.012744764204234725,
+      "mean_recall_at_50": 0.031094518902720438,
+      "mean_precision_at_20": 0.056944444444444436,
+      "total_found": 180,
+      "total_truth": 3275
+    },
+    "m2_rerank": {
+      "mean_set_recall": 0.06420222846087437,
+      "mean_recall_at_20": 0.01604090070893932,
+      "mean_recall_at_50": 0.03169832874777228,
+      "mean_precision_at_20": 0.06805555555555556,
+      "total_found": 180,
+      "total_truth": 3275
+    },
+    "m3_recorded": {
+      "mean_set_recall": 0.015874308953429048,
+      "mean_recall_at_20": 0.011967876966131252,
+      "mean_recall_at_50": 0.015227527069338378,
+      "mean_precision_at_20": 0.056944444444444436,
+      "total_found": 53,
+      "total_truth": 3275
+    },
+    "m3_lex": {
+      "mean_set_recall": 0.015874308953429048,
+      "mean_recall_at_20": 0.012157871134539073,
+      "mean_recall_at_50": 0.015562199090757388,
+      "mean_precision_at_20": 0.05555555555555555,
+      "total_found": 53,
+      "total_truth": 3275
+    },
+    "m3_rerank": {
+      "mean_set_recall": 0.015874308953429048,
+      "mean_recall_at_20": 0.011967876966131252,
+      "mean_recall_at_50": 0.015227527069338378,
+      "mean_precision_at_20": 0.056944444444444436,
+      "total_found": 53,
+      "total_truth": 3275
+    },
+    "full_pipeline_nested": {
+      "mean_set_recall": 0.02128818958282692,
+      "mean_recall_at_20": 0.011967876966131252,
+      "mean_recall_at_50": 0.015227527069338378,
+      "mean_precision_at_20": 0.056944444444444436,
+      "total_found": 65,
+      "total_truth": 3275
+    },
+    "sota_dense": {
+      "mean_set_recall": 0.045218791070404066,
+      "mean_recall_at_20": 0.027191922449247823,
+      "mean_recall_at_50": 0.03705311459544871,
+      "mean_precision_at_20": 0.09444444444444444,
+      "total_found": 143,
+      "total_truth": 3275
+    },
+    "sota_hybrid": {
+      "mean_set_recall": 0.08032828261925144,
+      "mean_recall_at_20": 0.035605733190545136,
+      "mean_recall_at_50": 0.05576450662255091,
+      "mean_precision_at_20": 0.12777777777777777,
+      "total_found": 237,
+      "total_truth": 3275
+    },
+    "sota_mdense": {
+      "mean_set_recall": 0.045218791070404066,
+      "mean_recall_at_20": 0.023413305805188897,
+      "mean_recall_at_50": 0.03810502905175899,
+      "mean_precision_at_20": 0.09305555555555556,
+      "total_found": 143,
+      "total_truth": 3275
+    }
+  },
+  "results_strict_citations": {
+    "pubmed_only": {
+      "mean_set_recall": 0.019937144604303295,
+      "mean_recall_at_20": 0.006144662921348315,
+      "mean_recall_at_50": 0.010752598491699078,
+      "mean_precision_at_20": 0.016666666666666666,
+      "total_found": 52,
+      "total_truth": 1558
+    },
+    "m2_recorded": {
+      "mean_set_recall": 0.02697332959224808,
+      "mean_recall_at_20": 0.007815567580991108,
+      "mean_recall_at_50": 0.01416722392675764,
+      "mean_precision_at_20": 0.030555555555555558,
+      "total_found": 74,
+      "total_truth": 1558
+    },
+    "m2_lex": {
+      "mean_set_recall": 0.02697332959224808,
+      "mean_recall_at_20": 0.004790233815579418,
+      "mean_recall_at_50": 0.015534537152347252,
+      "mean_precision_at_20": 0.022222222222222223,
+      "total_found": 74,
+      "total_truth": 1558
+    },
+    "m2_rerank": {
+      "mean_set_recall": 0.02697332959224808,
+      "mean_recall_at_20": 0.007503457718319449,
+      "mean_recall_at_50": 0.01416722392675764,
+      "mean_precision_at_20": 0.029166666666666667,
+      "total_found": 74,
+      "total_truth": 1558
+    },
+    "m3_recorded": {
+      "mean_set_recall": 0.00726740867178653,
+      "mean_recall_at_20": 0.006120578720362525,
+      "mean_recall_at_50": 0.006955298809114871,
+      "mean_precision_at_20": 0.02361111111111111,
+      "total_found": 21,
+      "total_truth": 1558
+    },
+    "m3_lex": {
+      "mean_set_recall": 0.00726740867178653,
+      "mean_recall_at_20": 0.006598272323056127,
+      "mean_recall_at_50": 0.006955298809114871,
+      "mean_precision_at_20": 0.02361111111111111,
+      "total_found": 21,
+      "total_truth": 1558
+    },
+    "m3_rerank": {
+      "mean_set_recall": 0.00726740867178653,
+      "mean_recall_at_20": 0.006120578720362525,
+      "mean_recall_at_50": 0.006955298809114871,
+      "mean_precision_at_20": 0.02361111111111111,
+      "total_found": 21,
+      "total_truth": 1558
+    },
+    "full_pipeline_nested": {
+      "mean_set_recall": 0.008831904201799303,
+      "mean_recall_at_20": 0.006120578720362525,
+      "mean_recall_at_50": 0.006955298809114871,
+      "mean_precision_at_20": 0.02361111111111111,
+      "total_found": 24,
+      "total_truth": 1558
+    },
+    "sota_dense": {
+      "mean_set_recall": 0.019937144604303295,
+      "mean_recall_at_20": 0.010760363749688046,
+      "mean_recall_at_50": 0.013856390504759206,
+      "mean_precision_at_20": 0.027777777777777776,
+      "total_found": 52,
+      "total_truth": 1558
+    },
+    "sota_hybrid": {
+      "mean_set_recall": 0.033462458384486526,
+      "mean_recall_at_20": 0.011822083143873048,
+      "mean_recall_at_50": 0.023360160580056414,
+      "mean_precision_at_20": 0.044444444444444446,
+      "total_found": 97,
+      "total_truth": 1558
+    },
+    "sota_mdense": {
+      "mean_set_recall": 0.019937144604303295,
+      "mean_recall_at_20": 0.010760363749688046,
+      "mean_recall_at_50": 0.014930107484711602,
+      "mean_precision_at_20": 0.027777777777777776,
+      "total_found": 52,
+      "total_truth": 1558
+    }
+  },
+  "tests_holm_all_citations": {
+    "m4n_vs_m1_setrecall": {
+      "delta": -0.023930601487577148,
+      "p": 0.038450602378096305,
+      "r": -0.46438746438746437,
+      "n_nonzero": 26,
+      "ci95": [
+        -0.04335781835514115,
+        -0.006760329244600413
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": "set",
+      "p_holm": 0.30760481902477044,
+      "significant_holm": false
+    },
+    "m4n_vs_m1_recall20": {
+      "delta": -0.004128961991611068,
+      "p": 0.625732421875,
+      "r": -0.1619047619047619,
+      "n_nonzero": 14,
+      "ci95": [
+        -0.013164551941433676,
+        0.003708414539561313
+      ],
+      "base": "pubmed_only",
+      "improved": "full_pipeline_nested",
+      "metric": "20",
+      "p_holm": 1.0,
+      "significant_holm": false
+    },
+    "m2_vs_m1_setrecall": {
+      "delta": 0.018983437390470297,
+      "p": 0.08751279590396126,
+      "r": 0.39076923076923076,
+      "n_nonzero": 25,
+      "ci95": [
+        -0.003579407172751669,
+        0.04317923186689975
+      ],
+      "base": "pubmed_only",
+      "improved": "m2_recorded",
+      "metric": "set",
+      "p_holm": 0.5250767754237675,
+      "significant_holm": false
+    },
+    "m3_vs_m1_setrecall": {
+      "delta": -0.029344482116975015,
+      "p": 0.0024558734385170798,
+      "r": -0.7066666666666667,
+      "n_nonzero": 24,
+      "ci95": [
+        -0.048029825733243395,
+        -0.013041424199070057
+      ],
+      "base": "pubmed_only",
+      "improved": "m3_recorded",
+      "metric": "set",
+      "p_holm": 0.02210286094665372,
+      "significant_holm": true
+    },
+    "translation_lexical_recall20": {
+      "delta": -0.0005868930696956496,
+      "p": 0.9031982421875,
+      "r": 0.047619047619047616,
+      "n_nonzero": 14,
+      "ci95": [
+        -0.009406741284196022,
+        0.007123744744791229
+      ],
+      "base": "m2_lex",
+      "improved": "m3_lex",
+      "metric": "20",
+      "p_holm": 1.0,
+      "significant_holm": false
+    },
+    "translation_reranked_recall20": {
+      "delta": -0.00407302374280807,
+      "p": 0.14759256826922804,
+      "r": -0.4117647058823529,
+      "n_nonzero": 16,
+      "ci95": [
+        -0.009105138195527858,
+        0.00024129140507382353
+      ],
+      "base": "m2_rerank",
+      "improved": "m3_rerank",
+      "metric": "20",
+      "p_holm": 0.5903702730769121,
+      "significant_holm": false
+    },
+    "ranking_lexical_recall20": {
+      "delta": -0.003608246367376256,
+      "p": 0.07413548902094941,
+      "r": -0.47953216374269003,
+      "n_nonzero": 18,
+      "ci95": [
+        -0.009033192759959946,
+        0.0018215505844852676
+      ],
+      "base": "m2_recorded",
+      "improved": "m2_lex",
+      "metric": "20",
+      "p_holm": 0.5189484231466459,
+      "significant_holm": false
+    },
+    "crossencoder_recall20": {
+      "delta": 0.003296136504704596,
+      "p": 0.08830440952743725,
+      "r": 0.47058823529411764,
+      "n_nonzero": 17,
+      "ci95": [
+        -0.002133526375816781,
+        0.00869446401912131
+      ],
+      "base": "m2_lex",
+      "improved": "m2_rerank",
+      "metric": "20",
+      "p_holm": 0.5250767754237675,
+      "significant_holm": false
+    },
+    "crossencoder_translated_recall20": {
+      "delta": -0.00018999416840782314,
+      "p": 1.0,
+      "r": -0.06666666666666667,
+      "n_nonzero": 5,
+      "ci95": [
+        -0.00197222994913758,
+        0.0014339364339364341
+      ],
+      "base": "m3_lex",
+      "improved": "m3_rerank",
+      "metric": "20",
+      "p_holm": 1.0,
+      "significant_holm": false
+    },
+    "m4n_vs_s3_setrecall": {
+      "delta": -0.05904009303642452,
+      "p": 2.351997695846405e-05,
+      "r": -0.9312169312169312,
+      "n_nonzero": 27,
+      "ci95": [
+        -0.08721564445731322,
+        -0.03577776819229978
+      ],
+      "base": "sota_hybrid",
+      "improved": "full_pipeline_nested",
+      "metric": "set",
+      "p_holm": 0.00023519976958464052,
+      "significant_holm": true
+    }
+  }
+}

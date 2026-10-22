@@ -132,7 +132,15 @@ async def rerank_docs(
 ) -> list[tuple[float, dict[str, Any]]]:
     """Cross-encoder rerank (bge-reranker-v2-m3) over document dicts.
 
-    Scores titles; returns (score, doc) pairs sorted by score descending.
+    Scores titles; returns (score, doc) pairs sorted by score **descending**.
+
+    The provider returns ``results`` already ordered by relevance with the
+    original position in ``index``. An earlier version of this helper restored
+    *input* order (``sorted(..., key=r["index"])``) and its callers then
+    truncated with ``[:limit]``, which silently discarded the ranking: the
+    recorded S2/S3 baselines and the M5/M5g artifacts were unaffected by the
+    cross-encoder. Sorting by score is the correct behaviour; see
+    ``tests/test_rerank_ordering.py``.
     """
     base, key, model = rerank_config()
     texts = [d.get("title") or "" for d in docs]
@@ -140,7 +148,7 @@ async def rerank_docs(
     if top_n is not None:
         payload["top_n"] = top_n
     data = await _post_json(client, f"{base}/rerank", payload, key)
-    results = sorted(data["results"], key=lambda r: r["index"])
+    results = sorted(data["results"], key=lambda r: r["relevance_score"], reverse=True)
     return [(r["relevance_score"], docs[r["index"]]) for r in results]
 
 

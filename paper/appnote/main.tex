@@ -97,7 +97,7 @@ what that reference set can and cannot support.
 \subsection*{Pipeline}
 Acquisition runs in three phases (Figure~\ref{fig:overview}A). \emph{Search}
 fans out across 19 channels --- 15 pure-Python \texttt{httpx} backends
-(Crossref, OpenAlex, Europe PMC, PMC, DOAJ, J-STAGE, CiNii, SciELO, BASE, CORE,
+(Crossref, OpenAlex \cite{priem2022}, Europe PMC, PMC, DOAJ, J-STAGE, CiNii, SciELO, BASE, CORE,
 OpenAIRE, arXiv, bioRxiv, medRxiv, Unpaywall) plus PubMed, Semantic Scholar,
 ClinicalTrials.gov and Zenodo clients --- with a shared connection
 pool, per-provider deadlines, health-aware ordering and a circuit breaker;
@@ -133,12 +133,12 @@ HFE, \dots) and 822 papers, built by an automated heuristic protocol scoring
 gene, variant token, disease keyword and publication type. It is \emph{not}
 expert-verified and its candidate pool was drawn from channels that overlap the
 evaluated system, so every number below is a \emph{relative} coverage
-comparison, not a clinical retrieval-quality estimate. Only German (13 papers)
-and French (11) carry non-English annotations; 305 have no language label. We
-compare four configurations at a uniform 100-candidate budget with a strictly
-nested ablation, testing paired differences by two-sided Wilcoxon signed-rank
-under Holm--Bonferroni correction over a pre-declared family of eight tests
-(10{,}000 bootstrap resamples, seed 42).
+comparison, not a clinical retrieval-quality estimate. An offline language
+backfill raises the German bucket from 13 to 18 papers and the French from 11 to
+20 (Suppl.). We compare four configurations at a uniform 100-candidate budget
+with a strictly nested ablation; paired differences use two-sided Wilcoxon
+signed-rank with Holm--Bonferroni correction over a pre-declared family of eight
+tests (10{,}000 bootstrap resamples, seed 42).
 
 \begin{table}[t]
 \centering
@@ -172,7 +172,8 @@ contrasts), and citation traversal costs list precision
 \subsection*{Multilingual recovery}
 Translation does not raise aggregate set recall, but it changes \emph{which}
 papers are reachable: M3/M4n recover 21 of the 24 annotated German and French
-reference papers (11/13 German, 10/11 French), whereas every English-only
+reference papers (11/13 German, 10/11 French; 16/18 and 18/20 after backfill),
+whereas every English-only
 baseline --- including multilingual dense retrieval --- recovers at most one.
 This is the clearest practical argument for language-aware routing.
 
@@ -181,12 +182,15 @@ Across all 43 variants citation traversal contributes two relevant papers that
 keyword search did not rank, one appearing in no keyword list at all (V002
 BRCA1 c.5266dupC; V035 HFE p.C282Y) --- a bounded complementary channel, not a
 headline gain. Against six 2025--2026 single-channel techniques (dense
-retrieval, cross-encoder reranking, hybrid BM25+dense+rerank, LLM query
+retrieval \cite{karpukhin2020}, cross-encoder reranking \cite{nogueira2019},
+hybrid BM25 \cite{robertson2009}+dense fusion, LLM query
 expansion, agentic two-round search, multilingual dense) the pipeline is
-significantly better than five; the strongest, hybrid BM25+dense+rerank
-(0.421), stays below M4n (0.467) but not significantly so
+significantly better than five; the strongest, hybrid BM25+dense (0.421), stays
+below M4n (0.467) but not significantly so
 (raw $p=0.35$, Holm-adjusted $p=1.00$). Four of the six only reorder the same PubMed pool
-(mean 80.7 candidates) and are identical to M1 on set recall by construction.
+(mean 80.7 candidates) and are identical to M1 on set recall by construction;
+re-applying every ranker to the frozen pools with a corrected cross-encoder leaves
+the picture unchanged (Suppl.).
 
 \subsection*{Cost}
 In the 43-variant session the composed full pipeline took a median of 28.65\,s
@@ -197,16 +201,15 @@ peak RSS 85.7\,MB. Downloading requires \texttt{LIT\_UNPAYWALL\_EMAIL};
 without it every DOI$\rightarrow$OA route is skipped.
 
 \section{Discussion}
-lit-acquisition combines multi-source federation, cross-lingual translation and
-citation traversal in one reproducible pipeline, and its coverage gain over
-PubMed-only is statistically robust on this reference set. Two limitations
-matter. The reference set is heuristically annotated with an overlapping
-candidate pool, so the deltas measure relative reach, not clinical
-completeness; expert re-annotation is in progress. And the cost is real
-(~29\,s per variant, ~4 PDFs/min): adequate for curation-scale batches, not for
-interactive search. Future work targets embedding-based semantic search,
-adaptive traversal depth and integration with variant databases such as ClinVar
-\cite{landrum2018}.
+The pipeline's coverage gain over PubMed-only is statistically robust here. Two
+limitations matter. The reference set is heuristically annotated with an
+overlapping candidate pool, so the deltas measure relative reach, not clinical
+completeness: against an independent ClinVar-citation truth the gain disappears,
+because that truth is a decade older than what the providers return (Suppl.).
+Expert re-annotation is in progress. And the cost is real (~29\,s per variant,
+~4 PDFs/min): adequate for curation-scale batches, not for interactive search.
+Future work targets semantic search, adaptive traversal and integration with
+variant databases such as ClinVar \cite{landrum2018}.
 
 \section*{Funding}
 [To be completed.]
