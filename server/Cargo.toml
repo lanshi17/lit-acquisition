@@ -1,6 +1,6 @@
 [package]
 name = "lit-acquisition-server"
-version = "0.1.0"
+version = "0.5.1"
 edition = "2021"
 rust-version = "1.80"
 description = "Axum HTTP service entry point for the lit-acquisition toolkit"

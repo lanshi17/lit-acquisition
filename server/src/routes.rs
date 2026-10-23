@@ -10,7 +10,7 @@ use axum::{
     extract::{rejection::JsonRejection, DefaultBodyLimit, Request, State},
     http::{header, StatusCode},
     middleware::{self, Next},
-    response::{IntoResponse, Response},
+    response::{Html, IntoResponse, Response},
     routing::{get, post},
     Json, Router,
 };
@@ -21,6 +21,11 @@ use tower_http::trace::TraceLayer;
 use uuid::Uuid;
 
 use crate::{bridge::WorkerPool, config::Config, error::AppError};
+
+/// Static OpenAPI document served at `/openapi.json`.
+const OPENAPI_SPEC: &str = include_str!("../openapi.json");
+/// Swagger UI page served at `/docs`.
+const DOCS_HTML: &str = include_str!("../docs.html");
 
 const MAX_QUERY_CHARS: usize = 512;
 const MAX_LIMIT: u32 = 50;
@@ -56,6 +61,8 @@ pub fn router(state: AppState) -> Router {
         .route("/readyz", get(readyz))
         .route("/v1/version", get(version))
         .route("/v1/search", post(search))
+        .route("/openapi.json", get(openapi))
+        .route("/docs", get(docs))
         .layer(DefaultBodyLimit::max(max_body_bytes))
         .layer(middleware::from_fn_with_state(
             state.clone(),
@@ -73,9 +80,23 @@ async fn index() -> Json<Value> {
             "GET /healthz": "liveness probe (never touches the worker pool)",
             "GET /readyz": "readiness probe (round-trips a ping through the pool)",
             "GET /v1/version": "service and Python package versions",
+            "GET /openapi.json": "OpenAPI 3.0 document",
+            "GET /docs": "Swagger UI",
             "POST /v1/search": "search literature across the configured providers"
         }
     }))
+}
+
+async fn openapi() -> Response {
+    Response::builder()
+        .status(StatusCode::OK)
+        .header(header::CONTENT_TYPE, "application/json")
+        .body(Body::from(OPENAPI_SPEC))
+        .expect("static OpenAPI document is a valid response")
+}
+
+async fn docs() -> Html<&'static str> {
+    Html(DOCS_HTML)
 }
 
 async fn healthz(State(state): State<AppState>) -> Json<Value> {
@@ -286,8 +307,9 @@ async fn require_api_key(
 ) -> Result<Response, AppError> {
     if let Some(expected) = state.cfg.api_key.as_deref() {
         let path = request.uri().path();
-        let is_probe = path == "/healthz" || path == "/readyz";
-        if !is_probe {
+        // Probes and API documentation are public; no secrets or data are exposed.
+        let is_public = matches!(path, "/healthz" | "/readyz" | "/openapi.json" | "/docs");
+        if !is_public {
             let provided = request
                 .headers()
                 .get(header::AUTHORIZATION)
@@ -385,6 +407,60 @@ mod tests {
         let validated = parse(r#"{"query":"MECP2"}"#).validate().unwrap();
         assert_eq!(validated.language, "auto");
         assert_eq!(validated.limit, 10);
+    }
+
+    #[test]
+    fn openapi_document_is_valid_and_complete() {
+        let spec: Value = serde_json::from_str(OPENAPI_SPEC).expect("valid OpenAPI JSON");
+        assert_eq!(spec["openapi"], "3.0.3");
+        for path in [
+            "/healthz",
+            "/readyz",
+            "/v1/version",
+            "/v1/search",
+            "/openapi.json",
+            "/docs",
+        ] {
+            assert!(spec["paths"].get(path).is_some(), "missing path {path}");
+        }
+        assert_eq!(
+            spec["components"]["securitySchemes"]["bearerAuth"]["scheme"],
+            "bearer"
+        );
+        assert_eq!(
+            spec["paths"]["/v1/search"]["post"]["requestBody"]["required"],
+            true
+        );
+    }
+
+    #[tokio::test]
+    async fn openapi_and_docs_are_public() {
+        let (state, pool) = state(&[("LIT_SERVICE_API_KEY", "secret")]);
+        let app = router(state);
+
+        let response = app
+            .clone()
+            .oneshot(
+                HttpRequest::builder()
+                    .uri("/openapi.json")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+
+        let response = app
+            .oneshot(
+                HttpRequest::builder()
+                    .uri("/docs")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+        pool.shutdown().await;
     }
 
     #[tokio::test]

@@ -291,6 +291,8 @@ curl -s -X POST http://127.0.0.1:8080/v1/search \
 | `GET` | `/healthz` | Liveness; never touches the worker pool |
 | `GET` | `/readyz` | Readiness; pings a worker (200/503) |
 | `GET` | `/v1/version` | Server, Python package and schema versions |
+| `GET` | `/openapi.json` | OpenAPI 3.0 document |
+| `GET` | `/docs` | Swagger UI |
 | `POST` | `/v1/search` | Query, `limit` (1-50), `language`, `provider`, `literature_types` |
 
 `POST /v1/search` returns the same versioned envelope as the Python workflows
@@ -321,10 +323,10 @@ runtime contains only those two artifacts plus the CA bundle.
 
 ```bash
 # build
-docker build -t lit-acquisition:0.1.0 .
+docker build -t lit-acquisition:0.5.1 .
 
 # run (provider keys come from .env at run time, never baked into the image)
-docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.1.0
+docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.5.1
 curl -s http://127.0.0.1:8080/healthz
 
 # or use the compose file (also loads .env when present)
@@ -348,7 +350,7 @@ non-root user, graceful stop):
 scripts/docker-smoke.sh
 ```
 
-Rebuilding for another platform: `docker buildx build --platform linux/arm64 -t lit-acquisition:0.1.0 .`.
+Rebuilding for another platform: `docker buildx build --platform linux/arm64 -t lit-acquisition:0.5.1 .`.
 
 ## Supported Providers
 

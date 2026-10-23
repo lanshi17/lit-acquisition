@@ -1,4 +1,6 @@
-# syntax=docker/dockerfile:1.7
+# Uses the BuildKit frontend bundled with the daemon (cache mounts are
+# supported since BuildKit 1.2). No `# syntax=` pin, so the build never
+# needs to pull docker/dockerfile from a registry.
 #
 # lit-acquisition service image.
 #
@@ -45,7 +47,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # ── Stage 3: runtime ───────────────────────────────────────────────────────
 FROM ${PYTHON_IMAGE} AS runtime
 
-ARG VERSION=0.5.0
+ARG VERSION=0.5.1
 LABEL org.opencontainers.image.title="lit-acquisition" \
       org.opencontainers.image.description="Multilingual biomedical literature acquisition service (axum + Python workers)" \
       org.opencontainers.image.version="${VERSION}" \

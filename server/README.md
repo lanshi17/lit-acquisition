@@ -78,6 +78,8 @@ Variables already exported in the environment win over the file.
 | `GET` | `/healthz` | Liveness; never touches the worker pool |
 | `GET` | `/readyz` | Readiness; round-trips a `ping` through a worker (200/503) |
 | `GET` | `/v1/version` | Server version plus Python package/schema versions |
+| `GET` | `/openapi.json` | OpenAPI 3.0 document (public) |
+| `GET` | `/docs` | Swagger UI for the document (public) |
 | `POST` | `/v1/search` | Literature search |
 
 ### `POST /v1/search`
@@ -97,6 +99,12 @@ curl -s -X POST http://127.0.0.1:8080/v1/search \
 | `literature_types` | string[] | `[]` | `case_report`, `sequencing`, `functional` |
 
 Unknown fields are rejected (`400`) so typos do not silently change behaviour.
+
+Interactive docs live at `/docs` (Swagger UI) and the machine-readable
+spec at `/openapi.json`. Both are public even when `LIT_SERVICE_API_KEY` is set,
+because they contain no data or credentials; remove them from `is_public` in
+`routes.rs` if your deployment requires the schema to stay private. Import the
+JSON into Postman/Apifox when the Swagger CDN is unreachable.
 
 A successful call returns the Python workflow envelope unchanged
 (`schema_version`, `items`, `warnings`, `diagnostics`, `summary`, ...) with
@@ -195,8 +203,8 @@ environment, non-root runtime with a `/healthz` healthcheck). Build and run it
 from the repository root:
 
 ```bash
-docker build -t lit-acquisition:0.1.0 .
-docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.1.0
+docker build -t lit-acquisition:0.5.1 .
+docker run --rm -p 8080:8080 --env-file .env lit-acquisition:0.5.1
 ```
 
 `docker compose up --build` does the same and loads `.env` when present; see
